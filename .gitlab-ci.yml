@@ -43,7 +43,7 @@ build-master:
     - docker info
     - docker login -u $DOCKER_ID -p "$DOCKER_PASS"
     - docker build --pull --tag lokaventour/admmin-vue:latest -f ./Dockerfile .
-    - docker push lokaventour/admmin-vue:$CI_COMMIT_REF_NAME
+    - docker push lokaventour/admmin-vue:latest
 
   only:
     - master
