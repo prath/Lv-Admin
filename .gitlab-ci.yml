@@ -16,15 +16,15 @@ before_script:
   - yarn install
   - yarn build  
 
-test:
-  stage: test 
-  script:
-    - yarn run test
-  only:
-    - develop
-    - master
-    - merge_requests
-    - tag
+# test:
+#   stage: test 
+#   script:
+#     - yarn run test
+#   only:
+#     - develop
+#     - master
+#     - merge_requests
+#     - tag
 
 build-docker:
   stage: build
