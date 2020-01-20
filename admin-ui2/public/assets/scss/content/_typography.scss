@@ -1,0 +1,119 @@
+/*
+// #Typography
+// --------------------------------------------------
+*/
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+	color: $headings-color;
+	margin: 0 0 .75em 0;
+	font-weight: 700;
+	line-height: 1.1em;
+	font-family: $headings-font-family;
+	letter-spacing: -0.02em;
+}
+
+h1 {
+	font-size: $font-size-h1;
+	font-style: $font-style-h1;
+
+}
+
+h2 {
+	font-size: $font-size-h2;
+	font-style: $font-style-h2;
+
+}
+
+h3 {
+	font-size: $font-size-h3;
+	font-style: $font-style-h3;
+
+}
+
+h4 {
+	font-size: $font-size-h4;
+	font-style: $font-style-h4;
+}
+
+h5 {
+	font-size: $font-size-h5;
+	font-style: $font-style-h5;
+}
+
+h6 {
+	font-size: $font-size-h6;
+	margin-bottom: 2em;
+	line-height: $base-line-height;
+	font-size: $font-style-h6;
+}
+
+
+.text-primary{
+	color: $text-primary;
+
+	&.text-underline{
+		border-bottom: 1px solid $text-primary;
+	}
+}
+.text-success{
+	color: $text-success;
+	&.text-underline{
+		border-bottom: 1px solid $text-success;
+	}
+}
+.text-warning{
+	color: $text-warning;
+	&.text-underline{
+		border-bottom: 1px solid $text-warning;
+	}
+}
+.text-danger{
+	color: $text-danger;
+	&.text-underline{
+		border-bottom: 1px solid $text-danger;
+	}
+}
+.text-disabled{
+	color: $text-disabled;
+	&.text-underline{
+		border-bottom: 1px solid $text-disabled;
+	}
+}
+.text-info{
+	color: $text-info;
+	&.text-underline{
+		border-bottom: 1px solid $text-info;
+	}
+}
+.text-yellow{
+	color: $text-yellow;
+	&.text-underline{
+		border-bottom: 1px solid $text-yellow;
+	}
+}
+.text-black{
+	color: $color-martinique;
+}
+.text-underline{
+	display: inline-block;
+
+	&:hover{
+		border-bottom: 1px solid $color-martinique;
+	}
+}
+
+
+
+/* Paragraphs */
+p {
+	margin-bottom: 1.5em;
+}
+.accent{
+	font-family: $font-family-accent;
+	font-style: italic;
+	color: $color-topaz;
+	line-height: 25px;
+	font-size: 14px;
+	font-weight: 400;
+}

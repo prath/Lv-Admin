@@ -1,0 +1,48 @@
+.breadcrumb{
+    background-color: $bg-breadcrumb;
+    width: 100%;
+    padding: 8px 40px;
+
+    li{
+        display: inline-block;
+        position: relative;
+        padding-right: 20px;
+        margin-right: 10px;
+        color: $color-breadcrumb;
+        font-size: 14px;
+        font-weight: 600;
+        a{
+            color: $color-primary;
+            @include transition(.3s);
+
+            &:hover{
+                color: $color-primary;
+            }
+        }
+        &.active{
+            color: $color-breadcrumb-active;
+            &:after{
+                display: none;
+            }
+        }
+
+        &:after{
+            content:' ';
+            background: url('../img/ic-chevron-right.svg') no-repeat;
+            width: 8px;
+            height: 10px;
+            position: absolute;
+            right: 0px;
+            top: 8px;
+        }
+        &:before{
+            display: none
+        }
+
+        &:last-child{
+            &:after{
+                display: none;
+            }
+        }
+    }
+}

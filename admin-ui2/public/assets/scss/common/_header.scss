@@ -1,0 +1,57 @@
+.header{
+    padding: 15px 20px;
+    display: flex;
+    position: relative;
+    z-index: 10;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    box-sizing: border-box;
+
+    &--user-dashboard{
+        @include box-shadow(0 1px 2px $color-shadow-header);
+        background-color: $color-white;
+    }
+    &--signup-dashboard{
+        background-color: #edeff4;
+    }
+    .logo{
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+
+        img{
+            width: auto;
+            max-height: 40px;
+        }
+
+        .store-select{
+            margin-left: 25px;
+            padding-left: 25px;
+            border-left: 1px solid $color-lobiolly;
+            p{
+                color: $color-topaz;
+                font-size: 16px;
+                font-weight: 400;
+                margin-bottom: 0;
+            }
+        }
+
+    }
+    .user-setting{
+        ul{
+            margin: 10px 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            li{
+                flex-grow: 2;
+                padding-left: 20px;
+                display: flex;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}
