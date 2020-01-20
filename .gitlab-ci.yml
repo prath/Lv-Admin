@@ -1,0 +1,57 @@
+image: dendi04/gitlab-vue-kubectl-docker-doctl-plugin:v0.0.0.1
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2375
+
+stages:
+  - test
+  - build
+  - deploy
+
+before_script:
+  - yarn install
+  - yarn build  
+
+test:
+  stage: test 
+  script:
+    - yarn test
+  only:
+    - develop
+    - master
+    - merge_requests
+    - tag
+
+build-docker:
+  stage: build
+  script:
+    - docker info
+    - docker login -u $DOCKER_ID -p "$DOCKER_PASS"
+    - docker build --pull --tag lokaventour/admmin-vue:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA -f ./Dockerfile .
+    - docker push lokaventour/admmin-vue:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA
+
+  except:
+    - master
+
+build-master:
+  stage: build
+  script:
+    - docker info
+    - docker login -u $DOCKER_ID -p "$DOCKER_PASS"
+    - docker build --pull --tag lokaventour/admmin-vue:latest -f ./Dockerfile .
+    - docker push lokaventour/admmin-vue:$CI_COMMIT_REF_NAME
+
+  only:
+    - master
+
+deploy-to-k8s:
+  stage: deploy
+  before_script:
+    - doctl auth init --access-token $DO_TOKEN
+    - doctl kubernetes cluster kubeconfig save lokaven
+  script:
+    - kubectl get nodes
