@@ -31,8 +31,8 @@ build-docker:
   script:
     - docker info
     - docker login -u $DOCKER_ID -p "$DOCKER_PASS"
-    - docker build --pull --tag lokaventour/admmin-vue:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA -f ./Dockerfile .
-    - docker push lokaventour/admmin-vue:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA
+    - docker build --pull --tag lokaventour/admin-vue:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA -f ./Dockerfile .
+    - docker push lokaventour/admin-vue:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA
 
   except:
     - master
@@ -42,8 +42,8 @@ build-master:
   script:
     - docker info
     - docker login -u $DOCKER_ID -p "$DOCKER_PASS"
-    - docker build --pull --tag lokaventour/admmin-vue:latest -f ./Dockerfile .
-    - docker push lokaventour/admmin-vue:latest
+    - docker build --pull --tag lokaventour/admin-vue:latest -f ./Dockerfile .
+    - docker push lokaventour/admin-vue:latest
 
   only:
     - master

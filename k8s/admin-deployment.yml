@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-vue-deployment
+  labels:
+    app: admin-vue
+spec:
+  selector:
+    matchLabels:
+      app: admin-vue
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: admin-vue
+    spec:
+      containers:
+      - name: admin-vue
+        image: lokaventour/admin-vue:develop-fd000088
+        imagePullPolicy: Always
+        ports:
+        - name: admin-vue-service
+          containerPort: 80
+      nodeSelector:
+        "doks.digitalocean.com/node-pool": "admin"
+      imagePullSecrets:
+      - name: lokavenimagesecret
