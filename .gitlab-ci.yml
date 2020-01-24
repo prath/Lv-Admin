@@ -55,4 +55,4 @@ deploy-to-k8s:
     - doctl kubernetes cluster kubeconfig save lokaven
   script:
     - kubectl get nodes
-    - kubectl apply -f ./k8s
+    - kubectl set image deployment/admin-vue-deployment admin-vue=lokaventour/admin-vue:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA
