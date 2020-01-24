@@ -6,7 +6,11 @@ COPY package.json ./
 # install project dependencies
 RUN yarn install
 
-# copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY . .
+RUN yarn build
 
-CMD [ "yarn", "serve" ]
+# copy project files and folders to the current working directory (i.e. 'app' folder)
+COPY ./dist .
+
+RUN yarn install -g serve
+
+CMD [ "serve", "./dist/" ]
