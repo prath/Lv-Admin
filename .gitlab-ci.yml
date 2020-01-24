@@ -57,7 +57,7 @@ deploy-to-dev:
   only:
     - develop
 
-deploy-to-dev:
+deploy-to-qa:
   stage: deploy
   before_script:
     - doctl auth init --access-token $DO_TOKEN
