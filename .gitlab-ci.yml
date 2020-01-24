@@ -55,3 +55,4 @@ deploy-to-k8s:
     - doctl kubernetes cluster kubeconfig save lokaven
   script:
     - kubectl get nodes
+    - kubectl apply -f ./k8s
