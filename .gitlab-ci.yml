@@ -26,29 +26,27 @@ test:
     - merge_requests
     - tag
 
-build-docker:
+build-develop:
   stage: build
   script:
     - docker info
     - docker login -u $DOCKER_ID -p "$DOCKER_PASS"
     - docker build --pull --tag lokaventour/admin-vue:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA -f ./Dockerfile .
     - docker push lokaventour/admin-vue:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA
+  only:
+    - develop
 
-  except:
-    - master
-
-build-master:
+build-qa:
   stage: build
   script:
     - docker info
     - docker login -u $DOCKER_ID -p "$DOCKER_PASS"
-    - docker build --pull --tag lokaventour/admin-vue:latest -f ./Dockerfile .
-    - docker push lokaventour/admin-vue:latest
-
+    - docker build --pull --tag lokaventour/admin-vue:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA -f ./Dockerfile .
+    - docker push lokaventour/admin-vue:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA
   only:
     - master
 
-deploy-to-k8s:
+deploy-to-dev:
   stage: deploy
   before_script:
     - doctl auth init --access-token $DO_TOKEN
@@ -56,3 +54,16 @@ deploy-to-k8s:
   script:
     - kubectl get nodes
     - kubectl set image deployment/admin-vue-deployment admin-vue=lokaventour/admin-vue:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA
+  only:
+    - develop
+
+deploy-to-dev:
+  stage: deploy
+  before_script:
+    - doctl auth init --access-token $DO_TOKEN
+    - doctl kubernetes cluster kubeconfig save lokaven
+  script:
+    - kubectl get nodes
+    - kubectl set image deployment/admin-qa admin-qa=lokaventour/admin-vue:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA
+  only:
+    - master
