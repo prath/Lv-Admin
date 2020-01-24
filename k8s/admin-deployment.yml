@@ -16,11 +16,11 @@ spec:
     spec:
       containers:
       - name: admin-vue
-        image: lokaventour/admin-vue:develop-fd000088
+        image: lokaventour/admin-vue:latest
         imagePullPolicy: Always
         ports:
-        - name: admin-vue-service
-          containerPort: 80
+        - name: admin-service
+          containerPort: 8080
       nodeSelector:
         "doks.digitalocean.com/node-pool": "admin"
       imagePullSecrets:
