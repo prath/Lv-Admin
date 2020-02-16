@@ -13,10 +13,7 @@
 
       <div class="column is-full">
         <div class="heading">
-          <div
-            id="statistic_visitor"
-            style="width:100%; height: 400px;"
-          />
+          <guest-chart />
         </div>
       </div>
 
@@ -33,10 +30,7 @@
 
       <div class="column is-full">
         <div class="heading">
-          <div
-            id="statistic_host"
-            style="width:100%; height: 400px;"
-          />
+          <host-chart />
         </div>
       </div>
 
@@ -925,3 +919,15 @@
     </div>
   </div>
 </template>
+
+<script>
+import GuestChart from './GuestChart'
+import HostChart from './HostChart'
+export default {
+  name: 'App',
+  components : {
+    'GuestChart' : GuestChart,
+    'HostChart' : HostChart
+  }
+}
+</script>
