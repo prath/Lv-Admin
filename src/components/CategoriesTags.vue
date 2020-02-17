@@ -7,43 +7,26 @@
             -->
 
       <hr class="space-lg">
-      <form action="tour-preferences.html">
-        <div class="columns">
-          <div class="column generic-heading is-two-third">
-            <h3>Tour Preferences List</h3>
-            <p>List of Tour Preferences</p>
-          </div>
 
-          <div class="column generic-heading is-one-third flex end-xs ">
-            <router-link to="/tour-preferences-add">
-              <button
-                type="submit"
-                class="btn btn--medium btn--primary is-right flex end-xs"
-              >
-                Add Tour Preferences
-              </button>
-            </router-link>
-          </div>
+      <div class="columns">
+        <div class="column generic-heading is-two-third">
+          <h3>Categories</h3>
+          <p>List of Categories</p>
         </div>
-      </form>
+
+        <div class="column generic-heading is-one-third flex end-xs ">
+          <router-link to="/categories-add">
+            <button class="btn btn--medium btn--primary is-right">
+              Add Categories
+            </button>
+          </router-link>
+        </div>
+      </div>
+
 
 
       <div class="columns filter-table-list">
         <div class="column is-full filter-wrapper">
-          <div class="field filter-select">
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option value="-">
-                    Filter
-                  </option>
-                  <option value="by_date">
-                    By Name
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
           <div class="form-group icon-search">
             <img
               src="assets/img/ic-search.svg"
@@ -53,7 +36,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="Find Tour Preferences"
+              placeholder="Find Categories"
             >
           </div>
         </div>
@@ -64,7 +47,7 @@
           <table class="table is-fullwidth table--orders">
             <thead>
               <tr>
-                <th>
+                <th style="width:10%;">
                   <div class="action-wrapper">
                     <div class="form-check">
                       <label class="container">
@@ -82,8 +65,8 @@
                   </div>
                 </th>
 
-                <th>Key</th>
-                <th>Value</th>
+                <th>No</th>
+                <th>Categories</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -106,29 +89,22 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Landscape</span> <br>
+                    <span class="order_number">1</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Best Packages for camping, bbq, and camping in one
-                      step</span> <br>
+                    <span class="info">Wisata</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <router-link to="tour-preferences-edit">
-                        <a title="Edit User"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit Tour Preferences"
-                        ></a>
-                      </router-link>
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete Tour Preferences"
+                      <a title="Edit Categories"><img
+                        src="assets/img/ic-edit-line.svg"
+                        title="Edit Categories"
                       ></a>
                     </span>
                   </div>
@@ -152,28 +128,100 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Mountain</span> <br>
+                    <span class="order_number">2</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Best Packages for Hiking, Coffee Harvest, etc</span> <br>
+                    <span class="info">Outdoor</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <router-link to="tour-preferences-edit">
-                        <a title="Edit User"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit Tour Preferences"
-                        ></a>
-                      </router-link>
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete Tour Preferences"
+                      <a title="Edit Categories"><img
+                        src="assets/img/ic-edit-line.svg"
+                        title="Edit Categories"
+                      ></a>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="wrapper">
+                    <div class="form-check">
+                      <label class="container">
+                        <input
+                          type="checkbox"
+                          checked="checked"
+                        >
+                        <span class="checkmark" />
+                      </label>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="order_number">3</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">Mountain</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info icon">
+                      <a title="Edit Categories"><img
+                        src="assets/img/ic-edit-line.svg"
+                        title="Edit Categories"
+                      ></a>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="wrapper">
+                    <div class="form-check">
+                      <label class="container">
+                        <input
+                          type="checkbox"
+                          checked="checked"
+                        >
+                        <span class="checkmark" />
+                      </label>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">4</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">Sea</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info icon">
+                      <a title="Edit Categories"><img
+                        src="assets/img/ic-edit-line.svg"
+                        title="Edit Categories"
                       ></a>
                     </span>
                   </div>

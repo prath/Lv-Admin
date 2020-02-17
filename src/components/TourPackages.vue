@@ -14,7 +14,7 @@
           <p>List of Tour Packages</p>
         </div>
 
-        <div class="column generic-heading is-one-third ">
+        <div class="column generic-heading is-one-third flex end-xs">
           <button class="btn btn--medium btn--primary is-right">
             Add Tour Packages
           </button>
@@ -146,14 +146,18 @@
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
+                      <router-link to="/tour-packages-detail">
+                        <a title="Edit User"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
+
                       <a title="Delete User"><img
                         src="assets/img/ic-delete-line.svg"
                         title="Delete User"
                       ></a>
+
                     </span>
                   </div>
                 </td>
@@ -212,10 +216,13 @@
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
+                      <router-link to="/tour-packages-detail">
+                        <a title="Edit User"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
+
                       <a title="Delete User"><img
                         src="assets/img/ic-delete-line.svg"
                         title="Delete User"
@@ -278,10 +285,13 @@
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
+                      <router-link to="/tour-packages-detail">
+                        <a title="Edit User"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
+
                       <a title="Delete User"><img
                         src="assets/img/ic-delete-line.svg"
                         title="Delete User"

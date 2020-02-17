@@ -14,10 +14,12 @@
             <p>List of Guest & Host</p>
           </div>
 
-          <div class="column generic-heading is-one-third ">
-            <button class="btn btn--medium btn--primary is-right">
-              Add User
-            </button>
+          <div class="column generic-heading is-one-third flex end-xs ">
+            <router-link to="/add-user">
+              <button class="btn btn--medium btn--primary ">
+                Add User
+              </button>
+            </router-link>
           </div>
         </div>
       </form>

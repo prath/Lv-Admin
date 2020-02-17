@@ -10,16 +10,20 @@
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
-          <h3>Curated Content List</h3>
-          <p>List of Curated Contet</p>
+          <h3>Refund List</h3>
+          <p>List of Refund List</p>
         </div>
 
         <div class="column generic-heading is-one-third flex end-xs ">
-          <button class="btn btn--medium btn--primary is-right">
-            Add Curated Content
-          </button>
+          <router-link to="/refund-add">
+            <button class="btn btn--medium btn--primary is-right">
+              Add Refund
+            </button>
+          </router-link>
         </div>
       </div>
+
+
 
 
       <div class="columns filter-table-list">
@@ -32,13 +36,10 @@
                     Filter
                   </option>
                   <option value="by_date">
-                    By Name
+                    By Order
                   </option>
                   <option value="by_price">
-                    By Place
-                  </option>
-                  <option value="by_category">
-                    By Date
+                    By Status
                   </option>
                 </select>
               </div>
@@ -53,7 +54,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="Cari Tour"
+              placeholder="Find Refund"
             >
           </div>
         </div>
@@ -75,19 +76,19 @@
                         <span class="checkmark" />
                       </label>
                     </div>
-                    <!--
+                  <!--
                                             SHow when Checkbox Clicked
                                             <a href="#"><img src="assets/img/ic-delete.svg" alt="" /></a>
                                         -->
                   </div>
                 </th>
 
-                <th>Tour</th>
-                <th>Duration</th>
-                <th>Price</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Location</th>
+                <th>Order</th>
+                <th>Nominal</th>
+                <th>Date</th>
+                <th>Host</th>
+                <th>Guest</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -110,50 +111,48 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Kayaking di Perairan Bandung</span> <br>
+                    <span class="order_number">#1092-122</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info badges badges--verified">1 Day</span> <br>
+                    <span class="info">Rp.450.000,-</span> <br>
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="info">Rp.450.000,- / pax</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">01/12/2019</span>
+                    <span class="info">12/12/2019 09:12:09</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">02/12/2019</span>
+                    <span class="info">PT. Ayo Tour Sejahtera</span>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Bandung</span>
+                    <span class="info">Novi Irianty</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info badges badges--wait-payment">Waiting</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete User"
-                      ></a>
+                      <router-link to="refund-edit">
+                        <a title="Edit Refund"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
                     </span>
                   </div>
                 </td>
@@ -176,50 +175,48 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Hang Gliding Tandem</span> <br>
+                    <span class="order_number">#1043-099</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info badges badges--verified">1 Day</span> <br>
+                    <span class="info">Rp.12.435.000,-</span> <br>
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="info">Rp.765.000,- / pax</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">03/12/2019</span>
+                    <span class="info">01/11/2019 23:09:15</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">04/12/2019</span>
+                    <span class="info">Sahabat Tour</span>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Bogor</span>
+                    <span class="info">Rudi Gunawan</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info badges badges--paid-off">Accepted</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete User"
-                      ></a>
+                      <router-link to="refund-edit">
+                        <a title="Edit Refund"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
                     </span>
                   </div>
                 </td>
@@ -242,50 +239,51 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Barbecue Party di Outdoor, Bandung</span> <br>
+                    <span class="order_number">#1013-199</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info badges badges--verified">1 Day</span> <br>
+                    <span class="info">Rp.2.000.000,-</span> <br>
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="info">Rp.1.765.000,- / pax</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">15/12/2019</span>
+                    <span class="info">29/11/2019 15:13:00</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">16/12/2019</span>
+                    <span class="info">Fastest Tour</span>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Bandung</span>
+                    <span class="info">Ilham Budiawan</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <div>
+                      <span class="info badges badges--processed">Decline</span> <br>
+                      <span class="info-status">Tidak Sesuai Syarat dari Term Refund</span>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete User"
-                      ></a>
+                      <router-link to="refund-edit">
+                        <a title="Edit Refund"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
                     </span>
                   </div>
                 </td>

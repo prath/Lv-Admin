@@ -14,7 +14,7 @@
           <p>List of Curated Contet</p>
         </div>
 
-        <div class="column generic-heading is-one-third ">
+        <div class="column generic-heading is-one-third flex end-xs">
           <button class="btn btn--medium btn--primary is-right">
             Add Curated Content
           </button>

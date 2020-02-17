@@ -105,7 +105,7 @@
     <aside class="column side-menu">
       <nav>
         <ul>
-          <li class="active">
+          <li>
             <router-link to="/">
               Dashboard
             </router-link>
@@ -136,7 +136,7 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/refund-management">
+            <router-link to="/refund-list">
               Refund Management
             </router-link>
           </li>
