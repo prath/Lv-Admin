@@ -93,213 +93,15 @@
             </thead>
 
             <tbody>
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Kayaking di Perairan Bandung</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info badges badges--verified">1 Day</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp.450.000,- / pax</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">01/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">02/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Bandung</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="/tour-packages-detail">
-                        <a title="Edit User"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit User"
-                        ></a>
-                      </router-link>
-
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete User"
-                      ></a>
-
-                    </span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Hang Gliding Tandem</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info badges badges--verified">1 Day</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp.765.000,- / pax</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">03/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">04/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Bogor</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="/tour-packages-detail">
-                        <a title="Edit User"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit User"
-                        ></a>
-                      </router-link>
-
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete User"
-                      ></a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Barbecue Party di Outdoor, Bandung</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info badges badges--verified">1 Day</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp.1.765.000,- / pax</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">15/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">16/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Bandung</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="/tour-packages-detail">
-                        <a title="Edit User"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit User"
-                        ></a>
-                      </router-link>
-
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete User"
-                      ></a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
+              <ListTour
+                :name="item.name"
+                :duration="item.duration"
+                :price="item.price"
+                :dateFrom="item.date_from"
+                :dateTo="item.date_to"
+                :location="item.location"
+                v-for="item in items"
+              />
             </tbody>
           </table>
         </div>
@@ -307,3 +109,47 @@
     </div>
   </div>
 </template>
+
+<script>
+import ListTour from "./ListTour"
+export default {
+  components : {
+    ListTour
+  },
+  data(){
+		return {
+
+      items : [
+                  {
+                    "id": '1' ,
+                    "name": 'Kayaking di Perairan Bandung',
+                    "duration": '1 Day',
+                    "date_from": '01/12/2019',
+                    "date_to": '02/12/2019',
+                    "price": 'Rp.450.000,- / pax',
+                    "location": 'Bandung'
+                  },
+                  {
+                    "id": '2' ,
+                    "name": 'Hang Gliding Tandem',
+                    "duration": '2 Day',
+                    "date_from": '01/12/2019',
+                    "date_to": '02/12/2019',
+                    "price": 'Rp.765.000,- / pax',
+                    "location": 'Bogor'
+                  },
+                  {
+                    "id": '3' ,
+                    "name": 'Barbecue Party di Outdoor, Bandung',
+                    "duration": '3 Day',
+                    "date_from": '01/12/2019',
+                    "price": 'Rp.1.765.000,- / pax',
+                    "date_to": '02/12/2019',
+                    "location": 'Bogor'
+                  }
+        ]
+
+      }
+   }
+}
+</script>
