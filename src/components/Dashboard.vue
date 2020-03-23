@@ -71,7 +71,7 @@
         <div class="column is-half">
           <div class="card card--statistic">
             <div class="heading">
-              <h4>Total Order</h4>
+              <h4>Total Booking</h4>
 
               <div class="info">
                 <div class="img">
@@ -105,8 +105,8 @@
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
-          <h3>5 Latest Orders</h3>
-          <p>Tour Order</p>
+          <h3>5 Latest Bookings</h3>
+          <p>Tour Booking</p>
         </div>
       </div>
 
@@ -185,7 +185,7 @@
                                             -->
                   </div>
                 </th>
-                <th>Order</th>
+                <th>Booking</th>
                 <th>Tour Name</th>
                 <th>Date</th>
                 <th>Total</th>
@@ -210,8 +210,11 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">#1979</span> <br>
-                    <p><b>by</b> Aceng Samsyudin</p>
+                    <div>
+                      <span class="order_number">#1979</span> <br>
+                      <p><b>by</b> Aceng Samsyudin</p>
+                      <div />
+                    </div>
                   </div>
                 </td>
 
@@ -235,14 +238,16 @@
                       alt=""
                     >
                     <div class="total">
-                      <span class="text-success">Rp 300.000,00</span>
-                      <p><b>1 pax</b> via transfer bank</p>
+                      <div>
+                        <span class="text-success">Rp 300.000,00</span>
+                        <p><b>1 pax</b> via transfer bank</p>
+                      </div>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="badges badges--processed">Need to be Processed</span>
+                    <span class="badges badges--processed">Processed</span>
                   </div>
                 </td>
               </tr>
@@ -263,8 +268,10 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">#1981</span> <br>
-                    <p><b>by</b> Didin Maulana</p>
+                    <div>
+                      <span class="order_number">#1981</span> <br>
+                      <p><b>by</b> Didin Maulana</p>
+                    </div>
                   </div>
                 </td>
 
@@ -276,8 +283,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">13 Januari 2019</span> <br>
-                    <p>20:23:21</p>
+                    <div>
+                      <span class="info">13 Januari 2019</span> <br>
+                      <p>20:23:21</p>
+                    </div>
                   </div>
                 </td>
 
@@ -295,7 +304,7 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="badges badges--processed">Need to be Processed</span>
+                    <span class="badges badges--processed">Processed</span>
                   </div>
                 </td>
               </tr>
@@ -316,8 +325,10 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">#1981</span> <br>
-                    <p><b>by</b> Andrew Moralez</p>
+                    <div>
+                      <span class="order_number">#1981</span> <br>
+                      <p><b>by</b> Andrew Moralez</p>
+                    </div>
                   </div>
                 </td>
 
@@ -329,8 +340,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">4 Desember 2019</span> <br>
-                    <p>20:23:21</p>
+                    <div>
+                      <span class="info">4 Desember 2019</span> <br>
+                      <p>20:23:21</p>
+                    </div>
                   </div>
                 </td>
 
@@ -348,7 +361,7 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="badges badges--processed">Need to be Processed</span>
+                    <span class="badges badges--processed">Processed</span>
                   </div>
                 </td>
               </tr>
@@ -369,8 +382,10 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">#1999</span> <br>
-                    <p><b>by</b> Salvador Martin</p>
+                    <div>
+                      <span class="order_number">#1999</span> <br>
+                      <p><b>by</b> Salvador Martin</p>
+                    </div>
                   </div>
                 </td>
 
@@ -382,8 +397,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">4 Desember 2019</span> <br>
-                    <p>20:23:21</p>
+                    <div>
+                      <span class="info">4 Desember 2019</span> <br>
+                      <p>20:23:21</p>
+                    </div>
                   </div>
                 </td>
 
@@ -401,7 +418,7 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="badges badges--processed">Need to be Processed</span>
+                    <span class="badges badges--processed">Processed</span>
                   </div>
                 </td>
               </tr>
@@ -422,8 +439,10 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">#2500</span> <br>
-                    <p><b>by</b> Heilsinski</p>
+                    <div>
+                      <span class="order_number">#2500</span> <br>
+                      <p><b>by</b> Heilsinski</p>
+                    </div>
                   </div>
                 </td>
 
@@ -435,8 +454,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">7 April 2020</span> <br>
-                    <p>20:23:21</p>
+                    <div>
+                      <span class="info">7 April 2020</span> <br>
+                      <p>20:23:21</p>
+                    </div>
                   </div>
                 </td>
 
@@ -454,7 +475,7 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="badges badges--processed">Need to be Processed</span>
+                    <span class="badges badges--processed">Processed</span>
                   </div>
                 </td>
               </tr>
@@ -541,9 +562,8 @@
                 </th>
 
                 <th>Tour Name</th>
-                <th colspan="2">
-                  Date
-                </th>
+                <th>Start Date</th>
+                <th>End Date</th>
                 <th>Total Pax</th>
                 <th>Status</th>
               </tr>

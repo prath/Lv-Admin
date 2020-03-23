@@ -83,7 +83,7 @@
                   </div>
                 </th>
 
-                <th>Order</th>
+                <th>Booking</th>
                 <th>Nominal</th>
                 <th>Date</th>
                 <th>Host</th>
@@ -270,7 +270,6 @@
                   <div class="wrapper">
                     <div>
                       <span class="info badges badges--processed">Decline</span> <br>
-                      <span class="info-status">Tidak Sesuai Syarat dari Term Refund</span>
                     </div>
                   </div>
                 </td>

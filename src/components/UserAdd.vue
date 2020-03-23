@@ -160,7 +160,7 @@
         </div>
         <div class="column sidebar is-one-third">
           <button class="btn btn--primary btn--default btn--full padding-b-m">
-            Save Produk
+            Save
           </button>
 
           <router-link to="/users">

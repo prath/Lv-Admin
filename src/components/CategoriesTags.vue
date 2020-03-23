@@ -106,6 +106,12 @@
                         src="assets/img/ic-edit-line.svg"
                         title="Edit Categories"
                       ></a>
+                      <a title="Delete User">
+                        <img
+                          src="assets/img/ic-delete-line.svg"
+                          title="Delete Categories"
+                        >
+                      </a>
                     </span>
                   </div>
                 </td>
@@ -145,6 +151,12 @@
                         src="assets/img/ic-edit-line.svg"
                         title="Edit Categories"
                       ></a>
+                      <a title="Delete User">
+                        <img
+                          src="assets/img/ic-delete-line.svg"
+                          title="Delete Categories"
+                        >
+                      </a>
                     </span>
                   </div>
                 </td>
@@ -184,6 +196,12 @@
                         src="assets/img/ic-edit-line.svg"
                         title="Edit Categories"
                       ></a>
+                      <a title="Delete User">
+                        <img
+                          src="assets/img/ic-delete-line.svg"
+                          title="Delete Categories"
+                        >
+                      </a>
                     </span>
                   </div>
                 </td>
@@ -223,6 +241,12 @@
                         src="assets/img/ic-edit-line.svg"
                         title="Edit Categories"
                       ></a>
+                      <a title="Delete User">
+                        <img
+                          src="assets/img/ic-delete-line.svg"
+                          title="Delete Categories"
+                        >
+                      </a>
                     </span>
                   </div>
                 </td>
