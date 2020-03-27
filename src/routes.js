@@ -6,5 +6,6 @@ export default {
   '/tour-preferences': 'TourPreferences',
   '/categories-tags': 'CategoriesTags',
   '/refund-list': 'RefundList',
+  '/login': 'Login',
   '/add-user': 'UserAdd'
 }

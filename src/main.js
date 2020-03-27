@@ -15,6 +15,7 @@ import RefundEdit from './components/RefundEdit'
 import TourPackagesDetail from './components/TourPackagesDetail'
 import TourPreferencesAdd from './components/TourPreferencesAdd'
 import TourPreferencesEdit from './components/TourPreferencesEdit'
+import Login from './components/Login'
 
 
 import HighchartsVue from 'highcharts-vue';
@@ -29,7 +30,8 @@ Vue.use(HighchartsVue)
 
 const router = new VueRouter({
   routes: [
-    { path: '/', component: Dashboard },
+    { path: '/', component: Login },
+    { path: '/dashboard', component: Dashboard },
     { path: '/users', component: Users },
     { path: '/add-user', component: UserAdd },
     { path: '/tour-packages', component: TourPackages },

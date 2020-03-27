@@ -25,14 +25,16 @@
             </a>
           </li>
           <li>
-            <a href="#">
-              <div class="avatar avatar--extra-small">
-                <img
-                  src="assets/img/avatar.png"
-                  alt
-                >
-              </div>
-            </a>
+            <router-link to="/">
+              <a href="#">
+                <div class="avatar avatar--extra-small">
+                  <img
+                    src="assets/img/avatar.png"
+                    alt
+                  >
+                </div>
+              </a>
+            </router-link>
           </li>
         </ul>
       </div>

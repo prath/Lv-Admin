@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <Header msg="Welcome to Your Vue.js App" />
+    <Header
+      v-if="this.$route.path !== '/'"
+      data="$router.path"
+      msg="Welcome to Your Vue.js App"
+    />
+
+    <p>{{ this.$route.path }}</p>
 
     <router-view />
   </div>
