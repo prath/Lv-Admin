@@ -161,7 +161,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="Cari Tour"
+              placeholder="FInd Tour"
             >
           </div>
         </div>
@@ -556,7 +556,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="Cari Tour"
+              placeholder="FInd Tour"
             >
           </div>
         </div>
