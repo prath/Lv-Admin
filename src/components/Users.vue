@@ -37,6 +37,15 @@
                   <option value="by_date">
                     By Name
                   </option>
+
+                  <option value="by_date">
+                    By Status Verified
+                  </option>
+
+                  <option value="by_date">
+                    By Status Unverified
+                  </option>
+
                   <option value="by_price">
                     By Role
                   </option>
@@ -56,7 +65,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="Cari Tour"
+              placeholder="Find Tour"
             >
           </div>
         </div>
@@ -112,7 +121,12 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Michelle Sandra</span> <br>
+                    <div>
+                      <span class="info">Michelle Sandra</span> <br>
+                      <span class="text-success">
+                        Active
+                      </span>
+                    </div>
                   </div>
                 </td>
 
@@ -172,7 +186,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Simon Mc Mnmemy</span> <br>
+                    <div>
+                      <span class="info">Simon Mc Mnmemy</span> <br>
+                      <span class="text-danger">Suspend</span>
+                    </div>
                   </div>
                 </td>
 
@@ -232,7 +249,12 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Rizal Agustian</span> <br>
+                    <div>
+                      <span class="info">Rizal Agustian</span> <br>
+
+                      <p><span class="text-success">Active</span>&nbsp; | &nbsp;<span class="text-info">Verified</span></p>
+                      <div />
+                    </div>
                   </div>
                 </td>
 

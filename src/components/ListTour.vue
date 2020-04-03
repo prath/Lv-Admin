@@ -16,7 +16,10 @@
 
     <td>
       <div class="wrapper">
-        <span class="info">{{ name }}</span> <br>
+        <div>
+          <span class="info">{{ name }}</span>
+          <p>{{ typeTrip }}</p>
+        </div>
       </div>
     </td>
 
@@ -75,7 +78,8 @@ export default {
 	name:'ListTour',
 	props : [
 						'name',
-						'duration',
+            'duration',
+            'typeTrip',
 						'price',
 						'dateFrom',
 						'dateTo',

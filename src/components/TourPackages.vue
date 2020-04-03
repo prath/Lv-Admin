@@ -32,6 +32,9 @@
                     Filter
                   </option>
                   <option value="by_date">
+                    By Types of Tour
+                  </option>
+                  <option value="by_date">
                     By Name
                   </option>
                   <option value="by_price">
@@ -53,7 +56,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="Cari Tour"
+              placeholder="Find Tour"
             >
           </div>
         </div>
@@ -100,6 +103,7 @@
                 :dateFrom="item.date_from"
                 :dateTo="item.date_to"
                 :location="item.location"
+                :typeTrip="item.type_trip"
                 v-for="item in items"
               />
             </tbody>
@@ -127,7 +131,8 @@ export default {
                     "date_from": '01/12/2019',
                     "date_to": '02/12/2019',
                     "price": 'Rp.450.000,- / pax',
-                    "location": 'Bandung'
+                    "location": 'Bandung',
+                    "type_trip" : 'Open Trip'
                   },
                   {
                     "id": '2' ,
@@ -136,7 +141,8 @@ export default {
                     "date_from": '01/12/2019',
                     "date_to": '02/12/2019',
                     "price": 'Rp.765.000,- / pax',
-                    "location": 'Bogor'
+                    "location": 'Bogor',
+                    "type_trip" : 'Private Trip'
                   },
                   {
                     "id": '3' ,
@@ -145,7 +151,8 @@ export default {
                     "date_from": '01/12/2019',
                     "price": 'Rp.1.765.000,- / pax',
                     "date_to": '02/12/2019',
-                    "location": 'Bogor'
+                    "location": 'Bogor',
+                    "type_trip" : 'Open Trip'
                   }
         ]
 

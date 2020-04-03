@@ -110,7 +110,7 @@
               </div>
             </div>
 
-            <div class="columns ">
+            <div class="columns">
               <div class="column is-6">
                 <div class="form-group">
                   <label for="last_name">Phone Number</label>
@@ -132,6 +132,63 @@
                     disabled
                     class="form-control"
                     value="HOST"
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="columns">
+              <div class="column is-6">
+                <div class="form-group">
+                  <label for="last_name">Nationality</label>
+                  <div class="select">
+                    <select>
+                      <option value="currency">
+                        Indonesia
+                      </option>
+                      <option value="percentage">
+                        English
+                      </option>
+                      <option value="percentage">
+                        Australia
+                      </option>
+                      <option value="percentage">
+                        Canada
+                      </option>
+                      <option value="percentage">
+                        Japan
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="column is-6">
+                <div class="form-group">
+                  <label for="last_name">Status</label>
+                  <div class="select">
+                    <select>
+                      <option value="currency">
+                        Verified
+                      </option>
+                      <option value="percentage">
+                        Unverified
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="columns">
+              <div class="column is-6">
+                <div class="form-group">
+                  <label for="last_name">Prefered Location</label>
+                  <input
+                    id="harga"
+                    type="text"
+                    class="form-control"
+                    placeholder=""
                   >
                 </div>
               </div>

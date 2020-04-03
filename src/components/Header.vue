@@ -108,7 +108,7 @@
       <nav>
         <ul>
           <li>
-            <router-link to="/">
+            <router-link to="/dashboard">
               Dashboard
             </router-link>
           </li>

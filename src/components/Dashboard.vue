@@ -137,6 +137,9 @@
                     Filter
                   </option>
                   <option value="by_date">
+                    By Types of Tour
+                  </option>
+                  <option value="by_date">
                     By Date
                   </option>
                   <option value="by_price">
@@ -220,14 +223,19 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Kayaking di Perairan Bandung</span> <br>
+                    <div>
+                      <span class="order_number">Kayaking di Perairan Bandung</span> <br>
+                      <p>Open Trip</p>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">22 April 2018</span> <br>
-                    <p>20:23:21</p>
+                    <div>
+                      <span class="info">22 April 2018</span>
+                      <p>20:23:21</p>
+                    </div>
                   </div>
                 </td>
 
@@ -277,7 +285,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Hang Gliding Tandem</span> <br>
+                    <div>
+                      <span class="order_number">Hang Gliding Tandem</span>
+                      <p>Private Trip</p>
+                    </div>
                   </div>
                 </td>
 
@@ -334,7 +345,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Barbecue Party di Outdoor, Bandung</span> <br>
+                    <div>
+                      <span class="order_number">Barbecue Party di Outdoor, Bandung</span> <br>
+                      <p>Open Trip</p>
+                    </div>
                   </div>
                 </td>
 
@@ -391,7 +405,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
+                    <div>
+                      <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
+                      <p>Private Trip</p>
+                    </div>
                   </div>
                 </td>
 
@@ -448,7 +465,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Wisata Kopi Bandung</span> <br>
+                    <div>
+                      <span class="order_number">Wisata Kopi Bandung</span> <br>
+                      <p>Open Trip</p>
+                    </div>
                   </div>
                 </td>
 
@@ -510,6 +530,9 @@
                 <select>
                   <option value="-">
                     Filter
+                  </option>
+                  <option value="by_date">
+                    By Types of tours
                   </option>
                   <option value="by_date">
                     By Date
@@ -587,7 +610,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Kayaking di Perairan Bandung</span> <br>
+                    <div>
+                      <span class="order_number">Kayaking di Perairan Bandung</span> <br>
+                      <p>Open Trip</p>
+                    </div>
                   </div>
                 </td>
 
@@ -631,7 +657,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Hang Gliding Tandem</span> <br>
+                    <div>
+                      <span class="order_number">Hang Gliding Tandem</span> <br>
+                      <p>Private Tour</p>
+                    </div>
                   </div>
                 </td>
 
@@ -675,7 +704,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Hang Gliding Tandem</span> <br>
+                    <div>
+                      <span class="order_number">Hang Gliding Tandem</span> <br>
+                      <p>Open Trip</p>
+                    </div>
                   </div>
                 </td>
 
@@ -719,7 +751,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
+                    <div>
+                      <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
+                      <p>Private Tour</p>
+                    </div>
                   </div>
                 </td>
 
@@ -763,7 +798,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
+                    <div>
+                      <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
+                      <p>Private Tour</p>
+                    </div>
                   </div>
                 </td>
 

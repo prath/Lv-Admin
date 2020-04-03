@@ -19,7 +19,7 @@
             <div class="columns is-gapless">
               <div class="column">
                 <div class="form-group">
-                  <label for="first_name">No Order</label>
+                  <label for="first_name">No Booking</label>
                   <input
                     id="harga"
                     type="text"
@@ -119,24 +119,38 @@
               </div>
             </div>
 
-            <div class="column is-6">
-              <div class="form-group">
-                <label for="last_name">Status</label>
-                <div class="select">
-                  <select>
-                    <option
-                      value="currency"
-                      select
-                    >
-                      Waiting
-                    </option>
-                    <option value="percentage">
-                      Accept
-                    </option>
-                    <option value="percentage">
-                      Decline
-                    </option>
-                  </select>
+            <div class="columns">
+              <div class="column is-4">
+                <div class="form-group">
+                  <label for="last_name">Status</label>
+                  <div class="select">
+                    <select>
+                      <option
+                        value="currency"
+                        select
+                      >
+                        Waiting
+                      </option>
+                      <option value="percentage">
+                        Accept
+                      </option>
+                      <option value="percentage">
+                        Decline
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="column is-8">
+                <div class="form-group">
+                  <label for="last_name">Reason for Decline</label>
+                  <input
+                    id="harga"
+                    type="text"
+                    class="form-control"
+                    placeholder=""
+                  >
                 </div>
               </div>
             </div>

@@ -34,6 +34,7 @@
                   <option value="by_date">
                     By Name
                   </option>
+
                   <option value="by_price">
                     By Role
                   </option>
