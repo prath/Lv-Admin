@@ -32,6 +32,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
+                    value="Michelle "
                   >
                 </div>
               </div>
@@ -49,6 +50,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
+                    value="Sandra"
                   >
                 </div>
               </div>
@@ -63,6 +65,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
+                    value="michelle@gmail.com"
                   >
                 </div>
               </div>
@@ -75,6 +78,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
+                    value="bandung"
                   >
                 </div>
               </div>
@@ -89,6 +93,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
+                    value="11/12/1980"
                   >
                 </div>
               </div>
@@ -101,7 +106,10 @@
                       <option value="currency">
                         Laki-laki
                       </option>
-                      <option value="percentage">
+                      <option
+                        value="percentage"
+                        selected
+                      >
                         Perempuan
                       </option>
                     </select>
@@ -119,6 +127,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
+                    value="089992112221"
                   >
                 </div>
               </div>
@@ -131,7 +140,7 @@
                     type="text"
                     disabled
                     class="form-control"
-                    value="HOST"
+                    value="Guest"
                   >
                 </div>
               </div>
@@ -143,7 +152,10 @@
                   <label for="last_name">Nationality</label>
                   <div class="select">
                     <select>
-                      <option value="currency">
+                      <option
+                        value="currency"
+                        selected
+                      >
                         Indonesia
                       </option>
                       <option value="percentage">
@@ -163,21 +175,7 @@
                 </div>
               </div>
 
-              <div class="column is-6">
-                <div class="form-group">
-                  <label for="last_name">Status</label>
-                  <div class="select">
-                    <select>
-                      <option value="currency">
-                        Verified
-                      </option>
-                      <option value="percentage">
-                        Unverified
-                      </option>
-                    </select>
-                  </div>
-                </div>
-              </div>
+              <div class="column is-6" />
             </div>
 
             <div class="columns">
@@ -189,6 +187,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
+                    value="Indonesia"
                   >
                 </div>
               </div>

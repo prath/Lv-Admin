@@ -156,10 +156,12 @@
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
+                      <router-link to="/edit-user-guest">
+                        <a title="Edit User"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
                       <a title="Delete User"><img
                         src="assets/img/ic-delete-line.svg"
                         title="Delete User"
@@ -219,10 +221,12 @@
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
+                      <router-link to="/edit-user-guest">
+                        <a title="Edit User"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
                       <a title="Delete User"><img
                         src="assets/img/ic-delete-line.svg"
                         title="Delete User"
@@ -284,10 +288,12 @@
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
+                      <router-link to="/edit-user-host">
+                        <a title="Edit User"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
                       <a title="Delete User"><img
                         src="assets/img/ic-delete-line.svg"
                         title="Delete User"

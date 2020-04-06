@@ -5,6 +5,8 @@ import VueRouter from 'vue-router'
 import Dashboard from './components/Dashboard'
 import Users from './components/Users'
 import UserAdd from './components/UserAdd'
+import UserEditHost from './components/UserEditHost'
+import UserEditGuest from './components/UserEditGuest'
 import TourPackages from './components/TourPackages'
 import ContentList from './components/ContentList'
 import CategoriesTags from './components/CategoriesTags'
@@ -34,6 +36,8 @@ const router = new VueRouter({
     { path: '/dashboard', component: Dashboard },
     { path: '/users', component: Users },
     { path: '/add-user', component: UserAdd },
+    { path: '/edit-user-host', component: UserEditHost },
+    { path: '/edit-user-guest', component: UserEditGuest },
     { path: '/tour-packages', component: TourPackages },
     { path: '/curated-contents', component: ContentList },
     { path: '/tour-preferences', component: TourPreferences },

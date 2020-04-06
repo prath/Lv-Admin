@@ -32,6 +32,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
+                    value="Rizal  "
                   >
                 </div>
               </div>
@@ -49,6 +50,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
+                    value="Agustian"
                   >
                 </div>
               </div>
@@ -63,6 +65,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
+                    value="rizal.agus@gmail.com"
                   >
                 </div>
               </div>
@@ -75,6 +78,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
+                    value="bandung"
                   >
                 </div>
               </div>
@@ -89,6 +93,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
+                    value="01/08/1990"
                   >
                 </div>
               </div>
@@ -98,10 +103,15 @@
                   <label for="last_name">Gender</label>
                   <div class="select">
                     <select>
-                      <option value="currency">
+                      <option
+                        value="currency"
+                        selected
+                      >
                         Laki-laki
                       </option>
-                      <option value="percentage">
+                      <option
+                        value="percentage"
+                      >
                         Perempuan
                       </option>
                     </select>
@@ -119,6 +129,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
+                    value="089992112221"
                   >
                 </div>
               </div>
@@ -143,7 +154,10 @@
                   <label for="last_name">Nationality</label>
                   <div class="select">
                     <select>
-                      <option value="currency">
+                      <option
+                        value="currency"
+                        selected
+                      >
                         Indonesia
                       </option>
                       <option value="percentage">
@@ -168,7 +182,10 @@
                   <label for="last_name">Status</label>
                   <div class="select">
                     <select>
-                      <option value="currency">
+                      <option
+                        value="currency"
+                        selected
+                      >
                         Verified
                       </option>
                       <option value="percentage">
@@ -189,6 +206,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
+                    value="Indonesia"
                   >
                 </div>
               </div>
