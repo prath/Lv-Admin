@@ -161,7 +161,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="FInd Tour"
+              placeholder="Find Tour"
             >
           </div>
         </div>
@@ -556,7 +556,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="FInd Tour"
+              placeholder="Find Tour"
             >
           </div>
         </div>
