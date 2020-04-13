@@ -7,5 +7,6 @@ export default {
   '/categories-tags': 'CategoriesTags',
   '/refund-list': 'RefundList',
   '/login': 'Login',
-  '/add-user': 'UserAdd'
+  '/add-user': 'UserAdd',
+  '/user-profile': 'UserProfile'
 }

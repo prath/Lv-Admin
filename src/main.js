@@ -6,9 +6,12 @@ import Dashboard from './components/Dashboard'
 import Users from './components/Users'
 import UserAdd from './components/UserAdd'
 import UserEditHost from './components/UserEditHost'
+import UserProfile from './components/UserProfile'
 import UserEditGuest from './components/UserEditGuest'
 import TourPackages from './components/TourPackages'
 import ContentList from './components/ContentList'
+import ContentAdd from './components/ContentAdd'
+import ContentEdit from './components/ContentEdit'
 import CategoriesTags from './components/CategoriesTags'
 import TourPreferences from './components/TourPreferences'
 import RefundList from './components/RefundList'
@@ -35,11 +38,14 @@ const router = new VueRouter({
     { path: '/', component: Login },
     { path: '/dashboard', component: Dashboard },
     { path: '/users', component: Users },
+    { path: '/user-profile', component: UserProfile },
     { path: '/add-user', component: UserAdd },
     { path: '/edit-user-host', component: UserEditHost },
     { path: '/edit-user-guest', component: UserEditGuest },
     { path: '/tour-packages', component: TourPackages },
     { path: '/curated-contents', component: ContentList },
+    { path: '/curated-add', component: ContentAdd },
+    { path: '/curated-edit', component: ContentEdit },
     { path: '/tour-preferences', component: TourPreferences },
     { path: '/categories-tags', component: CategoriesTags },
     { path: '/refund-list', component: RefundList },
@@ -48,7 +54,6 @@ const router = new VueRouter({
     { path: '/tour-packages-detail', component: TourPackagesDetail },
     { path: '/tour-preferences-add', component: TourPreferencesAdd },
     { path: '/tour-preferences-edit', component: TourPreferencesEdit },
-
 
   ],
   mode: 'history'

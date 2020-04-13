@@ -82,12 +82,10 @@
                   </div>
                 </th>
 
-                <th>Tour</th>
-                <th>Duration</th>
-                <th>Price</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Location</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date Created</th>
+                <th>Tour Packages</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -110,36 +108,27 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Kayaking di Perairan Bandung</span> <br>
+                    <span class="info">5 Tips Untuk Traveling Pemula</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info badges badges--verified">1 Day</span> <br>
+                    <span class="info badges badges--verified">Liburan yang nyaman dimulai dari packing yang sempurna. Jika sudah menentukan tanggal keberangkatan, segera tentukan waktu untuk packing. Jangan terlalu mepet dengan jadwal keberangkatan.</span> <br>
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="info">Rp.450.000,- / pax</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">01/12/2019</span>
+                    <span class="info">01/12/2019</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">02/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Bandung</span>
+                    <div>
+                      <span class="info">Hang Gliding Tandem, Jakarta</span>
+                      <span class="info">Barbecue Party di Outdoor, Bandung</span>
+                    </div>
                   </div>
                 </td>
 
@@ -176,36 +165,27 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Hang Gliding Tandem</span> <br>
+                    <span class="info">5 Tips Untuk Traveling Pemula</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info badges badges--verified">1 Day</span> <br>
+                    <span class="info badges badges--verified">Liburan yang nyaman dimulai dari packing yang sempurna. Jika sudah menentukan tanggal keberangkatan, segera tentukan waktu untuk packing. Jangan terlalu mepet dengan jadwal keberangkatan.</span> <br>
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="info">Rp.765.000,- / pax</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">03/12/2019</span>
+                    <span class="info">01/12/2019</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">04/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Bogor</span>
+                    <div>
+                      <span class="info">Hang Gliding Tandem, Jakarta</span>
+                      <span class="info">Barbecue Party di Outdoor, Bandung</span>
+                    </div>
                   </div>
                 </td>
 
@@ -242,36 +222,27 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Barbecue Party di Outdoor, Bandung</span> <br>
+                    <span class="info">Traveling Low Budget</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info badges badges--verified">1 Day</span> <br>
+                    <span class="info badges badges--verified">Tidak harus selalu mahal, Anda juga bisa menikmati travelling dengan dana yang minim, bahkan pas-pasan. Anda bisa menerapkan tips-tips berikut ini untuk mewujudkan travelling walau dengan budget yang pas-pasan.</span> <br>
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="info">Rp.1.765.000,- / pax</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">15/12/2019</span>
+                    <span class="info">01/12/2019</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">16/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Bandung</span>
+                    <div>
+                      <span class="info">Kayaking di Perairan, Bandung</span>
+                      <span class="info">Barbecue Party di Outdoor, Bandung</span>
+                    </div>
                   </div>
                 </td>
 
