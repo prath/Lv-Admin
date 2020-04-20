@@ -9,7 +9,7 @@
         <div class="column is-two-third">
           <div class="card card--statistic">
             <div class="heading border">
-              <h4>Categories Add</h4>
+              <h4>Categories Edit</h4>
             </div>
 
             <div class="sub-heading">
@@ -26,6 +26,7 @@
                     type="text"
                     class="form-control"
                     placeholder="exp: Landscape, Camping, Beach"
+                    value="Wisata"
                   >
                 </div>
               </div>
@@ -34,7 +35,7 @@
         </div>
         <div class="column sidebar is-one-third">
           <button class="btn btn--primary btn--default btn--full padding-b-m">
-            Save Categories
+            Update Categories
           </button>
 
           <router-link to="categories-tags">

@@ -55,7 +55,7 @@
     <td>
       <div class="wrapper">
         <span class="info icon">
-          <router-link to="/tour-packages-detail">
+          <router-link :to="typeTrip === 'Open Trip' ? 'tour-packages-detail' : 'tour-packages-detail-private'">
             <a title="Edit User"><img
               src="assets/img/ic-edit-line.svg"
               title="Edit User"

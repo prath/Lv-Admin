@@ -23,15 +23,7 @@
               <h4 class="column">
                 Description
               </h4>
-              <p class=" column is-pulled-right has-text-right">
-                Min Quota :
-                <b>7 Orang</b>
-
-                <br>
-
-                Max Quota :
-                <b>17 Orang</b>
-              </p>
+              <p class=" column is-pulled-right has-text-right" />
             </div>
 
             <div class="clear" />
@@ -57,7 +49,11 @@
               </h4>
             </div>
 
-            <h6>Rp. 1.400.000,- / pax </h6>
+            <ol>
+              <li> <h6>2 - 3 Persons : Rp. 1.400.000,- / pax </h6></li>
+              <li> <h6>4 - 6 Persons : Rp. 1.000.000,- / pax </h6></li>
+              <li> <h6>> 6 Persons : Rp. 900.000,- / pax </h6></li>
+            </ol>
 
 
 
@@ -422,15 +418,14 @@
             <p><b>Eksotic, Lokal, Bandung</b></p>
           </div>
 
-          <hr class="no-line sm">
           <div class="title">
             Type
           </div>
 
-
           <div class="detail-info">
-            <p><b>Open Trip</b></p>
+            <p><b>Private Trip</b></p>
           </div>
+
 
           <hr>
           <div class="title">
@@ -451,6 +446,8 @@
             <p><b>Bandung, Indonesia</b></p>
             <p><a href="#"><b>15 Tour Packages</b></a></p>
           </div>
+
+
 
           <hr>
         </div>

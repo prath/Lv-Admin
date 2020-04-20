@@ -102,10 +102,12 @@
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <a title="Edit Categories"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit Categories"
-                      ></a>
+                      <router-link to="categories-edit">
+                        <a title="Edit Categories"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit Categories"
+                        ></a>
+                      </router-link>
                       <a title="Delete User">
                         <img
                           src="assets/img/ic-delete-line.svg"
@@ -147,10 +149,12 @@
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <a title="Edit Categories"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit Categories"
-                      ></a>
+                      <router-link to="categories-edit">
+                        <a title="Edit Categories"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit Categories"
+                        ></a>
+                      </router-link>
                       <a title="Delete User">
                         <img
                           src="assets/img/ic-delete-line.svg"
@@ -192,10 +196,12 @@
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <a title="Edit Categories"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit Categories"
-                      ></a>
+                      <router-link to="categories-edit">
+                        <a title="Edit Categories"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit Categories"
+                        ></a>
+                      </router-link>
                       <a title="Delete User">
                         <img
                           src="assets/img/ic-delete-line.svg"
@@ -237,10 +243,12 @@
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <a title="Edit Categories"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit Categories"
-                      ></a>
+                      <router-link to="categories-edit">
+                        <a title="Edit Categories"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit Categories"
+                        ></a>
+                      </router-link>
                       <a title="Delete User">
                         <img
                           src="assets/img/ic-delete-line.svg"
