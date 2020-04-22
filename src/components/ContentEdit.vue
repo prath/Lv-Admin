@@ -73,179 +73,68 @@ Tidak harus selalu mahal, Anda juga bisa menikmati travelling dengan dana yang m
 
             <hr class="space">
 
+            <multiselect
+              v-model="value"
+              :options="options"
+              :multiple="true"
+              :close-on-select="false"
+              :clear-on-select="false"
+              :preserve-search="true"
+              :preselect-first="false"
+              :searchable="true"
+              placeholder="Find Tour Packages"
+              label="name"
+              track-by="name"
+            >
+              <template
+                slot="selection"
+                slot-scope="{ values, search, isOpen }"
+              >
+                <span
+                  v-if="values.length &amp;&amp; !isOpen"
+                  class="multiselect__single"
+                >{{ values.length }} options selected</span>
+              </template>
+            </multiselect>
+
+
+
+            <hr class="space">
+
             <div class="columns">
               <div class="column is-full">
                 <table class="table is-fullwidth table--orders">
                   <thead>
                     <tr>
-                      <th>
-                        <div class="action-wrapper">
-                          <div class="form-check">
-                            <label class="container">
-                              <input
-                                type="checkbox"
-                              >
-                              <span class="checkmark" />
-                            </label>
-                          </div>
-                          <!-- SHow when Checkbox Clicked
-                                                <a href="#"><img src="assets/img/ic-delete.svg" alt="" /></a>
-                                                -->
-                        </div>
-                      </th>
-
                       <th>Tour Name</th>
-                      <th>Status</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
                     </tr>
                   </thead>
 
                   <tbody>
-                    <tr>
-                      <td>
-                        <div class="wrapper">
-                          <div class="form-check">
-                            <label class="container">
-                              <input
-                                type="checkbox"
-                                checked
-                              >
-                              <span class="checkmark" />
-                            </label>
+                    <template v-for="(tour) in value">
+                      <tr>
+                        <td>
+                          <div class="wrapper">
+                            <div>
+                              <span class="order_number">{{ tour.name }}</span> <br>
+                              <p>{{ tour.type }}</p>
+                            </div>
                           </div>
-                        </div>
-                      </td>
-
-                      <td>
-                        <div class="wrapper">
-                          <div>
-                            <span class="order_number">Kayaking di Perairan Bandung</span> <br>
-                            <p>Open Trip</p>
+                        </td>
+                        <td>
+                          <div class="wrapper">
+                            <span>{{ tour.startDate }}</span>
                           </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="wrapper">
-                          <span class="badges badges--processed">4 days left</span>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>
-                        <div class="wrapper">
-                          <div class="form-check">
-                            <label class="container">
-                              <input
-                                type="checkbox"
-                              >
-                              <span class="checkmark" />
-                            </label>
+                        </td>
+                        <td>
+                          <div class="wrapper">
+                            <span>{{ tour.endDate }}</span>
                           </div>
-                        </div>
-                      </td>
-
-                      <td>
-                        <div class="wrapper">
-                          <div>
-                            <span class="order_number">Hang Gliding Tandem</span> <br>
-                            <p>Private Tour</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="wrapper">
-                          <span class="badges badges--processed">4 days left</span>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>
-                        <div class="wrapper">
-                          <div class="form-check">
-                            <label class="container">
-                              <input
-                                type="checkbox"
-                              >
-                              <span class="checkmark" />
-                            </label>
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>
-                        <div class="wrapper">
-                          <div>
-                            <span class="order_number">Hang Gliding Tandem</span> <br>
-                            <p>Open Trip</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="wrapper">
-                          <span class="badges badges--processed">4 days left</span>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>
-                        <div class="wrapper">
-                          <div class="form-check">
-                            <label class="container">
-                              <input
-                                type="checkbox"
-                              >
-                              <span class="checkmark" />
-                            </label>
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>
-                        <div class="wrapper">
-                          <div>
-                            <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
-                            <p>Private Tour</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="wrapper">
-                          <span class="badges badges--processed">4 days left</span>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>
-                        <div class="wrapper">
-                          <div class="form-check">
-                            <label class="container">
-                              <input
-                                type="checkbox"
-                              >
-                              <span class="checkmark" />
-                            </label>
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>
-                        <div class="wrapper">
-                          <div>
-                            <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
-                            <p>Private Tour</p>
-                          </div>
-                        </div>
-                      </td>
-
-                      <td>
-                        <div class="wrapper">
-                          <span class="badges badges--processed">4 days left</span>
-                        </div>
-                      </td>
-                    </tr>
+                        </td>
+                      </tr>
+                    </template>
                   </tbody>
                 </table>
               </div>
@@ -280,3 +169,27 @@ Tidak harus selalu mahal, Anda juga bisa menikmati travelling dengan dana yang m
     </div>
   </div>
 </template>
+
+<script>
+import Multiselect from 'vue-multiselect'
+export default {
+  components: {
+    Multiselect
+  },
+  data () {
+    return {
+      value: [
+          { name: 'Kayaking di Perairan Bandung', type: 'Open Trip', id:'1',startDate:'01/05/2020',endDate:'15/05/2020' },
+          { name: 'Hang Gliding Tandem', type: 'Private Trip', id:'2',startDate:'01/05/2020',endDate:'15/05/2020' }
+        ],
+      options: [
+        { name: 'Kayaking di Perairan Bandung', type: 'Open Trip', id:'1',startDate:'01/05/2020',endDate:'15/05/2020' },
+        { name: 'Hang Gliding Tandem', type: 'Private Trip', id:'2',startDate:'01/05/2020',endDate:'15/05/2020' },
+        { name: 'Barbecue Party di Outdoor, Bandung', type: 'Open Trip', id:'3',startDate:'01/05/2020',endDate:'15/05/2020' },
+        { name: 'Naik Land Rover Keliling Bandung', type: 'Private Trip', id:'4',startDate:'01/05/2020',endDate:'15/05/2020' }
+      ]
+    }
+  }
+}
+</script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

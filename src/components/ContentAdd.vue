@@ -120,12 +120,12 @@
                         </td>
                         <td>
                           <div class="wrapper">
-                            <span class="badges badges--processed">{{ tour.startDate }}</span>
+                            <span>{{ tour.startDate }}</span>
                           </div>
                         </td>
                         <td>
                           <div class="wrapper">
-                            <span class="badges badges--processed">{{ tour.endDate }}</span>
+                            <span>{{ tour.endDate }}</span>
                           </div>
                         </td>
                       </tr>
