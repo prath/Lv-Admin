@@ -102,7 +102,7 @@
                 :dateTo="item.date_to"
                 :location="item.location"
                 :typeTrip="item.type_trip"
-                :status="item.status"
+                :statusTour="item.status"
                 v-for="item in items"
               />
             </tbody>

@@ -11,7 +11,7 @@
       <div class="columns">
         <div class="column generic-heading is-two-third">
           <h3>Featured Content List</h3>
-          <p>List of Curated Contet</p>
+          <p>List of Featured Contents</p>
         </div>
 
         <div class="column generic-heading is-one-third flex end-xs">

@@ -54,7 +54,7 @@
 
     <td>
       <div class="wrapper">
-        <span class="info">{{ status }}</span>
+        <span class="info">{{ statusTour }}</span>
       </div>
     </td>
 
@@ -86,7 +86,7 @@ export default {
 						'dateFrom',
 						'dateTo',
             'location',
-            'status'
+            'statusTour'
 					]
 }
 </script>

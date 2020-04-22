@@ -851,9 +851,30 @@
           <table class="table is-fullwidth table--orders">
             <thead>
               <tr>
-                <th>Guest Name</th>
-                <th>Date Refund</th>
-                <th>Total Refund</th>
+                <th>
+                  <div class="action-wrapper">
+                    <div class="form-check">
+                      <label class="container">
+                        <input
+                          type="checkbox"
+                          checked="checked"
+                        >
+                        <span class="checkmark" />
+                      </label>
+                    </div>
+                  <!--
+                                            SHow when Checkbox Clicked
+                                            <a href="#"><img src="assets/img/ic-delete.svg" alt="" /></a>
+                                        -->
+                  </div>
+                </th>
+
+                <th>Booking</th>
+                <th>Nominal</th>
+                <th>Date</th>
+                <th>Host</th>
+                <th>Guest</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -862,83 +883,63 @@
               <tr>
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Anderson Mondares</span> <br>
+                    <div class="form-check">
+                      <label class="container">
+                        <input
+                          type="checkbox"
+                          checked="checked"
+                        >
+                        <span class="checkmark" />
+                      </label>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">22 April 2018</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp. 4.500.000,-</span> <br>
-                  </div>
-                </td>
-
-
-                <td>
-                  <div class="wrapper">
-                    <button class="btn btn--primary btn--small">
-                      Process Refund
-                    </button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <span class="order_number">Lilis Karlina</span> <br>
+                    <span class="order_number">#1092-122</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">6 Januari 2019</span> <br>
+                    <span class="info">Rp.450.000,-</span> <br>
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="info">Rp. 75.000,-</span> <br>
-                  </div>
-                </td>
-
-
-                <td>
-                  <div class="wrapper">
-                    <button class="btn btn--primary btn--small">
-                      Process Refund
-                    </button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <span class="order_number">Wulan R Natalie</span> <br>
+                    <span class="info">12/12/2019 09:12:09</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">3 Desember 2019</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp. 750.000,-</span> <br>
+                    <span class="info">PT. Ayo Tour Sejahtera</span>
                   </div>
                 </td>
 
+                <td>
+                  <div class="wrapper">
+                    <span class="info">Novi Irianty</span>
+                  </div>
+                </td>
 
                 <td>
                   <div class="wrapper">
-                    <button class="btn btn--primary btn--small">
-                      Process Refund
-                    </button>
+                    <span class="info badges badges--wait-payment">Waiting</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info icon">
+                      <router-link to="refund-edit">
+                        <a title="Edit Refund"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
+                    </span>
                   </div>
                 </td>
               </tr>
@@ -946,27 +947,129 @@
               <tr>
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Lea Marsela</span> <br>
+                    <div class="form-check">
+                      <label class="container">
+                        <input
+                          type="checkbox"
+                          checked="checked"
+                        >
+                        <span class="checkmark" />
+                      </label>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">4 Desember 2019</span> <br>
+                    <span class="order_number">#1043-099</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">Rp.12.435.000,-</span> <br>
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="info">Rp. 525.000,-</span> <br>
+                    <span class="info">01/11/2019 23:09:15</span> <br>
                   </div>
                 </td>
 
+                <td>
+                  <div class="wrapper">
+                    <span class="info">Sahabat Tour</span>
+                  </div>
+                </td>
 
                 <td>
                   <div class="wrapper">
-                    <button class="btn btn--primary btn--small">
-                      Process Refund
-                    </button>
+                    <span class="info">Rudi Gunawan</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info badges badges--paid-off">Accepted</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info icon">
+                      <router-link to="refund-edit">
+                        <a title="Edit Refund"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="wrapper">
+                    <div class="form-check">
+                      <label class="container">
+                        <input
+                          type="checkbox"
+                          checked="checked"
+                        >
+                        <span class="checkmark" />
+                      </label>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="order_number">#1013-199</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">Rp.2.000.000,-</span> <br>
+                  </div>
+                </td>
+                <td>
+                  <div class="wrapper">
+                    <span class="info">29/11/2019 15:13:00</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">Fastest Tour</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">Ilham Budiawan</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <div>
+                      <span class="info badges badges--processed">Decline</span> <br>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info icon">
+                      <router-link to="refund-edit">
+                        <a title="Edit Refund"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
+                    </span>
                   </div>
                 </td>
               </tr>
