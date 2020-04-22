@@ -54,6 +54,12 @@
 
     <td>
       <div class="wrapper">
+        <span class="info">{{ status }}</span>
+      </div>
+    </td>
+
+    <td>
+      <div class="wrapper">
         <span class="info icon">
           <router-link :to="typeTrip === 'Open Trip' ? 'tour-packages-detail' : 'tour-packages-detail-private'">
             <a title="Edit User"><img
@@ -62,10 +68,6 @@
             ></a>
           </router-link>
 
-          <a title="Delete User"><img
-            src="assets/img/ic-delete-line.svg"
-            title="Delete User"
-          ></a>
 
         </span>
       </div>
@@ -83,7 +85,8 @@ export default {
 						'price',
 						'dateFrom',
 						'dateTo',
-						'location'
+            'location',
+            'status'
 					]
 }
 </script>

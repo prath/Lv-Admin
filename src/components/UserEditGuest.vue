@@ -242,6 +242,111 @@
             </div>
 
 
+            <div class="sub-heading">
+              <p>Business</p>
+            </div>
+
+            <div class="columns  ">
+              <div class="column is-6">
+                <div class="form-group">
+                  <label for="last_name">Business Name</label>
+                  <input
+                    id="harga"
+                    type="text"
+                    class="form-control"
+                    placeholder=""
+                    value="PT. Kita Sejahtera Bersama"
+                  >
+                </div>
+              </div>
+
+              <div class="column is-6">
+                <div class="form-group">
+                  <label for="last_name">Category</label>
+                  <div class="select">
+                    <select>
+                      <option
+                        value="currency"
+                        selected
+                      >
+                        Tour &amp; Travel
+                      </option>
+                      <option value="percentage">
+                        Consultant
+                      </option>
+                      <option value="percentage">
+                        Advertising/Branding/PR.
+                      </option>
+                      <option value="percentage">
+                        Government Agency.
+                      </option>
+                      <option value="percentage">
+                        Financial Institution/Investment Bank.
+                      </option>
+                      <option value="percentage">
+                        Not for Profit.
+                      </option>
+                      <option value="percentage">
+                        Association.
+                      </option>
+                      <option value="percentage">
+                        Packaging/Design.
+                      </option>
+                      <option value="percentage">
+                        Publisher.
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="columns ">
+              <div class="column is-6">
+                <div class="form-group">
+                  <label for="last_name">Address</label>
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    cols="10"
+                  >Jalan Asia Afrika, Jl. Braga, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40112</textarea>
+                </div>
+              </div>
+
+              <div class="column is-6">
+                <div class="form-group">
+                  <label for="last_name">About</label>
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    cols="10"
+                  >Kami memiliki jaringan bisnis yang luas, sehingga memampukan kami untuk memberikan layanan terbaik yang melingkupi tiket penerbangan, kereta api, hotel, pengurusan dokumen perjalanan, tour wisata inbound dan outbound, incentive tour, cruises, asuransi perjalanan, rental kendaraan, dan corporate travel management service.</textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="sub-heading">
+              <p>ID Verification</p>
+            </div>
+
+            <div class="columns">
+              <div class="column is-6">
+                <p><b>Personal ID</b></p>
+                <img
+                  src="assets/img/ktp.jpeg"
+                  alt=""
+                >
+              </div>
+              <div class="column is-6">
+                <p><b>Business ID</b></p>
+                <img
+                  src="assets/img/npwp.jpeg"
+                  alt=""
+                >
+              </div>
+            </div>
+
+
 
             <div class="clear" />
           </div>

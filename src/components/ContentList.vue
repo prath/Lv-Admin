@@ -10,14 +10,14 @@
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
-          <h3>Curated Content List</h3>
+          <h3>Featured Content List</h3>
           <p>List of Curated Contet</p>
         </div>
 
         <div class="column generic-heading is-one-third flex end-xs">
-          <router-link to="curated-add">
+          <router-link to="featured-add">
             <button class="btn btn--medium btn--primary is-right">
-              Add Curated Content
+              Add Featured Content
             </button>
           </router-link>
         </div>
@@ -140,12 +140,12 @@
                 <td>
                   <div class="wrapper">
                     <span class="info icon">
-                      <router-link to="curated-edit">
+                      <router-link to="featured-edit">
                         <a title="Edit User"><img
                           src="assets/img/ic-edit-line.svg"
                           title="Edit User"
                         ></a></router-link>
-                      <router-link to="curated-edit">
+                      <router-link to="featured-edit">
                         <a title="Delete User"><img
                           src="assets/img/ic-delete-line.svg"
                           title="Delete User"

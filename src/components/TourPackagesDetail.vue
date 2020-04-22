@@ -432,6 +432,36 @@
             <p><b>Open Trip</b></p>
           </div>
 
+          <hr class="no-line sm">
+          <div class="title">
+            Status
+          </div>
+
+          <div class="flex between-xs">
+            <div class="field filter-select is-full has-text-left ">
+              <div class="control">
+                <div class="select">
+                  <select>
+                    <option value="-">
+                      Active
+                    </option>
+                    <option value="by_date">
+                      Inactive
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="is-full has-text-right">
+              <button
+                type="button"
+                class="btn btn--primary btn--medium"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
           <hr>
           <div class="title">
             Host

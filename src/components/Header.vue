@@ -123,8 +123,8 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/curated-contents">
-              Curated Contents
+            <router-link to="/featured-contents">
+              Featured Contents
             </router-link>
           </li>
           <li>

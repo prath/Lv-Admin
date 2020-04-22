@@ -9,11 +9,11 @@
         <div class="column is-two-third">
           <div class="card card--statistic">
             <div class="heading border">
-              <h4>Curated Content Add</h4>
+              <h4>Featured Content Add</h4>
             </div>
 
             <div class="sub-heading">
-              <p>Detail Curated Content</p>
+              <p>Detail Featured Content</p>
             </div>
 
             <div class="columns is-gapless">

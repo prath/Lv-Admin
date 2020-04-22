@@ -13,12 +13,6 @@
           <h3>Tour Packages</h3>
           <p>List of Tour Packages</p>
         </div>
-
-        <div class="column generic-heading is-one-third flex end-xs">
-          <button class="btn btn--medium btn--primary is-right">
-            Add Tour Packages
-          </button>
-        </div>
       </div>
 
 
@@ -30,6 +24,9 @@
                 <select>
                   <option value="-">
                     Filter
+                  </option>
+                  <option value="by_date">
+                    By Status
                   </option>
                   <option value="by_date">
                     By Types of Tour
@@ -91,6 +88,7 @@
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Location</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -104,6 +102,7 @@
                 :dateTo="item.date_to"
                 :location="item.location"
                 :typeTrip="item.type_trip"
+                :status="item.status"
                 v-for="item in items"
               />
             </tbody>
@@ -132,7 +131,8 @@ export default {
                     "date_to": '02/12/2019',
                     "price": 'Rp.450.000,- / pax',
                     "location": 'Bandung',
-                    "type_trip" : 'Open Trip'
+                    "type_trip" : 'Open Trip',
+                    "status" : 'Active'
                   },
                   {
                     "id": '2' ,
@@ -142,7 +142,8 @@ export default {
                     "date_to": '02/12/2019',
                     "price": 'Rp.765.000,- / pax',
                     "location": 'Bogor',
-                    "type_trip" : 'Private Trip'
+                    "type_trip" : 'Private Trip',
+                    "status" : 'Inactive'
                   },
                   {
                     "id": '3' ,
@@ -152,7 +153,8 @@ export default {
                     "price": 'Rp.1.765.000,- / pax',
                     "date_to": '02/12/2019',
                     "location": 'Bogor',
-                    "type_trip" : 'Open Trip'
+                    "type_trip" : 'Open Trip',
+                    "status" : 'Active'
                   }
         ]
 

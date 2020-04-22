@@ -242,6 +242,113 @@
               >
             </div>
 
+            <div class="sub-heading">
+              <p>Business</p>
+            </div>
+
+            <div class="columns  ">
+              <div class="column is-6">
+                <div class="form-group">
+                  <label for="last_name">Business Name</label>
+                  <input
+                    id="harga"
+                    type="text"
+                    class="form-control"
+                    placeholder=""
+                  >
+                </div>
+              </div>
+
+              <div class="column is-6">
+                <div class="form-group">
+                  <label for="last_name">Category</label>
+                  <div class="select">
+                    <select>
+                      <option value="currency">
+                        Tour &amp; Travel
+                      </option>
+                      <option value="percentage">
+                        Consultant
+                      </option>
+                      <option value="percentage">
+                        Advertising/Branding/PR.
+                      </option>
+                      <option value="percentage">
+                        Government Agency.
+                      </option>
+                      <option value="percentage">
+                        Financial Institution/Investment Bank.
+                      </option>
+                      <option value="percentage">
+                        Not for Profit.
+                      </option>
+                      <option value="percentage">
+                        Association.
+                      </option>
+                      <option value="percentage">
+                        Packaging/Design.
+                      </option>
+                      <option value="percentage">
+                        Publisher.
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="columns ">
+              <div class="column is-6">
+                <div class="form-group">
+                  <label for="last_name">Address</label>
+                  <textarea class="form-control" />
+                </div>
+              </div>
+
+              <div class="column is-6">
+                <div class="form-group">
+                  <label for="last_name">About</label>
+                  <textarea class="form-control" />
+                </div>
+              </div>
+            </div>
+
+            <div class="sub-heading">
+              <p>ID Verification</p>
+            </div>
+
+            <div class="columns">
+              <div class="column is-6">
+                <p><b>Personal ID</b></p>
+                <div class="custom-file grey">
+                  <input
+                    id="customFile"
+                    type="file"
+                    class="custom-file-input"
+                  >
+                  <img
+                    src="assets/img/ic-image-white.svg"
+                    alt=""
+                  >
+                </div>
+              </div>
+              <div class="column is-6">
+                <p><b>Business ID</b></p>
+                <div class="custom-file grey">
+                  <input
+                    id="customFile"
+                    type="file"
+                    class="custom-file-input"
+                  >
+                  <img
+                    src="assets/img/ic-image-white.svg"
+                    alt=""
+                  >
+                </div>
+              </div>
+            </div>
+
+
 
 
             <div class="clear" />

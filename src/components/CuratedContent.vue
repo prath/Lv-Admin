@@ -10,13 +10,13 @@
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
-          <h3>Curated Content List</h3>
-          <p>List of Curated Contet</p>
+          <h3>Featured Content List</h3>
+          <p>List of Featured Content</p>
         </div>
 
         <div class="column generic-heading is-one-third flex end-xs">
           <button class="btn btn--medium btn--primary is-right">
-            Add Curated Content
+            Add Featured Content
           </button>
         </div>
       </div>
