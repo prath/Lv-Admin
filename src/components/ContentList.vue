@@ -93,130 +93,67 @@
             </thead>
 
             <tbody>
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+              <template v-for="(content) in contentList">
+                <tr>
+                  <td>
+                    <div class="wrapper">
+                      <div class="form-check">
+                        <label class="container">
+                          <input
+                            type="checkbox"
+                          >
+                          <span class="checkmark" />
+                        </label>
+                      </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info">5 Tips Untuk Traveling Pemula</span> <br>
-                  </div>
-                </td>
-
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">01/12/2019</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <ul>
-                        <li>
-                          <p>Kayaking di Perairan, Bandung</p>
-                        </li>
-
-                        <li>
-                          <p>Barbecue Party di Outdoor, Bandung</p>
-                        </li>
-                      </ul>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ content.title }}</span> <br>
                     </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="featured-edit">
-                        <a title="Edit User"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit User"
-                        ></a></router-link>
-                      <router-link to="featured-edit">
-                        <a title="Delete User"><img
-                          src="assets/img/ic-delete-line.svg"
-                          title="Delete User"
-                        ></a>
-                      </router-link>
-                    </span>
-                  </div>
-                </td>
-              </tr>
+                  </td>
 
 
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ content.dateCreated }}</span> <br>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Traveling Low Budget</span> <br>
-                  </div>
-                </td>
-
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">01/12/2019</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <ul>
-                        <li>
-                          <p>Kayaking di Perairan, Bandung</p>
-                        </li>
-
-                        <li>
-                          <p>Barbecue Party di Outdoor, Bandung</p>
-                        </li>
-                      </ul>
+                  <td>
+                    <div class="wrapper">
+                      <div>
+                        <ul>
+                          <template v-for="(tour) in content.tour">
+                            <li>
+                              <p>{{ tour.name }}</p>
+                            </li>
+                          </template>
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete User"
-                      ></a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info icon">
+                        <router-link to="featured-edit">
+                          <a title="Edit User"><img
+                            src="assets/img/ic-edit-line.svg"
+                            title="Edit User"
+                          ></a></router-link>
+                        <router-link to="featured-edit">
+                          <a title="Delete User"><img
+                            src="assets/img/ic-delete-line.svg"
+                            title="Delete User"
+                          ></a>
+                        </router-link>
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>
@@ -224,3 +161,29 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data(){
+		return {
+
+      contentList : [
+                  {
+                    "id": '1' ,
+                    "title": 'Traveling Low Budget',
+                    "dateCreated": '01/12/2019',
+                    "tour": [{"name" : "Kayaking di Perairan, Bandung"},{"name" : "Barbecue Party di Outdoor, Bandung"}],
+                  },
+                   {
+                    "id": '2' ,
+                    "title": '5 Tips Untuk Traveling Pemula',
+                    "dateCreated": '11/12/2019',
+                    "tour": [{"name" : "Kayaking di Perairan, Bandung"},{"name" : "Barbecue Party di Outdoor, Bandung"}],
+                  },
+
+        ]
+
+      }
+   }
+}
+</script>

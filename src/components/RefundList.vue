@@ -94,199 +94,82 @@
             </thead>
 
             <tbody>
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+              <template v-for="(refund) in refundList">
+                <tr>
+                  <td>
+                    <div class="wrapper">
+                      <div class="form-check">
+                        <label class="container">
+                          <input
+                            type="checkbox"
+                          >
+                          <span class="checkmark" />
+                        </label>
+                      </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="order_number">#1092-122</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp.450.000,-</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">12/12/2019 09:12:09</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">PT. Ayo Tour Sejahtera</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Novi Irianty</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info badges badges--wait-payment">Waiting</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="refund-edit">
-                        <a title="Edit Refund"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit User"
-                        ></a>
-                      </router-link>
-                    </span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+                  <td>
+                    <div class="wrapper">
+                      <span class="order_number">{{ refund.bookingNo }}</span> <br>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="order_number">#1043-099</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp.12.435.000,-</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">01/11/2019 23:09:15</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Sahabat Tour</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rudi Gunawan</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info badges badges--paid-off">Accepted</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="refund-edit">
-                        <a title="Edit Refund"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit User"
-                        ></a>
-                      </router-link>
-                    </span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">Rp.{{ refund.nominal }},-</span> <br>
                     </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="order_number">#1013-199</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp.2.000.000,-</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">29/11/2019 15:13:00</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Fastest Tour</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Ilham Budiawan</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="info badges badges--processed">Decline</span> <br>
+                  </td>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ refund.date }}</span> <br>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="refund-edit">
-                        <a title="Edit Refund"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit User"
-                        ></a>
-                      </router-link>
-                    </span>
-                  </div>
-                </td>
-              </tr>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ refund.host }}</span>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ refund.guest }}</span>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="wrapper">
+                      <span
+                        v-if="refund.status==='Waiting'"
+                        class="info badges badges--wait-payment"
+                      >{{ refund.status }}</span>
+
+                      <span
+                        v-if="refund.status==='Accepted'"
+                        class="info badges badges--paid-off"
+                      >{{ refund.status }}</span>
+                      <span
+                        v-if="refund.status==='Decline'"
+                        class="info badges badges--processed"
+                      >{{ refund.status }}</span>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="wrapper">
+                      <span class="info icon">
+                        <router-link to="refund-edit">
+                          <a title="Edit Refund"><img
+                            src="assets/img/ic-edit-line.svg"
+                            title="Edit User"
+                          ></a>
+                        </router-link>
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>
@@ -294,3 +177,44 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  data(){
+		return {
+
+      refundList : [
+                  {
+                    "id": '1' ,
+                    "bookingNo": '#1092-122',
+                    "nominal" : '450.000',
+                    "date" : '12/12/2019 09:12:09',
+                    "host" : 'PT. Ayo Tour Sejahtera',
+                    "guest" : 'Novi Irianty',
+                    "status" : 'Waiting'
+                  },
+                   {
+                    "id": '2' ,
+                    "bookingNo": '#1043-099',
+                    "nominal" : '12.435.000',
+                    "date" : '01/11/2019 23:09:15',
+                    "host" : 'Sahabat Tour',
+                    "guest" : 'Rudi Gunawan',
+                    "status" : 'Accepted'
+                  },
+                  {
+                    "id": '3' ,
+                    "bookingNo": '#1013-199',
+                    "nominal" : '2.000.000',
+                    "date" : '29/11/2019 15:13:00',
+                    "host" : 'Fastest Tour',
+                    "guest" : 'Ilham Budiawan',
+                    "status" : 'Decline'
+                  },
+
+
+        ]
+
+      }
+   }
+}
+</script>

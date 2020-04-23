@@ -72,193 +72,53 @@
             </thead>
 
             <tbody>
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+              <template v-for="(categories,key) in categoriesList">
+                <tr>
+                  <td>
+                    <div class="wrapper">
+                      <div class="form-check">
+                        <label class="container">
+                          <input
+                            type="checkbox"
+                          >
+                          <span class="checkmark" />
+                        </label>
+                      </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="order_number">1</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Wisata</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="categories-edit">
-                        <a title="Edit Categories"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit Categories"
-                        ></a>
-                      </router-link>
-                      <a title="Delete User">
-                        <img
-                          src="assets/img/ic-delete-line.svg"
-                          title="Delete Categories"
-                        >
-                      </a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+                  <td>
+                    <div class="wrapper">
+                      <span class="order_number">{{ key+1 }}</span> <br>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="order_number">2</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Outdoor</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="categories-edit">
-                        <a title="Edit Categories"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit Categories"
-                        ></a>
-                      </router-link>
-                      <a title="Delete User">
-                        <img
-                          src="assets/img/ic-delete-line.svg"
-                          title="Delete Categories"
-                        >
-                      </a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ categories.categories }}</span> <br>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="order_number">3</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Mountain</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="categories-edit">
-                        <a title="Edit Categories"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit Categories"
-                        ></a>
-                      </router-link>
-                      <a title="Delete User">
-                        <img
-                          src="assets/img/ic-delete-line.svg"
-                          title="Delete Categories"
-                        >
-                      </a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info icon">
+                        <router-link to="categories-edit">
+                          <a title="Edit Categories"><img
+                            src="assets/img/ic-edit-line.svg"
+                            title="Edit Categories"
+                          ></a>
+                        </router-link>
+                        <a title="Delete User">
+                          <img
+                            src="assets/img/ic-delete-line.svg"
+                            title="Delete Categories"
+                          >
+                        </a>
+                      </span>
                     </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">4</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Sea</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="categories-edit">
-                        <a title="Edit Categories"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit Categories"
-                        ></a>
-                      </router-link>
-                      <a title="Delete User">
-                        <img
-                          src="assets/img/ic-delete-line.svg"
-                          title="Delete Categories"
-                        >
-                      </a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
+                  </td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>
@@ -266,3 +126,33 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data(){
+		return {
+
+      categoriesList : [
+                  {
+                    "id": '1' ,
+                    "categories": 'Wisata'
+                  },
+                  {
+                    "id": '2' ,
+                    "categories": 'Outdoor'
+                  },
+                  {
+                    "id": '3' ,
+                    "categories": 'Mountain'
+                  },
+                   {
+                    "id": '4' ,
+                    "categories": 'Sea'
+                  },
+
+        ]
+
+      }
+   }
+}
+</script>

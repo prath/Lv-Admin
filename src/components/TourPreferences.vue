@@ -89,96 +89,53 @@
             </thead>
 
             <tbody>
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+              <template
+                v-for="(tour) in preferencesList"
+              >
+                <tr>
+                  <td>
+                    <div class="wrapper">
+                      <div class="form-check">
+                        <label class="container">
+                          <input
+                            type="checkbox"
+                          >
+                          <span class="checkmark" />
+                        </label>
+                      </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Landscape</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Best Packages for camping, bbq, and camping in one
-                      step</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="tour-preferences-edit">
-                        <a title="Edit User"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit Tour Preferences"
-                        ></a>
-                      </router-link>
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete Tour Preferences"
-                      ></a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ tour.key }}</span> <br>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Mountain</span> <br>
-                  </div>
-                </td>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ tour.value }}</span> <br>
+                    </div>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Best Packages for Hiking, Coffee Harvest, etc</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="tour-preferences-edit">
-                        <a title="Edit User"><img
-                          src="assets/img/ic-edit-line.svg"
-                          title="Edit Tour Preferences"
+                  <td>
+                    <div class="wrapper">
+                      <span class="info icon">
+                        <router-link to="tour-preferences-edit">
+                          <a title="Edit User"><img
+                            src="assets/img/ic-edit-line.svg"
+                            title="Edit Tour Preferences"
+                          ></a>
+                        </router-link>
+                        <a title="Delete User"><img
+                          src="assets/img/ic-delete-line.svg"
+                          title="Delete Tour Preferences"
                         ></a>
-                      </router-link>
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete Tour Preferences"
-                      ></a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>
@@ -186,3 +143,26 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data(){
+		return {
+
+      preferencesList : [
+                  {
+                    "id": '1' ,
+                    "key": 'Landscape',
+                    "value": 'Best Packages for camping, bbq, and camping in one step'
+                  },
+                  {
+                    "id": '2' ,
+                    "key": 'Mountain',
+                    "value": 'Best Packages for Hiking, Coffee Harvest, etc'
+                  },
+        ]
+
+      }
+   }
+}
+</script>
