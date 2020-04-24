@@ -39,11 +39,7 @@
                   </option>
 
                   <option value="by_date">
-                    By Status Verified
-                  </option>
-
-                  <option value="by_date">
-                    By Status Unverified
+                    By Status
                   </option>
 
                   <option value="by_price">
