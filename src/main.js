@@ -24,6 +24,7 @@ import TourPackagesDetailPrivate from './components/TourPackagesDetailPrivate'
 import TourPreferencesAdd from './components/TourPreferencesAdd'
 import TourPreferencesEdit from './components/TourPreferencesEdit'
 import Login from './components/Login'
+import FinancialReport from './components/FinancialReport'
 
 
 import HighchartsVue from 'highcharts-vue';
@@ -60,6 +61,7 @@ const router = new VueRouter({
     { path: '/tour-packages-detail-private', component: TourPackagesDetailPrivate },
     { path: '/tour-preferences-add', component: TourPreferencesAdd },
     { path: '/tour-preferences-edit', component: TourPreferencesEdit },
+    { path: '/financial-report', component: FinancialReport },
 
   ],
   mode: 'history'

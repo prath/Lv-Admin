@@ -143,8 +143,8 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/">
-              Customer Service Feedback
+            <router-link to="/financial-report">
+              Financial Report
             </router-link>
           </li>
         </ul>
