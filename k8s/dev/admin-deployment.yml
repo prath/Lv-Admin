@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: admin-vue
-        image: lokaventour/admin-vue:$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA
+        image: lokaventour/admin-vue:master-33fb6b3b
         imagePullPolicy: Always
         ports:
         - name: admin-service

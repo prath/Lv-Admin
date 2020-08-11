@@ -4,14 +4,9 @@ metadata:
   name: admin-ingress-qa
   annotations:
     kubernetes.io/ingress.class: nginx
-    # cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
-  # tls:
-  # - hosts:
-  #   - dev-staging.admin.lokaven.com
-  #   secretName: echo-tls
   rules:
-  - host: admin-dashboard.qa.lokaven.com
+  - host: admin-dashboard-qa.lokaven.com
     http:
       paths:
       - backend:
