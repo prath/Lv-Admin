@@ -2,6 +2,7 @@ import Vue from 'vue/dist/vue.js'
 import App from './App'
 import VueRouter from 'vue-router'
 
+
 import Dashboard from './components/Dashboard'
 import Users from './components/Users'
 import UserAdd from './components/UserAdd'
@@ -35,6 +36,7 @@ dataModule(Highcharts);
 
 Vue.use(VueRouter)
 Vue.use(HighchartsVue)
+
 
 
 const router = new VueRouter({

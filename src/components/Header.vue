@@ -25,8 +25,7 @@
             </a>
           </li>
           <li>
-            <router-link to="/">
-              <a href="#">
+              <a @click="logout()">
                 <div class="avatar avatar--extra-small">
                   <img
                     src="assets/img/avatar.png"
@@ -34,7 +33,6 @@
                   >
                 </div>
               </a>
-            </router-link>
           </li>
         </ul>
       </div>
@@ -152,3 +150,12 @@
     </aside>
   </div>
 </template>
+
+<script>
+  export default {
+    methods: {
+     logout: function () {
+        console.log('aaa')
+      }
+    }
+  }
