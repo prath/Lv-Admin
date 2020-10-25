@@ -25,14 +25,14 @@
             </a>
           </li>
           <li>
-            <a href="#">
-              <div class="avatar avatar--extra-small">
-                <img
-                  src="assets/img/avatar.png"
-                  alt
-                >
-              </div>
-            </a>
+              <a @click="logout()">
+                <div class="avatar avatar--extra-small">
+                  <img
+                    src="assets/img/avatar.png"
+                    alt
+                  >
+                </div>
+              </a>
           </li>
         </ul>
       </div>
@@ -105,8 +105,8 @@
     <aside class="column side-menu">
       <nav>
         <ul>
-          <li class="active">
-            <router-link to="/">
+          <li>
+            <router-link to="/dashboard">
               Dashboard
             </router-link>
           </li>
@@ -121,8 +121,8 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/curated-contents">
-              Curated Contents
+            <router-link to="/featured-contents">
+              Featured Contents
             </router-link>
           </li>
           <li>
@@ -136,8 +136,13 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/refund-management">
+            <router-link to="/refund-list">
               Refund Management
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/financial-report">
+              Financial Report
             </router-link>
           </li>
         </ul>
@@ -145,3 +150,12 @@
     </aside>
   </div>
 </template>
+
+<script>
+  export default {
+    methods: {
+     logout: function () {
+        console.log('aaa')
+      }
+    }
+  }

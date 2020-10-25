@@ -1,5 +1,6 @@
 .flex {
-  display: flex; }
+  display: flex;
+  opacity: 1; }
 
 .container-fluid {
   margin-right: auto;
@@ -890,6 +891,8 @@ aside.side-menu {
       font-weight: 600;
       font-size: 16px;
       color: #85808E; }
+      aside.side-menu ul li a.router-link-exact-active {
+        color: #7A5ACA; }
     aside.side-menu ul li.active a {
       color: #7A5ACA; }
     aside.side-menu ul li:first-child {
@@ -1967,7 +1970,7 @@ select.form-control:not([size]):not([multiple]) {
         top: 22px;
         z-index: 200; }
   .filter-table-list .filter-select .control .select select {
-    width: 155px;
+    width: 250px;
     height: 60px;
     border-radius: 5px 0 0 5px;
     -moz-border-radius: 5px 0 0 5px;
@@ -2828,6 +2831,8 @@ aside.side-menu {
       font-weight: 600;
       font-size: 16px;
       color: #85808E; }
+      aside.side-menu ul li a.router-link-exact-active {
+        color: #7A5ACA; }
     aside.side-menu ul li.active a {
       color: #7A5ACA; }
     aside.side-menu ul li:first-child {

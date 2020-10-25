@@ -10,14 +10,16 @@
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
-          <h3>Curated Content List</h3>
-          <p>List of Curated Contet</p>
+          <h3>Featured Content List</h3>
+          <p>List of Featured Contents</p>
         </div>
 
-        <div class="column generic-heading is-one-third ">
-          <button class="btn btn--medium btn--primary is-right">
-            Add Curated Content
-          </button>
+        <div class="column generic-heading is-one-third flex end-xs">
+          <router-link to="featured-add">
+            <button class="btn btn--medium btn--primary is-right">
+              Add Featured Content
+            </button>
+          </router-link>
         </div>
       </div>
 
@@ -53,7 +55,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="Cari Tour"
+              placeholder="Find Tour"
             >
           </div>
         </div>
@@ -82,214 +84,76 @@
                   </div>
                 </th>
 
-                <th>Tour</th>
-                <th>Duration</th>
-                <th>Price</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Location</th>
+                <th>Title</th>
+
+                <th>Date Created</th>
+                <th>Tour Packages</th>
                 <th>Action</th>
               </tr>
             </thead>
 
             <tbody>
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+              <template v-for="(content) in contentList">
+                <tr>
+                  <td>
+                    <div class="wrapper">
+                      <div class="form-check">
+                        <label class="container">
+                          <input
+                            type="checkbox"
+                          >
+                          <span class="checkmark" />
+                        </label>
+                      </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Kayaking di Perairan Bandung</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info badges badges--verified">1 Day</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp.450.000,- / pax</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">01/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">02/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Bandung</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete User"
-                      ></a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ content.title }}</span> <br>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Hang Gliding Tandem</span> <br>
-                  </div>
-                </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info badges badges--verified">1 Day</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp.765.000,- / pax</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">03/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">04/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Bogor</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete User"
-                      ></a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ content.dateCreated }}</span> <br>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Barbecue Party di Outdoor, Bandung</span> <br>
-                  </div>
-                </td>
+                  <td>
+                    <div class="wrapper">
+                      <div>
+                        <ul>
+                          <template v-for="(tour) in content.tour">
+                            <li>
+                              <p>{{ tour.name }}</p>
+                            </li>
+                          </template>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info badges badges--verified">1 Day</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp.1.765.000,- / pax</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">15/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">16/12/2019</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Bandung</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete User"
-                      ></a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info icon">
+                        <router-link to="featured-edit">
+                          <a title="Edit User"><img
+                            src="assets/img/ic-edit-line.svg"
+                            title="Edit User"
+                          ></a></router-link>
+                        <router-link to="featured-edit">
+                          <a title="Delete User"><img
+                            src="assets/img/ic-delete-line.svg"
+                            title="Delete User"
+                          ></a>
+                        </router-link>
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>
@@ -297,3 +161,29 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data(){
+		return {
+
+      contentList : [
+                  {
+                    "id": '1' ,
+                    "title": 'Traveling Low Budget',
+                    "dateCreated": '01/12/2019',
+                    "tour": [{"name" : "Kayaking di Perairan, Bandung"},{"name" : "Barbecue Party di Outdoor, Bandung"}],
+                  },
+                   {
+                    "id": '2' ,
+                    "title": '5 Tips Untuk Traveling Pemula',
+                    "dateCreated": '11/12/2019',
+                    "tour": [{"name" : "Kayaking di Perairan, Bandung"},{"name" : "Barbecue Party di Outdoor, Bandung"}],
+                  },
+
+        ]
+
+      }
+   }
+}
+</script>

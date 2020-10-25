@@ -5,5 +5,8 @@ export default {
   '/curated-contents': 'CuratedContents',
   '/tour-preferences': 'TourPreferences',
   '/categories-tags': 'CategoriesTags',
-  '/refund-management': 'RefundManagement'
+  '/refund-list': 'RefundList',
+  '/login': 'Login',
+  '/add-user': 'UserAdd',
+  '/user-profile': 'UserProfile'
 }

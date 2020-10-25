@@ -13,10 +13,7 @@
 
       <div class="column is-full">
         <div class="heading">
-          <div
-            id="statistic_visitor"
-            style="width:100%; height: 400px;"
-          />
+          <guest-chart />
         </div>
       </div>
 
@@ -33,10 +30,7 @@
 
       <div class="column is-full">
         <div class="heading">
-          <div
-            id="statistic_host"
-            style="width:100%; height: 400px;"
-          />
+          <host-chart />
         </div>
       </div>
 
@@ -77,7 +71,7 @@
         <div class="column is-half">
           <div class="card card--statistic">
             <div class="heading">
-              <h4>Total Order</h4>
+              <h4>Total Booking</h4>
 
               <div class="info">
                 <div class="img">
@@ -111,8 +105,8 @@
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
-          <h3>5 Latest Orders</h3>
-          <p>Tour Order</p>
+          <h3>5 Latest Bookings</h3>
+          <p>Tour Booking</p>
         </div>
       </div>
 
@@ -143,6 +137,9 @@
                     Filter
                   </option>
                   <option value="by_date">
+                    By Types of Tour
+                  </option>
+                  <option value="by_date">
                     By Date
                   </option>
                   <option value="by_price">
@@ -164,7 +161,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="Cari Tour"
+              placeholder="Find Tour"
             >
           </div>
         </div>
@@ -191,7 +188,7 @@
                                             -->
                   </div>
                 </th>
-                <th>Order</th>
+                <th>Booking</th>
                 <th>Tour Name</th>
                 <th>Date</th>
                 <th>Total</th>
@@ -216,21 +213,29 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">#1979</span> <br>
-                    <p><b>by</b> Aceng Samsyudin</p>
+                    <div>
+                      <span class="order_number">#1979</span> <br>
+                      <p><b>by</b> Aceng Samsyudin</p>
+                      <div />
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Kayaking di Perairan Bandung</span> <br>
+                    <div>
+                      <span class="order_number">Kayaking di Perairan Bandung</span> <br>
+                      <p>Open Trip</p>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">22 April 2018</span> <br>
-                    <p>20:23:21</p>
+                    <div>
+                      <span class="info">22 April 2018</span>
+                      <p>20:23:21</p>
+                    </div>
                   </div>
                 </td>
 
@@ -241,14 +246,16 @@
                       alt=""
                     >
                     <div class="total">
-                      <span class="text-success">Rp 300.000,00</span>
-                      <p><b>1 pax</b> via transfer bank</p>
+                      <div>
+                        <span class="text-success">Rp 300.000,00</span>
+                        <p><b>1 pax</b> via transfer bank</p>
+                      </div>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="badges badges--processed">Need to be Processed</span>
+                    <span class="badges badges--processed">Processed</span>
                   </div>
                 </td>
               </tr>
@@ -269,21 +276,28 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">#1981</span> <br>
-                    <p><b>by</b> Didin Maulana</p>
+                    <div>
+                      <span class="order_number">#1981</span> <br>
+                      <p><b>by</b> Didin Maulana</p>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Hang Gliding Tandem</span> <br>
+                    <div>
+                      <span class="order_number">Hang Gliding Tandem</span>
+                      <p>Private Trip</p>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">13 Januari 2019</span> <br>
-                    <p>20:23:21</p>
+                    <div>
+                      <span class="info">13 Januari 2019</span> <br>
+                      <p>20:23:21</p>
+                    </div>
                   </div>
                 </td>
 
@@ -301,7 +315,7 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="badges badges--processed">Need to be Processed</span>
+                    <span class="badges badges--processed">Processed</span>
                   </div>
                 </td>
               </tr>
@@ -322,21 +336,28 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">#1981</span> <br>
-                    <p><b>by</b> Andrew Moralez</p>
+                    <div>
+                      <span class="order_number">#1981</span> <br>
+                      <p><b>by</b> Andrew Moralez</p>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Barbecue Party di Outdoor, Bandung</span> <br>
+                    <div>
+                      <span class="order_number">Barbecue Party di Outdoor, Bandung</span> <br>
+                      <p>Open Trip</p>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">4 Desember 2019</span> <br>
-                    <p>20:23:21</p>
+                    <div>
+                      <span class="info">4 Desember 2019</span> <br>
+                      <p>20:23:21</p>
+                    </div>
                   </div>
                 </td>
 
@@ -354,7 +375,7 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="badges badges--processed">Need to be Processed</span>
+                    <span class="badges badges--processed">Processed</span>
                   </div>
                 </td>
               </tr>
@@ -375,21 +396,28 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">#1999</span> <br>
-                    <p><b>by</b> Salvador Martin</p>
+                    <div>
+                      <span class="order_number">#1999</span> <br>
+                      <p><b>by</b> Salvador Martin</p>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
+                    <div>
+                      <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
+                      <p>Private Trip</p>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">4 Desember 2019</span> <br>
-                    <p>20:23:21</p>
+                    <div>
+                      <span class="info">4 Desember 2019</span> <br>
+                      <p>20:23:21</p>
+                    </div>
                   </div>
                 </td>
 
@@ -407,7 +435,7 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="badges badges--processed">Need to be Processed</span>
+                    <span class="badges badges--processed">Processed</span>
                   </div>
                 </td>
               </tr>
@@ -428,21 +456,28 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">#2500</span> <br>
-                    <p><b>by</b> Heilsinski</p>
+                    <div>
+                      <span class="order_number">#2500</span> <br>
+                      <p><b>by</b> Heilsinski</p>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Wisata Kopi Bandung</span> <br>
+                    <div>
+                      <span class="order_number">Wisata Kopi Bandung</span> <br>
+                      <p>Open Trip</p>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">7 April 2020</span> <br>
-                    <p>20:23:21</p>
+                    <div>
+                      <span class="info">7 April 2020</span> <br>
+                      <p>20:23:21</p>
+                    </div>
                   </div>
                 </td>
 
@@ -460,7 +495,7 @@
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="badges badges--processed">Need to be Processed</span>
+                    <span class="badges badges--processed">Processed</span>
                   </div>
                 </td>
               </tr>
@@ -497,6 +532,9 @@
                     Filter
                   </option>
                   <option value="by_date">
+                    By Types of tours
+                  </option>
+                  <option value="by_date">
                     By Date
                   </option>
                   <option value="by_price">
@@ -518,7 +556,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="Cari Tour"
+              placeholder="Find Tour"
             >
           </div>
         </div>
@@ -547,9 +585,8 @@
                 </th>
 
                 <th>Tour Name</th>
-                <th colspan="2">
-                  Date
-                </th>
+                <th>Start Date</th>
+                <th>End Date</th>
                 <th>Total Pax</th>
                 <th>Status</th>
               </tr>
@@ -573,7 +610,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Kayaking di Perairan Bandung</span> <br>
+                    <div>
+                      <span class="order_number">Kayaking di Perairan Bandung</span> <br>
+                      <p>Open Trip</p>
+                    </div>
                   </div>
                 </td>
 
@@ -617,7 +657,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Hang Gliding Tandem</span> <br>
+                    <div>
+                      <span class="order_number">Hang Gliding Tandem</span> <br>
+                      <p>Private Tour</p>
+                    </div>
                   </div>
                 </td>
 
@@ -661,7 +704,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Hang Gliding Tandem</span> <br>
+                    <div>
+                      <span class="order_number">Hang Gliding Tandem</span> <br>
+                      <p>Open Trip</p>
+                    </div>
                   </div>
                 </td>
 
@@ -705,7 +751,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
+                    <div>
+                      <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
+                      <p>Private Tour</p>
+                    </div>
                   </div>
                 </td>
 
@@ -749,7 +798,10 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
+                    <div>
+                      <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
+                      <p>Private Tour</p>
+                    </div>
                   </div>
                 </td>
 
@@ -799,9 +851,30 @@
           <table class="table is-fullwidth table--orders">
             <thead>
               <tr>
-                <th>Guest Name</th>
-                <th>Date Refund</th>
-                <th>Total Refund</th>
+                <th>
+                  <div class="action-wrapper">
+                    <div class="form-check">
+                      <label class="container">
+                        <input
+                          type="checkbox"
+                          checked="checked"
+                        >
+                        <span class="checkmark" />
+                      </label>
+                    </div>
+                  <!--
+                                            SHow when Checkbox Clicked
+                                            <a href="#"><img src="assets/img/ic-delete.svg" alt="" /></a>
+                                        -->
+                  </div>
+                </th>
+
+                <th>Booking</th>
+                <th>Nominal</th>
+                <th>Date</th>
+                <th>Host</th>
+                <th>Guest</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -810,83 +883,63 @@
               <tr>
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Anderson Mondares</span> <br>
+                    <div class="form-check">
+                      <label class="container">
+                        <input
+                          type="checkbox"
+                          checked="checked"
+                        >
+                        <span class="checkmark" />
+                      </label>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">22 April 2018</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp. 4.500.000,-</span> <br>
-                  </div>
-                </td>
-
-
-                <td>
-                  <div class="wrapper">
-                    <button class="btn btn--primary btn--small">
-                      Process Refund
-                    </button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <span class="order_number">Lilis Karlina</span> <br>
+                    <span class="order_number">#1092-122</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">6 Januari 2019</span> <br>
+                    <span class="info">Rp.450.000,-</span> <br>
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="info">Rp. 75.000,-</span> <br>
-                  </div>
-                </td>
-
-
-                <td>
-                  <div class="wrapper">
-                    <button class="btn btn--primary btn--small">
-                      Process Refund
-                    </button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <span class="order_number">Wulan R Natalie</span> <br>
+                    <span class="info">12/12/2019 09:12:09</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">3 Desember 2019</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp. 750.000,-</span> <br>
+                    <span class="info">PT. Ayo Tour Sejahtera</span>
                   </div>
                 </td>
 
+                <td>
+                  <div class="wrapper">
+                    <span class="info">Novi Irianty</span>
+                  </div>
+                </td>
 
                 <td>
                   <div class="wrapper">
-                    <button class="btn btn--primary btn--small">
-                      Process Refund
-                    </button>
+                    <span class="info badges badges--wait-payment">Waiting</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info icon">
+                      <router-link to="refund-edit">
+                        <a title="Edit Refund"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
+                    </span>
                   </div>
                 </td>
               </tr>
@@ -894,27 +947,129 @@
               <tr>
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">Lea Marsela</span> <br>
+                    <div class="form-check">
+                      <label class="container">
+                        <input
+                          type="checkbox"
+                          checked="checked"
+                        >
+                        <span class="checkmark" />
+                      </label>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">4 Desember 2019</span> <br>
+                    <span class="order_number">#1043-099</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">Rp.12.435.000,-</span> <br>
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="info">Rp. 525.000,-</span> <br>
+                    <span class="info">01/11/2019 23:09:15</span> <br>
                   </div>
                 </td>
 
+                <td>
+                  <div class="wrapper">
+                    <span class="info">Sahabat Tour</span>
+                  </div>
+                </td>
 
                 <td>
                   <div class="wrapper">
-                    <button class="btn btn--primary btn--small">
-                      Process Refund
-                    </button>
+                    <span class="info">Rudi Gunawan</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info badges badges--paid-off">Accepted</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info icon">
+                      <router-link to="refund-edit">
+                        <a title="Edit Refund"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="wrapper">
+                    <div class="form-check">
+                      <label class="container">
+                        <input
+                          type="checkbox"
+                          checked="checked"
+                        >
+                        <span class="checkmark" />
+                      </label>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="order_number">#1013-199</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">Rp.2.000.000,-</span> <br>
+                  </div>
+                </td>
+                <td>
+                  <div class="wrapper">
+                    <span class="info">29/11/2019 15:13:00</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">Fastest Tour</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">Ilham Budiawan</span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <div>
+                      <span class="info badges badges--processed">Decline</span> <br>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info icon">
+                      <router-link to="refund-edit">
+                        <a title="Edit Refund"><img
+                          src="assets/img/ic-edit-line.svg"
+                          title="Edit User"
+                        ></a>
+                      </router-link>
+                    </span>
                   </div>
                 </td>
               </tr>
@@ -925,3 +1080,15 @@
     </div>
   </div>
 </template>
+
+<script>
+import GuestChart from './GuestChart'
+import HostChart from './HostChart'
+export default {
+  name: 'App',
+  components : {
+    'GuestChart' : GuestChart,
+    'HostChart' : HostChart
+  }
+}
+</script>

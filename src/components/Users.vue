@@ -14,10 +14,12 @@
             <p>List of Guest & Host</p>
           </div>
 
-          <div class="column generic-heading is-one-third ">
-            <button class="btn btn--medium btn--primary is-right">
-              Add User
-            </button>
+          <div class="column generic-heading is-one-third flex end-xs ">
+            <router-link to="/add-user">
+              <button class="btn btn--medium btn--primary ">
+                Add User
+              </button>
+            </router-link>
           </div>
         </div>
       </form>
@@ -35,6 +37,11 @@
                   <option value="by_date">
                     By Name
                   </option>
+
+                  <option value="by_date">
+                    By Status
+                  </option>
+
                   <option value="by_price">
                     By Role
                   </option>
@@ -54,7 +61,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="Cari Tour"
+              placeholder="Find Tour"
             >
           </div>
         </div>
@@ -93,185 +100,91 @@
             </thead>
 
             <tbody>
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+              <template v-for="(user) in users">
+                <tr>
+                  <td>
+                    <div class="wrapper">
+                      <div class="form-check">
+                        <label class="container">
+                          <input
+                            type="checkbox"
+                          >
+                          <span class="checkmark" />
+                        </label>
+                      </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Michelle Sandra</span> <br>
-                  </div>
-                </td>
+                  <td>
+                    <div class="wrapper">
+                      <div>
+                        <span class="info">{{ user.name }}</span> <br>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info badges badges--verified">Guest</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">michelle@gmail.com</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Female</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">0857-2210-6534</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete User"
-                      ></a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+                        <p>
+                          <span
+                            :class="(user.status==='Active' ?
+                              'text-success'
+                              :
+                              'text-danger')"
+                          >{{ user.status }}</span>&nbsp; | &nbsp;<span
+                            :class="(user.verified==='Verified' ?
+                              'text-info'
+                              :
+                              'text-warning')"
+                          >{{ user.verified }}</span>
+                        </p>
+                        <div />
+                      </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Simon Mc Mnmemy</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info badges badges--verified">Guest</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">simon.mcmnemy@gmail.com</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Male</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">0857-1310-1432</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete User"
-                      ></a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
+                  <td>
+                    <div class="wrapper">
+                      <span
+                        :class="(user.role==='Host' ?
+                          'badges--verified'
+                          :
+                          'badges--paid-off')"
+                        class="info badges"
+                      >{{ user.role }}</span> <br>
                     </div>
-                  </div>
-                </td>
+                  </td>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ user.email }}</span> <br>
+                    </div>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rizal Agustian</span> <br>
-                  </div>
-                </td>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ user.gender }}</span>
+                    </div>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info badges badges--paid-off">Host</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">rizal.agus@gmail.com</span> <br>
-                  </div>
-                </td>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ user.phone }}</span>
+                    </div>
+                  </td>
 
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Male</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">0856-4332-1231</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
-                        title="Edit User"
-                      ></a>
-                      <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
-                        title="Delete User"
-                      ></a>
-                    </span>
-                  </div>
-                </td>
-              </tr>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info icon">
+                        <router-link to="/edit-user-host">
+                          <a title="Edit User"><img
+                            src="assets/img/ic-edit-line.svg"
+                            title="Edit User"
+                          ></a>
+                        </router-link>
+                        <a title="Delete User"><img
+                          src="assets/img/ic-delete-line.svg"
+                          title="Delete User"
+                        ></a>
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>
@@ -279,3 +192,47 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data(){
+		return {
+
+      users : [
+                  {
+                    "id": '1' ,
+                    "name": 'Michelle Sandra',
+                    "status": 'Active',
+                    "role": 'Guest',
+                    "email": 'michelle@gmail.com',
+                    "gender": 'Female',
+                    "phone": '0857-2210-6534',
+                    "verified" : 'Verified'
+                  },
+                  {
+                    "id": '2' ,
+                    "name": 'Simon Mc Mnmemy',
+                    "status": 'Suspend',
+                    "role": 'Guest',
+                    "email": 'simon.mcmnemy@gmail.com',
+                    "gender": 'Male',
+                    "phone": '0857-1310-1432',
+                    "verified" : 'Verified'
+                  },
+                  {
+                    "id": '3' ,
+                    "name": 'Rizal Agustian',
+                    "status": 'Active',
+                    "role": 'Host',
+                    "email": 'rizal.agus@gmail.com',
+                    "gender": 'Male',
+                    "phone": '0856-4332-1231',
+                    "verified" : 'Unverified'
+                  },
+
+        ]
+
+      }
+   }
+}
+</script>
