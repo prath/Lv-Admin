@@ -1,0 +1,63 @@
+name: lokaven-action
+
+on: 
+  push: 
+    branches:
+      - develop
+
+jobs:
+  lokaven-action:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      
+      - name: install dependencies
+        run: |
+          yarn install
+          yarn build 
+          yarn test --passWithNoTests
+
+      - name: Docker Login
+        env:
+          DOCKER_ID: ${{ secrets.DOCKER_ID }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+        run: |
+          docker login -u  $DOCKER_ID -p $DOCKER_PASS
+      
+      - name: Docker Build
+        run: |
+          docker build --pull --tag lokaventour/admin-vue:dev-${GITHUB_RUN_ID} -f ./Dockerfile .              
+
+      - name: Docker Push
+        run: |
+          docker push lokaventour/admin-vue:dev-${GITHUB_RUN_ID}
+
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_TOKEN }}
+
+      - name: Deploy to K8s
+        run: |
+          doctl kubernetes cluster kubeconfig save lokaven
+          kubectl set image deployment/admin-vue-deployment admin-vue=lokaventour/admin-vue:dev-${GITHUB_RUN_ID}
+
+ 
+      - name: Slack Notification
+        uses: 8398a7/action-slack@v3
+        with:
+          status: custom
+          fields: workflow,job,commit,repo,ref,author,took
+          custom_payload: |
+            {
+              username: 'Lokaven-Git',
+              icon_emoji: ':octocat:',
+              attachments: [{
+                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+                text: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} succeeded in ${process.env.AS_TOOK}`,
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
