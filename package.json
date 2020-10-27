@@ -14,6 +14,7 @@
     "core-js": "^3.4.4",
     "highcharts": "^8.1.1",
     "highcharts-vue": "^1.3.5",
+    "moment": "^2.29.1",
     "vue": "^2.6.10",
     "vue-autosuggest": "^2.1.1",
     "vue-multiselect": "^2.1.6",

@@ -94,17 +94,19 @@
             </thead>
 
             <tbody>
+
               <ListTour
-                :name="item.name"
-                :duration="item.duration"
-                :price="item.price"
-                :dateFrom="item.date_from"
-                :dateTo="item.date_to"
+                :id="item.tour_id"
+                :name="item.title"
+                :schedules="item.schedules"
+                :prices="item.prices"
                 :location="item.location"
-                :typeTrip="item.type_trip"
-                :statusTour="item.status"
-                v-for="item in items"
+                :typeTrip="item.type_tour"
+                v-for="(item, i) in items"
+                :key="i"
               />
+
+
             </tbody>
           </table>
         </div>
@@ -115,13 +117,18 @@
 
 <script>
 import ListTour from "./ListTour"
+import axios from 'axios'
 export default {
   components : {
     ListTour
   },
   data(){
 		return {
-
+      items: '',
+      accessToken: '',
+      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
+      isLoading: false,
+      /*
       items : [
                   {
                     "id": '1' ,
@@ -159,6 +166,26 @@ export default {
         ]
 
       }
+   */
    }
+    },
+   mounted() {
+      if (!localStorage.accessToken) {
+        this.$router.push({ path: '/' })
+      }
+      this.isLoading = true;
+      axios.get(this.apiUrl + 'package')
+        .then((res) => {
+          console.log("RESPONSE RECEIVED: ", res)
+          this.items = res.data.data
+          this.isLoading = false
+
+        })
+        .catch((err) => {
+          console.log("AXIOS ERROR: ", err.response.data.title)
+          this.isLoading = false
+        })
+    },
+
 }
 </script>
