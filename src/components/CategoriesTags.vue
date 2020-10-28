@@ -95,14 +95,14 @@
 
                   <td>
                     <div class="wrapper">
-                      <span class="info">{{ categories.categories }}</span> <br>
+                      <span class="info">{{ categories.category }}</span> <br>
                     </div>
                   </td>
 
                   <td>
                     <div class="wrapper">
                       <span class="info icon">
-                        <router-link to="categories-edit">
+                        <router-link :to="categories-edit + categories.category_id">
                           <a title="Edit Categories"><img
                             src="assets/img/ic-edit-line.svg"
                             title="Edit Categories"
@@ -128,10 +128,16 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data(){
 		return {
+      categoriesList: '',
+      accessToken: '',
+      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
+      isLoading: false,
 
+      /*
       categoriesList : [
                   {
                     "id": '1' ,
@@ -151,8 +157,26 @@ export default {
                   },
 
         ]
+        */
 
       }
-   }
+   },
+   mounted() {
+      if (!localStorage.accessToken) {
+        this.$router.push({ path: '/' })
+      }
+      this.isLoading = true;
+      axios.get(this.apiUrl + 'package/categories')
+        .then((res) => {
+          console.log("RESPONSE RECEIVED: ", res)
+          this.categoriesList = res.data.data
+          this.isLoading = false
+
+        })
+        .catch((err) => {
+          console.log("AXIOS ERROR: ", err.response.data.title)
+          this.isLoading = false
+        })
+    },
 }
 </script>

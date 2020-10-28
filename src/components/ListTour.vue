@@ -35,7 +35,7 @@
     </td>
     <td>
       <div class="wrapper">
-        <span class="info">{{ price }}</span> <br>
+
         <div class="flex item-durations" v-for="(item, i) in prices" :key="i">
           <span class="info "  v-if="i <= 0" >
            Rp. {{Number(item.price).toLocaleString('ID')}}
@@ -83,7 +83,7 @@
     <td>
       <div class="wrapper">
         <span class="info icon">
-          <router-link :to="typeTrip === 'Open Trip' ? 'tour-packages-detail/' + id : 'tour-packages-detail-private/' + id">
+          <router-link :to="typeTrip === 'open' ? 'tour-packages-detail/' + id : 'tour-packages-detail-private/' + id">
             <a title="Edit User"><img
               src="assets/img/ic-edit-line.svg"
               title="Edit User"

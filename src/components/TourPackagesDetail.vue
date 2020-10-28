@@ -489,6 +489,45 @@
   </div>
 </template>
 
+<script>
+import moment from 'moment'
+import axios from 'axios'
+export default {
+	data(){
+    return {
+      tourId: this.$route.params.guid,
+      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
+      isLoading: false,
+      accessToken: '',
+    }
+  },
+  filters: {
+    formatDate: function (value) {
+       if (value) {
+        return moment(String(value)).format('MM/DD/YYYY')
+      }
+    }
+  },
+  mounted() {
+      if (!localStorage.accessToken) {
+        this.$router.push({ path: '/' })
+      }
+      this.isLoading = true;
+      axios.get(this.apiUrl + 'package/' + this.tourId)
+        .then((res) => {
+          console.log("RESPONSE RECEIVED: ", res)
+          this.items = res.data.data
+          this.isLoading = false
+
+        })
+        .catch((err) => {
+          console.log("AXIOS ERROR: ", err.response.data.title)
+          this.isLoading = false
+        })
+    },
+}
+</script>
+
 <style scoped>
 		.mapouter {
 				position: relative;
