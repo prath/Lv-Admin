@@ -2,7 +2,9 @@ import Vue from 'vue/dist/vue.js'
 import App from './App'
 import VueRouter from 'vue-router'
 
-
+import '@/assets/css/bulma.min.css'
+import '@/assets/css/style.css'
+import '@/assets/js/hightcharts.js'
 import Dashboard from './components/Dashboard'
 import Users from './components/Users'
 import UserAdd from './components/UserAdd'
@@ -31,7 +33,7 @@ import FinancialReport from './components/FinancialReport'
 import HighchartsVue from 'highcharts-vue';
 import Highcharts from "highcharts";
 import dataModule from "highcharts/modules/data";
-
+Vue.config.productionTip = false
 dataModule(Highcharts);
 
 Vue.use(VueRouter)
@@ -59,8 +61,8 @@ const router = new VueRouter({
     { path: '/refund-list', component: RefundList },
     { path: '/refund-add', component: RefundAdd },
     { path: '/refund-edit', component: RefundEdit },
-    { path: '/tour-packages-detail/:id', component: TourPackagesDetail },
-    { path: '/tour-packages-detail-private/:id', component: TourPackagesDetailPrivate },
+    { path: '/tour-packages-detail/:id_tour', name: 'tourdetail', component: TourPackagesDetail },
+    { path: '/tour-packages-detail-private/:id_tour', name: 'tourdetailprivate', component: TourPackagesDetailPrivate },
     { path: '/tour-preferences-add', component: TourPreferencesAdd },
     { path: '/tour-preferences-edit', component: TourPreferencesEdit },
     { path: '/financial-report', component: FinancialReport },

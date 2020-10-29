@@ -255,7 +255,7 @@
                 class="custom-file-input"
               >
               <img
-                src="assets/img/ic-image-white.svg"
+                src="../assets/img/ic-image-white.svg"
                 alt=""
               >
             </div>
@@ -351,14 +351,14 @@
               <div class="column is-6">
                 <p><b>Personal ID</b></p>
                 <img
-                  src="assets/img/ktp.jpeg"
+                  src="../assets/img/ktp.jpeg"
                   alt=""
                 >
               </div>
               <div class="column is-6">
                 <p><b>Business ID</b></p>
                 <img
-                  src="assets/img/npwp.jpeg"
+                  src="../assets/img/npwp.jpeg"
                   alt=""
                 >
               </div>

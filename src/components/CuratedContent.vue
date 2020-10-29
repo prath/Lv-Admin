@@ -46,7 +46,7 @@
           </div>
           <div class="form-group icon-search">
             <img
-              src="assets/img/ic-search.svg"
+              src="../assets/img/ic-search.svg"
               alt=""
             >
             <input
@@ -77,7 +77,7 @@
                     </div>
                     <!--
                                             SHow when Checkbox Clicked
-                                            <a href="#"><img src="assets/img/ic-delete.svg" alt="" /></a>
+                                            <a href="#"><img src="../assets/img/ic-delete.svg" alt="" /></a>
                                         -->
                   </div>
                 </th>
@@ -136,11 +136,11 @@
                   <div class="wrapper">
                     <span class="info icon">
                       <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
+                        src="../assets/img/ic-edit-line.svg"
                         title="Edit User"
                       ></a>
                       <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
+                        src="../assets/img/ic-delete-line.svg"
                         title="Delete User"
                       ></a>
                     </span>
@@ -193,11 +193,11 @@
                   <div class="wrapper">
                     <span class="info icon">
                       <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
+                        src="../assets/img/ic-edit-line.svg"
                         title="Edit User"
                       ></a>
                       <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
+                        src="../assets/img/ic-delete-line.svg"
                         title="Delete User"
                       ></a>
                     </span>
@@ -250,11 +250,11 @@
                   <div class="wrapper">
                     <span class="info icon">
                       <a title="Edit User"><img
-                        src="assets/img/ic-edit-line.svg"
+                        src="../assets/img/ic-edit-line.svg"
                         title="Edit User"
                       ></a>
                       <a title="Delete User"><img
-                        src="assets/img/ic-delete-line.svg"
+                        src="../assets/img/ic-delete-line.svg"
                         title="Delete User"
                       ></a>
                     </span>

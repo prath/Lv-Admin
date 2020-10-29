@@ -5,7 +5,7 @@
       <div class="logo">
         <a href="#">
           <img
-            src="assets/img/logo-lokaventour.png"
+            src="../assets/img/logo-lokaventour.png"
             alt=""
           >
         </a>
@@ -56,7 +56,7 @@
 
                 <button class="btn btn--primary btn--default btn-loader" @click="submit()" v-if='!isLoading'>Selanjutnya</button>
                 <button class="btn btn--primary btn--default btn-loader" @click="submit()" v-if='isLoading'><img
-                    src="assets/img/tail-spin.svg"
+                    src="../assets/img/tail-spin.svg"
                     alt="" class="img_button"
                   >Processed</button>
 
@@ -69,7 +69,7 @@
 
         <div class="column is-one-thirds is-centered">
           <img
-            src="assets/img/signup-art.png"
+            src="../assets/img/signup-art.png"
             alt=""
           >
         </div>

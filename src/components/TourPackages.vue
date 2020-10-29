@@ -46,7 +46,7 @@
           </div>
           <div class="form-group icon-search">
             <img
-              src="assets/img/ic-search.svg"
+              src="../assets/img/ic-search.svg"
               alt=""
             >
             <input
@@ -77,7 +77,7 @@
                     </div>
                     <!--
                                             SHow when Checkbox Clicked
-                                            <a href="#"><img src="assets/img/ic-delete.svg" alt="" /></a>
+                                            <a href="#"><img src="../assets/img/ic-delete.svg" alt="" /></a>
                                         -->
                   </div>
                 </th>

@@ -1,0 +1,77 @@
+.comments{
+    margin-bottom: 30px;
+    &.card{
+        padding: 30px 40px;
+        @include box-shadow(0 10px 20px $color-mystic);
+    }
+    .comment-wrapper{
+        .title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid $color-mystic;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            h4{
+                color: $color-martinique;
+                line-height: 40px;                
+            }
+            a.close{
+                margin-top: -40px;
+            }
+        }
+        .user{
+            display: flex;
+            align-items: center;
+            
+            margin-bottom: 20px;
+            
+            .arrow{
+                margin: 0 10px;
+            }
+            
+            .name{
+                margin-left: 15px;
+                p{
+                    font-size: 16px;
+                    line-height: 20px;
+                    color: $color-topaz;
+                    margin: 0;
+                    .bold{
+                        font-weight: 700;
+                        color: $color-martinique;
+                    }
+                    a{
+                        display: initial;
+                    }
+                }
+            }
+            
+        }
+
+        .content{
+            background-color: $color-athens-grey;
+            padding: 20px 30px;
+            @include border-radius(3px);
+            position: relative;
+            margin-bottom: 20px;
+            p{
+                color: $color-smoky;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 25px;
+            }
+            &:before{
+                content: ' ';
+                position: absolute;                
+                width: 0;
+                height: 0;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-bottom: 6px solid $color-athens-grey;   
+                top: -6px;
+                left: 90px;             
+            }
+        }
+    }
+}

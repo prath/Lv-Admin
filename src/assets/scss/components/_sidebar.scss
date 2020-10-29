@@ -1,0 +1,34 @@
+.sidebar{
+
+	hr{
+		background-color: $color-lobiolly;
+		margin: 45px 0 20px 0;
+		height: 1px;
+
+		&.no-line{
+			height: 0;
+		}
+
+		&.sm{
+			margin: 10px 0;
+		}
+	}
+
+	.title{
+		font-size: 15px;
+		color: $color-topaz;
+		line-height: 40px;
+		font-weight: 600;
+		margin-bottom: 10px;
+	}
+
+	.detail-info{
+		p{
+			margin-bottom: 0;
+			color: $color-martinique;
+		}
+		a{
+			color: $color-primary;
+		}
+	}
+}

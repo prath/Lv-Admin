@@ -237,7 +237,7 @@
                 class="custom-file-input"
               >
               <img
-                src="assets/img/ic-image-white.svg"
+                src="../assets/img/ic-image-white.svg"
                 alt=""
               >
             </div>
@@ -327,7 +327,7 @@
                     class="custom-file-input"
                   >
                   <img
-                    src="assets/img/ic-image-white.svg"
+                    src="../assets/img/ic-image-white.svg"
                     alt=""
                   >
                 </div>
@@ -341,7 +341,7 @@
                     class="custom-file-input"
                   >
                   <img
-                    src="assets/img/ic-image-white.svg"
+                    src="../assets/img/ic-image-white.svg"
                     alt=""
                   >
                 </div>
