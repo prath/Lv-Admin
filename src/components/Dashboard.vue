@@ -1089,6 +1089,18 @@ export default {
   components : {
     'GuestChart' : GuestChart,
     'HostChart' : HostChart
+  },
+  data(){
+		return {
+        accessToken: '',
+      }
+   },
+  mounted() {
+      if (!localStorage.accessToken) {
+        this.$router.push({ path: '/' })
+      }else{
+        this.accessToken = localStorage.accessToken
+      }
   }
 }
 </script>

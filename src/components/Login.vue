@@ -5,7 +5,7 @@
       <div class="logo">
         <a href="#">
           <img
-            src="../assets/img/logo-lokaventour.png"
+            src="../assets/img/logo-lokaventour.svg"
             alt=""
           >
         </a>
@@ -88,7 +88,8 @@ import axios from 'axios'
           password: '',
           apiUrl: `${process.env.VUE_APP_API_BASE_URL}auth/oauth/token`,
           isLoading: false,
-          accessToken: ''
+          accessToken: '',
+          hostId: '',
       }
     },
     mounted() {
@@ -109,8 +110,10 @@ import axios from 'axios'
         .then((res) => {
           console.log("RESPONSE RECEIVED: ", res);
           this.accessToken = res.data.credentials.access_token
+          this.host_id = res.data.host_id
 
           localStorage.accessToken = this.accessToken;
+          localStorage.hostId = this.host_id;
 
           this.$router.push({ path: '/dashboard' })
           this.isLoading = false;

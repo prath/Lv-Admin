@@ -5,7 +5,7 @@
       <div class="logo">
         <a href="#">
           <img
-            src="../assets/img/logo-lokaventour.png"
+            src="../assets/img/logo-lokaventour.svg"
             alt
           >
         </a>
@@ -25,7 +25,7 @@
             </a>
           </li>
           <li>
-              <a @click="logout()">
+              <a v-on:click="logout">
                 <div class="avatar avatar--extra-small">
                   <img
                     src="../assets/img/avatar.png"
@@ -136,6 +136,11 @@
             </router-link>
           </li>
           <li>
+            <router-link to="/booking-list">
+             Booking Orders
+            </router-link>
+          </li>
+          <li>
             <router-link to="/refund-list">
               Refund Management
             </router-link>
@@ -155,7 +160,11 @@
   export default {
     methods: {
      logout: function () {
-        console.log('aaa')
+
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('hostId');
+        this.$router.push({ path: '/' })
       }
     }
   }
+  </script>

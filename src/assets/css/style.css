@@ -826,6 +826,8 @@ a, li {
     flex-grow: 1;
     display: flex;
     align-items: center; }
+    .header .logo a {
+      width: 130px; }
     .header .logo img {
       width: auto;
       max-height: 40px; }
@@ -850,6 +852,12 @@ a, li {
       align-items: center;
       display: flex;
       justify-content: center; }
+
+body.home aside.side-icon,
+body.home aside.side-menu {
+  display: none; }
+body.home .header--user-dashboard {
+  background-color: #edeff4; }
 
 aside.side-icon {
   background-color: #fff;
@@ -2766,6 +2774,8 @@ a, li {
     flex-grow: 1;
     display: flex;
     align-items: center; }
+    .header .logo a {
+      width: 130px; }
     .header .logo img {
       width: auto;
       max-height: 40px; }
@@ -2790,6 +2800,12 @@ a, li {
       align-items: center;
       display: flex;
       justify-content: center; }
+
+body.home aside.side-icon,
+body.home aside.side-menu {
+  display: none; }
+body.home .header--user-dashboard {
+  background-color: #edeff4; }
 
 aside.side-icon {
   background-color: #fff;
