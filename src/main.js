@@ -4,7 +4,6 @@ import VueRouter from 'vue-router'
 
 import '@/assets/css/bulma.min.css'
 import '@/assets/css/style.css'
-import '@/assets/js/hightcharts.js'
 import Dashboard from './components/Dashboard'
 import Users from './components/Users'
 import UserAdd from './components/UserAdd'
