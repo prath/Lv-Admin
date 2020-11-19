@@ -10,14 +10,14 @@
       <form action="user-add.html">
         <div class="columns">
           <div class="column generic-heading is-two-third">
-            <h3>User List</h3>
+            <h3>Host & Guest List</h3>
             <p>List of Guest & Host</p>
           </div>
 
           <div class="column generic-heading is-one-third flex end-xs ">
             <router-link to="/add-user">
               <button class="btn btn--medium btn--primary ">
-                Add User
+                Add Host
               </button>
             </router-link>
           </div>
@@ -61,7 +61,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="Find Tour"
+              placeholder="Find Host & Guest"
             >
           </div>
         </div>

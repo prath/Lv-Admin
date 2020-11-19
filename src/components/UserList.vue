@@ -10,13 +10,13 @@
       <form action="user-add.html">
         <div class="columns">
           <div class="column generic-heading is-two-third">
-            <h3>User List</h3>
+            <h3>Host & Guest List</h3>
             <p>List of Guest & Host</p>
           </div>
 
           <div class="column generic-heading is-one-third">
             <button class="btn btn--medium btn--primary is-right">
-              Add User
+              Add Host
             </button>
           </div>
         </div>
