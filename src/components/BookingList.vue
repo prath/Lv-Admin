@@ -206,7 +206,7 @@ export default {
                       }
                     }
       this.isLoading = true;
-      axios.get(this.apiUrl + 'auth/orders/incoming/list?param=booking',header)
+      axios.get(this.apiUrl + 'auth/orders/list-admin?page=1&per_page=2&param=booking',header)
         .then((res) => {
           console.log("RESPONSE RECEIVED: ", res)
           this.bookingList = res.data.data
