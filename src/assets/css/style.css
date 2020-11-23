@@ -1736,6 +1736,23 @@ label {
 select.form-control:not([size]):not([multiple]) {
   height: 40px; }
 
+select.form-control {
+  display: block;
+  width: 100%;
+  padding: 9px 15px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #645D74;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #B9C0C8;
+  border-color: #B9C0C8 !important;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  outline: #5594F4; }
+
 .input-group, .input-group-duo {
   position: relative;
   display: -webkit-box;
@@ -1949,7 +1966,8 @@ select.form-control:not([size]):not([multiple]) {
 .select:not(.is-multiple):not(.is-loading)::after {
   border-color: #7A5ACA;
   right: 1.125em;
-  z-index: 4; }
+  z-index: 4;
+  top: 1.3em; }
 
 .filter-select .select:not(.is-multiple):not(.is-loading)::after {
   border-color: #352E47; }

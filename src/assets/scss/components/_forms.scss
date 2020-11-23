@@ -248,6 +248,22 @@ select.form-control:not([size]):not([multiple]) {
     height: 40px;
 }
 
+select.form-control{
+    display: block;
+    width: 100%;
+    padding: 9px 15px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: $color-input;
+    background-color: $color-white;
+    background-clip: padding-box;
+    border: 1px solid $border-input;
+    border-color: $border-input !important;
+    @include border-radius(3px);
+    outline:$color-input-outline;
+}
+
 
 .input-group{
     position: relative;
@@ -503,6 +519,7 @@ select.form-control:not([size]):not([multiple]) {
         border-color: $color-primary;
         right: 1.125em;
         z-index: 4;
+        top: 1.3em;
     }
 }
 

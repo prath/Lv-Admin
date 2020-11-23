@@ -218,7 +218,7 @@
                   <td>
                     <div class="wrapper">
                       <span class="info icon">
-                        <router-link :to="'/edit-user-host/' + user.host_id">
+                        <router-link :to="'/edit-user-host/' + user.user_uid">
                           <a title="Edit User">
                             <img
                               src="../assets/img/ic-edit-line.svg"
@@ -269,7 +269,9 @@ export default {
         })
         .catch((err) => {
           console.log("AXIOS ERROR: ", err.response.data.title)
+          console.log("AXIOS ERRORsss: ", err.response.data.title)
           this.isLoading = false
+          this.$router.push({ path: '/' })
         })
     },
 }

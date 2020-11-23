@@ -167,7 +167,7 @@
                   <td>
                     <div class="wrapper">
                       <span class="info icon">
-                        <router-link :to="'/edit-user-host/' + user.host_id">
+                        <router-link :to="'/edit-user-host/' + user.user_uid">
                           <a title="Edit User"><img
                             src="../assets/img/ic-edit-line.svg"
                             title="Edit User"
@@ -223,6 +223,12 @@ export default {
         })
         .catch((err) => {
           console.log("AXIOS ERROR: ", err.response.data.title)
+          console.log("AXIOS ERROR: ", err.response.status)
+          if(err.response.status === 401){
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('hostId');
+            this.$router.push({ path: '/' })
+          }
           this.isLoading = false
         })
     },

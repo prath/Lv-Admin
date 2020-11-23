@@ -102,7 +102,7 @@
                 <div class="form-group">
                   <label for="last_name">Gender</label>
                   <div class="select">
-                    <select>
+                    <select class="form-control">
                       <option
                         value="currency"
                         selected
@@ -153,7 +153,7 @@
                 <div class="form-group">
                   <label for="last_name">Nationality</label>
                   <div class="select">
-                    <select>
+                    <select class="form-control">
                       <option
                         value="currency"
                         selected
@@ -181,7 +181,7 @@
                 <div class="form-group">
                   <label for="last_name">Status</label>
                   <div class="select">
-                    <select>
+                    <select class="form-control">
                       <option
                         value="currency"
                         selected
@@ -282,7 +282,7 @@
                 <div class="form-group">
                   <label for="last_name">Category</label>
                   <div class="select">
-                    <select>
+                    <select class="form-control">
                       <option
                         value="currency"
                         selected
@@ -393,45 +393,18 @@ export default {
 	data(){
     return {
       items: '',
-      hostId: this.$route.params.host_id,
+      userUid: this.$route.params.user_uid,
       apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
       isLoading: false,
       accessToken: '',
       delete_status: '',
+      hostId: '',
       item_host: '',
-      total_packages: ''
-    }
-  },
-  methods: {
-    getHost: function (hostId){
-      if(hostId){
-        axios.get(this.apiUrl + 'host/get/' + hostId)
-            .then((res) => {
-              console.log("RESPONSE RECEIVED: ", res)
-              this.item_host = res.data.data
-              this.isLoading = false
-
-            })
-            .catch((err) => {
-              console.log("AXIOS ERROR: ", err.response.data.title)
-              this.isLoading = false
-            })
-      }
-    },
-    getTotalTour: function (hostId){
-      if(hostId){
-        axios.get(this.apiUrl + 'package/by-tourhosts/' + hostId)
-            .then((res) => {
-              console.log("RESPONSE RECEIVED: ", res)
-              this.total_packages = res.data.data
-              this.isLoading = false
-
-            })
-            .catch((err) => {
-              console.log("AXIOS ERROR: ", err.response.data.title)
-              this.isLoading = false
-            })
-      }
+      total_packages: '',
+      email: '',
+      business_name: '',
+      first_name: '',
+      last_name: ''
     }
   },
   filters: {
@@ -454,10 +427,21 @@ export default {
               this.$router.push({ path: '/' })
             }
             this.isLoading = true;
-            axios.get(this.apiUrl + 'host/get/' + this.hostId)
+            axios.get(this.apiUrl + 'user/' + this.userUid)
               .then((res) => {
                 console.log("RESPONSE RECEIVED: ", res)
                 this.items = res.data.data
+
+                if(this.items.host_id){
+                  this.hostId = this.items.host_id
+                }
+                //add to model
+
+                this.business_name = this.items.business_name;
+                this.first_name = this.items.first_name;
+                this.last_name = this.items.last_name;
+                this.email = this.items.email;
+
                 this.isLoading = false
               })
               .catch((err) => {
