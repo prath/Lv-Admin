@@ -161,8 +161,8 @@
                   </div>
                 </td>
               </tr>
-              <template v-for="(user) in users">
-                <tr>
+              <template v-for="(user, i) in items" >
+                <tr :key="i">
                   <td>
                     <div class="wrapper">
                       <div class="form-check">
@@ -178,7 +178,7 @@
 
                   <td>
                     <div class="wrapper">
-                      <span class="info">{{ user.name }}</span>
+                      <span class="info">{{ user.first_name + ' ' + user.last_name }}</span>
                       <br>
                       <p><span class="text-success">{{ user.status }}</span> | <span class="text-info">{{ user.verified }}</span></p>
                     </div>
@@ -187,9 +187,9 @@
                   <td>
                     <div class="wrapper">
                       <span
-                        v-class="(user.role === 'guest' ? "
+                        v-class="(user.role === 'guest' ? '
                         class="info badges badges--paid-off"
-                        badges--verified"
+                        badges--verified"'
                         :
                         "badges--paid-off")"
                       >{{ user.role }}</span>
@@ -205,7 +205,7 @@
 
                   <td>
                     <div class="wrapper">
-                      <span class="info">Male</span>
+                      <span class="info">{{ user.gender }}</span>
                     </div>
                   </td>
 
@@ -218,7 +218,7 @@
                   <td>
                     <div class="wrapper">
                       <span class="info icon">
-                        <router-link to="/edit-user-host">
+                        <router-link :to="'/edit-user-host/' + user.host_id">
                           <a title="Edit User">
                             <img
                               src="../assets/img/ic-edit-line.svg"
@@ -249,42 +249,28 @@
 export default {
   data(){
 		return {
-
-      users : [
-                  {
-                    "id": '1' ,
-                    "name": 'Michelle Sandra',
-                    "status": 'Active',
-                    "role": 'Guest',
-                    "email": 'michelle@gmail.com',
-                    "gender": 'Female',
-                    "phone": '0857-2210-6534',
-                    "verified" : 'Verified'
-                  },
-                  {
-                    "id": '2' ,
-                    "name": 'Simon Mc Mnmemy',
-                    "status": 'Suspend',
-                    "role": 'Guest',
-                    "email": 'simon.mcmnemy@gmail.com',
-                    "gender": 'Male',
-                    "phone": '0857-1310-1432',
-                    "verified" : 'Verified'
-                  },
-                  {
-                    "id": '3' ,
-                    "name": 'Rizal Agustian',
-                    "status": 'Active',
-                    "role": 'Host',
-                    "email": 'rizal.agus@gmail.com',
-                    "gender": 'Male',
-                    "phone": '0856-4332-1231',
-                    "verified" : 'Unverified'
-                  },
-
-        ]
-
-      }
+      items: '',
+      accessToken: '',
+      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
+      isLoading: false
    }
+    },
+   mounted() {
+      if (!localStorage.accessToken) {
+        this.$router.push({ path: '/' })
+      }
+      this.isLoading = true;
+      axios.get(this.apiUrl + 'host/list?per_page=10&page=1&param=all')
+        .then((res) => {
+          console.log("RESPONSE RECEIVED: ", res)
+          this.items = res.data.data
+          this.isLoading = false
+
+        })
+        .catch((err) => {
+          console.log("AXIOS ERROR: ", err.response.data.title)
+          this.isLoading = false
+        })
+    },
 }
 </script>

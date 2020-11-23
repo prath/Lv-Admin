@@ -58,6 +58,8 @@
               alt=""
             >
             <input
+              v-model="search"
+              v-on:input="searchUser()"
               id="form1"
               type="text"
               class="form-control"
@@ -100,8 +102,8 @@
             </thead>
 
             <tbody>
-              <template v-for="(user) in users">
-                <tr>
+              <template v-for="(user, i) in items">
+                <tr :key="i">
                   <td>
                     <div class="wrapper">
                       <div class="form-check">
@@ -118,20 +120,15 @@
                   <td>
                     <div class="wrapper">
                       <div>
-                        <span class="info">{{ user.name }}</span> <br>
+                        <span class="info">{{ user.first_name + ' ' + user.last_name | ucwords}}</span> <br>
 
                         <p>
                           <span
-                            :class="(user.status==='Active' ?
-                              'text-success'
-                              :
-                              'text-danger')"
-                          >{{ user.status }}</span>&nbsp; | &nbsp;<span
-                            :class="(user.verified==='Verified' ?
+                            :class="(user.is_verified ?
                               'text-info'
                               :
                               'text-warning')"
-                          >{{ user.verified }}</span>
+                          >{{ user.is_verified ? 'Verified' : 'Unverified' }}</span>
                         </p>
                         <div />
                       </div>
@@ -141,12 +138,12 @@
                   <td>
                     <div class="wrapper">
                       <span
-                        :class="(user.role==='Host' ?
+                        :class="(user.business_name ?
                           'badges--verified'
                           :
                           'badges--paid-off')"
                         class="info badges"
-                      >{{ user.role }}</span> <br>
+                      >{{ user.business_name ? 'Host' : 'Guest' }}</span> <br>
                     </div>
                   </td>
                   <td>
@@ -170,7 +167,7 @@
                   <td>
                     <div class="wrapper">
                       <span class="info icon">
-                        <router-link to="/edit-user-host">
+                        <router-link :to="'/edit-user-host/' + user.host_id">
                           <a title="Edit User"><img
                             src="../assets/img/ic-edit-line.svg"
                             title="Edit User"
@@ -194,45 +191,71 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data(){
 		return {
-
-      users : [
-                  {
-                    "id": '1' ,
-                    "name": 'Michelle Sandra',
-                    "status": 'Active',
-                    "role": 'Guest',
-                    "email": 'michelle@gmail.com',
-                    "gender": 'Female',
-                    "phone": '0857-2210-6534',
-                    "verified" : 'Verified'
-                  },
-                  {
-                    "id": '2' ,
-                    "name": 'Simon Mc Mnmemy',
-                    "status": 'Suspend',
-                    "role": 'Guest',
-                    "email": 'simon.mcmnemy@gmail.com',
-                    "gender": 'Male',
-                    "phone": '0857-1310-1432',
-                    "verified" : 'Verified'
-                  },
-                  {
-                    "id": '3' ,
-                    "name": 'Rizal Agustian',
-                    "status": 'Active',
-                    "role": 'Host',
-                    "email": 'rizal.agus@gmail.com',
-                    "gender": 'Male',
-                    "phone": '0856-4332-1231',
-                    "verified" : 'Unverified'
-                  },
-
-        ]
-
-      }
+      items: '',
+      accessToken: '',
+      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
+      isLoading: false,
+      search: ''
    }
+    },
+   mounted() {
+       if (!localStorage.accessToken) {
+        this.$router.push({ path: '/' })
+      }else{
+        this.accessToken = localStorage.accessToken
+      }
+      this.isLoading = true;
+      var header = {
+                      headers: {
+                        'Authorization': `Bearer ${this.accessToken}`
+                      }
+                    }
+      axios.get(this.apiUrl + 'host/list?per_page=100&page=1&param=all', header)
+        .then((res) => {
+          console.log("RESPONSE RECEIVED: ", res)
+          this.items = res.data.data
+          this.isLoading = false
+
+        })
+        .catch((err) => {
+          console.log("AXIOS ERROR: ", err.response.data.title)
+          this.isLoading = false
+        })
+    },
+    methods: {
+      searchUser(){
+
+        var header = {
+                  headers: {
+                    'Authorization': `Bearer ${this.accessToken}`
+                  }
+                }
+        axios.get(this.apiUrl + 'host/list?per_page=100&page=1&param=all&key=' + this.search , header)
+          .then((res) => {
+            console.log("RESPONSE RECEIVED: ", res)
+            this.items = res.data.data
+            this.isLoading = false
+
+          })
+          .catch((err) => {
+            console.log("AXIOS ERROR: ", err.response.data.title)
+            this.isLoading = false
+          })
+      }
+    },
+    filters : {
+      ucwords (str) {
+        return (str + '')
+          .replace(/^(.)|\s+(.)/g, function ($1) {
+            return $1.toUpperCase()
+          })
+      }
+    },
+
+
 }
 </script>

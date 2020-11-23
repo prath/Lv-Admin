@@ -49,7 +49,7 @@ const router = new VueRouter({
     { path: '/users', component: Users },
     { path: '/user-profile', component: UserProfile },
     { path: '/add-user', component: UserAdd },
-    { path: '/edit-user-host', component: UserEditHost },
+    { path: '/edit-user-host/:host_id', name: 'edithost', component: UserEditHost },
     { path: '/edit-user-guest', component: UserEditGuest },
     { path: '/tour-packages', component: TourPackages },
     { path: '/featured-contents', component: ContentList },

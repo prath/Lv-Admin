@@ -5,9 +5,10 @@
         <div class="column generic-heading is-two-third">
           <input
             type="text"
+            v-model="business_name"
             class="product-title"
             placeholder="Nama User"
-            value="Nama User"
+
           >
         </div>
       </div>
@@ -29,10 +30,10 @@
                   <label for="first_name">First Name</label>
                   <input
                     id="harga"
+                    v-model="first_name"
                     type="text"
                     class="form-control"
                     placeholder=""
-                    value="Rizal  "
                   >
                 </div>
               </div>
@@ -47,10 +48,10 @@
                   <label for="last_name">Last Name</label>
                   <input
                     id="harga"
+                    v-model="last_name"
                     type="text"
                     class="form-control"
                     placeholder=""
-                    value="Agustian"
                   >
                 </div>
               </div>
@@ -62,10 +63,10 @@
                   <label for="last_name">Email</label>
                   <input
                     id="harga"
+                    v-model="email"
                     type="text"
                     class="form-control"
                     placeholder=""
-                    value="rizal.agus@gmail.com"
                   >
                 </div>
               </div>
@@ -75,10 +76,9 @@
                   <label for="last_name">Password</label>
                   <input
                     id="password"
-                    type="text"
+                    type="password"
                     class="form-control"
                     placeholder=""
-                    value="bandung"
                   >
                 </div>
               </div>
@@ -351,14 +351,14 @@
               <div class="column is-6">
                 <p><b>Personal ID</b></p>
                 <img
-                  src="../assets/img/ktp.jpeg"
+                  :src="items.card_id"
                   alt=""
                 >
               </div>
               <div class="column is-6">
                 <p><b>Business ID</b></p>
                 <img
-                  src="../assets/img/npwp.jpeg"
+                  :src="items.bussiness_id"
                   alt=""
                 >
               </div>
@@ -386,3 +386,86 @@
     </div>
   </div>
 </template>
+<script>
+import moment from 'moment'
+import axios from 'axios'
+export default {
+	data(){
+    return {
+      items: '',
+      hostId: this.$route.params.host_id,
+      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
+      isLoading: false,
+      accessToken: '',
+      delete_status: '',
+      item_host: '',
+      total_packages: ''
+    }
+  },
+  methods: {
+    getHost: function (hostId){
+      if(hostId){
+        axios.get(this.apiUrl + 'host/get/' + hostId)
+            .then((res) => {
+              console.log("RESPONSE RECEIVED: ", res)
+              this.item_host = res.data.data
+              this.isLoading = false
+
+            })
+            .catch((err) => {
+              console.log("AXIOS ERROR: ", err.response.data.title)
+              this.isLoading = false
+            })
+      }
+    },
+    getTotalTour: function (hostId){
+      if(hostId){
+        axios.get(this.apiUrl + 'package/by-tourhosts/' + hostId)
+            .then((res) => {
+              console.log("RESPONSE RECEIVED: ", res)
+              this.total_packages = res.data.data
+              this.isLoading = false
+
+            })
+            .catch((err) => {
+              console.log("AXIOS ERROR: ", err.response.data.title)
+              this.isLoading = false
+            })
+      }
+    }
+  },
+  filters: {
+    formatDate: function (value) {
+       if (value) {
+        return moment(String(value)).format('DD MMMM YYYY')
+      }
+    },
+    formatDay: function (value) {
+       if (value) {
+        return moment(String(value)).format('dddd')
+      }
+    },
+
+  },
+  created () {
+    this.$router.onReady(() => {
+      if (this.$route.name === 'edithost') {
+          if (!localStorage.accessToken) {
+              this.$router.push({ path: '/' })
+            }
+            this.isLoading = true;
+            axios.get(this.apiUrl + 'host/get/' + this.hostId)
+              .then((res) => {
+                console.log("RESPONSE RECEIVED: ", res)
+                this.items = res.data.data
+                this.isLoading = false
+              })
+              .catch((err) => {
+                console.log("AXIOS ERROR: ", err.response.data.title)
+                this.isLoading = false
+              })
+      }
+    })
+  }
+}
+</script>
