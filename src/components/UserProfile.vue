@@ -129,7 +129,7 @@
                     class="custom-file-input"
                   >
                   <img
-                    src="assets/img/ic-user-white.svg"
+                    src="../assets/img/ic-user-white.svg"
                     alt=""
                   >
                 </div>

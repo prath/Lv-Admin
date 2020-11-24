@@ -61,7 +61,7 @@ Tidak harus selalu mahal, Anda juga bisa menikmati travelling dengan dana yang m
                 class="custom-file-input"
               >
               <img
-                src="assets/img/ic-image-white.svg"
+                src="../assets/img/ic-image-white.svg"
                 alt=""
               >
             </div>

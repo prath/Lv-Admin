@@ -39,7 +39,7 @@
           </div>
           <div class="form-group icon-search">
             <img
-              src="assets/img/ic-search.svg"
+              src="../assets/img/ic-search.svg"
               alt=""
             >
             <input
@@ -144,7 +144,7 @@
                         target="_blank"
                       >
                         <a title="Edit Refund"><img
-                          src="assets/img/ic-pdf.svg"
+                          src="../assets/img/ic-pdf.svg"
                           title="Download Invoices"
                           width="30"
                           height="30"

@@ -5,7 +5,7 @@
       <div class="logo">
         <a href="#">
           <img
-            src="assets/img/logo-lokaventour.png"
+            src="../assets/img/logo-lokaventour.svg"
             alt=""
           >
         </a>
@@ -56,7 +56,7 @@
 
                 <button class="btn btn--primary btn--default btn-loader" @click="submit()" v-if='!isLoading'>Selanjutnya</button>
                 <button class="btn btn--primary btn--default btn-loader" @click="submit()" v-if='isLoading'><img
-                    src="assets/img/tail-spin.svg"
+                    src="../assets/img/tail-spin.svg"
                     alt="" class="img_button"
                   >Processed</button>
 
@@ -69,7 +69,7 @@
 
         <div class="column is-one-thirds is-centered">
           <img
-            src="assets/img/signup-art.png"
+            src="../assets/img/signup-art.png"
             alt=""
           >
         </div>
@@ -88,7 +88,8 @@ import axios from 'axios'
           password: '',
           apiUrl: `${process.env.VUE_APP_API_BASE_URL}auth/oauth/token`,
           isLoading: false,
-          accessToken: ''
+          accessToken: '',
+          hostId: '',
       }
     },
     mounted() {
@@ -109,8 +110,10 @@ import axios from 'axios'
         .then((res) => {
           console.log("RESPONSE RECEIVED: ", res);
           this.accessToken = res.data.credentials.access_token
+          this.host_id = res.data.host_id
 
           localStorage.accessToken = this.accessToken;
+          localStorage.hostId = this.host_id;
 
           this.$router.push({ path: '/dashboard' })
           this.isLoading = false;

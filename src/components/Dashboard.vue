@@ -51,7 +51,7 @@
               <div class="info">
                 <div class="img">
                   <img
-                    src="assets/img/ic-wallet-grey.svg"
+                    src="../assets/img/ic-wallet-grey.svg"
                     alt=""
                   >
                 </div>
@@ -76,7 +76,7 @@
               <div class="info">
                 <div class="img">
                   <img
-                    src="assets/img/ic-visitor.svg"
+                    src="../assets/img/ic-visitor.svg"
                     alt=""
                   >
                 </div>
@@ -154,7 +154,7 @@
           </div>
           <div class="form-group icon-search">
             <img
-              src="assets/img/ic-search.svg"
+              src="../assets/img/ic-search.svg"
               alt=""
             >
             <input
@@ -184,7 +184,7 @@
                       </label>
                     </div>
                     <!-- SHow when Checkbox Clicked
-                                            <a href="#"><img src="assets/img/ic-delete.svg" alt="" /></a>
+                                            <a href="#"><img src="../assets/img/ic-delete.svg" alt="" /></a>
                                             -->
                   </div>
                 </th>
@@ -242,7 +242,7 @@
                 <td>
                   <div class="wrapper">
                     <img
-                      src="assets/img/ic-bag.svg"
+                      src="../assets/img/ic-bag.svg"
                       alt=""
                     >
                     <div class="total">
@@ -304,7 +304,7 @@
                 <td>
                   <div class="wrapper">
                     <img
-                      src="assets/img/ic-bag.svg"
+                      src="../assets/img/ic-bag.svg"
                       alt=""
                     >
                     <div class="total">
@@ -364,7 +364,7 @@
                 <td>
                   <div class="wrapper">
                     <img
-                      src="assets/img/ic-bag.svg"
+                      src="../assets/img/ic-bag.svg"
                       alt=""
                     >
                     <div class="total">
@@ -424,7 +424,7 @@
                 <td>
                   <div class="wrapper">
                     <img
-                      src="assets/img/ic-bag.svg"
+                      src="../assets/img/ic-bag.svg"
                       alt=""
                     >
                     <div class="total">
@@ -484,7 +484,7 @@
                 <td>
                   <div class="wrapper">
                     <img
-                      src="assets/img/ic-bag.svg"
+                      src="../assets/img/ic-bag.svg"
                       alt=""
                     >
                     <div class="total">
@@ -549,7 +549,7 @@
           </div>
           <div class="form-group icon-search">
             <img
-              src="assets/img/ic-search.svg"
+              src="../assets/img/ic-search.svg"
               alt=""
             >
             <input
@@ -579,7 +579,7 @@
                       </label>
                     </div>
                     <!-- SHow when Checkbox Clicked
-                                                <a href="#"><img src="assets/img/ic-delete.svg" alt="" /></a>
+                                                <a href="#"><img src="../assets/img/ic-delete.svg" alt="" /></a>
                                                 -->
                   </div>
                 </th>
@@ -864,7 +864,7 @@
                     </div>
                   <!--
                                             SHow when Checkbox Clicked
-                                            <a href="#"><img src="assets/img/ic-delete.svg" alt="" /></a>
+                                            <a href="#"><img src="../assets/img/ic-delete.svg" alt="" /></a>
                                         -->
                   </div>
                 </th>
@@ -935,7 +935,7 @@
                     <span class="info icon">
                       <router-link to="refund-edit">
                         <a title="Edit Refund"><img
-                          src="assets/img/ic-edit-line.svg"
+                          src="../assets/img/ic-edit-line.svg"
                           title="Edit User"
                         ></a>
                       </router-link>
@@ -999,7 +999,7 @@
                     <span class="info icon">
                       <router-link to="refund-edit">
                         <a title="Edit Refund"><img
-                          src="assets/img/ic-edit-line.svg"
+                          src="../assets/img/ic-edit-line.svg"
                           title="Edit User"
                         ></a>
                       </router-link>
@@ -1065,7 +1065,7 @@
                     <span class="info icon">
                       <router-link to="refund-edit">
                         <a title="Edit Refund"><img
-                          src="assets/img/ic-edit-line.svg"
+                          src="../assets/img/ic-edit-line.svg"
                           title="Edit User"
                         ></a>
                       </router-link>
@@ -1089,6 +1089,18 @@ export default {
   components : {
     'GuestChart' : GuestChart,
     'HostChart' : HostChart
+  },
+  data(){
+		return {
+        accessToken: '',
+      }
+   },
+  mounted() {
+      if (!localStorage.accessToken) {
+        this.$router.push({ path: '/' })
+      }else{
+        this.accessToken = localStorage.accessToken
+      }
   }
 }
 </script>

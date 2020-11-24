@@ -1,0 +1,40 @@
+@mixin border-radius($radius){
+    border-radius: $radius;
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+}
+
+@mixin transition($duration){
+    transition: $duration;
+    -moz-transition: $duration;
+    -webkit-transition: $duration;
+}
+@mixin box-shadow($variable){
+    box-shadow: $variable;
+    -moz-box-shadow: $variable;
+    -webkit-box-shadow: $variable;
+}
+@mixin optional-at-root($sel) {
+    @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+      @content;
+    }
+  }
+  
+  @mixin placeholder {
+    @include optional-at-root('::-webkit-input-placeholder') {
+      @content;
+    }
+  
+    @include optional-at-root(':-moz-placeholder') {
+      @content;
+    }
+  
+    @include optional-at-root('::-moz-placeholder') {
+      @content;
+    }
+  
+    @include optional-at-root(':-ms-input-placeholder') {
+      @content;
+    }
+  }
+  

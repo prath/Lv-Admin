@@ -9,10 +9,10 @@
       <div class="columns">
         <div class="column generic-heading is-two-third">
           <h3>TOUR DETAIL</h3>
-          <p>Tour Name : <b> Berkemah di Bandung di Bawah Bintang - Bintang </b></p>
+          <p>Tour Name : <b> {{items.title}} </b></p>
         </div>
         <div class="column generic-heading is-one-third has-text-right is-vcentered ">
-          <span class="badges badges--primary">Processing</span>
+          <span class="badges badges--primary">{{items.type_tour}}</span>
         </div>
       </div>
 
@@ -23,23 +23,37 @@
               <h4 class="column">
                 Description
               </h4>
-              <p class=" column is-pulled-right has-text-right" />
+              <div class="flex item-durations" v-for="(item, i) in items.schedules" :key="i">
+                  <p class=" column is-pulled-right has-text-right" v-if="i <= 0">
+                  </p>
+              </div>
             </div>
 
             <div class="clear" />
 
             <div class="description_tour">
+              <div class="flex item-durations" v-for="(item, i) in items.medias" :key="i">
               <img
-                src="assets/img/tour1.jpg"
+                :src="item.url"
                 alt=""
+                v-if="i <= 0"
               >
+              </div>
               <div class="clear" />
               <p>
-                Berkemah sambil mengamati bintang dengan komunitas petualang muda Bandung, di
-                tempat-tempat eksotis dan tersembunyi dan hanya diketahui oleh warga lokal di
-                Lembang, Jayagiri, Sukawarna, Ciwidey.
+               {{items.description}}
               </p>
             </div>
+
+            <div class="clear" />
+            <div class="heading columns">
+              <h4 class="column">Term of Services & Policy</h4>
+            </div>
+            <p>{{items.terms_of_service}}</p>
+            <div class="flex item-durations price-flex" v-for="(item, i) in items.custom_policies" :key="i">
+                <p>{{item.policy}}</p>
+            </div>
+
 
 
             <div class="clear" />
@@ -49,11 +63,17 @@
               </h4>
             </div>
 
-            <ol>
-              <li> <h6>2 - 3 Persons : Rp. 1.400.000,- / pax </h6></li>
-              <li> <h6>4 - 6 Persons : Rp. 1.000.000,- / pax </h6></li>
-              <li> <h6>> 6 Persons : Rp. 900.000,- / pax </h6></li>
-            </ol>
+            <div class="flex item-durations price-flex" v-for="(item, i) in items.prices" :key="i">
+
+              <ol>
+                <li> <h6>{{item.min_participant}} - {{item.max_participant}} Persons : Rp. {{Number(item.price).toLocaleString('id')}},- / pax </h6></li>
+                <li><h6>Kid Price : Rp. {{Number(item.kid_price).toLocaleString('id')}},- / pax</h6></li>
+                <li><h6>Min Kids Age : {{item.min_kid_age}} to {{item.max_kid_age}} Years</h6></li>
+              </ol>
+              <div class="clear" />
+
+
+            </div>
 
 
 
@@ -66,56 +86,34 @@
 
             <table class="table is-fullwidth table--orders--detail">
               <tbody>
-                <tr class="product">
-                  <td>
-                    <div class="wrapper">
-                      <div>
-                        <span><b>1</b></span>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="wrapper">
-                      <div>
-                        <span><b>20 November 2019</b></span>
-                        <p>Wednesday</p>
-                      </div>
-                    </div>
-                  </td>
+                <div class="flex item-durations price-flex" v-for="(item, i) in items.schedules" :key="i">
+                  <tr class="product">
 
-                  <td>
-                    <div class="wrapper">
-                      <div>
-                        <p>Multiple times</p>
+                    <td>
+                      <div class="wrapper">
+                        <div>
+                          <span><b> {{item.start_date | formatDate}}</b></span>
+                          <p> {{item.start_date | formatDay}}</p>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                </tr>
+                    </td>
 
-                <tr class="product">
-                  <td>
-                    <div class="wrapper">
-                      <div>
-                        <span><b>2</b></span>
+                    <td>
+                      <div class="wrapper">
+                        <div>
+                          <p>{{item.durations > 1 ? item.durations + ' Day' : item.durations + ' Days' }}</p>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="wrapper">
-                      <div>
-                        <span><b>21 November 2019</b></span>
-                        <p>Thursday</p>
+                    </td>
+
+                    <td>
+                      <div class="wrapper">
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="wrapper">
-                      <div>
-                        <p>Multiple times</p>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
+                    </td>
+                  </tr>
+                </div>
+
+
               </tbody>
             </table>
 
@@ -132,7 +130,7 @@
                   id="gmap_canvas"
                   width="100%"
                   height="auto"
-                  src="https://maps.google.com/maps?q=ciwidey%20&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  :src="'https://maps.google.com/maps?q='+items.location+'ciwidey%20&t=&z=10&ie=UTF8&iwloc=&output=embed'"
                   frameborder="0"
                   scrolling="no"
                   marginheight="0"
@@ -142,47 +140,9 @@
               </div>
             </div>
 
-            <div class="clear" />
-            <div class="heading column">
-              <h4>Tour Packages Statistic</h4>
-            </div>
 
-            <div class="column is-full">
-              <div class="heading">
-                <div
-                  id="statistic_visitor"
-                  style="width:100%; height: 400px;"
-                />
-              </div>
-            </div>
 
-            <div class="clear" />
-            <div class="heading column">
-              <h4>Tour Packages Revenue</h4>
-            </div>
-
-            <div class="column is-full">
-              <div class="heading">
-                <div
-                  id="statistic_bar"
-                  style="width:100%; height: 400px;"
-                />
-              </div>
-            </div>
-
-            <div class="clear" />
-            <div class="heading column">
-              <h4>User age</h4>
-            </div>
-
-            <div class="column is-full">
-              <div class="heading">
-                <div
-                  id="statistic_pie"
-                  style="width:100%; height: 400px;"
-                />
-              </div>
-            </div>
+<!--
 
             <div class="clear" />
             <div class="heading column">
@@ -198,7 +158,7 @@
                       <div>
                         <div class="avatar avatar--small">
                           <img
-                            src="assets/img/avatar.png"
+                            src="../assets/img/avatar.png"
                             alt=""
                           >
                         </div>
@@ -210,27 +170,27 @@
                       </div>
                     </div>
 
-                    <!-- Comment Content with Star -->
+
                     <div class="content">
                       <span class="four-star">
                         <img
-                          src="assets/img/ic-star-full.svg"
+                          src="../assets/img/ic-star-full.svg"
                           alt=""
                         >
                         <img
-                          src="assets/img/ic-star-full.svg"
+                          src="../assets/img/ic-star-full.svg"
                           alt=""
                         >
                         <img
-                          src="assets/img/ic-star-full.svg"
+                          src="../assets/img/ic-star-full.svg"
                           alt=""
                         >
                         <img
-                          src="assets/img/ic-star-full.svg"
+                          src="../assets/img/ic-star-full.svg"
                           alt=""
                         >
                         <img
-                          src="assets/img/ic-star-empty.svg"
+                          src="../assets/img/ic-star-empty.svg"
                           alt=""
                         >
                       </span>
@@ -241,7 +201,7 @@
                         experience to anyone!
                       </p>
                     </div>
-                    <!-- End of Comment Content with Star -->
+
                   </div>
                 </div>
 
@@ -251,7 +211,7 @@
                       <div>
                         <div class="avatar avatar--small">
                           <img
-                            src="assets/img/avatar.png"
+                            src="../assets/img/avatar.png"
                             alt=""
                           >
                         </div>
@@ -263,27 +223,27 @@
                       </div>
                     </div>
 
-                    <!-- Comment Content with Star -->
+
                     <div class="content">
                       <span class="three-star">
                         <img
-                          src="assets/img/ic-star-full.svg"
+                          src="../assets/img/ic-star-full.svg"
                           alt=""
                         >
                         <img
-                          src="assets/img/ic-star-full.svg"
+                          src="../assets/img/ic-star-full.svg"
                           alt=""
                         >
                         <img
-                          src="assets/img/ic-star-empty.svg"
+                          src="../assets/img/ic-star-empty.svg"
                           alt=""
                         >
                         <img
-                          src="assets/img/ic-star-empty.svg"
+                          src="../assets/img/ic-star-empty.svg"
                           alt=""
                         >
                         <img
-                          src="assets/img/ic-star-empty.svg"
+                          src="../assets/img/ic-star-empty.svg"
                           alt=""
                         >
                       </span>
@@ -295,7 +255,7 @@
                         this
                       </p>
                     </div>
-                    <!-- End of Comment Content with Star -->
+
                   </div>
                 </div>
               </div>
@@ -315,7 +275,7 @@
                 <li>
                   <div class="avatar avatar--medium">
                     <img
-                      src="assets/img/ic-order-completed.svg"
+                      src="../assets/img/ic-order-completed.svg"
                       alt=""
                     >
                   </div>
@@ -329,7 +289,7 @@
                 <li>
                   <div class="avatar avatar--medium">
                     <img
-                      src="assets/img/ic-order-shipped.svg"
+                      src="../assets/img/ic-order-shipped.svg"
                       alt=""
                     >
                   </div>
@@ -343,7 +303,7 @@
                 <li>
                   <div class="avatar avatar--medium">
                     <img
-                      src="assets/img/ic-email-confirm.svg"
+                      src="../assets/img/ic-email-confirm.svg"
                       alt=""
                     >
                   </div>
@@ -357,7 +317,7 @@
                 <li>
                   <div class="avatar avatar--medium">
                     <img
-                      src="assets/img/ic-tracking-number.svg"
+                      src="../assets/img/ic-tracking-number.svg"
                       alt=""
                     >
                   </div>
@@ -371,7 +331,7 @@
                 <li>
                   <div class="avatar avatar--medium">
                     <img
-                      src="assets/img/ic-payment.svg"
+                      src="../assets/img/ic-payment.svg"
                       alt=""
                     >
                   </div>
@@ -385,7 +345,7 @@
                 <li>
                   <div class="avatar avatar--medium">
                     <img
-                      src="assets/img/ic-order-create.svg"
+                      src="../assets/img/ic-order-create.svg"
                       alt=""
                     >
                   </div>
@@ -397,7 +357,9 @@
                 </li>
               </ul>
             </div>
+            -->
           </div>
+
         </div>
         <div class="column sidebar is-one-third">
           <div class="title">
@@ -405,7 +367,11 @@
           </div>
 
           <div class="detail-info">
-            <p><b>Bandung, Wisata, Malam</b></p>
+            <div class="flex item-durations price-flex" v-for="(item, i) in items.categories" :key="i">
+                <p>
+                  <b>{{item}}, </b>
+                </p>
+            </div>
           </div>
 
           <hr class="no-line sm">
@@ -415,15 +381,19 @@
           </div>
 
           <div class="detail-info">
-            <p><b>Eksotic, Lokal, Bandung</b></p>
+            <div class="flex item-durations price-flex" v-for="(item, i) in items.tags" :key="i">
+              <p><b>{{item}}, </b></p>
+            </div>
           </div>
 
+          <hr class="no-line sm">
           <div class="title">
             Type
           </div>
 
+
           <div class="detail-info">
-            <p><b>Private Trip</b></p>
+            <p><b>{{items.type_tour === 'open' ? 'Open Tour' : 'Private Tour'}}</b></p>
           </div>
 
           <hr class="no-line sm">
@@ -435,11 +405,11 @@
             <div class="field filter-select is-full has-text-left ">
               <div class="control">
                 <div class="select">
-                  <select>
-                    <option value="-">
+                  <select v-model="delete_status">
+                    <option :value="false">
                       Active
                     </option>
-                    <option value="by_date">
+                    <option :value="true">
                       Inactive
                     </option>
                   </select>
@@ -456,8 +426,6 @@
               </button>
             </div>
           </div>
-
-
           <hr>
           <div class="title">
             Host
@@ -465,20 +433,18 @@
           <div class="avatar-profile">
             <div class="avatar avatar--small">
               <img
-                src="assets/img/ic-default-avatar.svg"
+                src="../assets/img/ic-default-avatar.svg"
                 alt=""
               >
             </div>
-            <h5>TanTour</h5>
+            <h5>{{item_host.business_name}}</h5>
           </div>
           <hr class="no-line sm">
           <div class="detail-info">
-            <p><b>info@tantour.com</b></p>
-            <p><b>Bandung, Indonesia</b></p>
-            <p><a href="#"><b>15 Tour Packages</b></a></p>
+            <p><b>{{item_host.business_category}}</b></p>
+            <p><b>{{item_host.address}}</b></p>
+            <p><a href="#"><b>{{total_packages.length}} Tour Packages</b></a></p>
           </div>
-
-
 
           <hr>
         </div>
@@ -487,7 +453,106 @@
   </div>
 </template>
 
+<script>
+import moment from 'moment'
+import axios from 'axios'
+export default {
+	data(){
+    return {
+      items: '',
+      tourId: this.$route.params.id_tour,
+      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
+      isLoading: false,
+      accessToken: '',
+      delete_status: '',
+      item_host: '',
+      total_packages: ''
+    }
+  },
+  methods: {
+    getHost: function (hostId){
+      if(hostId){
+        axios.get(this.apiUrl + 'host/get/' + hostId)
+            .then((res) => {
+              console.log("RESPONSE RECEIVED: ", res)
+              this.item_host = res.data.data
+              this.isLoading = false
+
+            })
+            .catch((err) => {
+              console.log("AXIOS ERROR: ", err.response.data.title)
+              this.isLoading = false
+            })
+      }
+    },
+    getTotalTour: function (hostId){
+      if(hostId){
+        axios.get(this.apiUrl + 'package/by-tourhosts/' + hostId)
+            .then((res) => {
+              console.log("RESPONSE RECEIVED: ", res)
+              this.total_packages = res.data.data
+              this.isLoading = false
+
+            })
+            .catch((err) => {
+              console.log("AXIOS ERROR: ", err.response.data.title)
+              this.isLoading = false
+            })
+      }
+    }
+  },
+  filters: {
+    formatDate: function (value) {
+       if (value) {
+        return moment(String(value)).format('DD MMMM YYYY')
+      }
+    },
+    formatDay: function (value) {
+       if (value) {
+        return moment(String(value)).format('dddd')
+      }
+    },
+
+  },
+  created () {
+    this.$router.onReady(() => {
+      if (this.$route.name === 'tourdetailprivate') {
+          if (!localStorage.accessToken) {
+              this.$router.push({ path: '/' })
+            }
+            this.isLoading = true;
+            axios.get(this.apiUrl + 'package/' + this.tourId)
+              .then((res) => {
+                console.log("RESPONSE RECEIVED: ", res)
+                this.items = res.data.data
+                this.isLoading = false
+                this.delete_status = this.items.delete_status
+
+                this.getHost(this.items.host_id);
+                this.getTotalTour(this.items.host_id);
+
+              })
+              .catch((err) => {
+                console.log("AXIOS ERROR: ", err.response.data.title)
+                this.isLoading = false
+              })
+      }
+    })
+  }
+}
+</script>
+
 <style scoped>
+    .product{
+      display: flex;
+      justify-content: space-between;
+    }
+    .price-flex{
+      flex-direction: column;
+    }
+    .price-flex h6{
+      margin-bottom: 10px;
+    }
 		.mapouter {
 				position: relative;
 				text-align: right;

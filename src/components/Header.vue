@@ -5,7 +5,7 @@
       <div class="logo">
         <a href="#">
           <img
-            src="assets/img/logo-lokaventour.png"
+            src="../assets/img/logo-lokaventour.svg"
             alt
           >
         </a>
@@ -19,16 +19,16 @@
               class="notif notif--top"
             >
               <img
-                src="assets/img/ic-notif.svg"
+                src="../assets/img/ic-notif.svg"
                 alt
               >
             </a>
           </li>
           <li>
-              <a @click="logout()">
+              <a v-on:click="logout">
                 <div class="avatar avatar--extra-small">
                   <img
-                    src="assets/img/avatar.png"
+                    src="../assets/img/avatar.png"
                     alt
                   >
                 </div>
@@ -45,7 +45,7 @@
           <li>
             <a href="#">
               <img
-                src="assets/img/ic-dashboard.svg"
+                src="../assets/img/ic-dashboard.svg"
                 alt
               >
             </a>
@@ -56,7 +56,7 @@
               class="notif notif--center"
             >
               <img
-                src="assets/img/ic-wallet.svg"
+                src="../assets/img/ic-wallet.svg"
                 alt
               >
             </a>
@@ -64,7 +64,7 @@
           <li>
             <a href="#">
               <img
-                src="assets/img/ic-analytic.svg"
+                src="../assets/img/ic-analytic.svg"
                 alt
               >
             </a>
@@ -75,7 +75,7 @@
               class="notif notif--center"
             >
               <img
-                src="assets/img/ic-comment.svg"
+                src="../assets/img/ic-comment.svg"
                 alt
               >
             </a>
@@ -86,7 +86,7 @@
           <li>
             <a href="#">
               <img
-                src="assets/img/ic-help.svg"
+                src="../assets/img/ic-help.svg"
                 alt
               >
             </a>
@@ -94,7 +94,7 @@
           <li>
             <a href="#">
               <img
-                src="assets/img/ic-settings.svg"
+                src="../assets/img/ic-settings.svg"
                 alt
               >
             </a>
@@ -136,6 +136,11 @@
             </router-link>
           </li>
           <li>
+            <router-link to="/booking-list">
+             Booking Orders
+            </router-link>
+          </li>
+          <li>
             <router-link to="/refund-list">
               Refund Management
             </router-link>
@@ -155,7 +160,11 @@
   export default {
     methods: {
      logout: function () {
-        console.log('aaa')
+
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('hostId');
+        this.$router.push({ path: '/' })
       }
     }
   }
+  </script>
