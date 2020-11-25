@@ -773,6 +773,10 @@ a, li {
 .site-content {
   background-color: #edeff4; }
 
+span.optional {
+  font-size: 12px;
+  color: #aeaeae; }
+
 /* Font Size on Mobile devices */
 @media (max-width: 479px) {
   body {
@@ -2738,6 +2742,10 @@ a, li {
 
 .site-content {
   background-color: #edeff4; }
+
+span.optional {
+  font-size: 12px;
+  color: #aeaeae; }
 
 /* Font Size on Mobile devices */
 @media (max-width: 479px) {

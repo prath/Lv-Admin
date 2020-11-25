@@ -89,11 +89,12 @@
                 <div class="form-group">
                   <label for="last_name">Date of Birth</label>
                   <input
-                    id="harga"
+                    id="date_of_birth"
+                    v-model="date_of_birth"
                     type="text"
                     class="form-control"
                     placeholder=""
-                    value="01/08/1990"
+
                   >
                 </div>
               </div>
@@ -102,17 +103,17 @@
                 <div class="form-group">
                   <label for="last_name">Gender</label>
                   <div class="select">
-                    <select class="form-control">
+                    <select class="form-control" v-model="gender">
                       <option
-                        value="currency"
+                        value="male"
                         selected
                       >
-                        Laki-laki
+                        Male
                       </option>
                       <option
-                        value="percentage"
+                        value="female"
                       >
-                        Perempuan
+                        Female
                       </option>
                     </select>
                   </div>
@@ -125,30 +126,16 @@
                 <div class="form-group">
                   <label for="last_name">Phone Number</label>
                   <input
-                    id="harga"
+                    id="phone"
+                    v-model="phone_number"
                     type="text"
                     class="form-control"
                     placeholder=""
-                    value="089992112221"
+
                   >
                 </div>
               </div>
 
-              <div class="column is-6">
-                <div class="form-group">
-                  <label for="last_name">Role</label>
-                  <input
-                    id="password"
-                    type="text"
-                    disabled
-                    class="form-control"
-                    value="HOST"
-                  >
-                </div>
-              </div>
-            </div>
-
-            <div class="columns">
               <div class="column is-6">
                 <div class="form-group">
                   <label for="last_name">Nationality</label>
@@ -177,6 +164,10 @@
                 </div>
               </div>
 
+            </div>
+
+            <div class="columns">
+
               <div class="column is-6">
                 <div class="form-group">
                   <label for="last_name">Status</label>
@@ -195,6 +186,26 @@
                   </div>
                 </div>
               </div>
+
+              <div class="column is-6">
+                <label for="last_name">Suspended</label>
+
+                <div class="column is-6">
+                  <div class="form-check">
+                    <label class="container">
+                      <input
+                        type="checkbox"
+
+                        name="radio"
+                      >
+                      <span class="radiomark" />
+                      Yes
+                    </label>
+                  </div>
+                </div>
+
+
+              </div>
             </div>
 
             <div class="columns">
@@ -211,37 +222,7 @@
                 </div>
               </div>
 
-              <div class="column is-6">
-                <label for="last_name">Suspended</label>
 
-                <div class="column is-6">
-                  <div class="form-check">
-                    <label class="container">
-                      <input
-                        type="radio"
-
-                        name="radio"
-                      >
-                      <span class="radiomark" />
-                      Yes
-                    </label>
-                  </div>
-                </div>
-
-                <div class="column is-6">
-                  <div class="form-check">
-                    <label class="container">
-                      <input
-                        type="radio"
-                        name="radio"
-                        checked="checked"
-                      >
-                      <span class="radiomark" />
-                      No
-                    </label>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div class="sub-heading">
@@ -404,7 +385,10 @@ export default {
       email: '',
       business_name: '',
       first_name: '',
-      last_name: ''
+      last_name: '',
+      gender: '',
+      phone_number: '',
+      date_of_birth: ''
     }
   },
   filters: {
@@ -437,10 +421,13 @@ export default {
                 }
                 //add to model
 
-                this.business_name = this.items.business_name;
-                this.first_name = this.items.first_name;
-                this.last_name = this.items.last_name;
-                this.email = this.items.email;
+                this.business_name = this.items.business_name
+                this.first_name = this.items.first_name
+                this.last_name = this.items.last_name
+                this.email = this.items.email
+                this.gender = this.items.gender
+                this.phone_number = this.items.phone_number
+                this.date_of_birth = this.items.date_of_birth
 
                 this.isLoading = false
               })
