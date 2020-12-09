@@ -95,8 +95,8 @@
                 <th>Name</th>
                 <th>Role</th>
                 <th>Email</th>
-                <th>Gender</th>
                 <th>Phone</th>
+                <th>Total Tour Packages</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -154,13 +154,13 @@
 
                   <td>
                     <div class="wrapper">
-                      <span class="info">{{ user.gender }}</span>
+                      <span class="info">{{ user.phone_number }}</span>
                     </div>
                   </td>
 
                   <td>
                     <div class="wrapper">
-                      <span class="info">{{ user.phone }}</span>
+                      <span class="info">{{ getTotalTour(user.host_id) }}</span>
                     </div>
                   </td>
 
@@ -199,7 +199,8 @@ export default {
       accessToken: '',
       apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
       isLoading: false,
-      search: ''
+      search: '',
+      total_packages: []
    }
     },
    mounted() {
@@ -245,12 +246,38 @@ export default {
             console.log("RESPONSE RECEIVED: ", res)
             this.items = res.data.data
             this.isLoading = false
-
           })
           .catch((err) => {
             console.log("AXIOS ERROR: ", err.response.data.title)
             this.isLoading = false
           })
+      },
+        getTotalTour: function (hostId){
+
+        if(hostId){
+          axios.get(this.apiUrl + 'package/by-tourhosts/' + hostId)
+              .then((res) => {
+
+                if(res.data.data.length){
+                  console.log("RESPONSE RECEIVED: ", res.data.data.length)
+                  this.total_package[hostId] = res.data.data.length
+                }else{
+                  console.log("RESPONSE RECEIVED: zero ", '0')
+                 this.total_package[hostId] = 0
+                }
+                this.isLoading = false
+                 console.log("lengt packages" + this.total_package[hostId]);
+
+              })
+              .catch((err) => {
+                console.log("AXIOS ERROR: ", err.response.data.title)
+                this.isLoading = false
+              })
+             console.log(this.total_packages[hostId])
+
+        }
+
+
       }
     },
     filters : {

@@ -21,6 +21,7 @@ import TourPreferences from './components/TourPreferences'
 import RefundList from './components/RefundList'
 import RefundAdd from './components/RefundAdd'
 import RefundEdit from './components/RefundEdit'
+import BookingContact from './components/BookingContact'
 import BookingList from './components/BookingList'
 import BookingEdit from './components/BookingEdit'
 import TourPackagesDetail from './components/TourPackagesDetail'
@@ -62,6 +63,7 @@ const router = new VueRouter({
     { path: '/refund-list', component: RefundList },
     { path: '/refund-add', component: RefundAdd },
     { path: '/refund-edit', component: RefundEdit },
+    { path: '/booking-contact', component: BookingContact },
     { path: '/booking-list', component: BookingList },
     { path: '/booking-edit/:id_order', name: 'bookingdetail', component: BookingEdit },
     { path: '/tour-packages-detail/:id_tour', name: 'tourdetail', component: TourPackagesDetail },

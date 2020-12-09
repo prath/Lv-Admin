@@ -251,10 +251,10 @@
                   <label for="last_name">Business Name</label>
                   <input
                     id="harga"
+                    v-model="business_name"
                     type="text"
                     class="form-control"
                     placeholder=""
-                    value="PT. Kita Sejahtera Bersama"
                   >
                 </div>
               </div>
@@ -306,9 +306,10 @@
                   <label for="last_name">Address</label>
                   <textarea
                     class="form-control"
+                    v-model="address"
                     rows="5"
                     cols="10"
-                  >Jalan Asia Afrika, Jl. Braga, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40112</textarea>
+                  ></textarea>
                 </div>
               </div>
 
@@ -332,14 +333,14 @@
               <div class="column is-6">
                 <p><b>Personal ID</b></p>
                 <img
-                  :src="items.card_id"
+                  :src="card_id"
                   alt=""
                 >
               </div>
               <div class="column is-6">
                 <p><b>Business ID</b></p>
                 <img
-                  :src="items.bussiness_id"
+                  :src="bussiness_id"
                   alt=""
                 >
               </div>
@@ -411,7 +412,7 @@ export default {
               this.$router.push({ path: '/' })
             }
             this.isLoading = true;
-            axios.get(this.apiUrl + 'user/' + this.userUid)
+            axios.get(this.apiUrl + 'user/' + this.userUid + '/details')
               .then((res) => {
                 console.log("RESPONSE RECEIVED: ", res)
                 this.items = res.data.data
@@ -425,9 +426,13 @@ export default {
                 this.first_name = this.items.first_name
                 this.last_name = this.items.last_name
                 this.email = this.items.email
+                this.address = this.items.address
                 this.gender = this.items.gender
                 this.phone_number = this.items.phone_number
                 this.date_of_birth = this.items.date_of_birth
+                this.card_id = this.items.card_id
+                this.bussiness_id = this.items.bussiness_id
+
 
                 this.isLoading = false
               })

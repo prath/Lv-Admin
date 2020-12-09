@@ -136,6 +136,11 @@
             </router-link>
           </li>
           <li>
+            <router-link to="/booking-contact">
+             Booking by Contact List
+            </router-link>
+          </li>
+          <li>
             <router-link to="/booking-list">
              Booking Orders
             </router-link>
