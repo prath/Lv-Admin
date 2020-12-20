@@ -13,6 +13,7 @@
 
       <div class="user-setting">
         <ul>
+          <!-- 
           <li>
             <a
               href="#"
@@ -24,6 +25,7 @@
               >
             </a>
           </li>
+           -->
           <li>
               <a v-on:click="logout">
                 <div class="avatar avatar--extra-small">
@@ -50,6 +52,7 @@
               >
             </a>
           </li>
+          <!--
           <li>
             <a
               href="#"
@@ -99,6 +102,7 @@
               >
             </a>
           </li>
+           -->
         </ul>
       </nav>
     </aside>
