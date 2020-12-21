@@ -361,9 +361,59 @@
               Cancel
             </button>
           </router-link>
-
           <hr>
+          <button class="btn btn--text btn--text-warning btn--default btn--full padding-b-m" v-on:click="toggleActiveDel">
+            Delete User
+          </button>
+
+          <!-- This button used only for simulation, show us when the user still have active booking or experience, the account is unable to be deleted, remove it when integrated with the API-->
+          <button class="btn btn--text btn--muted btn--default btn--full padding-b-m" v-on:click="toggleActiveUnableDel">
+            Klik u/ Simulasi Unable to Delete User
+          </button>
         </div>
+
+        <!-- 
+          DELETE USER MODAL
+          ========================================================================
+          if user can be deleted, show this modal to confirm deletion
+         -->
+        <div class="modal" v-bind:class="{'is-active': isActiveDel}">
+          <div class="modal-background" v-on:click="toggleActiveDel"></div>
+          <div class="modal-content modal--small">
+            <div class="heading border">
+              <h4>Hapus akun?</h4>
+            </div>
+            <p>Anda yakin akan manghapus user ini? user akan terhapus secara permanen setelahnya.</p>
+            <hr>
+            <div class="flex end-md">
+              <button class="btn btn--default btn--text btn--muted btn--medium" v-on:click="toggleActiveDel">Cancel</button>
+              <button class="btn btn--default btn--warning btn--medium" v-on:click="toggleActiveDel">Ya, hapus</button>
+            </div>
+          </div>
+          <button class="modal-close is-large" aria-label="close" v-on:click="toggleActiveDel"></button>
+        </div>
+
+        <!-- 
+          UNABLE TO DELETE USER MODAL
+          ========================================================================
+          if user cannot be deleted, show this modal to inform the admin that
+          this particular user is unable to be deleted
+         -->
+        <div class="modal" v-bind:class="{'is-active': isActiveUnableDel}">
+          <div class="modal-background" v-on:click="toggleActiveUnableDel"></div>
+          <div class="modal-content modal--small">
+            <div class="heading border">
+              <h4>Tidak dapat dihapus</h4>
+            </div>
+            <p>User ini tidak dapat dihapus karena masih memiliki booking active (unpaid/paid) dan/atau experience yang active (awaiting/ongoing)</p>
+            <hr>
+            <div class="flex end-md">
+              <button class="btn btn--default btn--text btn--muted btn--medium" v-on:click="toggleActiveUnableDel">OK</button>
+            </div>
+          </div>
+          <button class="modal-close is-large" aria-label="close" v-on:click="toggleActiveUnableDel"></button>
+        </div>
+
       </div>
     </div>
   </div>
@@ -389,7 +439,17 @@ export default {
       last_name: '',
       gender: '',
       phone_number: '',
-      date_of_birth: ''
+      date_of_birth: '',
+      isActiveUnableDel: false,
+      isActiveDel: false
+    }
+  },
+  methods: {
+    toggleActiveUnableDel: function () {
+      this.isActiveUnableDel = (this.isActiveUnableDel) ? false : true;
+    },
+    toggleActiveDel: function () {
+      this.isActiveDel = (this.isActiveDel) ? false : true;
     }
   },
   filters: {

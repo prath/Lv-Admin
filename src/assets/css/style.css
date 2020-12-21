@@ -1159,6 +1159,13 @@ aside.side-menu .info-wrapper a img {
   border: 1px solid #7A5ACA;
   color: #7A5ACA;
 }
+.btn--text {
+  background-color: transparent;
+  border: 0;
+}
+.btn--text-warning {
+  color: #E97453;
+}
 .btn--transparent {
   background-color: transparent;
   border: 1px solid #7A5ACA;
@@ -1195,6 +1202,9 @@ aside.side-menu .info-wrapper a img {
   background-color: rgba(133, 128, 142, 0.5);
   color: rgba(255, 255, 255, 0.5);
   cursor: not-allowed;
+}
+.btn--muted {
+  color: #85808E;
 }
 .btn--large {
   padding: 15px 40px;
@@ -3150,6 +3160,19 @@ input.checkbox-toggle:checked + label.checkbox-toggle-label span.off {
 }
 .activity li:last-child:after {
   content: none;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 5px;
+  padding: 40px;
+  color: #352E47;
+}
+.modal--small {
+  width: 480px;
+}
+.modal .heading {
+  margin-bottom: 20px;
 }
 
 .text-bold {
