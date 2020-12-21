@@ -10,15 +10,15 @@
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
-          <h3>Tour Packages</h3>
-          <p>List of Tour Packages</p>
+          <h3>Packages of Experiences</h3>
+          <p>List of packages available in the whole Lokaven apps</p>
         </div>
       </div>
 
 
       <div class="columns filter-table-list">
         <div class="column is-full filter-wrapper">
-          <div class="field filter-select">
+          <!-- <div class="field filter-select">
             <div class="control">
               <div class="select">
                 <select>
@@ -29,7 +29,7 @@
                     By Status
                   </option>
                   <option value="by_date">
-                    By Types of Tour
+                    By Types of Experience
                   </option>
                   <option value="by_date">
                     By Name
@@ -43,7 +43,7 @@
                 </select>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="form-group icon-search">
             <img
               src="../assets/img/ic-search.svg"
@@ -82,14 +82,12 @@
                   </div>
                 </th>
 
-                <th>Tour</th>
-                <th>Duration</th>
+                <th>Package</th>
+                <!-- <th>Duration</th> -->
                 <th>Price</th>
-                <th>Start Date</th>
-                <th>End Date</th>
+                <th>Schedules</th>
                 <th>Location</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th></th>
               </tr>
             </thead>
 
@@ -127,65 +125,28 @@ export default {
       items: '',
       accessToken: '',
       apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
-      isLoading: false,
-      /*
-      items : [
-                  {
-                    "id": '1' ,
-                    "name": 'Kayaking di Perairan Bandung',
-                    "duration": '1 Day',
-                    "date_from": '01/12/2019',
-                    "date_to": '02/12/2019',
-                    "price": 'Rp.450.000,- / pax',
-                    "location": 'Bandung',
-                    "type_trip" : 'Open Trip',
-                    "status" : 'Active'
-                  },
-                  {
-                    "id": '2' ,
-                    "name": 'Hang Gliding Tandem',
-                    "duration": '2 Day',
-                    "date_from": '01/12/2019',
-                    "date_to": '02/12/2019',
-                    "price": 'Rp.765.000,- / pax',
-                    "location": 'Bogor',
-                    "type_trip" : 'Private Trip',
-                    "status" : 'Inactive'
-                  },
-                  {
-                    "id": '3' ,
-                    "name": 'Barbecue Party di Outdoor, Bandung',
-                    "duration": '3 Day',
-                    "date_from": '01/12/2019',
-                    "price": 'Rp.1.765.000,- / pax',
-                    "date_to": '02/12/2019',
-                    "location": 'Bogor',
-                    "type_trip" : 'Open Trip',
-                    "status" : 'Active'
-                  }
-        ]
+      isLoading: false, 
+      host: ''
 
-      }
-   */
-   }
-    },
-   mounted() {
-      if (!localStorage.accessToken) {
-        this.$router.push({ path: '/' })
-      }
-      this.isLoading = true;
-      axios.get(this.apiUrl + 'package')
-        .then((res) => {
-          console.log("RESPONSE RECEIVED: ", res)
-          this.items = res.data.data
-          this.isLoading = false
-
-        })
-        .catch((err) => {
-          console.log("AXIOS ERROR: ", err.response.data.title)
-          this.isLoading = false
-        })
-    },
+    }
+  },
+  mounted() {
+    if (!localStorage.accessToken) {
+      this.$router.push({ path: '/' })
+    }
+    this.isLoading = true;
+    axios.get(this.apiUrl + 'package')
+      .then((res) => {
+        console.log("RESPONSE RECEIVED: ", res)
+        this.items = res.data.data
+        this.isLoading = false
+        
+      })
+      .catch((err) => {
+        console.log("AXIOS ERROR: ", err.response.data.title)
+        this.isLoading = false
+      })
+  }
 
 }
 </script>
