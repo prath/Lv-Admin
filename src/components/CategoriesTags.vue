@@ -47,26 +47,10 @@
           <table class="table is-fullwidth table--orders">
             <thead>
               <tr>
-                <th style="width:10%;">
-                  <div class="action-wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                    <!--
-                                            SHow when Checkbox Clicked
-                                            <a href="#"><img src="../assets/img/ic-delete.svg" alt="" /></a>
-                                        -->
-                  </div>
-                </th>
-
                 <th>No</th>
                 <th>Categories</th>
+                <th>Categories Used</th>
+                <th>Image</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -74,18 +58,6 @@
             <tbody>
               <template v-for="(categories,key) in categoriesList">
                 <tr>
-                  <td>
-                    <div class="wrapper">
-                      <div class="form-check">
-                        <label class="container">
-                          <input
-                            type="checkbox"
-                          >
-                          <span class="checkmark" />
-                        </label>
-                      </div>
-                    </div>
-                  </td>
 
                   <td>
                     <div class="wrapper">
@@ -100,9 +72,23 @@
                   </td>
 
                   <td>
+                    <div class="wrapper center">
+                      <span class="info">{{ categories.count_used > 1 ? categories.count_used + ' Tour' : categories.count_used + ' Tours' }}</span> <br>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">
+                        <img v-if="categories.category_image_url" :src="categories.category_image_url" class="img-wrapper large" />
+                        <img v-else src="../assets/img/no-image-available.png" class="img-wrapper large" />
+                      </span> <br>
+                    </div>
+                  </td>
+                  <td>
                     <div class="wrapper">
                       <span class="info icon">
-                        <router-link :to="categories-edit + categories.category_id">
+                        <router-link :to="'/categories-edit/' + categories.category_id">
                           <a title="Edit Categories"><img
                             src="../assets/img/ic-edit-line.svg"
                             title="Edit Categories"
@@ -136,29 +122,7 @@ export default {
       accessToken: '',
       apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
       isLoading: false,
-
-      /*
-      categoriesList : [
-                  {
-                    "id": '1' ,
-                    "categories": 'Wisata'
-                  },
-                  {
-                    "id": '2' ,
-                    "categories": 'Outdoor'
-                  },
-                  {
-                    "id": '3' ,
-                    "categories": 'Mountain'
-                  },
-                   {
-                    "id": '4' ,
-                    "categories": 'Sea'
-                  },
-
-        ]
-        */
-
+      defaultImage: '../assets/img/no-image-available.png'
       }
    },
    mounted() {
@@ -166,7 +130,7 @@ export default {
         this.$router.push({ path: '/' })
       }
       this.isLoading = true;
-      axios.get(this.apiUrl + 'package/categories')
+      axios.get(this.apiUrl + 'package/categories?param=used')
         .then((res) => {
           console.log("RESPONSE RECEIVED: ", res)
           this.categoriesList = res.data.data

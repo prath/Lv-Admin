@@ -26,14 +26,37 @@
                     type="text"
                     class="form-control"
                     placeholder="exp: Landscape, Camping, Beach"
+                    v-model="category"
                   >
+                  <span class="text-warning">{{error}}</span>
                 </div>
+              </div>
+            </div>
+
+             <div class="columns is-gapless">
+              <div class="column">
+                  <label for="first_name">Categories Image</label>
+
+                  <div class="custom-file grey landscape">
+                    <input
+                      id="customFile"
+                      type="file"
+                      class="custom-file-input"
+                       @change="filesChange($event)"
+                       accept="image/*"
+                        multiple
+                    >
+                    <img
+                      :src="categories_image ? categories_image : '../assets/img/ic-image-white.svg'"
+                      alt=""
+                    >
+                  </div>
               </div>
             </div>
           </div>
         </div>
         <div class="column sidebar is-one-third">
-          <button class="btn btn--primary btn--default btn--full padding-b-m">
+          <button class="btn btn--primary btn--default btn--full padding-b-m" type="button" @click="submit()">
             Save Categories
           </button>
 
@@ -49,3 +72,81 @@
     </div>
   </div>
 </template>
+<script>
+import axios from 'axios'
+export default{
+  name: "categoriesedit",
+  data(){
+    return {
+      categories_id: this.$route.params.id_categories,
+      categories_image: '',
+      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
+      isLoading: false,
+      accessToken: '',
+      items: '',
+      category:'',
+      error:''
+    }
+  },
+   methods: {
+     filesChange(event) {
+
+        var formData = new FormData()
+        formData.append("lokaven_file", event.target.files[0])
+        formData.append("category", "categories_image")
+
+        axios.post(this.apiUrl + 'upload/uploader', formData)
+        .then((res) => {
+          console.log("RESPONSE RECEIVED: ", res)
+          this.isLoading = false
+          this.error = ''
+          this.categories_image =  res.data.data.url
+        })
+        .catch((err) => {
+          console.log("AXIOS ERROR: ", err.response.data.title);
+
+          this.isLoading = false;
+          this.error = err.response.data.title;
+        })
+
+      },
+      submit(){
+
+          if(this.category){
+              var header = {
+                                headers: {
+                                  'Authorization': `Bearer ${this.accessToken}`
+                                }
+                              }
+              var postData = {
+                    category: this.category,
+                    category_image_url: this.categories_image
+                  }
+              axios.post(this.apiUrl + 'packages/api/categories', postData, header)
+                  .then((res) => {
+                    console.log("RESPONSE RECEIVED: ", res)
+                    this.isLoading = false
+                    this.error = ''
+
+                  })
+                  .catch((err) => {
+                    console.log("AXIOS ERROR: ", err.response.data.title);
+                    this.isLoading = false;
+                    this.error = err.response.data.title;
+                  })
+          }else{
+            this.error = 'Category name not empty!'
+          }
+
+      },
+   },
+
+   mounted(){
+      if (!localStorage.accessToken) {
+        this.$router.push({ path: '/' })
+      }else{
+        this.accessToken = localStorage.accessToken
+      }
+   }
+}
+</script>

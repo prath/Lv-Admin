@@ -60,7 +60,7 @@ const router = new VueRouter({
     { path: '/tour-preferences', component: TourPreferences },
     { path: '/categories-tags', component: CategoriesTags },
     { path: '/categories-add', component: CategoriesAdd },
-    { path: '/categories-edit', component: CategoriesEdit },
+    { path: '/categories-edit/:id_categories', name: 'categoriesedit', component: CategoriesEdit },
     { path: '/refund-list', component: RefundList },
     { path: '/refund-add', component: RefundAdd },
     { path: '/refund-edit', component: RefundEdit },
