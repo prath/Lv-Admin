@@ -28,7 +28,7 @@
                     placeholder="exp: Landscape, Camping, Beach"
                     v-model="category"
                   >
-                  <span class="text-warning">{{error}}</span>
+                  <p class="text-warning mt-10 text-bold">{{error}}</p>
                 </div>
               </div>
             </div>
@@ -60,11 +60,14 @@
             Save Categories
           </button>
 
+
           <router-link to="categories-tags">
             <button class="btn btn--transparent btn--default btn--full">
               Cancel
             </button>
           </router-link>
+
+          <p class="text-primary mt-10 text-bold" v-if="success">New Categories has been added.</p>
 
           <hr>
         </div>
@@ -85,7 +88,8 @@ export default{
       accessToken: '',
       items: '',
       category:'',
-      error:''
+      error:'',
+      success:''
     }
   },
    methods: {
@@ -127,6 +131,9 @@ export default{
                     console.log("RESPONSE RECEIVED: ", res)
                     this.isLoading = false
                     this.error = ''
+                    this.success = true
+                    this.category = ''
+                    this.categories_image = '../assets/img/ic-image-white.svg'
 
                   })
                   .catch((err) => {
