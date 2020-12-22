@@ -27,6 +27,7 @@
 
 		tbody{
 			tr{
+				padding-bottom: 20px;
 				td{
 					border:none;
 					padding: 0;
@@ -64,6 +65,14 @@
 					span:not(.badges){
 						font-weight: 600;
 						font-size: 14px;
+						line-height: 1.3;
+						&.title {
+							color: $color-martinique;
+							font-size: 15px;
+							display: block;
+							margin: 0;
+							line-height: 1.3;
+						}
 						&.info,&.order_number{
 							color: $color-martinique;
 						}
@@ -169,6 +178,9 @@
 				}
 			}
 		}
+	}
+	.muted-info {
+		color: $color-topaz;
 	}
 }
 
