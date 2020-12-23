@@ -120,6 +120,11 @@
             </router-link>
           </li>
           <li>
+            <router-link to="/verification-requests">
+              Verification Requests
+            </router-link>
+          </li>
+          <li>
             <router-link to="/tour-packages">
               Tour Packages
             </router-link>

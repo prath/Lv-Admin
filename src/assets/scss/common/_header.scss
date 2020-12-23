@@ -71,3 +71,35 @@ body.home{
         background-color: #edeff4;
     }
 }
+
+.with-avatar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    margin-bottom: 0;
+    padding-bottom: 20px;
+    .avatar {
+        margin-right: 10px;
+    }
+    .head {
+        margin-bottom: 0;
+        line-height: 1;
+        font-weight: 600;
+    }
+    .sub-head {
+        font-size: 15px;
+        letter-spacing: -0.2px;
+        color: $color-topaz;
+        line-height: 1;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-style: oblique;
+    }
+    .badges {
+        letter-spacing: 0;
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        line-height: 1.35;
+    }
+}
