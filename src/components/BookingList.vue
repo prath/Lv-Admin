@@ -78,10 +78,10 @@
 
                 <th>Order Number</th>
                 <th>Tour Name</th>
-                <th>Total Books</th>
+                <th>Participants</th>
                 <th>Host</th>
-                <th>Start Date</th>
-                <th>End Date</th>
+                <th>Schedule</th>
+
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -111,7 +111,9 @@
 
                   <td>
                     <div class="wrapper">
-                      <router-link :to="'/tour-packages-detail/'+booking.tour_id"><span class="info text-primary">{{ booking.title }}</span> <br></router-link>
+                      <router-link :to="'/tour-packages-detail/'+booking.tour_id">
+                        <span class="info text-primary">{{ booking.title }}</span>  <span class="info"><a href="">by: {{booking.host_name}}</a></span><br>
+                      </router-link>
                     </div>
                   </td>
                   <td>
@@ -127,16 +129,13 @@
                   </td>
 
                   <td>
-                    <div class="wrapper">
-                      <span class="info">{{ booking.start_date | formatDate }}</span>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper">
+                    <div class="wrapper flex-column">
+                      <span class="info">{{ booking.start_date | formatDate }}</span> s/d
                       <span class="info">{{ booking.end_date | formatDate }}</span>
                     </div>
                   </td>
+
+
 
                   <td>
                     <div class="wrapper">

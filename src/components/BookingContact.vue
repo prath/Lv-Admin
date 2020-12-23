@@ -21,23 +21,7 @@
 
       <div class="columns filter-table-list">
         <div class="column is-full filter-wrapper">
-          <div class="field filter-select">
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option value="-">
-                    Filter
-                  </option>
-                  <option value="by_date">
-                    By Order
-                  </option>
-                  <option value="by_price">
-                    By Status
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
+
           <div class="form-group icon-search">
             <img
               src="../assets/img/ic-search.svg"
@@ -126,21 +110,6 @@
                   <td align="center">
                     <div class="wrapper text-center">
                       <span class="info">{{ booking.participant }}</span>
-                    </div>
-                  </td>
-
-
-
-                  <td>
-                    <div class="wrapper">
-                      <span class="info icon">
-                        <router-link :to="'booking-edit/'+booking.id">
-                          <a title="Edit Refund"><img
-                            src="../assets/img/ic-edit-line.svg"
-                            title="Edit User"
-                          ></a>
-                        </router-link>
-                      </span>
                     </div>
                   </td>
                 </tr>
