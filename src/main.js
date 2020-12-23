@@ -32,6 +32,8 @@ import TourPreferencesAdd from './components/TourPreferencesAdd'
 import TourPreferencesEdit from './components/TourPreferencesEdit'
 import Login from './components/Login'
 import FinancialReport from './components/FinancialReport'
+import VerificationRequests from './components/VerificationRequests'
+import VerificationDetail from './components/VerificationDetail'
 
 
 import HighchartsVue from 'highcharts-vue';
@@ -74,7 +76,9 @@ const router = new VueRouter({
     { path: '/tour-preferences-add', component: TourPreferencesAdd },
     { path: '/tour-preferences-edit', component: TourPreferencesEdit },
     { path: '/financial-report', component: FinancialReport },
-
+    { path: '/verification-requests', component: VerificationRequests },
+    { path: '/verification-detail/:id_req', name: 'requestdetail', component: VerificationDetail },
+    
   ],
   mode: 'history'
 })

@@ -1,25 +1,50 @@
 .avatar{
     overflow: hidden;
     @include border-radius(50%);
-    &--micro,&--micro img{
+    &--micro {
         width: 20px;
         height: 20px;
+        .img {
+            object-fit: cover;
+            width: 100%;
+            height: 20px;
+        }
     }
-    &--extra-small,&--extra-small img{
+    &--extra-small {
         width: 30px;
         height: 30px;
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 30px;
+        }
     }
-    &--small,&--small img{
+    &--small {
         width: 40px;
         height: 40px;
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 40px;
+        }
     }
-    &--medium,&--medium img{
+    &--medium{
         width: 50px;
         height: 50px;
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 50px;
+        }
     }
-    &--large,&--large img{
+    &--large{
         width: 64px;
         height: 64px;
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 64px;
+        }
     }
 
     &-box{
