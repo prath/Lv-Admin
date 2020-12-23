@@ -242,8 +242,21 @@ label{
     &.small{
         width: 50%;
     }
+    &.narrow {
+        height: 30px !important;
+        padding: 5px 10px;
+        font-size: 14px;
+    }
 
 }
+
+.select-narrow {
+    margin-top: 10px;
+    &::after {
+        top: 1em !important;
+    }
+}
+
 select.form-control:not([size]):not([multiple]) {
     height: 40px;
 }
