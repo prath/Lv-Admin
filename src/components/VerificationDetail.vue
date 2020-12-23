@@ -4,7 +4,15 @@
     <div class="modal-content modal--big">
 
       <div class="heading border with-avatar">
+
+        <!-- 
+          AVATAR
+        -->
         <div class="avatar avatar--medium avatar--profile"><img src="https://images.unsplash.com/photo-1516914943479-89db7d9ae7f2?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTl8fHBvcnRyYWl0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Profile picture"></div>
+
+        <!-- 
+          NAMES
+         -->
         <header>
           <h4 class="head">Magnotravel</h4>
           <span class="sub-head">Pratama Hasriyan Salahudin</span>
@@ -13,6 +21,10 @@
       </div>
 
       <section>
+
+        <!-- 
+          META INFOS
+         -->
         <div class="meta-info flex between-md top-md">
           <div class="item-container">
             <div class="item">
@@ -48,9 +60,18 @@
           </div>
           
         </div> 
+
         <hr>
+
+        <!-- 
+          PHOTOS OF ID AND BUSINESS LICENSE
+         -->
         <h5>Uploaded Photos</h5>
         <div class="flex between-md top-md">
+
+          <!-- 
+            PHOTO ID
+           -->
           <figure class="photo-id">
             <img src="https://images.unsplash.com/photo-1542513217-0b0eedf7005d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjV8fHBvcnRyYWl0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="ID Card">
             <figcaption>Photo ID Card</figcaption>
@@ -65,9 +86,13 @@
               </div>
             </div>
           </figure>
+
+          <!-- 
+            BUSINESS LICENSE
+           -->
           <figure class="photo-id">
             <img src="https://images.unsplash.com/photo-1542513217-0b0eedf7005d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjV8fHBvcnRyYWl0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="ID Card">
-            <figcaption>Photo ID Card</figcaption>
+            <figcaption>Business License</figcaption>
             <span class="badges badges--unverified">Unverified</span>
             <div class="form-group">
               <div class="select select-narrow">
@@ -84,6 +109,10 @@
       </section>
       
       <hr>
+
+      <!-- 
+        ACTION BUTTONS
+       -->
       <div class="action-button-group flex between-md middle-md">
         <h5>Verify this host</h5>
         <div>
