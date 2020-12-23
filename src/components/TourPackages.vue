@@ -100,6 +100,7 @@
                 :prices="item.prices"
                 :location="item.location"
                 :typeTrip="item.type_tour"
+                :hostId="item.host_id"
                 v-for="(item, i) in items"
                 :key="i"
               />
@@ -125,7 +126,7 @@ export default {
       items: '',
       accessToken: '',
       apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
-      isLoading: false, 
+      isLoading: false,
       host: ''
 
     }
@@ -140,7 +141,7 @@ export default {
         console.log("RESPONSE RECEIVED: ", res)
         this.items = res.data.data
         this.isLoading = false
-        
+
       })
       .catch((err) => {
         console.log("AXIOS ERROR: ", err.response.data.title)

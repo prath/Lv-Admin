@@ -20,7 +20,7 @@
           <router-link :to="typeTrip === 'open' ? 'tour-packages-detail/' + id : 'tour-packages-detail-private/' + id">
             <a href=""><span class="title">{{ name }}</span></a>
           </router-link>
-          <span class="info"><a href="">Hosted by: {{host}}</a></span>
+          <span class="info"><a href="">Hosted by: {{getDataHost(hostId)}}</a></span>
         </div>
       </div>
     </td>
@@ -35,7 +35,7 @@
 
       </div>
     </td> -->
-    
+
     <td>
       <div class="wrapper">
 
@@ -94,8 +94,15 @@
 
 <script>
 import moment from 'moment'
+import axios from 'axios'
 export default {
-	name:'ListTour',
+  name:'ListTour',
+  data(){
+    return {
+      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
+      hostName: ''
+    }
+  },
 	props : [
             'id',
             'schedules',
@@ -107,13 +114,28 @@ export default {
 						'dateTo',
             'location',
             'statusTour',
-            'host'
+            'hostId'
           ],
   filters: {
     formatDate: function (value) {
        if (value) {
         return moment(String(value)).format('DD MMM YY')
       }
+    }
+  },
+  methods: {
+   getDataHost(hostId){
+       axios.get(this.apiUrl + 'host/get/' + hostId)
+            .then((res) => {
+              console.log("RESPONSE RECEIVED: ", res.data.data.business_name)
+               this.hostName =  res.data.data.business_name
+            })
+            .catch((err) => {
+              console.log("AXIOS ERROR: ", err.response.data.title)
+              this.isLoading = false
+            })
+
+            return this.hostName
     }
   }
 }
