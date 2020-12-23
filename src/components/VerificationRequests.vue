@@ -125,7 +125,7 @@
                       <div class="wrapper">
                         <span class="info icon">
                           <!-- <router-link :to="'verification-detail/' + host.host_id"> -->
-                            <a title="View Request"><img
+                            <a title="View Request" @click="showModal(host.host_id)"><img
                               src="assets/img/ic-edit-line.svg"
                               title="Edit User"
                             ></a>
@@ -141,7 +141,14 @@
             <!-- 
                 MODAL VIEW DETAIL
              -->
-            <VerificationDetail />
+            <VerificationDetail 
+              :hostData="passedHostData"
+              :userData="passedUserData"
+              :loadingModal="loadingModal"
+              :erroredModal="erroredModal"
+              v-show="isModalVisible"
+              @close="closeModal"
+            />
 
             <!-- 
                 PAGINATION
@@ -203,8 +210,13 @@ export default {
       accessToken: '',
       apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
       loading: true,
+      loadingModal: true,
       errored: false,
-      requests: []
+      erroredModal: false,
+      requests: [],
+      isModalVisible: false,
+      passedHostData: '',
+      passedUserData: '',
     }
   },
   mounted() {
@@ -275,6 +287,61 @@ export default {
       }
 
       return status
+    },
+
+    /**
+     * Open Modal
+     */
+    showModal(id) {
+      // console.log(id)
+      this.passedHostID = id
+      this.isModalVisible = true
+      this.loadHostData(id)
+    }, 
+
+    /**
+     * Close Modal
+     */
+    closeModal() {
+      this.isModalVisible = false
+    },
+
+    /**
+     * Load Host Data based on ID
+     */
+    loadHostData(id) {
+      this.loadingModal = true
+      axios.get(this.apiUrl + 'host/get/' + id)
+      .then( response => {
+        this.passedHostData = response.data.data
+        this.loadUserData(this.passedHostData.user_uid)
+      })
+      .catch( error => {
+        console.log(error)
+        this.erroredModal = true
+      })
+      
+    },
+
+    /**
+     * Load Host Data based on the same ID in loadHostData()
+     */
+    loadUserData(uid) {
+      this.loadingModal = true
+      axios.get(this.apiUrl + 'host/get/gets/' + uid)
+      .then( response => {
+        this.passedUserData = response.data.data
+        console.log(this.passedHostData);
+        console.log(this.passedUserData);
+      })
+      .catch( error => {
+        console.log(error)
+        this.erroredModal = true
+      })
+      .finally( () => {
+        this.loadingModal = false
+      })
+
     }
   }, 
   filters: {
