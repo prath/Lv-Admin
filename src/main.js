@@ -25,6 +25,7 @@ import RefundEdit from './components/RefundEdit'
 import BookingContact from './components/BookingContact'
 import BookingList from './components/BookingList'
 import BookingEdit from './components/BookingEdit'
+import ActiveTour from './components/ActiveTour'
 import TourPackagesDetail from './components/TourPackagesDetail'
 import TourPackagesDetailPrivate from './components/TourPackagesDetailPrivate'
 import TourPreferencesAdd from './components/TourPreferencesAdd'
@@ -51,6 +52,7 @@ const router = new VueRouter({
     { path: '/users', component: Users },
     { path: '/user-profile', component: UserProfile },
     { path: '/add-user', component: UserAdd },
+    { path: '/active-tour', component: ActiveTour },
     { path: '/edit-user-host/:user_uid', name: 'edithost', component: UserEditHost },
     { path: '/edit-user-guest', component: UserEditGuest },
     { path: '/tour-packages', component: TourPackages },

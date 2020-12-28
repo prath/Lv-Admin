@@ -27,31 +27,7 @@
 
       <div class="columns filter-table-list">
         <div class="column is-full filter-wrapper">
-          <div class="field filter-select">
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option value="-">
-                    Filter
-                  </option>
-                  <option value="by_date">
-                    By Name
-                  </option>
 
-                  <option value="by_date">
-                    By Status
-                  </option>
-
-                  <option value="by_price">
-                    By Role
-                  </option>
-                  <option value="by_category">
-                    By Gender
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
           <div class="form-group icon-search">
             <img
               src="../assets/img/ic-search.svg"
@@ -93,7 +69,6 @@
                 </th>
 
                 <th>Name</th>
-                <th>Role</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Total Tour Packages</th>
@@ -102,96 +77,44 @@
             </thead>
 
             <tbody>
-              <template v-for="(user, i) in items">
-                <tr :key="i">
-                  <td>
-                    <div class="wrapper">
-                      <div class="form-check">
-                        <label class="container">
-                          <input
-                            type="checkbox"
-                          >
-                          <span class="checkmark" />
-                        </label>
-                      </div>
-                    </div>
-                  </td>
 
-                  <td>
-                    <div class="wrapper">
-                      <div>
-                        <span class="info">{{ user.first_name + ' ' + user.last_name | ucwords}}</span> <br>
+              <UserList
+                :first_name="item.first_name"
+                :last_name="item.last_name"
+                :phone_number="item.phone_number"
+                :host_id="item.host_id"
+                :email="item.email"
+                :user_uid="item.user_uid"
+                :is_verified="item.is_verified"
+                :business_name="item.business_name"
+                v-for="(item, i) in items"
+                :key="i"
+              />
 
-                        <p>
-                          <span
-                            :class="(user.is_verified ?
-                              'text-info'
-                              :
-                              'text-warning')"
-                          >{{ user.is_verified ? 'Verified' : 'Unverified' }}</span>
-                        </p>
-                        <div />
-                      </div>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper">
-                      <span
-                        :class="(user.business_name ?
-                          'badges--verified'
-                          :
-                          'badges--paid-off')"
-                        class="info badges"
-                      >{{ user.business_name ? 'Host' : 'Guest' }}</span> <br>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="wrapper">
-                      <span class="info">{{ user.email }}</span> <br>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper">
-                      <span class="info">{{ user.phone_number }}</span>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper">
-                      <span class="info">{{ getTotalTour(user.host_id) }}</span>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper">
-                      <span class="info icon">
-                        <router-link :to="'/edit-user-host/' + user.user_uid">
-                          <a title="Edit User"><img
-                            src="../assets/img/ic-edit-line.svg"
-                            title="Edit User"
-                          ></a>
-                        </router-link>
-                        <a title="Delete User"><img
-                          src="../assets/img/ic-delete-line.svg"
-                          title="Delete User"
-                        ></a>
-                      </span>
-                    </div>
-                  </td>
-                </tr>
-              </template>
             </tbody>
           </table>
         </div>
       </div>
     </div>
+
+    <div class="modalshow hide">
+      <div class="body">
+        <h4>Nonaktifkan Akun? <a href="#">X</a></h4>
+        <p>Anda yakin akan menonaktifkan user ini? user akan inactive setelahnya dan tidak dapat lagi melakukan berbagai aktifitas di platform lokaven</p>
+
+        <div class="action">
+          <a href="#" class="btn cancel">Cancel</a>
+          <a href="#" class="btn hapus">Ya, Hapus</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import UserList from "./UserList"
 export default {
   data(){
 		return {
@@ -200,9 +123,12 @@ export default {
       apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
       isLoading: false,
       search: '',
-      total_packages: []
+      total_packages: ''
    }
     },
+    components : {
+      UserList
+  },
    mounted() {
        if (!localStorage.accessToken) {
         this.$router.push({ path: '/' })
@@ -215,7 +141,7 @@ export default {
                         'Authorization': `Bearer ${this.accessToken}`
                       }
                     }
-      axios.get(this.apiUrl + 'host/list?per_page=100&page=1&param=all', header)
+      axios.get(this.apiUrl + 'host/list?per_page=5&page=1&param=all', header)
         .then((res) => {
           console.log("RESPONSE RECEIVED: ", res)
           this.items = res.data.data
@@ -241,7 +167,7 @@ export default {
                     'Authorization': `Bearer ${this.accessToken}`
                   }
                 }
-        axios.get(this.apiUrl + 'host/list?per_page=100&page=1&param=all&key=' + this.search , header)
+        axios.get(this.apiUrl + 'host/list?per_page=20&page=1&param=all&key=' + this.search , header)
           .then((res) => {
             console.log("RESPONSE RECEIVED: ", res)
             this.items = res.data.data
@@ -251,43 +177,8 @@ export default {
             console.log("AXIOS ERROR: ", err.response.data.title)
             this.isLoading = false
           })
-      },
-        getTotalTour: function (hostId){
-
-        if(hostId){
-          axios.get(this.apiUrl + 'package/by-tourhosts/' + hostId)
-              .then((res) => {
-
-                if(res.data.data.length){
-                  console.log("RESPONSE RECEIVED: ", res.data.data.length)
-                  this.total_package[hostId] = res.data.data.length
-                }else{
-                  console.log("RESPONSE RECEIVED: zero ", '0')
-                 this.total_package[hostId] = 0
-                }
-                this.isLoading = false
-                 console.log("lengt packages" + this.total_package[hostId]);
-
-              })
-              .catch((err) => {
-                console.log("AXIOS ERROR: ", err.response.data.title)
-                this.isLoading = false
-              })
-             console.log(this.total_packages[hostId])
-
-        }
-
-
       }
-    },
-    filters : {
-      ucwords (str) {
-        return (str + '')
-          .replace(/^(.)|\s+(.)/g, function ($1) {
-            return $1.toUpperCase()
-          })
-      }
-    },
+    }
 
 
 }

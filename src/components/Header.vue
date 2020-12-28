@@ -13,7 +13,7 @@
 
       <div class="user-setting">
         <ul>
-          <!-- 
+          <!--
           <li>
             <a
               href="#"
@@ -127,6 +127,11 @@
           <li>
             <router-link to="/featured-contents">
               Featured Contents
+            </router-link>
+          </li>
+           <li>
+            <router-link to="/active-tour">
+              Active Tour
             </router-link>
           </li>
           <li>
