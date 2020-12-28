@@ -294,7 +294,6 @@ export default {
      */
     showModal(id) {
       // console.log(id)
-      this.passedHostID = id
       this.isModalVisible = true
       this.loadHostData(id)
     }, 
