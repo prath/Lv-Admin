@@ -36,9 +36,9 @@
               <div class="column">
                 <div class="form-group">
                   <label for="first_name">User Info</label>
-                    <p>{{items.user_info.name}}</p>
-                    <p>{{'0' + items.user_info.phone}}</p>
-                    <p class="text-primary"><a :href="'mailto:'+items.user_info.email">{{items.user_info.email}}</a></p>
+                    <p>{{items.contact_info.first_name + items.contact_info.last_name}}</p>
+                    <p>{{'0' + items.contact_info.phone_number}}</p>
+                    <p class="text-primary"><a :href="'mailto:'+items.contact_info.email">{{items.contact_info.email}}</a></p>
                     <p>Total Paid: <b>Rp.{{Number(items.total_paid_price).toLocaleString('id')}},-</b></p>
                 </div>
               </div>
@@ -182,7 +182,7 @@ export default {
                               }
                           }
 
-            axios.get(this.apiUrl + 'auth/orders/detail/' + this.orderId + '/host/' + this.hostId,header)
+            axios.get(this.apiUrl + 'auth/orders/detail/' + this.orderId, header)
               .then((res) => {
                 console.log("RESPONSE RECEIVED: ", res)
                 this.items = res.data.data
