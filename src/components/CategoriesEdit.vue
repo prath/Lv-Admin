@@ -26,8 +26,9 @@
                     type="text"
                     class="form-control"
                     placeholder="exp: Landscape, Camping, Beach"
-                    v-model="categories_name"
+                    v-model="category"
                   >
+                  <p class="text-warning mt-10 text-bold">{{error}}</p>
                 </div>
               </div>
             </div>
@@ -38,7 +39,7 @@
                     <p>Categories Image</p>
                   </div>
 
-                  <div class="custom-file grey">
+                  <div class="custom-file grey landscape">
                     <input
                       id="customFile"
                       type="file"
@@ -57,7 +58,7 @@
           </div>
         </div>
         <div class="column sidebar is-one-third">
-          <button class="btn btn--primary btn--default btn--full padding-b-m">
+          <button class="btn btn--primary btn--default btn--full padding-b-m" @click="update()">
             Update Categories
           </button>
 
@@ -66,6 +67,8 @@
               Cancel
             </button>
           </router-link>
+
+          <p class="text-primary mt-10 text-bold" v-if="success">Categories has been updated.</p>
 
           <hr>
         </div>
@@ -86,7 +89,9 @@ export default{
       isLoading: false,
       accessToken: '',
       items: '',
-      categories_name:''
+      category:'',
+      success: false,
+      error:'',
     }
   },
    methods: {
@@ -110,25 +115,55 @@ export default{
           this.error = err.response.data.title;
         })
 
-      }
+      },
+      update(){
+
+          if(this.category){
+              var header = {
+                                headers: {
+                                  'Authorization': `Bearer ${this.accessToken}`
+                                }
+                              }
+              var postData = {
+                    category: this.category,
+                    category_image_url: this.categories_image
+                  }
+              axios.patch(this.apiUrl + 'packages/api/categories/' + this.categories_id, postData, header)
+                  .then((res) => {
+                    console.log("RESPONSE RECEIVED: ", res)
+                    this.isLoading = false
+                    this.error = ''
+                    this.success = true
+
+                  })
+                  .catch((err) => {
+                    console.log("AXIOS ERROR: ", err.response.data.title);
+                    this.isLoading = false;
+                    this.error = err.response.data.title;
+                  })
+          }else{
+            this.error = 'Category name not empty!'
+          }
+
+      },
    },
    created () {
-     //this.property = 'Example property update.'
 
-    console.log('propertyComputed will update, as this.property is now reactive.')
     this.$router.onReady(() => {
       if (this.$route.name === 'categoriesedit') {
 
           if (!localStorage.accessToken) {
               this.$router.push({ path: '/' })
             }
+            this.accessToken = localStorage.accessToken
             this.isLoading = true;
-            axios.get(this.apiUrl + 'packages/api/categories/' + this.categories_id)
+            axios.get(this.apiUrl + 'package/detail/categories/' + this.categories_id + '/detail')
               .then((res) => {
                 console.log("RESPONSE RECEIVED: ", res)
                 this.items = res.data.data
 
-                this.categories_name = this.items.category
+                this.category = this.items.category
+                this.categories_image = this.items.category_image_url
                 this.isLoading = false
 
               })

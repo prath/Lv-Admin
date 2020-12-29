@@ -50,7 +50,7 @@
                 <th>No</th>
                 <th>Categories</th>
                 <th>Categories Used</th>
-                <th>Image</th>
+                <th class="center">Image</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -72,13 +72,13 @@
                   </td>
 
                   <td>
-                    <div class="wrapper center">
+                    <div class="wrapper ">
                       <span class="info">{{ categories.count_used > 1 ? categories.count_used + ' Tour' : categories.count_used + ' Tours' }}</span> <br>
                     </div>
                   </td>
 
-                  <td>
-                    <div class="wrapper">
+                  <td >
+                    <div class="wrapper center">
                       <span class="info">
                         <img v-if="categories.category_image_url" :src="categories.category_image_url" class="img-wrapper large" />
                         <img v-else src="../assets/img/no-image-available.png" class="img-wrapper large" />
