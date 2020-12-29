@@ -51,27 +51,7 @@
                 </div>
                 <div class="form-group">
                   <label for="last_name">Status</label>
-                  <div class="select">
-                    <select v-model="status_booking">
-                      <option
-                        value="paid"
-                        select
-                      >
-                        Paid
-                      </option>
-                      <option value="unpaid">
-                        Unpaid
-                      </option>
-
-                       <option value="cancelled">
-                        Cancelled
-                      </option>
-
-                       <option value="awaiting more bookings">
-                        Awaiting More Bookings
-                      </option>
-                    </select>
-                  </div>
+                  <p>{{items.status | ucwords}}</p>
                 </div>
               </div>
             </div>
@@ -81,11 +61,7 @@
           </div>
         </div>
         <div class="column sidebar is-one-third">
-          <router-link to="/refund-list">
-            <button class="btn btn--primary btn--default btn--full padding-b-m">
-              Update Booking Order
-            </button>
-          </router-link>
+
 
           <router-link
             to="/booking-list"
@@ -93,7 +69,7 @@
             <button
               class="btn btn--transparent btn--default btn--full"
             >
-              Cancel
+              Back
             </button>
           </router-link>
 
@@ -162,6 +138,12 @@ export default {
         return moment(String(value)).format('dddd')
       }
     },
+    ucwords (str) {
+      return (str + '')
+        .replace(/^(.)|\s+(.)/g, function ($1) {
+          return $1.toUpperCase()
+        })
+    }
 
   },
   created () {
