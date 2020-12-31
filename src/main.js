@@ -1,6 +1,8 @@
 import Vue from 'vue/dist/vue.js'
+import Vuex from 'vuex'
 import App from './App'
 import VueRouter from 'vue-router'
+import stores from '@/store'
 
 import '@/assets/css/bulma.min.css'
 //import '@/assets/css/style.css'
@@ -43,6 +45,9 @@ dataModule(Highcharts);
 
 Vue.use(VueRouter)
 Vue.use(HighchartsVue)
+Vue.use(Vuex)
+
+const store = new Vuex.Store(stores)
 
 
 
@@ -76,12 +81,13 @@ const router = new VueRouter({
     { path: '/financial-report', component: FinancialReport },
     { path: '/verification-requests', component: VerificationRequests },
     { path: '/verification-detail/:id_req', name: 'requestdetail', component: VerificationDetail },
-    
+
   ],
   mode: 'history'
 })
 
 new Vue({
   render: h => h(App),
-  router
+  router,
+  store
 }).$mount('#app')
