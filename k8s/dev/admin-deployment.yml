@@ -16,8 +16,11 @@ spec:
     spec:
       containers:
       - name: admin-vue
-        image: lokaventour/admin-vue:master-33fb6b3b
+        image: lokaventour/admin-vue:dev-328357947
         imagePullPolicy: Always
+        env: 
+          - name: VUE_APP_API_BASE_URL
+            value: "https://test-api.lokaven.com/"
         ports:
         - name: admin-service
           containerPort: 8080

@@ -1,0 +1,17 @@
+.modal {
+    &-content {
+        background-color: white;
+        border-radius: 5px;
+        padding: 40px;
+        color: $color-martinique;
+    }
+    &--small {
+        width: 480px;
+    }
+    &--big {
+        width: 800px;
+    }
+    .heading {
+        margin-bottom: 20px;
+    }
+}

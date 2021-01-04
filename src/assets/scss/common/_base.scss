@@ -31,7 +31,11 @@ a,li{
 .site-content{
 	background-color: $body-bg-color;
 
+}
 
+span.optional{
+	font-size: 12px;
+    color: #aeaeae;
 }
 /* Font Size on Mobile devices */
 @media (max-width: 479px) {

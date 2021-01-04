@@ -13,6 +13,7 @@
 
       <div class="user-setting">
         <ul>
+          <!--
           <li>
             <a
               href="#"
@@ -24,6 +25,7 @@
               >
             </a>
           </li>
+           -->
           <li>
               <a v-on:click="logout">
                 <div class="avatar avatar--extra-small">
@@ -50,6 +52,7 @@
               >
             </a>
           </li>
+          <!--
           <li>
             <a
               href="#"
@@ -99,6 +102,7 @@
               >
             </a>
           </li>
+           -->
         </ul>
       </nav>
     </aside>
@@ -116,6 +120,11 @@
             </router-link>
           </li>
           <li>
+            <router-link to="/verification-requests">
+              Verification Requests
+            </router-link>
+          </li>
+          <li>
             <router-link to="/tour-packages">
               Tour Packages
             </router-link>
@@ -123,6 +132,11 @@
           <li>
             <router-link to="/featured-contents">
               Featured Contents
+            </router-link>
+          </li>
+           <li>
+            <router-link to="/active-tour">
+              Active Tour
             </router-link>
           </li>
           <li>
@@ -133,6 +147,11 @@
           <li>
             <router-link to="/categories-tags">
               Categories & Tags
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/booking-contact">
+             Booking by Contact List
             </router-link>
           </li>
           <li>

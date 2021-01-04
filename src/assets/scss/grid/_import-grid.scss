@@ -7,6 +7,10 @@
     margin-left: auto;
     padding-right: 3.125rem;
     padding-left: 3.125rem;
+    .stretch {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   .row {

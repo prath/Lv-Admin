@@ -106,8 +106,7 @@
         }
 
         .checkmark {
-            position: absolute;
-            top: 0;
+            top: 2px;
             left: 0;
             color: $color-checkbox;
             border: 1px solid $border-checkbox;
@@ -242,10 +241,39 @@ label{
     &.small{
         width: 50%;
     }
+    &.narrow {
+        height: 30px !important;
+        padding: 5px 10px;
+        font-size: 14px;
+    }
 
 }
+
+.select-narrow {
+    margin-top: 10px;
+    &::after {
+        top: 1em !important;
+    }
+}
+
 select.form-control:not([size]):not([multiple]) {
     height: 40px;
+}
+
+select.form-control{
+    display: block;
+    width: 100%;
+    padding: 9px 15px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: $color-input;
+    background-color: $color-white;
+    background-clip: padding-box;
+    border: 1px solid $border-input;
+    border-color: $border-input !important;
+    @include border-radius(3px);
+    outline:$color-input-outline;
 }
 
 
@@ -389,11 +417,22 @@ select.form-control:not([size]):not([multiple]) {
         justify-content: center;
         align-items: center;
 
+        &.landscape{
+            width: 150px;
+            height: 240px;
+        }
+
         input[type=file]{
             position: absolute;
             width: 100%;
             height: 100%;
         }
+    }
+
+    img{
+        width: 150px;
+        height: 240px;
+        object-fit: cover
     }
 
     &.circle{
@@ -503,6 +542,7 @@ select.form-control:not([size]):not([multiple]) {
         border-color: $color-primary;
         right: 1.125em;
         z-index: 4;
+        top: 1.3em;
     }
 }
 
@@ -537,7 +577,7 @@ select.form-control:not([size]):not([multiple]) {
                 position: absolute;
                 left: 20px;
                 top: 22px;
-                z-index: 200;
+                z-index: 10;
             }
         }
     }

@@ -16,11 +16,31 @@
 
     <td>
       <div class="wrapper">
+        <div class="flex item-durations">
+          <span class="info" >
+            {{jadwalTour | formatDate}}
+          </span>
+        </div>
+      </div>
+    </td>
+
+    <td>
+      <div class="wrapper">
         <div>
           <router-link :to="typeTrip === 'open' ? 'tour-packages-detail/' + id : 'tour-packages-detail-private/' + id">
             <a href=""><span class="title">{{ name }}</span></a>
           </router-link>
           <span class="info"><a href="">Hosted by: {{getDataHost(hostId)}}</a></span>
+        </div>
+      </div>
+    </td>
+
+     <td>
+      <div class="wrapper">
+        <div class="flex item-durations">
+          <span class="info" >
+            {{participant}}
+          </span>
         </div>
       </div>
     </td>
@@ -38,31 +58,24 @@
 
     <td>
       <div class="wrapper">
-
-        <div class="flex item-durations" v-for="(item, i) in prices" :key="i">
-          <span class="info "  v-if="i <= 0" >
-           <span class="muted-info">From</span> Rp. {{Number(item.price).toLocaleString('ID')}}
+        <div class="flex item-durations">
+          <span class="info" >
+            {{totalBooking}}
+          </span>
+        </div>
+      </div>
+    </td>
+    <td>
+      <div class="wrapper">
+        <div class="flex item-durations">
+          <span class="info" >
+            {{statusTour}}
           </span>
         </div>
       </div>
     </td>
 
-    <td>
-      <div class="wrapper">
-        <div class="flex item-durations" v-for="(item, i) in schedules" :key="i">
-          <span class="info" v-if="i <= 0">
-            {{schedules.length}} <span class="muted-info"> schedules</span>
-            <!-- {{item.start_date | formatDate}} <span class="muted-info">-</span> {{item.end_date | formatDate}} -->
-          </span>
-        </div>
-      </div>
-    </td>
 
-    <td>
-      <div class="wrapper">
-        <span class="info">{{ location }}</span>
-      </div>
-    </td>
 
     <td>
       <div class="wrapper">
@@ -96,7 +109,7 @@
 import moment from 'moment'
 import axios from 'axios'
 export default {
-  name:'ListTour',
+  name:'ListActiveTour',
   data(){
     return {
       apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
@@ -106,6 +119,7 @@ export default {
 	props : [
             'id',
             'schedules',
+            'jadwalTour',
 						'name',
             'duration',
             'typeTrip',
@@ -114,7 +128,9 @@ export default {
 						'dateTo',
             'location',
             'statusTour',
-            'hostId'
+            'hostId',
+            'participant',
+            'totalBooking'
           ],
   filters: {
     formatDate: function (value) {

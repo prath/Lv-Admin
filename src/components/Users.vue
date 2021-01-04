@@ -27,37 +27,15 @@
 
       <div class="columns filter-table-list">
         <div class="column is-full filter-wrapper">
-          <div class="field filter-select">
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option value="-">
-                    Filter
-                  </option>
-                  <option value="by_date">
-                    By Name
-                  </option>
 
-                  <option value="by_date">
-                    By Status
-                  </option>
-
-                  <option value="by_price">
-                    By Role
-                  </option>
-                  <option value="by_category">
-                    By Gender
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
           <div class="form-group icon-search">
             <img
               src="../assets/img/ic-search.svg"
               alt=""
             >
             <input
+              v-model="search"
+              v-on:input="searchUser()"
               id="form1"
               type="text"
               class="form-control"
@@ -91,148 +69,117 @@
                 </th>
 
                 <th>Name</th>
-                <th>Role</th>
                 <th>Email</th>
-                <th>Gender</th>
                 <th>Phone</th>
+                <th>Total Tour Packages</th>
                 <th>Action</th>
               </tr>
             </thead>
 
             <tbody>
-              <template v-for="(user) in users">
-                <tr>
-                  <td>
-                    <div class="wrapper">
-                      <div class="form-check">
-                        <label class="container">
-                          <input
-                            type="checkbox"
-                          >
-                          <span class="checkmark" />
-                        </label>
-                      </div>
-                    </div>
-                  </td>
 
-                  <td>
-                    <div class="wrapper">
-                      <div>
-                        <span class="info">{{ user.name }}</span> <br>
+              <UserList
+                :first_name="item.first_name"
+                :last_name="item.last_name"
+                :phone_number="item.phone_number"
+                :host_id="item.host_id"
+                :email="item.email"
+                :user_uid="item.user_uid"
+                :is_verified="item.is_verified"
+                :business_name="item.business_name"
+                v-for="(item, i) in items"
+                :key="i"
+              />
 
-                        <p>
-                          <span
-                            :class="(user.status==='Active' ?
-                              'text-success'
-                              :
-                              'text-danger')"
-                          >{{ user.status }}</span>&nbsp; | &nbsp;<span
-                            :class="(user.verified==='Verified' ?
-                              'text-info'
-                              :
-                              'text-warning')"
-                          >{{ user.verified }}</span>
-                        </p>
-                        <div />
-                      </div>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper">
-                      <span
-                        :class="(user.role==='Host' ?
-                          'badges--verified'
-                          :
-                          'badges--paid-off')"
-                        class="info badges"
-                      >{{ user.role }}</span> <br>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="wrapper">
-                      <span class="info">{{ user.email }}</span> <br>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper">
-                      <span class="info">{{ user.gender }}</span>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper">
-                      <span class="info">{{ user.phone }}</span>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper">
-                      <span class="info icon">
-                        <router-link to="/edit-user-host">
-                          <a title="Edit User"><img
-                            src="../assets/img/ic-edit-line.svg"
-                            title="Edit User"
-                          ></a>
-                        </router-link>
-                        <a title="Delete User"><img
-                          src="../assets/img/ic-delete-line.svg"
-                          title="Delete User"
-                        ></a>
-                      </span>
-                    </div>
-                  </td>
-                </tr>
-              </template>
             </tbody>
           </table>
         </div>
       </div>
     </div>
+
+    <div class="modalshow hide">
+      <div class="body">
+        <h4>Nonaktifkan Akun? <a href="#">X</a></h4>
+        <p>Anda yakin akan menonaktifkan user ini? user akan inactive setelahnya dan tidak dapat lagi melakukan berbagai aktifitas di platform lokaven</p>
+
+        <div class="action">
+          <a href="#" class="btn cancel">Cancel</a>
+          <a href="#" class="btn hapus">Ya, Hapus</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+import UserList from "./UserList"
 export default {
   data(){
 		return {
-
-      users : [
-                  {
-                    "id": '1' ,
-                    "name": 'Michelle Sandra',
-                    "status": 'Active',
-                    "role": 'Guest',
-                    "email": 'michelle@gmail.com',
-                    "gender": 'Female',
-                    "phone": '0857-2210-6534',
-                    "verified" : 'Verified'
-                  },
-                  {
-                    "id": '2' ,
-                    "name": 'Simon Mc Mnmemy',
-                    "status": 'Suspend',
-                    "role": 'Guest',
-                    "email": 'simon.mcmnemy@gmail.com',
-                    "gender": 'Male',
-                    "phone": '0857-1310-1432',
-                    "verified" : 'Verified'
-                  },
-                  {
-                    "id": '3' ,
-                    "name": 'Rizal Agustian',
-                    "status": 'Active',
-                    "role": 'Host',
-                    "email": 'rizal.agus@gmail.com',
-                    "gender": 'Male',
-                    "phone": '0856-4332-1231',
-                    "verified" : 'Unverified'
-                  },
-
-        ]
-
-      }
+      items: '',
+      accessToken: '',
+      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
+      isLoading: false,
+      search: '',
+      total_packages: ''
    }
+    },
+    components : {
+      UserList
+  },
+   mounted() {
+       if (!localStorage.accessToken) {
+        this.$router.push({ path: '/' })
+      }else{
+        this.accessToken = localStorage.accessToken
+      }
+      this.isLoading = true;
+      var header = {
+                      headers: {
+                        'Authorization': `Bearer ${this.accessToken}`
+                      }
+                    }
+      axios.get(this.apiUrl + 'host/list?per_page=5&page=1&param=all', header)
+        .then((res) => {
+          console.log("RESPONSE RECEIVED: ", res)
+          this.items = res.data.data
+          this.isLoading = false
+
+        })
+        .catch((err) => {
+          console.log("AXIOS ERROR: ", err.response.data.title)
+          console.log("AXIOS ERROR: ", err.response.status)
+          if(err.response.status === 401){
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('hostId');
+            this.$router.push({ path: '/' })
+          }
+          this.isLoading = false
+        })
+    },
+    methods: {
+      searchUser(){
+
+        var header = {
+                  headers: {
+                    'Authorization': `Bearer ${this.accessToken}`
+                  }
+                }
+        axios.get(this.apiUrl + 'host/list?per_page=20&page=1&param=all&key=' + this.search , header)
+          .then((res) => {
+            console.log("RESPONSE RECEIVED: ", res)
+            this.items = res.data.data
+            this.isLoading = false
+          })
+          .catch((err) => {
+            console.log("AXIOS ERROR: ", err.response.data.title)
+            this.isLoading = false
+          })
+      }
+    }
+
+
 }
 </script>

@@ -1,45 +1,20 @@
 <template>
   <div class="column site-content">
     <div class="container-fluid">
-      <!--
-                ////////////////////////////////////////////////////
-                Statistic Guest
-            -->
 
-      <div class="clear" />
-      <div class="heading column">
-        <h4>Guest Statistic</h4>
+      <div class="generic-heading">
+          <h3> 
+            Greetings, Admin
+          </h3> 
+          <p>
+            How are you today? hope you're doing okay
+          </p>
       </div>
-
-      <div class="column is-full">
-        <div class="heading">
-          <guest-chart />
-        </div>
-      </div>
-
-
-      <!--
-                ////////////////////////////////////////////////////
-                Statistic Host
-            -->
-
-      <div class="clear" />
-      <div class="heading column">
-        <h4>Host Statistic</h4>
-      </div>
-
-      <div class="column is-full">
-        <div class="heading">
-          <host-chart />
-        </div>
-      </div>
-
 
       <!--
                 ////////////////////////////////////////////////////
                 Total Revenue
             -->
-
 
       <hr class="space-lg">
       <div class="columns">
@@ -98,752 +73,12 @@
 
       <!--
                 ////////////////////////////////////////////////////
-                Newest Order
+                Contact Bookings List
                 -->
 
-      <hr class="space-lg">
-
-      <div class="columns">
-        <div class="column generic-heading is-two-third">
-          <h3>5 Latest Bookings</h3>
-          <p>Tour Booking</p>
-        </div>
-      </div>
-
-      <div class="columns is-multiline">
-        <div class="column is-full">
-          <div class="tabs">
-            <ul>
-              <li class="is-active">
-                <a>ALL</a>
-              </li>
-              <li><a href="#">UNPAID</a></li>
-              <li><a href="#">NEED TO BE PROCESSED</a></li>
-              <li><a href="#">PROCESSING</a></li>
-              <li><a href="#">DELIVERING</a></li>
-              <li><a href="#">DELIVERED</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="columns filter-table-list">
-        <div class="column is-full filter-wrapper">
-          <div class="field filter-select">
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option value="-">
-                    Filter
-                  </option>
-                  <option value="by_date">
-                    By Types of Tour
-                  </option>
-                  <option value="by_date">
-                    By Date
-                  </option>
-                  <option value="by_price">
-                    By Tour
-                  </option>
-                  <option value="by_category">
-                    By Category
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="form-group icon-search">
-            <img
-              src="../assets/img/ic-search.svg"
-              alt=""
-            >
-            <input
-              id="form1"
-              type="text"
-              class="form-control"
-              placeholder="Find Tour"
-            >
-          </div>
-        </div>
-      </div>
-
-      <div class="columns">
-        <div class="column is-full">
-          <table class="table is-fullwidth table--orders">
-            <thead>
-              <tr>
-                <th>
-                  <div class="action-wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                    <!-- SHow when Checkbox Clicked
-                                            <a href="#"><img src="../assets/img/ic-delete.svg" alt="" /></a>
-                                            -->
-                  </div>
-                </th>
-                <th>Booking</th>
-                <th>Tour Name</th>
-                <th>Date</th>
-                <th>Total</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">#1979</span> <br>
-                      <p><b>by</b> Aceng Samsyudin</p>
-                      <div />
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">Kayaking di Perairan Bandung</span> <br>
-                      <p>Open Trip</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="info">22 April 2018</span>
-                      <p>20:23:21</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <img
-                      src="../assets/img/ic-bag.svg"
-                      alt=""
-                    >
-                    <div class="total">
-                      <div>
-                        <span class="text-success">Rp 300.000,00</span>
-                        <p><b>1 pax</b> via transfer bank</p>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="badges badges--processed">Processed</span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">#1981</span> <br>
-                      <p><b>by</b> Didin Maulana</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">Hang Gliding Tandem</span>
-                      <p>Private Trip</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="info">13 Januari 2019</span> <br>
-                      <p>20:23:21</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <img
-                      src="../assets/img/ic-bag.svg"
-                      alt=""
-                    >
-                    <div class="total">
-                      <span class="text-success">Rp 1.450.000,00</span>
-                      <p><b>2 Pax</b> via transfer bank</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="badges badges--processed">Processed</span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">#1981</span> <br>
-                      <p><b>by</b> Andrew Moralez</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">Barbecue Party di Outdoor, Bandung</span> <br>
-                      <p>Open Trip</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="info">4 Desember 2019</span> <br>
-                      <p>20:23:21</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <img
-                      src="../assets/img/ic-bag.svg"
-                      alt=""
-                    >
-                    <div class="total">
-                      <span class="text-success">Rp 5.250.000,00</span>
-                      <p><b>5 Pax</b> via transfer bank</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="badges badges--processed">Processed</span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">#1999</span> <br>
-                      <p><b>by</b> Salvador Martin</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
-                      <p>Private Trip</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="info">4 Desember 2019</span> <br>
-                      <p>20:23:21</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <img
-                      src="../assets/img/ic-bag.svg"
-                      alt=""
-                    >
-                    <div class="total">
-                      <span class="text-success">Rp 250.000,00</span>
-                      <p><b>1 Pax</b> via transfer bank</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="badges badges--processed">Processed</span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">#2500</span> <br>
-                      <p><b>by</b> Heilsinski</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">Wisata Kopi Bandung</span> <br>
-                      <p>Open Trip</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="info">7 April 2020</span> <br>
-                      <p>20:23:21</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <img
-                      src="../assets/img/ic-bag.svg"
-                      alt=""
-                    >
-                    <div class="total">
-                      <span class="text-success">Rp 75.000,00</span>
-                      <p><b>1 Pax</b> via transfer bank</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="badges badges--processed">Processed</span>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-
-
-
-      <!--
-                ////////////////////////////////////////////////////
-                more comming tour
-                -->
-
-      <hr class="space-lg">
-
-      <div class="columns">
-        <div class="column generic-heading is-two-third">
-          <h3>5 Incomming Tour</h3>
-          <p>Tour Packages</p>
-        </div>
-      </div>
-
-
-      <div class="columns filter-table-list">
-        <div class="column is-full filter-wrapper">
-          <div class="field filter-select">
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option value="-">
-                    Filter
-                  </option>
-                  <option value="by_date">
-                    By Types of tours
-                  </option>
-                  <option value="by_date">
-                    By Date
-                  </option>
-                  <option value="by_price">
-                    By Tour
-                  </option>
-                  <option value="by_category">
-                    By Category
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="form-group icon-search">
-            <img
-              src="../assets/img/ic-search.svg"
-              alt=""
-            >
-            <input
-              id="form1"
-              type="text"
-              class="form-control"
-              placeholder="Find Tour"
-            >
-          </div>
-        </div>
-      </div>
-
-      <div class="columns">
-        <div class="column is-full">
-          <table class="table is-fullwidth table--orders">
-            <thead>
-              <tr>
-                <th>
-                  <div class="action-wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                    <!-- SHow when Checkbox Clicked
-                                                <a href="#"><img src="../assets/img/ic-delete.svg" alt="" /></a>
-                                                -->
-                  </div>
-                </th>
-
-                <th>Tour Name</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Total Pax</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">Kayaking di Perairan Bandung</span> <br>
-                      <p>Open Trip</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">22 April 2018</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">29 April 2018</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">4 Person</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="badges badges--processed">4 days left</span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">Hang Gliding Tandem</span> <br>
-                      <p>Private Tour</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">22 April 2018</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">29 April 2018</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">4 Person</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="badges badges--processed">4 days left</span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">Hang Gliding Tandem</span> <br>
-                      <p>Open Trip</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">22 April 2018</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">29 April 2018</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">4 Person</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="badges badges--processed">4 days left</span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
-                      <p>Private Tour</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">01 Mei 2019</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">29 April 2018</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">10 Person</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="badges badges--processed">4 days left</span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <div>
-                      <span class="order_number">Naik Land Rover Keliling Bandung</span> <br>
-                      <p>Private Tour</p>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">01 Mei 2019</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">29 April 2018</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">10 Person</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="badges badges--processed">4 days left</span>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!--
-                    ////////////////////////////////////////////////////
-                    List Refund
-                -->
-
-      <hr class="space-lg">
-
-      <div class="columns">
-        <div class="column generic-heading is-two-third">
-          <h3>Refund List</h3>
-          <p>Waiting refund list</p>
-        </div>
+      <div class="generic-heading">
+        <h4>Bookings by Contact</h4>
+        <p>Latest booking made by guests via contact booking directly to Lokaven</p>
       </div>
 
       <div class="columns">
@@ -869,13 +104,117 @@
                   </div>
                 </th>
 
-                <th>Booking</th>
-                <th>Nominal</th>
-                <th>Date</th>
-                <th>Host</th>
-                <th>Guest</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th>Order Date</th>
+                <th>Fullname</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Total Participant</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <template v-for="(booking, i) in bookingListDummy" >
+                <tr :key="i">
+                  <td>
+                    <div class="wrapper">
+                      <div class="form-check">
+                        <label class="container">
+                          <input
+                            type="checkbox"
+                          >
+                          <span class="checkmark" />
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="wrapper">
+                      <span class="order_number">{{ booking.date }}</span> <br>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="wrapper">
+                      <span class="order_number">{{ booking.name }}</span> <br>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ booking.phone }}</span> <br>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="wrapper">
+                      <span class="info">{{ booking.email }}</span>
+                    </div>
+                  </td>
+
+                  <td align="center">
+                    <div class="wrapper text-center">
+                      <span class="info">{{ booking.participant }}</span>
+                    </div>
+                  </td>
+
+
+
+                  <td>
+                    <div class="wrapper">
+                      <span class="info icon">
+                        <router-link :to="'booking-edit/'+booking.id">
+                          <a title="Edit Refund"><img
+                            src="../assets/img/ic-edit-line.svg"
+                            title="Edit User"
+                          ></a>
+                        </router-link>
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <!--
+                ////////////////////////////////////////////////////
+                more comming tour
+                -->
+      <div class="generic-heading">
+        <h4>Nearly Ended Experiences</h4>
+        <p>List of nearly ended experiences</p>
+      </div>
+
+      <div class="columns">
+        <div class="column is-full">
+          <table class="table is-fullwidth table--orders">
+            <thead>
+              <tr>
+                <th>
+                  <div class="action-wrapper">
+                    <div class="form-check">
+                      <label class="container">
+                        <input
+                          type="checkbox"
+                          checked="checked"
+                        >
+                        <span class="checkmark" />
+                      </label>
+                    </div>
+                    <!-- SHow when Checkbox Clicked
+                                                <a href="#"><img src="../assets/img/ic-delete.svg" alt="" /></a>
+                                                -->
+                  </div>
+                </th>
+
+                <th>Experience</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Participants</th>
+                <th>Ended in</th>
               </tr>
             </thead>
 
@@ -897,49 +236,32 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="order_number">#1092-122</span> <br>
+                    <div>
+                      <span class="order_number"><a href="">Kayaking di Perairan Bandung</a></span>
+                      <span class="info"><a href="">Hosted by: Aniqma Experiences</a></span>
+                    </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Rp.450.000,-</span> <br>
+                    <span class="info">22 April 2018</span> <br>
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="info">12/12/2019 09:12:09</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">PT. Ayo Tour Sejahtera</span>
+                    <span class="info">29 April 2018</span> <br>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Novi Irianty</span>
+                    <span class="info">4 Person</span>
                   </div>
                 </td>
-
                 <td>
                   <div class="wrapper">
-                    <span class="info badges badges--wait-payment">Waiting</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="refund-edit">
-                        <a title="Edit Refund"><img
-                          src="../assets/img/ic-edit-line.svg"
-                          title="Edit User"
-                        ></a>
-                      </router-link>
-                    </span>
+                    <span class="badges badges--processed">4 days left</span>
                   </div>
                 </td>
               </tr>
@@ -956,120 +278,178 @@
                         <span class="checkmark" />
                       </label>
                     </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="order_number">#1043-099</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp.12.435.000,-</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">01/11/2019 23:09:15</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Sahabat Tour</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rudi Gunawan</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info badges badges--paid-off">Accepted</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="refund-edit">
-                        <a title="Edit Refund"><img
-                          src="../assets/img/ic-edit-line.svg"
-                          title="Edit User"
-                        ></a>
-                      </router-link>
-                    </span>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        >
-                        <span class="checkmark" />
-                      </label>
-                    </div>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="order_number">#1013-199</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Rp.2.000.000,-</span> <br>
-                  </div>
-                </td>
-                <td>
-                  <div class="wrapper">
-                    <span class="info">29/11/2019 15:13:00</span> <br>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Fastest Tour</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class="wrapper">
-                    <span class="info">Ilham Budiawan</span>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
                     <div>
-                      <span class="info badges badges--processed">Decline</span> <br>
+                      <span class="order_number"><a href="">Hang Gliding Tandem</a></span>
+                      <span class="info"><a href="">Hosted by: Athria</a></span>
                     </div>
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info icon">
-                      <router-link to="refund-edit">
-                        <a title="Edit Refund"><img
-                          src="../assets/img/ic-edit-line.svg"
-                          title="Edit User"
-                        ></a>
-                      </router-link>
-                    </span>
+                    <span class="info">22 April 2018</span> <br>
+                  </div>
+                </td>
+                <td>
+                  <div class="wrapper">
+                    <span class="info">29 April 2018</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">4 Person</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="wrapper">
+                    <span class="badges badges--processed">4 days left</span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="wrapper">
+                    <div class="form-check">
+                      <label class="container">
+                        <input
+                          type="checkbox"
+                          checked="checked"
+                        >
+                        <span class="checkmark" />
+                      </label>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <div>
+                      <span class="order_number"><a href="">Hang Gliding Tandem</a></span>
+                      <span class="info"><a href="">Hosted by: Magno</a></span>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">22 April 2018</span> <br>
+                  </div>
+                </td>
+                <td>
+                  <div class="wrapper">
+                    <span class="info">29 April 2018</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">4 Person</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="wrapper">
+                    <span class="badges badges--processed">4 days left</span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="wrapper">
+                    <div class="form-check">
+                      <label class="container">
+                        <input
+                          type="checkbox"
+                          checked="checked"
+                        >
+                        <span class="checkmark" />
+                      </label>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <div>
+                      <span class="order_number"><a href="">Naik Land Rover Keliling Bandung</a></span>
+                      <span class="info"><a href="">Hosted by: Lokaven</a></span>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">01 Mei 2019</span> <br>
+                  </div>
+                </td>
+                <td>
+                  <div class="wrapper">
+                    <span class="info">29 April 2018</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">10 Person</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="wrapper">
+                    <span class="badges badges--processed">4 days left</span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="wrapper">
+                    <div class="form-check">
+                      <label class="container">
+                        <input
+                          type="checkbox"
+                          checked="checked"
+                        >
+                        <span class="checkmark" />
+                      </label>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <div>
+                      <span class="order_number"><a href="">Naik Land Rover Keliling Bandung</a></span>
+                      <span class="info"><a href="">Hosted by: Bobond</a></span>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">01 Mei 2019</span> <br>
+                  </div>
+                </td>
+                <td>
+                  <div class="wrapper">
+                    <span class="info">29 April 2018</span> <br>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="wrapper">
+                    <span class="info">10 Person</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="wrapper">
+                    <span class="badges badges--processed">4 days left</span>
                   </div>
                 </td>
               </tr>
@@ -1077,30 +457,95 @@
           </table>
         </div>
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
-import GuestChart from './GuestChart'
-import HostChart from './HostChart'
+// import GuestChart from './GuestChart'
+// import HostChart from './HostChart'
+
+import axios from 'axios'
+import moment from 'moment'
 export default {
   name: 'App',
   components : {
-    'GuestChart' : GuestChart,
-    'HostChart' : HostChart
+    // 'GuestChart' : GuestChart,
+    // 'HostChart' : HostChart
   },
   data(){
 		return {
-        accessToken: '',
+      accessToken: '',
+      isLoading: false,
+      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
+      bookingList: '',
+      bookingListDummy : [
+                  {
+                    "id": '1' ,
+                    "date": '12/12/2020',
+                    "name": 'Linda Wardani',
+                    "phone": '087637736212',
+                    "email": 'linda12@gmail.com',
+                    "participant": '3'
+                  },
+                   {
+                    "id": '2' ,
+                    "date": '10/12/2020',
+                    "name": 'Asep Suryana',
+                    "phone": '087637736212',
+                    "email": 'Asep@gmail.com',
+                    "participant": '5'
+                  },
+                  {
+                    "id": '3' ,
+                    "date": '09/12/2020',
+                    "name": 'Dian Ayu',
+                    "phone": '0879236298',
+                    "email": 'dian_ayu@gmail.com',
+                    "participant": '10'
+                  },
+
+        ]
       }
    },
-  mounted() {
+   filters: {
+    formatDate: function (value) {
+       if (value) {
+        return moment(String(value)).format('DD/MM/YYYY')
+      }
+    }
+  },
+   mounted() {
       if (!localStorage.accessToken) {
         this.$router.push({ path: '/' })
       }else{
         this.accessToken = localStorage.accessToken
       }
-  }
+
+      var header = {
+                      headers: {
+                        'Authorization': `Bearer ${this.accessToken}`
+                      }
+                    }
+
+      this.isLoading = true;
+      axios.get(this.apiUrl + 'auth/orders/list-admin?page=1&per_page=100&param=booking',header)
+        .then((res) => {
+          console.log("RESPONSE RECEIVED: ", res)
+          this.bookingList = res.data.data
+          this.isLoading = false
+
+        })
+        .catch((err) => {
+          console.log("AXIOS ERROR: ", err.response.data.title)
+          if(err.response.status === 401){
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('hostId');
+            this.$router.push({ path: '/' })
+          }
+          this.isLoading = false
+        })
+    },
 }
 </script>

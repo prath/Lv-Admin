@@ -23,6 +23,14 @@
         color: $color-primary;
     }
 
+    &--text {
+        background-color: transparent;
+        border:0;
+        &-warning {
+            color: $color-burnt-sienna;
+        }
+    }
+
     &--transparent{
         background-color: transparent;
         border: 1px solid $border-btn-secondary;
@@ -63,6 +71,10 @@
         background-color: rgba($btn-disabled,0.5);
         color: rgba($color-white,0.5);
         cursor: not-allowed;
+    }
+
+    &--muted {
+        color: $color-topaz;
     }
 
         &--large{
@@ -115,4 +127,10 @@
 
 span.btn{
     display: inline-block;
+}
+
+.action-button-group {
+    h5 {
+        margin: 0;
+    }
 }

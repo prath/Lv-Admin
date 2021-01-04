@@ -10,9 +10,15 @@
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
-          <h3>Packages of Experiences</h3>
-          <p>List of packages available in the whole Lokaven apps</p>
+          <h3>Active Tour</h3>
+          <p>List of active tour : awaiting, ongoing & ended</p>
         </div>
+      </div>
+
+      <div class="tabs-lokaven">
+        <a href="#" class="focus">Awaiting</a>
+        <a href="#">Ongoing</a>
+        <a href="#">Ended</a>
       </div>
 
 
@@ -53,7 +59,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="Find Tour"
+              placeholder="Find Active Tour"
             >
           </div>
         </div>
@@ -81,26 +87,29 @@
                                         -->
                   </div>
                 </th>
-
+                <th>Jadwal Tour</th>
                 <th>Package</th>
-                <!-- <th>Duration</th> -->
-                <th>Price</th>
-                <th>Schedules</th>
-                <th>Location</th>
+                <th>Participant</th>
+                <th>Total Booking</th>
+                <th>Status Tour</th>
                 <th></th>
               </tr>
             </thead>
 
             <tbody>
 
-              <ListTour
+              <ListActiveTour
                 :id="item.tour_id"
+                :jadwalTour="item.created_at"
+                :participant="1"
                 :name="item.title"
                 :schedules="item.schedules"
                 :prices="item.prices"
                 :location="item.location"
                 :typeTrip="item.type_tour"
                 :hostId="item.host_id"
+                :totalBooking="4"
+                :statusTour="'active'"
                 v-for="(item, i) in items"
                 :key="i"
               />
@@ -115,11 +124,11 @@
 </template>
 
 <script>
-import ListTour from "./ListTour"
+import ListActiveTour from "./ListActiveTour"
 import axios from 'axios'
 export default {
   components : {
-    ListTour
+    ListActiveTour
   },
   data(){
 		return {

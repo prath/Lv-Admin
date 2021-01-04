@@ -44,7 +44,7 @@
                 <div class="columns is-gapless">
                   <div class="column">
                     <div class="form-group">
-                      <label for="last_name">Last Name</label>
+                      <label for="last_name">Last Name <span class="optional">(Optional)</span></label>
                       <input
                         v-model="last_name"
                         type="text"
@@ -94,7 +94,7 @@
                     <div class="form-group">
                       <label for="last_name">Gender</label>
                       <div class="select">
-                        <select v-model="gender">
+                        <select v-model="gender" class="form-control">
                           <option value="male">
                             Male
                           </option>
@@ -186,12 +186,15 @@
 
                 <div class="custom-file grey">
                   <input
-                    id="customFile"
+                    id="profile_picture"
                     type="file"
                     class="custom-file-input"
+                    @change="filesChange($event)"
+                    accept="image/*"
+                    multiple
                   >
                   <img
-                    src="../assets/img/ic-image-white.svg"
+                    :src="profile_picture_url ? profile_picture_url : '../assets/img/ic-image-white.svg'"
                     alt=""
                   >
                 </div>
@@ -206,6 +209,7 @@
                       <label for="last_name">Business Name</label>
                       <input
                         id="harga"
+                        v-model="business_name"
                         type="text"
                         class="form-control"
                         placeholder=""
@@ -217,7 +221,7 @@
                     <div class="form-group">
                       <label for="last_name">Category</label>
                       <div class="select">
-                        <select v-model="bussinness_category">
+                        <select v-model="bussinness_category" class="form-control">
                           <option value="currency">
                             Tour &amp; Travel
                           </option>
@@ -274,7 +278,7 @@
                         <div class="form-group">
                           <label for="last_name">Status</label>
                           <div class="select">
-                            <select>
+                            <select class="form-control">
                               <option value="currency">
                                 Verified
                               </option>
@@ -361,7 +365,7 @@ import Datepicker from 'vuejs-datepicker';
 export default{
   data(){
     return{
-      apiUrl: `${process.env.VUE_APP_API_BASE_URL}host/register`,
+      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
       address: '',
       bussinness_category: '',
       email: '',
@@ -375,6 +379,7 @@ export default{
       last_name: '',
       card_id: '',
       bussiness_id: '',
+      profile_picture_url: '',
       accessToken: '',
       isLoading:false,
       error: '',
@@ -413,10 +418,11 @@ export default{
           gender: this.gender,
           date_of_birth: this.date_of_birth,
           card_id: this.card_id,
-          bussiness_id: this.bussiness_id
+          bussiness_id: this.bussiness_id,
+          profile_picture_url: this.profile_picture_url
 
         }
-         axios.post(this.apiUrl, postData)
+         axios.post(this.apiUrl + 'host/register', postData)
         .then((res) => {
           console.log("RESPONSE RECEIVED: ", res);
           this.isLoading = false;
@@ -445,6 +451,29 @@ export default{
 
       formatDate(date) {
         return moment(date).format('YYYY-MM-DD');
+      },
+
+      filesChange(event) {
+
+        var formData = new FormData()
+        formData.append("lokaven_file", event.target.files[0])
+        formData.append("category", "profile_pictures")
+
+        axios.post(this.apiUrl + 'upload/uploader', formData)
+        .then((res) => {
+          console.log("RESPONSE RECEIVED: ", res)
+          this.isLoading = false
+          this.error = ''
+          this.profile_picture_url =  res.data.data.url
+        })
+        .catch((err) => {
+          console.log("AXIOS ERROR: ", err.response.data.title);
+
+          this.isLoading = false;
+          this.error = err.response.data.title;
+        })
+
+
       }
   }
 }

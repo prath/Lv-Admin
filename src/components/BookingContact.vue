@@ -10,8 +10,8 @@
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
-          <h3>Booking List</h3>
-          <p>List of Booking List</p>
+          <h3>Booking by Contact List Page</h3>
+          <p>List of Booking by Contact</p>
         </div>
 
       </div>
@@ -21,23 +21,7 @@
 
       <div class="columns filter-table-list">
         <div class="column is-full filter-wrapper">
-          <div class="field filter-select">
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option value="-">
-                    Filter
-                  </option>
-                  <option value="by_date">
-                    By Order
-                  </option>
-                  <option value="by_price">
-                    By Status
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
+
           <div class="form-group icon-search">
             <img
               src="../assets/img/ic-search.svg"
@@ -47,7 +31,7 @@
               id="form1"
               type="text"
               class="form-control"
-              placeholder="Find Booking"
+              placeholder="Find Booking by Contact"
             >
           </div>
         </div>
@@ -76,19 +60,16 @@
                   </div>
                 </th>
 
-                <th>Order Number</th>
-                <th>Tour Name</th>
-                <th>Participants</th>
-                <th>Host</th>
-                <th>Schedule</th>
-
-                <th>Status</th>
-                <th>Action</th>
+                <th>Order Date</th>
+                <th>Fullname</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Total Participant</th>
               </tr>
             </thead>
 
             <tbody>
-              <template v-for="(booking, i) in bookingList" >
+              <template v-for="(booking, i) in bookingListDummy" >
                 <tr :key="i">
                   <td>
                     <div class="wrapper">
@@ -105,66 +86,30 @@
 
                   <td>
                     <div class="wrapper">
-                      <span class="order_number">{{ booking.order_number }}</span> <br>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper flex-column items-start">
-                      <router-link :to="'/tour-packages-detail/'+booking.tour_id">
-                        <span class="info text-primary">{{ booking.title }}</span>
-                      </router-link>
-                      <span class="info mt-10">{{ booking.type_tour === 'close' ? 'A Private Tour' : 'A Open Tour' }} by: {{booking.host_name}}</span><br>
-
-
-                    </div>
-                  </td>
-                  <td>
-                    <div class="wrapper">
-                      <span class="info">{{ booking.participants.length }}</span> <br>
+                      <span class="order_number">{{ booking.date }}</span> <br>
                     </div>
                   </td>
 
                   <td>
                     <div class="wrapper">
-                      <span class="info">{{ booking.host_name }}</span>
+                      <span class="order_number">{{ booking.name }}</span> <br>
                     </div>
                   </td>
-
-                  <td>
-                    <div class="wrapper flex-column">
-                      <span class="info">{{ booking.start_date | formatDate }}</span> s/d
-                      <span class="info">{{ booking.end_date | formatDate }}</span>
-                    </div>
-                  </td>
-
-
-
                   <td>
                     <div class="wrapper">
-                      <span
-                        v-if="booking.status==='unpaid'"
-                        class="info badges badges--wait-payment"
-                      >{{ booking.status }}</span>
-
-                      <span
-                        v-if="booking.status==='paid'"
-                        class="info badges badges--paid-off"
-                      >{{ booking.status }}</span>
-
+                      <span class="info">{{ booking.phone }}</span> <br>
                     </div>
                   </td>
 
                   <td>
                     <div class="wrapper">
-                      <span class="info icon">
-                        <router-link :to="'booking-edit/'+booking.order_id">
-                          <a title="Edit Refund"><img
-                            src="../assets/img/ic-edit-line.svg"
-                            title="Edit User"
-                          ></a>
-                        </router-link>
-                      </span>
+                      <span class="info">{{ booking.email }}</span>
+                    </div>
+                  </td>
+
+                  <td align="center">
+                    <div class="wrapper text-center">
+                      <span class="info">{{ booking.participant }}</span>
                     </div>
                   </td>
                 </tr>
@@ -185,7 +130,34 @@ export default {
       accessToken: '',
       isLoading: false,
       apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
-      bookingList: ''
+      bookingList: '',
+      bookingListDummy : [
+                  {
+                    "id": '1' ,
+                    "date": '12/12/2020',
+                    "name": 'Linda Wardani',
+                    "phone": '087637736212',
+                    "email": 'linda12@gmail.com',
+                    "participant": '3'
+                  },
+                   {
+                    "id": '2' ,
+                    "date": '10/12/2020',
+                    "name": 'Asep Suryana',
+                    "phone": '087637736212',
+                    "email": 'Asep@gmail.com',
+                    "participant": '5'
+                  },
+                  {
+                    "id": '3' ,
+                    "date": '09/12/2020',
+                    "name": 'Dian Ayu',
+                    "phone": '0879236298',
+                    "email": 'dian_ayu@gmail.com',
+                    "participant": '10'
+                  },
+
+        ]
       }
    },
    filters: {
