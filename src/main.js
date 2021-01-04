@@ -1,6 +1,8 @@
 import Vue from 'vue/dist/vue.js'
+import Vuex from 'vuex'
 import App from './App'
 import VueRouter from 'vue-router'
+import stores from '@/store'
 
 import '@/assets/css/bulma.min.css'
 //import '@/assets/css/style.css'
@@ -32,6 +34,8 @@ import TourPreferencesAdd from './components/TourPreferencesAdd'
 import TourPreferencesEdit from './components/TourPreferencesEdit'
 import Login from './components/Login'
 import FinancialReport from './components/FinancialReport'
+import VerificationRequests from './components/VerificationRequests'
+import VerificationDetail from './components/VerificationDetail'
 
 
 import HighchartsVue from 'highcharts-vue';
@@ -42,6 +46,9 @@ dataModule(Highcharts);
 
 Vue.use(VueRouter)
 Vue.use(HighchartsVue)
+Vue.use(Vuex)
+
+const store = new Vuex.Store(stores)
 
 
 
@@ -74,6 +81,8 @@ const router = new VueRouter({
     { path: '/tour-preferences-add', component: TourPreferencesAdd },
     { path: '/tour-preferences-edit', component: TourPreferencesEdit },
     { path: '/financial-report', component: FinancialReport },
+    { path: '/verification-requests', component: VerificationRequests },
+    { path: '/verification-detail/:id_req', name: 'requestdetail', component: VerificationDetail },
 
   ],
   mode: 'history'
@@ -81,5 +90,6 @@ const router = new VueRouter({
 
 new Vue({
   render: h => h(App),
-  router
+  router,
+  store
 }).$mount('#app')
