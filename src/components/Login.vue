@@ -7,7 +7,7 @@
           <img
             src="../assets/img/logo-lokaventour.svg"
             alt=""
-          >
+          />
         </a>
 
         <div class="field store-select">
@@ -31,39 +31,48 @@
             <form @submit="checkForm">
               <div class="form-group column is-two-thirds">
                 <input
+                  v-model="email"
                   type="email"
                   class="form-control"
-                  v-model="email"
                   placeholder="Email / Username Anda"
-
-                >
+                />
               </div>
               <div class="form-group column is-two-thirds">
                 <input
+                  v-model="password"
                   type="password"
                   class="form-control"
-                  v-model="password"
                   placeholder="password"
-
-                >
+                />
               </div>
 
               <div class="form-group">
-
-                <span class="text-danger" v-for="error in errors" v-bind:key='error' >{{error}} </span>
-
+                <span
+                  v-for="error in errors"
+                  :key="error"
+                  class="text-danger"
+                >{{ error }} </span>
               </div>
 
-                <button class="btn btn--primary btn--default btn-loader" @click="submit()" v-if='!isLoading'>Selanjutnya</button>
-                <button class="btn btn--primary btn--default btn-loader" @click="submit()" v-if='isLoading'><img
-                    src="../assets/img/tail-spin.svg"
-                    alt="" class="img_button"
-                  >Processed</button>
-
-
-
-                </form>
-
+              <button
+                v-if="!isLoading"
+                class="btn btn--primary btn--default btn-loader"
+                @click="submit()"
+              >
+                Selanjutnya
+              </button>
+              <button
+                v-if="isLoading"
+                class="btn btn--primary btn--default btn-loader"
+                @click="submit()"
+              >
+                <img
+                  src="../assets/img/tail-spin.svg"
+                  alt=""
+                  class="img_button"
+                />Processed
+              </button>
+            </form>
           </div>
         </div>
 
@@ -71,7 +80,7 @@
           <img
             src="../assets/img/signup-art.png"
             alt=""
-          >
+          />
         </div>
       </div>
     </div>
@@ -80,70 +89,69 @@
 
 <script>
 import axios from 'axios'
-  export default {
-    data(){
-        return {
-          errors: [],
-          email: '',
-          password: '',
-          apiUrl: `${process.env.VUE_APP_API_BASE_URL}auth/oauth/token`,
-          isLoading: false,
-          accessToken: '',
-          hostId: '',
-      }
-    },
-    mounted() {
-      if (localStorage.accessToken) {
-        this.accessToken = localStorage.accessToken;
-        this.$router.push({ path: '/dashboard' })
-      }
-    },
+export default {
+  data () {
+    return {
+      errors: [],
+      email: '',
+      password: '',
+      apiUrl: `${process.env.VUE_APP_API_BASE_URL}auth/oauth/token`,
+      isLoading: false,
+      accessToken: '',
+      hostId: ''
+    }
+  },
+  mounted () {
+    if (localStorage.accessToken) {
+      this.accessToken = localStorage.accessToken
+      this.$router.push({ path: '/dashboard' })
+    }
+  },
 
-    methods: {
-      submit(){
-        this.isLoading = true;
-        var postData = {
-          email: this.email,
-          password: this.password
-        }
-         axios.post(this.apiUrl, postData)
+  methods: {
+    submit () {
+      this.isLoading = true
+      var postData = {
+        email: this.email,
+        password: this.password
+      }
+      axios.post(this.apiUrl, postData)
         .then((res) => {
-          console.log("RESPONSE RECEIVED: ", res);
+          console.log('RESPONSE RECEIVED: ', res)
           this.accessToken = res.data.credentials.access_token
           this.host_id = res.data.host_id
 
-          localStorage.accessToken = this.accessToken;
-          localStorage.hostId = this.host_id;
+          localStorage.accessToken = this.accessToken
+          localStorage.hostId = this.host_id
 
           this.$router.push({ path: '/dashboard' })
-          this.isLoading = false;
-
+          this.isLoading = false
         })
         .catch((err) => {
-          console.log("AXIOS ERROR: ", err.response.data.title);
-          this.errors=[]
+          console.log('AXIOS ERROR: ', err.response.data.title)
+          this.errors = []
           this.errors.push(err.response.data.title)
-          this.isLoading = false;
+          this.isLoading = false
         })
-      },
-      checkForm: function (e) {
-        if (this.email && this.password) {
-          this.submit
-        }
-
-        if (!this.email) {
-
-          //this.errors.push('Email required.');
-        }
-        if (!this.password) {
-
-          //this.errors.push('Password required.');
-        }
-
-        e.preventDefault();
+    },
+    checkForm: function (e) {
+      if (this.email && this.password) {
+        this.submit
       }
 
+      if (!this.email) {
+
+        // this.errors.push('Email required.');
+      }
+      if (!this.password) {
+
+        // this.errors.push('Password required.');
+      }
+
+      e.preventDefault()
     }
+
+  }
 }
 </script>
 

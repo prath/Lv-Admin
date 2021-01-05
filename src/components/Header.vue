@@ -7,7 +7,7 @@
           <img
             src="../assets/img/logo-lokaventour.svg"
             alt
-          >
+          />
         </a>
       </div>
 
@@ -27,14 +27,14 @@
           </li>
            -->
           <li>
-              <a v-on:click="logout">
-                <div class="avatar avatar--extra-small">
-                  <img
-                    src="../assets/img/avatar.png"
-                    alt
-                  >
-                </div>
-              </a>
+            <a @click="logout">
+              <div class="avatar avatar--extra-small">
+                <img
+                  src="../assets/img/avatar.png"
+                  alt
+                />
+              </div>
+            </a>
           </li>
         </ul>
       </div>
@@ -49,7 +49,7 @@
               <img
                 src="../assets/img/ic-dashboard.svg"
                 alt
-              >
+              />
             </a>
           </li>
           <!--
@@ -134,7 +134,7 @@
               Featured Contents
             </router-link>
           </li>
-           <li>
+          <li>
             <router-link to="/active-tour">
               Active Tour
             </router-link>
@@ -151,12 +151,12 @@
           </li>
           <li>
             <router-link to="/booking-contact">
-             Booking by Contact List
+              Booking by Contact List
             </router-link>
           </li>
           <li>
             <router-link to="/booking-list">
-             Booking Orders
+              Booking Orders
             </router-link>
           </li>
           <li>
@@ -176,14 +176,13 @@
 </template>
 
 <script>
-  export default {
-    methods: {
-     logout: function () {
-
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('hostId');
-        this.$router.push({ path: '/' })
-      }
+export default {
+  methods: {
+    logout: function () {
+      localStorage.removeItem('accessToken')
+      localStorage.removeItem('hostId')
+      this.$router.push({ path: '/' })
     }
   }
-  </script>
+}
+</script>

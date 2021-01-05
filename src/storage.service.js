@@ -1,11 +1,11 @@
 const storeType = Object.freeze({
-  object: "object",
-  string: "string",
-  number: "number",
+  object: 'object',
+  string: 'string',
+  number: 'number'
 })
 
 class Storage {
-  encode(value, type) {
+  encode (value, type) {
     let val = value
     if (type === storeType.object) {
       val = JSON.stringify(value)
@@ -25,8 +25,8 @@ class Storage {
     )
   }
 
-  decode(encoded, type) {
-    let binary = window.atob(encoded)
+  decode (encoded, type) {
+    const binary = window.atob(encoded)
     const bytes = new Uint8Array(binary.length)
     for (let i = 0; i < bytes.length; i++) {
       bytes[i] = binary.charCodeAt(i)
@@ -44,19 +44,19 @@ class Storage {
     return val
   }
 
-  set(key, value) {
+  set (key, value) {
     window.localStorage.setItem(key, JSON.stringify(value))
   }
 
-  get(key) {
+  get (key) {
     return JSON.parse(window.localStorage.getItem(key))
   }
 
-  clear() {
+  clear () {
     window.localStorage.clear()
   }
 
-  getType(val) {
+  getType (val) {
     const type = Object.keys(storeType).reduce((c, key) => {
       if (typeof val === storeType[key]) {
         return storeType[key]
@@ -72,7 +72,7 @@ class Storage {
 const storage = new Storage({
   storage: window.localStorage,
   btoa: window.btoa,
-  atob: window.atob,
+  atob: window.atob
 })
 
 export default storage

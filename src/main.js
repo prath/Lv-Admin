@@ -5,7 +5,7 @@ import VueRouter from 'vue-router'
 import stores from '@/store'
 
 import '@/assets/css/bulma.min.css'
-//import '@/assets/css/style.css'
+// import '@/assets/css/style.css'
 import '@/assets/scss/style.scss'
 import Dashboard from './components/Dashboard'
 import Users from './components/Users'
@@ -37,20 +37,17 @@ import FinancialReport from './components/FinancialReport'
 import VerificationRequests from './components/VerificationRequests'
 import VerificationDetail from './components/VerificationDetail'
 
-
-import HighchartsVue from 'highcharts-vue';
-import Highcharts from "highcharts";
-import dataModule from "highcharts/modules/data";
+import HighchartsVue from 'highcharts-vue'
+import Highcharts from 'highcharts'
+import dataModule from 'highcharts/modules/data'
 Vue.config.productionTip = false
-dataModule(Highcharts);
+dataModule(Highcharts)
 
 Vue.use(VueRouter)
 Vue.use(HighchartsVue)
 Vue.use(Vuex)
 
 const store = new Vuex.Store(stores)
-
-
 
 const router = new VueRouter({
   routes: [
@@ -82,7 +79,7 @@ const router = new VueRouter({
     { path: '/tour-preferences-edit', component: TourPreferencesEdit },
     { path: '/financial-report', component: FinancialReport },
     { path: '/verification-requests', component: VerificationRequests },
-    { path: '/verification-detail/:id_req', name: 'requestdetail', component: VerificationDetail },
+    { path: '/verification-detail/:id_req', name: 'requestdetail', component: VerificationDetail }
 
   ],
   mode: 'history'

@@ -6,7 +6,7 @@
                 more comming tour
             -->
 
-      <hr class="space-lg">
+      <hr class="space-lg" />
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
@@ -22,7 +22,6 @@
           </router-link>
         </div>
       </div>
-
 
       <div class="columns filter-table-list">
         <div class="column is-full filter-wrapper">
@@ -50,13 +49,13 @@
             <img
               src="../assets/img/ic-search.svg"
               alt=""
-            >
+            />
             <input
               id="form1"
               type="text"
               class="form-control"
               placeholder="Find Tour"
-            >
+            />
           </div>
         </div>
       </div>
@@ -73,8 +72,8 @@
                         <input
                           type="checkbox"
                           checked="checked"
-                        >
-                        <span class="checkmark" />
+                        />
+                        <span class="checkmark"></span>
                       </label>
                     </div>
                     <!--
@@ -101,8 +100,8 @@
                         <label class="container">
                           <input
                             type="checkbox"
-                          >
-                          <span class="checkmark" />
+                          />
+                          <span class="checkmark"></span>
                         </label>
                       </div>
                     </div>
@@ -110,14 +109,13 @@
 
                   <td>
                     <div class="wrapper">
-                      <span class="info">{{ content.title }}</span> <br>
+                      <span class="info">{{ content.title }}</span> <br />
                     </div>
                   </td>
 
-
                   <td>
                     <div class="wrapper">
-                      <span class="info">{{ content.dateCreated }}</span> <br>
+                      <span class="info">{{ content.dateCreated }}</span> <br />
                     </div>
                   </td>
 
@@ -142,12 +140,12 @@
                           <a title="Edit User"><img
                             src="../assets/img/ic-edit-line.svg"
                             title="Edit User"
-                          ></a></router-link>
+                          /></a></router-link>
                         <router-link to="featured-edit">
                           <a title="Delete User"><img
                             src="../assets/img/ic-delete-line.svg"
                             title="Delete User"
-                          ></a>
+                          /></a>
                         </router-link>
                       </span>
                     </div>
@@ -164,26 +162,26 @@
 
 <script>
 export default {
-  data(){
-		return {
+  data () {
+    return {
 
-      contentList : [
-                  {
-                    "id": '1' ,
-                    "title": 'Traveling Low Budget',
-                    "dateCreated": '01/12/2019',
-                    "tour": [{"name" : "Kayaking di Perairan, Bandung"},{"name" : "Barbecue Party di Outdoor, Bandung"}],
-                  },
-                   {
-                    "id": '2' ,
-                    "title": '5 Tips Untuk Traveling Pemula',
-                    "dateCreated": '11/12/2019',
-                    "tour": [{"name" : "Kayaking di Perairan, Bandung"},{"name" : "Barbecue Party di Outdoor, Bandung"}],
-                  },
+      contentList: [
+        {
+          id: '1',
+          title: 'Traveling Low Budget',
+          dateCreated: '01/12/2019',
+          tour: [{ name: 'Kayaking di Perairan, Bandung' }, { name: 'Barbecue Party di Outdoor, Bandung' }]
+        },
+        {
+          id: '2',
+          title: '5 Tips Untuk Traveling Pemula',
+          dateCreated: '11/12/2019',
+          tour: [{ name: 'Kayaking di Perairan, Bandung' }, { name: 'Barbecue Party di Outdoor, Bandung' }]
+        }
 
-        ]
+      ]
 
-      }
-   }
+    }
+  }
 }
 </script>

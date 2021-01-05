@@ -6,18 +6,14 @@
                 more comming tour
             -->
 
-      <hr class="space-lg">
+      <hr class="space-lg" />
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
           <h3>Booking List</h3>
           <p>List of Booking List</p>
         </div>
-
       </div>
-
-
-
 
       <div class="columns filter-table-list">
         <div class="column is-full filter-wrapper">
@@ -42,13 +38,13 @@
             <img
               src="../assets/img/ic-search.svg"
               alt=""
-            >
+            />
             <input
               id="form1"
               type="text"
               class="form-control"
               placeholder="Find Booking"
-            >
+            />
           </div>
         </div>
       </div>
@@ -65,8 +61,8 @@
                         <input
                           type="checkbox"
                           checked="checked"
-                        >
-                        <span class="checkmark" />
+                        />
+                        <span class="checkmark"></span>
                       </label>
                     </div>
                   <!--
@@ -88,7 +84,7 @@
             </thead>
 
             <tbody>
-              <template v-for="(booking, i) in bookingList" >
+              <template v-for="(booking, i) in bookingList">
                 <tr :key="i">
                   <td>
                     <div class="wrapper">
@@ -96,8 +92,8 @@
                         <label class="container">
                           <input
                             type="checkbox"
-                          >
-                          <span class="checkmark" />
+                          />
+                          <span class="checkmark"></span>
                         </label>
                       </div>
                     </div>
@@ -105,7 +101,7 @@
 
                   <td>
                     <div class="wrapper">
-                      <span class="order_number">{{ booking.order_number }}</span> <br>
+                      <span class="order_number">{{ booking.order_number }}</span> <br />
                     </div>
                   </td>
 
@@ -114,14 +110,12 @@
                       <router-link :to="'/tour-packages-detail/'+booking.tour_id">
                         <span class="info text-primary">{{ booking.title }}</span>
                       </router-link>
-                      <span class="info mt-10">{{ booking.type_tour === 'close' ? 'A Private Tour' : 'A Open Tour' }} by: {{booking.host_name}}</span><br>
-
-
+                      <span class="info mt-10">{{ booking.type_tour === 'close' ? 'A Private Tour' : 'A Open Tour' }} by: {{ booking.host_name }}</span><br />
                     </div>
                   </td>
                   <td>
                     <div class="wrapper">
-                      <span class="info">{{ booking.participants.length }}</span> <br>
+                      <span class="info">{{ booking.participants.length }}</span> <br />
                     </div>
                   </td>
 
@@ -138,8 +132,6 @@
                     </div>
                   </td>
 
-
-
                   <td>
                     <div class="wrapper">
                       <span
@@ -151,7 +143,6 @@
                         v-if="booking.status==='paid'"
                         class="info badges badges--paid-off"
                       >{{ booking.status }}</span>
-
                     </div>
                   </td>
 
@@ -162,7 +153,7 @@
                           <a title="Edit Refund"><img
                             src="../assets/img/ic-edit-line.svg"
                             title="Edit User"
-                          ></a>
+                          /></a>
                         </router-link>
                       </span>
                     </div>
@@ -180,52 +171,51 @@
 import axios from 'axios'
 import moment from 'moment'
 export default {
-  data(){
-		return {
-      accessToken: '',
-      isLoading: false,
-      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
-      bookingList: ''
-      }
-   },
-   filters: {
+  filters: {
     formatDate: function (value) {
-       if (value) {
+      if (value) {
         return moment(String(value)).format('DD/MM/YYYY')
       }
     }
   },
-   mounted() {
-      if (!localStorage.accessToken) {
-        this.$router.push({ path: '/' })
-      }else{
-        this.accessToken = localStorage.accessToken
+  data () {
+    return {
+      accessToken: '',
+      isLoading: false,
+      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
+      bookingList: ''
+    }
+  },
+  mounted () {
+    if (!localStorage.accessToken) {
+      this.$router.push({ path: '/' })
+    } else {
+      this.accessToken = localStorage.accessToken
+    }
+
+    var header = {
+      headers: {
+        Authorization: `Bearer ${this.accessToken}`
       }
+    }
 
-      var header = {
-                      headers: {
-                        'Authorization': `Bearer ${this.accessToken}`
-                      }
-                    }
-
-      this.isLoading = true;
-      axios.get(this.apiUrl + 'auth/orders/list-admin?page=1&per_page=100&param=booking',header)
-        .then((res) => {
-          console.log("RESPONSE RECEIVED: ", res)
-          this.bookingList = res.data.data
-          this.isLoading = false
-
-        })
-        .catch((err) => {
-          console.log("AXIOS ERROR: ", err.response.data.title)
-          if(err.response.status === 401){
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('hostId');
-            this.$router.push({ path: '/' })
-          }
-          this.isLoading = false
-        })
-    },
+    this.isLoading = true
+    axios.get(this.apiUrl + 'auth/orders/list-admin?page=1&per_page=100&param=booking', header)
+      .then((res) => {
+        console.log('RESPONSE RECEIVED: ', res)
+        this.bookingList = res.data.data
+        this.isLoading = false
+      })
+      .catch((err) => {
+        console.log('AXIOS ERROR: ', err.response.data.title)
+        if (err.response.status === 401) {
+          localStorage.removeItem('accessToken')
+          localStorage.removeItem('hostId')
+          this.$router.push({ path: '/' })
+        }
+        this.isLoading = false
+      })
+  }
 }
 </script>
 

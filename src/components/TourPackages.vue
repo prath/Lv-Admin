@@ -6,7 +6,7 @@
                 more comming tour
             -->
 
-      <hr class="space-lg">
+      <hr class="space-lg" />
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
@@ -14,7 +14,6 @@
           <p>List of packages available in the whole Lokaven apps</p>
         </div>
       </div>
-
 
       <div class="columns filter-table-list">
         <div class="column is-full filter-wrapper">
@@ -48,13 +47,13 @@
             <img
               src="../assets/img/ic-search.svg"
               alt=""
-            >
+            />
             <input
               id="form1"
               type="text"
               class="form-control"
               placeholder="Find Tour"
-            >
+            />
           </div>
         </div>
       </div>
@@ -71,8 +70,8 @@
                         <input
                           type="checkbox"
                           checked="checked"
-                        >
-                        <span class="checkmark" />
+                        />
+                        <span class="checkmark"></span>
                       </label>
                     </div>
                     <!--
@@ -92,20 +91,17 @@
             </thead>
 
             <tbody>
-
               <ListTour
+                v-for="(item, i) in items"
                 :id="item.tour_id"
+                :key="i"
                 :name="item.title"
                 :schedules="item.schedules"
                 :prices="item.prices"
                 :location="item.location"
-                :typeTrip="item.type_tour"
-                :hostId="item.host_id"
-                v-for="(item, i) in items"
-                :key="i"
+                :type-trip="item.type_tour"
+                :host-id="item.host_id"
               />
-
-
             </tbody>
           </table>
         </div>
@@ -115,14 +111,14 @@
 </template>
 
 <script>
-import ListTour from "./ListTour"
+import ListTour from './ListTour'
 import axios from 'axios'
 export default {
-  components : {
+  components: {
     ListTour
   },
-  data(){
-		return {
+  data () {
+    return {
       items: '',
       accessToken: '',
       apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
@@ -131,20 +127,19 @@ export default {
 
     }
   },
-  mounted() {
+  mounted () {
     if (!localStorage.accessToken) {
       this.$router.push({ path: '/' })
     }
-    this.isLoading = true;
+    this.isLoading = true
     axios.get(this.apiUrl + 'package')
       .then((res) => {
-        console.log("RESPONSE RECEIVED: ", res)
+        console.log('RESPONSE RECEIVED: ', res)
         this.items = res.data.data
         this.isLoading = false
-
       })
       .catch((err) => {
-        console.log("AXIOS ERROR: ", err.response.data.title)
+        console.log('AXIOS ERROR: ', err.response.data.title)
         this.isLoading = false
       })
   }

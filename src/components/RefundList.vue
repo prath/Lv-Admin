@@ -6,7 +6,7 @@
                 more comming tour
             -->
 
-      <hr class="space-lg">
+      <hr class="space-lg" />
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
@@ -22,9 +22,6 @@
           </router-link>
         </div>
       </div>
-
-
-
 
       <div class="columns filter-table-list">
         <div class="column is-full filter-wrapper">
@@ -49,13 +46,13 @@
             <img
               src="../assets/img/ic-search.svg"
               alt=""
-            >
+            />
             <input
               id="form1"
               type="text"
               class="form-control"
               placeholder="Find Refund"
-            >
+            />
           </div>
         </div>
       </div>
@@ -72,8 +69,8 @@
                         <input
                           type="checkbox"
                           checked="checked"
-                        >
-                        <span class="checkmark" />
+                        />
+                        <span class="checkmark"></span>
                       </label>
                     </div>
                   <!--
@@ -102,8 +99,8 @@
                         <label class="container">
                           <input
                             type="checkbox"
-                          >
-                          <span class="checkmark" />
+                          />
+                          <span class="checkmark"></span>
                         </label>
                       </div>
                     </div>
@@ -111,18 +108,18 @@
 
                   <td>
                     <div class="wrapper">
-                      <span class="order_number">{{ refund.bookingNo }}</span> <br>
+                      <span class="order_number">{{ refund.bookingNo }}</span> <br />
                     </div>
                   </td>
 
                   <td>
                     <div class="wrapper">
-                      <span class="info">Rp.{{ refund.nominal }},-</span> <br>
+                      <span class="info">Rp.{{ refund.nominal }},-</span> <br />
                     </div>
                   </td>
                   <td>
                     <div class="wrapper">
-                      <span class="info">{{ refund.date }}</span> <br>
+                      <span class="info">{{ refund.date }}</span> <br />
                     </div>
                   </td>
 
@@ -163,7 +160,7 @@
                           <a title="Edit Refund"><img
                             src="../assets/img/ic-edit-line.svg"
                             title="Edit User"
-                          ></a>
+                          /></a>
                         </router-link>
                       </span>
                     </div>
@@ -179,42 +176,41 @@
 </template>
 <script>
 export default {
-  data(){
-		return {
+  data () {
+    return {
 
-      refundList : [
-                  {
-                    "id": '1' ,
-                    "bookingNo": '#1092-122',
-                    "nominal" : '450.000',
-                    "date" : '12/12/2019 09:12:09',
-                    "host" : 'PT. Ayo Tour Sejahtera',
-                    "guest" : 'Novi Irianty',
-                    "status" : 'Waiting'
-                  },
-                   {
-                    "id": '2' ,
-                    "bookingNo": '#1043-099',
-                    "nominal" : '12.435.000',
-                    "date" : '01/11/2019 23:09:15',
-                    "host" : 'Sahabat Tour',
-                    "guest" : 'Rudi Gunawan',
-                    "status" : 'Accepted'
-                  },
-                  {
-                    "id": '3' ,
-                    "bookingNo": '#1013-199',
-                    "nominal" : '2.000.000',
-                    "date" : '29/11/2019 15:13:00',
-                    "host" : 'Fastest Tour',
-                    "guest" : 'Ilham Budiawan',
-                    "status" : 'Decline'
-                  },
+      refundList: [
+        {
+          id: '1',
+          bookingNo: '#1092-122',
+          nominal: '450.000',
+          date: '12/12/2019 09:12:09',
+          host: 'PT. Ayo Tour Sejahtera',
+          guest: 'Novi Irianty',
+          status: 'Waiting'
+        },
+        {
+          id: '2',
+          bookingNo: '#1043-099',
+          nominal: '12.435.000',
+          date: '01/11/2019 23:09:15',
+          host: 'Sahabat Tour',
+          guest: 'Rudi Gunawan',
+          status: 'Accepted'
+        },
+        {
+          id: '3',
+          bookingNo: '#1013-199',
+          nominal: '2.000.000',
+          date: '29/11/2019 15:13:00',
+          host: 'Fastest Tour',
+          guest: 'Ilham Budiawan',
+          status: 'Decline'
+        }
 
+      ]
 
-        ]
-
-      }
-   }
+    }
+  }
 }
 </script>

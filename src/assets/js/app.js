@@ -1,4 +1,4 @@
-Vue.component('v-select', VueSelect.VueSelect);
+Vue.component('v-select', VueSelect.VueSelect)
 
 new Vue({
   el: '.v-select',
@@ -9,26 +9,26 @@ new Vue({
       'Inch'
     ]
   }
-});
+})
 
 new Vue({
-    el: '.v-select-2',
-    data: {
-      options: [
-        'Cm',
-        'Px',
-        'Inch'
-      ]
-    }
-  });
+  el: '.v-select-2',
+  data: {
+    options: [
+      'Cm',
+      'Px',
+      'Inch'
+    ]
+  }
+})
 
 new Vue({
-    el: '.v-select-3',
-    data: {
-      options: [
-        'Cm',
-        'Px',
-        'Inch'
-      ]
-    }
-  });
+  el: '.v-select-3',
+  data: {
+    options: [
+      'Cm',
+      'Px',
+      'Inch'
+    ]
+  }
+})

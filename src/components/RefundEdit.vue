@@ -2,7 +2,7 @@
   <div class="column site-content">
     <div class="container-fluid">
       <div class="columns">
-        <div class="column generic-heading is-two-third" />
+        <div class="column generic-heading is-two-third"></div>
       </div>
 
       <div class="columns">
@@ -26,7 +26,7 @@
                     class="form-control"
                     placeholder=""
                     value="1092-122"
-                  >
+                  />
                 </div>
               </div>
             </div>
@@ -41,7 +41,7 @@
                     class="form-control"
                     placeholder=""
                     value="Novi Irianty"
-                  >
+                  />
                 </div>
               </div>
             </div>
@@ -56,7 +56,7 @@
                       class="form-control"
                       placeholder="0"
                       value="130-122212-09090-1"
-                    >
+                    />
                     <div class="input-group-append">
                       <div class="field filter-form">
                         <div class="control">
@@ -89,7 +89,7 @@
               </div>
             </div>
 
-            <div class="clear" />
+            <div class="clear"></div>
 
             <div class="columns ">
               <div class="column is-6">
@@ -101,7 +101,7 @@
                     class="form-control"
                     placeholder=""
                     value="450.000"
-                  >
+                  />
                 </div>
               </div>
 
@@ -114,7 +114,7 @@
                     class="form-control"
                     placeholder=""
                     value="12/12/2019 09:12:09"
-                  >
+                  />
                 </div>
               </div>
             </div>
@@ -150,13 +150,12 @@
                     type="text"
                     class="form-control"
                     placeholder=""
-                  >
+                  />
                 </div>
               </div>
             </div>
 
-
-            <div class="clear" />
+            <div class="clear"></div>
           </div>
         </div>
         <div class="column sidebar is-one-third">
@@ -176,7 +175,7 @@
             </button>
           </router-link>
 
-          <hr>
+          <hr />
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@
                 more comming tour
             -->
 
-      <hr class="space-lg">
+      <hr class="space-lg" />
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
@@ -14,9 +14,6 @@
           <p>List of Financial Report</p>
         </div>
       </div>
-
-
-
 
       <div class="columns filter-table-list">
         <div class="column is-full filter-wrapper">
@@ -41,13 +38,13 @@
             <img
               src="../assets/img/ic-search.svg"
               alt=""
-            >
+            />
             <input
               id="form1"
               type="text"
               class="form-control"
               placeholder="Find Financial Report"
-            >
+            />
           </div>
         </div>
       </div>
@@ -66,10 +63,6 @@
           </div>
         </div>
       </div>
-
-
-
-
 
       <div class="columns">
         <div class="column is-full">
@@ -90,18 +83,18 @@
                 <tr>
                   <td>
                     <div class="wrapper">
-                      <span class="info">{{ financial.poNo }}</span> <br>
+                      <span class="info">{{ financial.poNo }}</span> <br />
                     </div>
                   </td>
 
                   <td>
                     <div class="wrapper">
-                      <span class="info">{{ financial.invoiceNo }}</span> <br>
+                      <span class="info">{{ financial.invoiceNo }}</span> <br />
                     </div>
                   </td>
                   <td>
                     <div class="wrapper">
-                      <span class="info">{{ financial.tour }}</span> <br>
+                      <span class="info">{{ financial.tour }}</span> <br />
                     </div>
                   </td>
 
@@ -148,7 +141,7 @@
                           title="Download Invoices"
                           width="30"
                           height="30"
-                        ></a>
+                        /></a>
                       </router-link>
                     </div>
                   </td>
@@ -163,50 +156,49 @@
 </template>
 <script>
 export default {
-  data(){
-		return {
+  data () {
+    return {
 
-      financialList : [
-                  {
-                    "poNo": '2020020119001' ,
-                    "invoiceNo": '#1092-122',
-                    "tour" : 'Kayaking di Perairan Bandung',
-                    "guest" : 'Novi Irianty',
-                    "status" : 'Waiting'
-                  },
-                  {
-                    "poNo": '2020020119002' ,
-                    "invoiceNo": '#1092-123',
-                    "tour" : 'Kayaking di Perairan Bandung',
-                    "guest" : 'Andi Ramadan',
-                    "status" : 'Unpaid'
-                  },
-                  {
-                    "poNo": '20200201190013' ,
-                    "invoiceNo": '#1092-124',
-                    "tour" : 'Kayaking di Perairan Bandung',
-                    "guest" : 'Gilang Mukhti',
-                    "status" : 'Paid'
-                  },
-                  {
-                    "poNo": '2020020119004' ,
-                    "invoiceNo": '#1092-125',
-                    "tour" : 'Kayaking di Perairan Bandung',
-                    "guest" : 'Wiwi Fitria',
-                    "status" : 'Cancelled'
-                  },
-                  {
-                    "poNo": '2020020119005' ,
-                    "invoiceNo": '#1092-126',
-                    "tour" : 'Kayaking di Perairan Bandung',
-                    "guest" : 'Sam Immanuel',
-                    "status" : 'Refunded'
-                  },
+      financialList: [
+        {
+          poNo: '2020020119001',
+          invoiceNo: '#1092-122',
+          tour: 'Kayaking di Perairan Bandung',
+          guest: 'Novi Irianty',
+          status: 'Waiting'
+        },
+        {
+          poNo: '2020020119002',
+          invoiceNo: '#1092-123',
+          tour: 'Kayaking di Perairan Bandung',
+          guest: 'Andi Ramadan',
+          status: 'Unpaid'
+        },
+        {
+          poNo: '20200201190013',
+          invoiceNo: '#1092-124',
+          tour: 'Kayaking di Perairan Bandung',
+          guest: 'Gilang Mukhti',
+          status: 'Paid'
+        },
+        {
+          poNo: '2020020119004',
+          invoiceNo: '#1092-125',
+          tour: 'Kayaking di Perairan Bandung',
+          guest: 'Wiwi Fitria',
+          status: 'Cancelled'
+        },
+        {
+          poNo: '2020020119005',
+          invoiceNo: '#1092-126',
+          tour: 'Kayaking di Perairan Bandung',
+          guest: 'Sam Immanuel',
+          status: 'Refunded'
+        }
 
+      ]
 
-        ]
-
-      }
-   }
+    }
+  }
 }
 </script>

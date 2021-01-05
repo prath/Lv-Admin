@@ -6,7 +6,7 @@
                 more comming tour
             -->
 
-      <hr class="space-lg">
+      <hr class="space-lg" />
       <form action="tour-preferences.html">
         <div class="columns">
           <div class="column generic-heading is-two-third">
@@ -26,7 +26,6 @@
           </div>
         </div>
       </form>
-
 
       <div class="columns filter-table-list">
         <div class="column is-full filter-wrapper">
@@ -48,13 +47,13 @@
             <img
               src="../assets/img/ic-search.svg"
               alt=""
-            >
+            />
             <input
               id="form1"
               type="text"
               class="form-control"
               placeholder="Find Tour Preferences"
-            >
+            />
           </div>
         </div>
       </div>
@@ -71,8 +70,8 @@
                         <input
                           type="checkbox"
                           checked="checked"
-                        >
-                        <span class="checkmark" />
+                        />
+                        <span class="checkmark"></span>
                       </label>
                     </div>
                     <!--
@@ -99,8 +98,8 @@
                         <label class="container">
                           <input
                             type="checkbox"
-                          >
-                          <span class="checkmark" />
+                          />
+                          <span class="checkmark"></span>
                         </label>
                       </div>
                     </div>
@@ -108,13 +107,13 @@
 
                   <td>
                     <div class="wrapper">
-                      <span class="info">{{ tour.key }}</span> <br>
+                      <span class="info">{{ tour.key }}</span> <br />
                     </div>
                   </td>
 
                   <td>
                     <div class="wrapper">
-                      <span class="info">{{ tour.value }}</span> <br>
+                      <span class="info">{{ tour.value }}</span> <br />
                     </div>
                   </td>
 
@@ -125,12 +124,12 @@
                           <a title="Edit User"><img
                             src="../assets/img/ic-edit-line.svg"
                             title="Edit Tour Preferences"
-                          ></a>
+                          /></a>
                         </router-link>
                         <a title="Delete User"><img
                           src="../assets/img/ic-delete-line.svg"
                           title="Delete Tour Preferences"
-                        ></a>
+                        /></a>
                       </span>
                     </div>
                   </td>
@@ -146,23 +145,23 @@
 
 <script>
 export default {
-  data(){
-		return {
+  data () {
+    return {
 
-      preferencesList : [
-                  {
-                    "id": '1' ,
-                    "key": 'Landscape',
-                    "value": 'Best Packages for camping, bbq, and camping in one step'
-                  },
-                  {
-                    "id": '2' ,
-                    "key": 'Mountain',
-                    "value": 'Best Packages for Hiking, Coffee Harvest, etc'
-                  },
-        ]
+      preferencesList: [
+        {
+          id: '1',
+          key: 'Landscape',
+          value: 'Best Packages for camping, bbq, and camping in one step'
+        },
+        {
+          id: '2',
+          key: 'Mountain',
+          value: 'Best Packages for Hiking, Coffee Harvest, etc'
+        }
+      ]
 
-      }
-   }
+    }
+  }
 }
 </script>

@@ -4,8 +4,8 @@ import actions from '@/store/actions.js'
 import getters from '@/store/getters.js'
 
 export default {
-	state,
-	mutations,
-	getters,
-	actions,
+  state,
+  mutations,
+  getters,
+  actions
 }
