@@ -1,12 +1,14 @@
-name: lokaven-action
+name: lokaven-pull-request-action
 
 on: 
-  push: 
+  pull_request:
+    types: [closed]
     branches:
       - develop
 
 jobs:
-  lokaven-action:
+  lokaven-pull-request-action:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
