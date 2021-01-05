@@ -24,7 +24,7 @@
         <div class="column is-half">
 
           <!-- total booking -->
-          <total-booking />
+          <total-booking/>
 
         </div>
       </div>
@@ -41,27 +41,13 @@
         <div class="column is-full">
 
           <!-- booking by contact table -->
-          <table-booking-by-contact />
+          <table-booking-by-contact
+            :bookings="bookingListDummy"
+          />
 
         </div>
       </div>
 
-      <!--
-        NEAR END EXPERIENCES
-       -->
-      <div class="generic-heading">
-        <h4>Nearly Ended Experiences</h4>
-        <p>List of nearly ended experiences</p>
-      </div>
-
-      <div class="columns">
-        <div class="column is-full">
-
-            <!-- near end exp table -->
-            <table-nearend-exp />
-
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -76,20 +62,19 @@
  * 2. need API to get total booking
  */
 
-import axios from 'axios'
 import moment from 'moment'
+import config from '@/config'
+
 import TotalRevenue from '@/components/childcomponents/TotalRevenue'
 import TotalBooking from '@/components/childcomponents/TotalBooking'
 import TableBookingByContact from '@/components/childcomponents/TableBookingByContact.vue'
-import TableNearendExp from '@/components/childcomponents/TableNearendExp.vue'
 
 export default {
   name: 'App',
   components: {
     TotalRevenue,
     TotalBooking,
-    TableBookingByContact,
-    TableNearendExp
+    TableBookingByContact
   },
   filters: {
     formatDate: function (value) {
@@ -102,7 +87,6 @@ export default {
     return {
       accessToken: '',
       isLoading: false,
-      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
       bookingList: '',
       bookingListDummy: [
         {
@@ -134,34 +118,7 @@ export default {
     }
   },
   mounted () {
-    if (!localStorage.accessToken) {
-      this.$router.push({ path: '/' })
-    } else {
-      this.accessToken = localStorage.accessToken
-    }
-
-    var header = {
-      headers: {
-        Authorization: `Bearer ${this.accessToken}`
-      }
-    }
-
-    this.isLoading = true
-    axios.get(this.apiUrl + 'auth/orders/list-admin?page=1&per_page=100&param=booking', header)
-      .then((res) => {
-        console.log('RESPONSE RECEIVED: ', res)
-        this.bookingList = res.data.data
-        this.isLoading = false
-      })
-      .catch((err) => {
-        console.log('AXIOS ERROR: ', err.response.data.title)
-        if (err.response.status === 401) {
-          localStorage.removeItem('accessToken')
-          localStorage.removeItem('hostId')
-          this.$router.push({ path: '/' })
-        }
-        this.isLoading = false
-      })
+    config.authCheck()
   }
 }
 </script>

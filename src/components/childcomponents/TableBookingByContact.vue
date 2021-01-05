@@ -11,11 +11,11 @@
     </thead>
 
     <tbody>
-      <tr v-for="(booking, i) in bookingListDummy" :key="i">
+      <tr v-for="(booking, i) in bookings" :key="i">
 
         <td>
           <div class="wrapper">
-            <span class="order_number">{{ booking.date }}</span> <br />
+            <span class="order_number"> asdsad{{ booking.date }}</span> <br />
           </div>
         </td>
 
@@ -61,8 +61,19 @@
 </template>
 
 <script>
+
+/**
+ * BOOKING BY CONTACT
+ *
+ * @todo
+ * - Still dummy
+ */
+
 export default {
-  name: 'TableBookingByContact'
+  name: 'TableBookingByContact',
+  props: {
+    bookings: Array
+  }
 }
 </script>
 
