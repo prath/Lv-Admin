@@ -57,7 +57,7 @@
 
             <tbody>
               <template v-for="(categories,key) in categoriesList">
-                <tr>
+                <tr :key="key">
                   <td>
                     <div class="wrapper">
                       <span class="order_number">{{ key+1 }}</span> <br />

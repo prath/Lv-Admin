@@ -575,17 +575,17 @@ export default {
     .price-flex h6{
       margin-bottom: 10px;
     }
-		.mapouter {
-				position: relative;
-				text-align: right;
-				height: 500px;
-				width: 100%;
-		}
+    .mapouter {
+        position: relative;
+        text-align: right;
+        height: 500px;
+        width: 100%;
+    }
 
-		.gmap_canvas {
-				overflow: hidden;
-				background: none !important;
-				height: 500px !important;
-				width: 100%;
-		}
+    .gmap_canvas {
+        overflow: hidden;
+        background: none !important;
+        height: 500px !important;
+        width: 100%;
+    }
 </style>

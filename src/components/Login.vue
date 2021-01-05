@@ -28,7 +28,7 @@
               Isikan form di bawah ini untuk mengisi informasi anda agar kami dapat memberikan suggest tour
               untuk anda.
             </p>
-            <form @submit="checkForm">
+            <form @submit.prevent="checkForm">
               <div class="form-group column is-two-thirds">
                 <input
                   v-model="email"
@@ -136,7 +136,8 @@ export default {
     },
     checkForm: function (e) {
       if (this.email && this.password) {
-        this.submit
+        console.log('here?')
+        this.submit()
       }
 
       if (!this.email) {
@@ -147,8 +148,6 @@ export default {
 
         // this.errors.push('Password required.');
       }
-
-      e.preventDefault()
     }
 
   }

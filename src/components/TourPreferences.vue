@@ -89,9 +89,9 @@
 
             <tbody>
               <template
-                v-for="(tour) in preferencesList"
+                v-for="(tour, k) in preferencesList"
               >
-                <tr>
+                <tr :key="k">
                   <td>
                     <div class="wrapper">
                       <div class="form-check">

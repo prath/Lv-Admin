@@ -91,8 +91,8 @@
             </thead>
 
             <tbody>
-              <template v-for="(refund) in refundList">
-                <tr>
+              <template v-for="(refund, k) in refundList">
+                <tr :key="k">
                   <td>
                     <div class="wrapper">
                       <div class="form-check">

@@ -311,8 +311,8 @@ export default {
     /**
      * SET STATUS/BADGES OF ID & BUSINESS LICENSE UPLOADS
      */
-    statusUpload (id_status) {
-      switch (id_status) {
+    statusUpload (idStatus) {
+      switch (idStatus) {
         case 0:
           this.status.name = 'pending'
           this.status.className = 'badges--unprocess'

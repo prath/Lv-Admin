@@ -92,8 +92,8 @@
             </thead>
 
             <tbody>
-              <template v-for="(content) in contentList">
-                <tr>
+              <template v-for="(content, k) in contentList">
+                <tr :key="k">
                   <td>
                     <div class="wrapper">
                       <div class="form-check">
@@ -123,8 +123,8 @@
                     <div class="wrapper">
                       <div>
                         <ul>
-                          <template v-for="(tour) in content.tour">
-                            <li>
+                          <template v-for="(tour, k) in content.tour">
+                            <li :key="k">
                               <p>{{ tour.name }}</p>
                             </li>
                           </template>

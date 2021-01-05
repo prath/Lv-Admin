@@ -94,16 +94,16 @@ export default {
         })
     }
   },
-  props: [
-    'first_name',
-    'last_name',
-    'phone_number',
-    'host_id',
-    'user_uid',
-    'is_verified',
-    'business_name',
-    'email'
-  ],
+  props: {
+    last_name: String,
+    phone_number: Number,
+    host_id: String,
+    first_name: String,
+    user_uid: String,
+    is_verified: Boolean,
+    business_name: String,
+    email: String
+  },
   data () {
     return {
       apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
@@ -111,9 +111,9 @@ export default {
     }
   },
   methods: {
-    getTotalTour (host_id) {
-      if (typeof (host_id) !== 'undefined' || host_id !== null) {
-        axios.get(this.apiUrl + 'package/by-tourhosts/' + host_id)
+    getTotalTour (hostId) {
+      if (typeof (hostId) !== 'undefined' || hostId !== null) {
+        axios.get(this.apiUrl + 'package/by-tourhosts/' + hostId)
           .then((res) => {
             this.totalPackages = res.data.data.length
           })

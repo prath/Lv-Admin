@@ -79,8 +79,8 @@
             </thead>
 
             <tbody>
-              <template v-for="(financial) in financialList">
-                <tr>
+              <template v-for="(financial, k) in financialList">
+                <tr :key="k">
                   <td>
                     <div class="wrapper">
                       <span class="info">{{ financial.poNo }}</span> <br />

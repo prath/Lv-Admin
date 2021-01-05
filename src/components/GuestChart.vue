@@ -7,10 +7,10 @@
   </highcharts>
 </template>
 <style scoped>
-	.chart{
-		width: 100%;
-		height: 400px;
-	}
+  .chart{
+    width: 100%;
+    height: 400px;
+  }
 </style>
 <script>
 

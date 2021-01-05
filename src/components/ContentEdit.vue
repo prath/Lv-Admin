@@ -110,8 +110,8 @@ Tidak harus selalu mahal, Anda juga bisa menikmati travelling dengan dana yang m
                   </thead>
 
                   <tbody>
-                    <template v-for="(tour) in value">
-                      <tr>
+                    <template v-for="(tour, k) in value">
+                      <tr :key="k">
                         <td>
                           <div class="wrapper">
                             <div>

@@ -1,3 +1,4 @@
+import Vue from 'vue/dist/vue.js'
 Vue.component('v-select', VueSelect.VueSelect)
 
 new Vue({

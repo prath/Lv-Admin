@@ -464,7 +464,7 @@ export default {
 
     checkForm: function (e) {
       e.preventDefault()
-      if (this.date_of_birth == '') {
+      if (this.date_of_birth === '') {
         this.error = 'Date not empty'
         return false
       }

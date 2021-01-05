@@ -226,9 +226,9 @@ export default {
      *
      * Set badges of ID & business license photo uploads
      */
-    status (id_status) {
+    status (idStatus) {
       const status = {}
-      switch (id_status) {
+      switch (idStatus) {
         case 0:
           status.name = 'pending'
           status.className = 'badges--unprocess'
