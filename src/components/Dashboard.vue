@@ -462,7 +462,7 @@ import axios from 'axios'
 import moment from 'moment'
 export default {
     name: 'App',
-    data(){
+    data (){
         return {
             accessToken: '',
             isLoading: false,
@@ -504,7 +504,7 @@ export default {
             }
         }
     },
-    mounted() {
+    mounted () {
         if (!localStorage.accessToken) {
             this.$router.push({ path: '/' })
         }else{
