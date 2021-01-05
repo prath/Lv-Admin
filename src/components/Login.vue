@@ -129,6 +129,7 @@ export default {
         })
         .catch((err) => {
           console.log('AXIOS ERROR: ', err.response.data.title)
+          // console.log(err)
           this.errors = []
           this.errors.push(err.response.data.title)
           this.isLoading = false
@@ -136,7 +137,6 @@ export default {
     },
     checkForm: function (e) {
       if (this.email && this.password) {
-        console.log('here?')
         this.submit()
       }
 
