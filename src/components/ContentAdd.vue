@@ -2,7 +2,7 @@
   <div class="column site-content">
     <div class="container-fluid">
       <div class="columns">
-        <div class="column generic-heading is-two-third" />
+        <div class="column generic-heading is-two-third"></div>
       </div>
 
       <div class="columns">
@@ -25,7 +25,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
-                  >
+                  />
                 </div>
               </div>
             </div>
@@ -40,7 +40,7 @@
                     cols="30"
                     rows="10"
                     class="form-control"
-                  />
+                  ></textarea>
                 </div>
               </div>
             </div>
@@ -54,19 +54,18 @@
                 id="customFile"
                 type="file"
                 class="custom-file-input"
-              >
+              />
               <img
                 src="../assets/img/ic-image-white.svg"
                 alt=""
-              >
+              />
             </div>
-
 
             <div class="sub-heading">
               <p>Please Choose Tour Packages List</p>
             </div>
 
-            <hr class="space">
+            <hr class="space" />
 
             <multiselect
               v-model="value"
@@ -92,9 +91,7 @@
               </template>
             </multiselect>
 
-
-
-            <hr class="space">
+            <hr class="space" />
 
             <div class="columns">
               <div class="column is-full">
@@ -108,12 +105,12 @@
                   </thead>
 
                   <tbody>
-                    <template v-for="(tour) in value">
-                      <tr>
+                    <template v-for="(tour, k) in value">
+                      <tr :key="k">
                         <td>
                           <div class="wrapper">
                             <div>
-                              <span class="order_number">{{ tour.name }}</span> <br>
+                              <span class="order_number">{{ tour.name }}</span> <br />
                               <p>{{ tour.type }}</p>
                             </div>
                           </div>
@@ -135,10 +132,7 @@
               </div>
             </div>
 
-
-
-
-            <div class="clear" />
+            <div class="clear"></div>
           </div>
         </div>
         <div class="column sidebar is-one-third">
@@ -158,13 +152,12 @@
             </button>
           </router-link>
 
-          <hr>
+          <hr />
         </div>
       </div>
     </div>
   </div>
 </template>
-
 
 <script>
 import Multiselect from 'vue-multiselect'
@@ -176,10 +169,10 @@ export default {
     return {
       value: [],
       options: [
-        { name: 'Kayaking di Perairan Bandung', type: 'Open Trip', id:'1',startDate:'01/05/2020',endDate:'15/05/2020' },
-        { name: 'Hang Gliding Tandem', type: 'Private Trip', id:'2',startDate:'01/05/2020',endDate:'15/05/2020' },
-        { name: 'Barbecue Party di Outdoor, Bandung', type: 'Open Trip', id:'3',startDate:'01/05/2020',endDate:'15/05/2020' },
-        { name: 'Naik Land Rover Keliling Bandung', type: 'Private Trip', id:'4',startDate:'01/05/2020',endDate:'15/05/2020' }
+        { name: 'Kayaking di Perairan Bandung', type: 'Open Trip', id: '1', startDate: '01/05/2020', endDate: '15/05/2020' },
+        { name: 'Hang Gliding Tandem', type: 'Private Trip', id: '2', startDate: '01/05/2020', endDate: '15/05/2020' },
+        { name: 'Barbecue Party di Outdoor, Bandung', type: 'Open Trip', id: '3', startDate: '01/05/2020', endDate: '15/05/2020' },
+        { name: 'Naik Land Rover Keliling Bandung', type: 'Private Trip', id: '4', startDate: '01/05/2020', endDate: '15/05/2020' }
       ]
     }
   }

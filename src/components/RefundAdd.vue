@@ -2,7 +2,7 @@
   <div class="column site-content">
     <div class="container-fluid">
       <div class="columns">
-        <div class="column generic-heading is-two-third" />
+        <div class="column generic-heading is-two-third"></div>
       </div>
 
       <div class="columns">
@@ -25,7 +25,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
-                  >
+                  />
                 </div>
               </div>
             </div>
@@ -39,7 +39,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
-                  >
+                  />
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@
                       type="text"
                       class="form-control"
                       placeholder="0"
-                    >
+                    />
                     <div class="input-group-append">
                       <div class="field filter-form">
                         <div class="control">
@@ -86,7 +86,7 @@
               </div>
             </div>
 
-            <div class="clear" />
+            <div class="clear"></div>
 
             <div class="columns ">
               <div class="column is-6">
@@ -97,7 +97,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
-                  >
+                  />
                 </div>
               </div>
 
@@ -109,7 +109,7 @@
                     type="text"
                     class="form-control"
                     placeholder=""
-                  >
+                  />
                 </div>
               </div>
             </div>
@@ -145,13 +145,12 @@
                     type="text"
                     class="form-control"
                     placeholder=""
-                  >
+                  />
                 </div>
               </div>
             </div>
 
-
-            <div class="clear" />
+            <div class="clear"></div>
           </div>
         </div>
         <div class="column sidebar is-one-third">
@@ -171,7 +170,7 @@
             </button>
           </router-link>
 
-          <hr>
+          <hr />
         </div>
       </div>
     </div>

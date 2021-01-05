@@ -8,7 +8,7 @@
             class="product-title"
             placeholder="Nama User"
             value="Nama User"
-          >
+          />
         </div>
       </div>
 
@@ -33,13 +33,10 @@
                     class="form-control"
                     placeholder=""
                     value="Michelle "
-                  >
+                  />
                 </div>
               </div>
             </div>
-
-
-
 
             <div class="columns is-gapless">
               <div class="column">
@@ -51,7 +48,7 @@
                     class="form-control"
                     placeholder=""
                     value="Sandra"
-                  >
+                  />
                 </div>
               </div>
             </div>
@@ -66,7 +63,7 @@
                     class="form-control"
                     placeholder=""
                     value="michelle@gmail.com"
-                  >
+                  />
                 </div>
               </div>
 
@@ -79,7 +76,7 @@
                     class="form-control"
                     placeholder=""
                     value="bandung"
-                  >
+                  />
                 </div>
               </div>
             </div>
@@ -94,7 +91,7 @@
                     class="form-control"
                     placeholder=""
                     value="11/12/1980"
-                  >
+                  />
                 </div>
               </div>
 
@@ -128,7 +125,7 @@
                     class="form-control"
                     placeholder=""
                     value="089992112221"
-                  >
+                  />
                 </div>
               </div>
 
@@ -141,7 +138,7 @@
                     disabled
                     class="form-control"
                     value="Guest"
-                  >
+                  />
                 </div>
               </div>
             </div>
@@ -175,7 +172,7 @@
                 </div>
               </div>
 
-              <div class="column is-6" />
+              <div class="column is-6"></div>
             </div>
 
             <div class="columns">
@@ -188,7 +185,7 @@
                     class="form-control"
                     placeholder=""
                     value="Indonesia"
-                  >
+                  />
                 </div>
               </div>
 
@@ -202,8 +199,8 @@
                         type="radio"
 
                         name="radio"
-                      >
-                      <span class="radiomark" />
+                      />
+                      <span class="radiomark"></span>
                       Yes
                     </label>
                   </div>
@@ -216,8 +213,8 @@
                         type="radio"
                         name="radio"
                         checked="checked"
-                      >
-                      <span class="radiomark" />
+                      />
+                      <span class="radiomark"></span>
                       No
                     </label>
                   </div>
@@ -234,13 +231,12 @@
                 id="customFile"
                 type="file"
                 class="custom-file-input"
-              >
+              />
               <img
                 src="../assets/img/ic-image-white.svg"
                 alt=""
-              >
+              />
             </div>
-
 
             <div class="sub-heading">
               <p>Business</p>
@@ -256,7 +252,7 @@
                     class="form-control"
                     placeholder=""
                     value="PT. Kita Sejahtera Bersama"
-                  >
+                  />
                 </div>
               </div>
 
@@ -335,20 +331,18 @@
                 <img
                   src="../assets/img/ktp.jpeg"
                   alt=""
-                >
+                />
               </div>
               <div class="column is-6">
                 <p><b>Business ID</b></p>
                 <img
                   src="../assets/img/npwp.jpeg"
                   alt=""
-                >
+                />
               </div>
             </div>
 
-
-
-            <div class="clear" />
+            <div class="clear"></div>
           </div>
         </div>
         <div class="column sidebar is-one-third">
@@ -362,7 +356,7 @@
             </button>
           </router-link>
 
-          <hr>
+          <hr />
         </div>
       </div>
     </div>

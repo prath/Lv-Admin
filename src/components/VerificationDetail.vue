@@ -1,10 +1,19 @@
 <template>
   <div class="modal is-active">
-    <div class="modal-background" @click="close"></div>
-    <div class="modal-content modal--big" v-if="loadingStatus">
+    <div
+      class="modal-background"
+      @click="close"
+    ></div>
+    <div
+      v-if="loadingStatus"
+      class="modal-content modal--big"
+    >
       Updating Data....
     </div>
-    <div class="modal-content modal--big" v-else>
+    <div
+      v-else
+      class="modal-content modal--big"
+    >
       <section v-if="errorMsg.status">
         <pre>
             We're sorry, we're not able to retrieve this information at the moment, please try back later
@@ -12,86 +21,132 @@
         </pre>
       </section>
 
-      <div v-if="isUserDataEmpty">Loading....</div>
+      <div v-if="isUserDataEmpty">
+        Loading....
+      </div>
       <div v-else>
         <form @submit.prevent="updateData">
           <div class="heading border with-avatar">
-
             <!--
               AVATAR
             -->
-            <div class="avatar avatar--medium avatar--profile"><img src="https://images.unsplash.com/photo-1516914943479-89db7d9ae7f2?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTl8fHBvcnRyYWl0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Profile picture"></div>
+            <div class="avatar avatar--medium avatar--profile">
+              <img
+                src="https://images.unsplash.com/photo-1516914943479-89db7d9ae7f2?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTl8fHBvcnRyYWl0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+                alt="Profile picture"
+              />
+            </div>
 
             <!--
               NAMES
             -->
             <header>
-              <h4 class="head">{{ hostData.business_name }}</h4>
+              <h4 class="head">
+                {{ hostData.business_name }}
+              </h4>
               <span class="sub-head">{{ userData.first_name + ' ' + userData.last_name }}</span>
             </header>
-            <span v-if="!userData.is_verified" class="badges badges--unverified" >unverified</span>
+            <span
+              v-if="!userData.is_verified"
+              class="badges badges--unverified"
+            >unverified</span>
           </div>
 
           <section>
-
             <!--
               META INFOS
             -->
             <div class="meta-info flex between-md top-md">
               <div class="item-container">
                 <div class="item">
-                  <div class="title">Business Address</div>
-                  <div class="value">{{ hostData.address }}</div>
+                  <div class="title">
+                    Business Address
+                  </div>
+                  <div class="value">
+                    {{ hostData.address }}
+                  </div>
                 </div>
                 <div class="item">
-                  <div class="title">Business Category</div>
-                  <div class="value">{{ hostData.business_category }}</div>
+                  <div class="title">
+                    Business Category
+                  </div>
+                  <div class="value">
+                    {{ hostData.business_category }}
+                  </div>
                 </div>
               </div>
 
               <div class="item-container">
                 <div class="item">
-                  <div class="title">About Business</div>
-                  <div class="value">{{ hostData.business_about }}</div>
+                  <div class="title">
+                    About Business
+                  </div>
+                  <div class="value">
+                    {{ hostData.business_about }}
+                  </div>
                 </div>
               </div>
 
               <div class="item-container">
                 <div class="item">
-                  <div class="title">Phone</div>
-                  <div class="value">{{ userData.phone_number }}</div>
+                  <div class="title">
+                    Phone
+                  </div>
+                  <div class="value">
+                    {{ userData.phone_number }}
+                  </div>
                 </div>
                 <div class="item">
-                  <div class="title">Email</div>
-                  <div class="value">{{ userData.email }}</div>
+                  <div class="title">
+                    Email
+                  </div>
+                  <div class="value">
+                    {{ userData.email }}
+                  </div>
                 </div>
                 <div class="item">
-                  <div class="title">Signup Date</div>
-                  <div class="value">{{ hostData.created_at | formatDate }}</div>
+                  <div class="title">
+                    Signup Date
+                  </div>
+                  <div class="value">
+                    {{ hostData.created_at | formatDate }}
+                  </div>
                 </div>
               </div>
-
             </div>
 
-            <hr>
+            <hr />
 
             <!--
               PHOTOS OF ID AND BUSINESS LICENSE
             -->
             <h5>Uploaded Photos</h5>
             <div class="flex between-md top-md">
-
               <!--
                 PHOTO ID
               -->
               <figure class="photo-id">
-                <img :src="hostData.bussiness_id" alt="ID Card">
+                <img
+                  :src="hostData.bussiness_id"
+                  alt="ID Card"
+                />
                 <figcaption>Photo ID Card</figcaption>
-                <span class="badges" :class="statusUpload(hostData.card_id_status).className">{{ statusUpload(hostData.card_id_status).name }}</span>
+                <span
+                  class="badges"
+                  :class="statusUpload(hostData.card_id_status).className"
+                >{{ statusUpload(hostData.card_id_status).name }}</span>
                 <div class="form-group">
                   <div class="select select-narrow">
-                    <select class="form-control narrow" v-model="photoIdApproval">
-                      <option disabled value="">- Review this photo -</option>
+                    <select
+                      v-model="photoIdApproval"
+                      class="form-control narrow"
+                    >
+                      <option
+                        disabled
+                        value=""
+                      >
+                        - Review this photo -
+                      </option>
                       <option>Approve</option>
                       <option>Reject</option>
                     </select>
@@ -103,13 +158,27 @@
                 BUSINESS LICENSE
               -->
               <figure class="photo-id">
-                <img :src="hostData.card_id" alt="ID Card">
+                <img
+                  :src="hostData.card_id"
+                  alt="ID Card"
+                />
                 <figcaption>Business License</figcaption>
-                <span class="badges" :class="statusUpload(hostData.bussiness_id_status).className">{{ statusUpload(hostData.bussiness_id_status).name }}</span>
+                <span
+                  class="badges"
+                  :class="statusUpload(hostData.bussiness_id_status).className"
+                >{{ statusUpload(hostData.bussiness_id_status).name }}</span>
                 <div class="form-group">
                   <div class="select select-narrow">
-                    <select class="form-control narrow" v-model="businessIdApproval">
-                      <option disabled value="">- Review this photo -</option>
+                    <select
+                      v-model="businessIdApproval"
+                      class="form-control narrow"
+                    >
+                      <option
+                        disabled
+                        value=""
+                      >
+                        - Review this photo -
+                      </option>
                       <option>Approve</option>
                       <option>Reject</option>
                     </select>
@@ -123,13 +192,19 @@
               --
               showed only if at least one of the pic is rejected
             -->
-            <div class="form-group" v-if="toggleRejectMsg()">
+            <div
+              v-if="toggleRejectMsg()"
+              class="form-group"
+            >
               <label for="rejection_message">Rejection Message</label>
-              <textarea name="rejection_message" class="form-control" v-model="rejectionMsg"></textarea>
+              <textarea
+                v-model="rejectionMsg"
+                name="rejection_message"
+                class="form-control"
+              ></textarea>
             </div>
-
           </section>
-          <hr>
+          <hr />
 
           <!--
             ACTION BUTTONS
@@ -137,7 +212,12 @@
           <div class="action-button-group flex between-md middle-md">
             <h5>Verify this host</h5>
             <div>
-              <button class="btn btn--default btn--text btn--muted btn--medium btn--text-warning" @click="close">Cancel</button>
+              <button
+                class="btn btn--default btn--text btn--muted btn--medium btn--text-warning"
+                @click="close"
+              >
+                Cancel
+              </button>
               <button
                 type="submit"
                 class="btn btn--default btn--medium"
@@ -148,11 +228,14 @@
               </button>
             </div>
           </div>
-
         </form>
       </div>
     </div>
-    <button class="modal-close is-large" aria-label="close" @click="close"></button>
+    <button
+      class="modal-close is-large"
+      aria-label="close"
+      @click="close"
+    ></button>
   </div>
 </template>
 
@@ -176,7 +259,10 @@ import moment from 'moment'
 import _ from 'lodash'
 
 export default {
-  data() {
+  props: [
+    'hostId'
+  ],
+  data () {
     return {
       status: {},
       businessIdApproval: '',
@@ -187,24 +273,21 @@ export default {
       updatedData: {}
     }
   },
-  props: [
-    'hostId'
-  ],
-  mounted() {
+  mounted () {
     /**
      * GET USER DATA
      *
      * if host data available, then get user data based on user id retrieved from host data
      */
-    if(!_.isEmpty(this.hostData)) {
+    if (!_.isEmpty(this.hostData)) {
       this.getUserByID(this.hostData.user_uid)
     }
   },
-  updated() {
+  updated () {
     /**
      * CLOSE MODAL AFTER PROCESS DONE
      */
-    if(this.processCompleted) {
+    if (this.processCompleted) {
       this.$emit('close')
     }
   },
@@ -222,33 +305,33 @@ export default {
     /**
      * CLOSE MODAL
      */
-    close() {
+    close () {
       this.$emit('close')
     },
     /**
      * SET STATUS/BADGES OF ID & BUSINESS LICENSE UPLOADS
      */
-    statusUpload(id_status) {
-      switch(id_status) {
+    statusUpload (idStatus) {
+      switch (idStatus) {
         case 0:
-          this.status.name = "pending"
-          this.status.className = "badges--unprocess"
-          break;
+          this.status.name = 'pending'
+          this.status.className = 'badges--unprocess'
+          break
         case 1:
-          this.status.name = "unreviewed"
-          this.status.className = "badges--unverified"
-          break;
+          this.status.name = 'unreviewed'
+          this.status.className = 'badges--unverified'
+          break
         case 2:
-          this.status.name = "approved"
-          this.status.className = "badges--verified"
-          break;
+          this.status.name = 'approved'
+          this.status.className = 'badges--verified'
+          break
         case 3:
-          this.status.name = "rejected"
-          this.status.className = "badges--processed"
-          break;
+          this.status.name = 'rejected'
+          this.status.className = 'badges--processed'
+          break
         default:
-          this.status.name = "unreviewed"
-          this.status.className = "badges--unverified"
+          this.status.name = 'unreviewed'
+          this.status.className = 'badges--unverified'
       }
 
       return this.status
@@ -259,12 +342,12 @@ export default {
      * Button will transform into rejection if at least one of the photo is rejected
      * Button will transform into approval & verification if both photos are approved
      */
-    toggleBtn: function() {
-      if ( (this.photoIdApproval === 'Reject' || this.businessIdApproval === 'Reject') ) {
+    toggleBtn: function () {
+      if ((this.photoIdApproval === 'Reject' || this.businessIdApproval === 'Reject')) {
         this.btnText = 'Decline Request'
         this.btnDisabled = false
         return 'btn--warning'
-      } else if(this.photoIdApproval === 'Approve' && this.businessIdApproval === 'Approve') {
+      } else if (this.photoIdApproval === 'Approve' && this.businessIdApproval === 'Approve') {
         this.btnText = 'Approve & Verify'
         this.btnDisabled = false
         return 'btn--primary'
@@ -279,7 +362,7 @@ export default {
      *
      * Toggle rejection message text area if at least one of the photos is rejected
      */
-    toggleRejectMsg: function() {
+    toggleRejectMsg: function () {
       return (this.photoIdApproval === 'Reject' || this.businessIdApproval === 'Reject')
     },
     /**
@@ -288,25 +371,25 @@ export default {
      * check the status of ID & busiess license photos after reviewed by admin
      * update the verification/host data
      */
-    updateData: function() {
+    updateData: function () {
       let photoID = this.hostData.card_id_status
       let businessID = this.hostData.bussiness_id_status
       let isVerified = false
 
       // Assign each status to the corresponding numbers
-      if(this.photoIdApproval === 'Reject') {
+      if (this.photoIdApproval === 'Reject') {
         photoID = 3
       } else if (this.photoIdApproval === 'Approve') {
         photoID = 2
       }
-      if(this.businessIdApproval === 'Reject') {
+      if (this.businessIdApproval === 'Reject') {
         businessID = 3
       } else if (this.businessIdApproval === 'Approve') {
         businessID = 2
       }
 
       // set verification status if both photos are approved
-      if(photoID === 2 && businessID === 2) {
+      if (photoID === 2 && businessID === 2) {
         isVerified = true
       }
 
@@ -327,7 +410,7 @@ export default {
     /**
      * FORMAT DATE INTO A MORE READABLE FORMAT
      */
-    formatDate: function(value) {
+    formatDate: function (value) {
       if (value) {
         return moment(String(value)).format('DD MMM YYYY, h:mm:ss')
       }

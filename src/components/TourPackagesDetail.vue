@@ -9,10 +9,10 @@
       <div class="columns">
         <div class="column generic-heading is-two-third">
           <h3>TOUR DETAIL</h3>
-          <p>Tour Name : <b> {{items.title}} </b></p>
+          <p>Tour Name : <b> {{ items.title }} </b></p>
         </div>
         <div class="column generic-heading is-one-third has-text-right is-vcentered ">
-          <span class="badges badges--primary">{{items.type_tour}}</span>
+          <span class="badges badges--primary">{{ items.type_tour }}</span>
         </div>
       </div>
 
@@ -23,65 +23,86 @@
               <h4 class="column">
                 Description
               </h4>
-              <div class="flex item-durations" v-for="(item, i) in items.schedules" :key="i">
-                  <p class=" column is-pulled-right has-text-right" v-if="i <= 0">
-                    Min Quota :
-                    <b>{{item.min_quota}} Orang</b>
+              <div
+                v-for="(item, i) in items.schedules"
+                :key="i"
+                class="flex item-durations"
+              >
+                <p
+                  v-if="i <= 0"
+                  class=" column is-pulled-right has-text-right"
+                >
+                  Min Quota :
+                  <b>{{ item.min_quota }} Orang</b>
 
-                    <br>
+                  <br />
 
-                    Max Quota :
-                    <b>{{item.max_quota}} Orang</b>
-                  </p>
+                  Max Quota :
+                  <b>{{ item.max_quota }} Orang</b>
+                </p>
               </div>
             </div>
 
-            <div class="clear" />
+            <div class="clear"></div>
 
             <div class="description_tour">
-              <div class="flex item-durations" v-for="(item, i) in items.medias" :key="i">
-              <img
-                :src="item.url"
-                alt=""
-                v-if="i <= 0"
+              <div
+                v-for="(item, i) in items.medias"
+                :key="i"
+                class="flex item-durations"
               >
+                <img
+                  v-if="i <= 0"
+                  :src="item.url"
+                  alt=""
+                />
               </div>
-              <div class="clear" />
+              <div class="clear"></div>
               <p>
-               {{items.description}}
+                {{ items.description }}
               </p>
             </div>
 
-            <div class="clear" />
+            <div class="clear"></div>
             <div class="heading columns">
-              <h4 class="column">Term of Services & Policy</h4>
+              <h4 class="column">
+                Term of Services & Policy
+              </h4>
             </div>
-            <p>{{items.terms_of_service}}</p>
-            <div class="flex item-durations price-flex" v-for="(item, i) in items.custom_policies" :key="i">
-                <p>{{item.policy}}</p>
+            <p>{{ items.terms_of_service }}</p>
+            <div
+              v-for="(item, i) in items.custom_policies"
+              :key="i"
+              class="flex item-durations price-flex"
+            >
+              <p>{{ item.policy }}</p>
             </div>
 
-
-
-            <div class="clear" />
+            <div class="clear"></div>
             <div class="heading columns">
               <h4 class="column">
                 Price
               </h4>
             </div>
 
-            <div class="flex item-durations price-flex" v-for="(item, i) in items.prices" :key="i">
+            <div
+              v-for="(item, i) in items.prices"
+              :key="i"
+              class="flex item-durations price-flex"
+            >
+              <h6 v-if="item.price">
+                Adult : Rp. {{ Number(item.price).toLocaleString('id') }},- / pax
+              </h6>
 
-              <h6 v-if="item.price">Adult : Rp. {{Number(item.price).toLocaleString('id')}},- / pax </h6>
-
-              <h6 v-if="item.kid_price">Kid Price : Rp. {{Number(item.kid_price).toLocaleString('id')}},- / pax </h6>
-              <h6 v-if="item.kid_price">Min Kids Age : {{item.min_kid_age}} to {{item.max_kid_age}} Years</h6>
-
+              <h6 v-if="item.kid_price">
+                Kid Price : Rp. {{ Number(item.kid_price).toLocaleString('id') }},- / pax
+              </h6>
+              <h6 v-if="item.kid_price">
+                Min Kids Age : {{ item.min_kid_age }} to {{ item.max_kid_age }} Years
+              </h6>
             </div>
 
-
-
-            <div class="clear" />
+            <div class="clear"></div>
             <div class="heading columns">
               <h4 class="column">
                 Schedules
@@ -90,14 +111,17 @@
 
             <table class="table is-fullwidth table--orders--detail">
               <tbody>
-                <div class="flex item-durations price-flex" v-for="(item, i) in items.schedules" :key="i">
+                <div
+                  v-for="(item, i) in items.schedules"
+                  :key="i"
+                  class="flex item-durations price-flex"
+                >
                   <tr class="product">
-
                     <td>
                       <div class="wrapper">
                         <div>
-                          <span><b> {{item.start_date | formatDate}}</b></span>
-                          <p> {{item.start_date | formatDay}}</p>
+                          <span><b> {{ item.start_date | formatDate }}</b></span>
+                          <p> {{ item.start_date | formatDay }}</p>
                         </div>
                       </div>
                     </td>
@@ -105,23 +129,20 @@
                     <td>
                       <div class="wrapper">
                         <div>
-                          <p>{{item.durations > 1 ? item.durations + ' Day' : item.durations + ' Days' }}</p>
+                          <p>{{ item.durations > 1 ? item.durations + ' Day' : item.durations + ' Days' }}</p>
                         </div>
                       </div>
                     </td>
 
                     <td>
-                      <div class="wrapper">
-                      </div>
+                      <div class="wrapper"></div>
                     </td>
                   </tr>
                 </div>
-
-
               </tbody>
             </table>
 
-            <div class="clear" />
+            <div class="clear"></div>
             <div class="heading columns">
               <h4 class="column">
                 Location
@@ -140,19 +161,16 @@
                   marginheight="0"
                   marginwidth="0"
                   style="height:500px"
-                />
+                ></iframe>
               </div>
             </div>
 
-
-
-<!--
+            <!--
 
             <div class="clear" />
             <div class="heading column">
               <h4>Rating</h4>
             </div>
-
 
             <div class="comments">
               <div class="comment-wrapper">
@@ -173,7 +191,6 @@
                         </p>
                       </div>
                     </div>
-
 
                     <div class="content">
                       <span class="four-star">
@@ -227,7 +244,6 @@
                       </div>
                     </div>
 
-
                     <div class="content">
                       <span class="three-star">
                         <img
@@ -264,8 +280,6 @@
                 </div>
               </div>
             </div>
-
-
 
             <div class="clear" />
             <div class="heading columns">
@@ -363,7 +377,6 @@
             </div>
             -->
           </div>
-
         </div>
         <div class="column sidebar is-one-third">
           <div class="title">
@@ -371,36 +384,44 @@
           </div>
 
           <div class="detail-info">
-            <div class="flex item-durations price-flex" v-for="(item, i) in items.categories" :key="i">
-                <p>
-                  <b>{{item}}, </b>
-                </p>
+            <div
+              v-for="(item, i) in items.categories"
+              :key="i"
+              class="flex item-durations price-flex"
+            >
+              <p>
+                <b>{{ item }}, </b>
+              </p>
             </div>
           </div>
 
-          <hr class="no-line sm">
+          <hr class="no-line sm" />
 
           <div class="title">
             Tags
           </div>
 
           <div class="detail-info">
-            <div class="flex item-durations price-flex" >
-              <p><b v-for="(item, i) in items.tags" :key="i"> {{item}}, </b></p>
+            <div class="flex item-durations price-flex">
+              <p>
+                <b
+                  v-for="(item, i) in items.tags"
+                  :key="i"
+                > {{ item }}, </b>
+              </p>
             </div>
           </div>
 
-          <hr class="no-line sm">
+          <hr class="no-line sm" />
           <div class="title">
             Type
           </div>
 
-
           <div class="detail-info">
-            <p><b>{{items.type_tour === 'open' ? 'Open Tour' : 'Private Tour'}}</b></p>
+            <p><b>{{ items.type_tour === 'open' ? 'Open Tour' : 'Private Tour' }}</b></p>
           </div>
 
-          <hr class="no-line sm">
+          <hr class="no-line sm" />
           <div class="title">
             Status
           </div>
@@ -430,7 +451,7 @@
               </button>
             </div>
           </div>
-          <hr>
+          <hr />
           <div class="title">
             Host
           </div>
@@ -439,18 +460,18 @@
               <img
                 src="../assets/img/ic-default-avatar.svg"
                 alt=""
-              >
+              />
             </div>
-            <h5>{{item_host.business_name}}</h5>
+            <h5>{{ item_host.business_name }}</h5>
           </div>
-          <hr class="no-line sm">
+          <hr class="no-line sm" />
           <div class="detail-info">
-            <p><b>{{item_host.business_category}}</b></p>
-            <p><b>{{item_host.address}}</b></p>
-            <p><a href="#"><b>{{total_packages.length}} Tour Packages</b></a></p>
+            <p><b>{{ item_host.business_category }}</b></p>
+            <p><b>{{ item_host.address }}</b></p>
+            <p><a href="#"><b>{{ total_packages.length }} Tour Packages</b></a></p>
           </div>
 
-          <hr>
+          <hr />
         </div>
       </div>
     </div>
@@ -461,7 +482,20 @@
 import moment from 'moment'
 import axios from 'axios'
 export default {
-	data(){
+  filters: {
+    formatDate: function (value) {
+      if (value) {
+        return moment(String(value)).format('DD MMMM YYYY')
+      }
+    },
+    formatDay: function (value) {
+      if (value) {
+        return moment(String(value)).format('dddd')
+      }
+    }
+
+  },
+  data () {
     return {
       items: '',
       tourId: this.$route.params.id_tour,
@@ -473,75 +507,59 @@ export default {
       total_packages: ''
     }
   },
-  methods: {
-    getHost: function (hostId){
-      if(hostId){
-        axios.get(this.apiUrl + 'host/get/' + hostId)
-            .then((res) => {
-              console.log("RESPONSE RECEIVED: ", res)
-              this.item_host = res.data.data
-              this.isLoading = false
-
-            })
-            .catch((err) => {
-              console.log("AXIOS ERROR: ", err.response.data.title)
-              this.isLoading = false
-            })
-      }
-    },
-    getTotalTour: function (hostId){
-      if(hostId){
-        axios.get(this.apiUrl + 'package/by-tourhosts/' + hostId)
-            .then((res) => {
-              console.log("RESPONSE RECEIVED: ", res)
-              this.total_packages = res.data.data
-              this.isLoading = false
-
-            })
-            .catch((err) => {
-              console.log("AXIOS ERROR: ", err.response.data.title)
-              this.isLoading = false
-            })
-      }
-    }
-  },
-  filters: {
-    formatDate: function (value) {
-       if (value) {
-        return moment(String(value)).format('DD MMMM YYYY')
-      }
-    },
-    formatDay: function (value) {
-       if (value) {
-        return moment(String(value)).format('dddd')
-      }
-    },
-
-  },
   created () {
     this.$router.onReady(() => {
       if (this.$route.name === 'tourdetail') {
-          if (!localStorage.accessToken) {
-              this.$router.push({ path: '/' })
-            }
-            this.isLoading = true;
-            axios.get(this.apiUrl + 'package/' + this.tourId)
-              .then((res) => {
-                console.log("RESPONSE RECEIVED: ", res)
-                this.items = res.data.data
-                this.isLoading = false
-                this.delete_status = this.items.delete_status
+        if (!localStorage.accessToken) {
+          this.$router.push({ path: '/' })
+        }
+        this.isLoading = true
+        axios.get(this.apiUrl + 'package/' + this.tourId)
+          .then((res) => {
+            console.log('RESPONSE RECEIVED: ', res)
+            this.items = res.data.data
+            this.isLoading = false
+            this.delete_status = this.items.delete_status
 
-                this.getHost(this.items.host_id);
-                this.getTotalTour(this.items.host_id);
-
-              })
-              .catch((err) => {
-                console.log("AXIOS ERROR: ", err.response.data.title)
-                this.isLoading = false
-              })
+            this.getHost(this.items.host_id)
+            this.getTotalTour(this.items.host_id)
+          })
+          .catch((err) => {
+            console.log('AXIOS ERROR: ', err.response.data.title)
+            this.isLoading = false
+          })
       }
     })
+  },
+  methods: {
+    getHost: function (hostId) {
+      if (hostId) {
+        axios.get(this.apiUrl + 'host/get/' + hostId)
+          .then((res) => {
+            console.log('RESPONSE RECEIVED: ', res)
+            this.item_host = res.data.data
+            this.isLoading = false
+          })
+          .catch((err) => {
+            console.log('AXIOS ERROR: ', err.response.data.title)
+            this.isLoading = false
+          })
+      }
+    },
+    getTotalTour: function (hostId) {
+      if (hostId) {
+        axios.get(this.apiUrl + 'package/by-tourhosts/' + hostId)
+          .then((res) => {
+            console.log('RESPONSE RECEIVED: ', res)
+            this.total_packages = res.data.data
+            this.isLoading = false
+          })
+          .catch((err) => {
+            console.log('AXIOS ERROR: ', err.response.data.title)
+            this.isLoading = false
+          })
+      }
+    }
   }
 }
 </script>
@@ -557,17 +575,17 @@ export default {
     .price-flex h6{
       margin-bottom: 10px;
     }
-		.mapouter {
-				position: relative;
-				text-align: right;
-				height: 500px;
-				width: 100%;
-		}
+    .mapouter {
+        position: relative;
+        text-align: right;
+        height: 500px;
+        width: 100%;
+    }
 
-		.gmap_canvas {
-				overflow: hidden;
-				background: none !important;
-				height: 500px !important;
-				width: 100%;
-		}
+    .gmap_canvas {
+        overflow: hidden;
+        background: none !important;
+        height: 500px !important;
+        width: 100%;
+    }
 </style>

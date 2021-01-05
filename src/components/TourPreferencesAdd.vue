@@ -2,7 +2,7 @@
   <div class="column site-content">
     <div class="container-fluid">
       <div class="columns">
-        <div class="column generic-heading is-two-third" />
+        <div class="column generic-heading is-two-third"></div>
       </div>
 
       <div class="columns">
@@ -16,7 +16,6 @@
               <p>Basic Info</p>
             </div>
 
-
             <div class="columns is-gapless">
               <div class="column">
                 <div class="form-group">
@@ -26,7 +25,7 @@
                     type="text"
                     class="form-control"
                     placeholder="exp: Landscape, Camping, Beach"
-                  >
+                  />
                 </div>
               </div>
             </div>
@@ -40,7 +39,7 @@
                     type="text"
                     class="form-control"
                     placeholder="exp: Barbeque and Camping at Beach."
-                  >
+                  />
                 </div>
               </div>
             </div>
@@ -57,7 +56,7 @@
             </button>
           </router-link>
 
-          <hr>
+          <hr />
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="column site-content">
     <div class="container-fluid">
-      <hr class="space-lg">
+      <hr class="space-lg" />
 
       <!--
           HEADING
@@ -26,18 +26,24 @@
       <section v-else>
         <div class="columns filter-table-list">
           <div class="column is-full filter-wrapper">
-
             <div class="form-group icon-search">
-              <img src="../assets/img/ic-search.svg" alt="">
-              <input id="form1" type="text" class="form-control" placeholder="Find User by name" v-model="search">
+              <img
+                src="../assets/img/ic-search.svg"
+                alt=""
+              />
+              <input
+                id="form1"
+                v-model="search"
+                type="text"
+                class="form-control"
+                placeholder="Find User by name"
+              />
             </div>
-
           </div>
         </div>
 
         <div class="columns">
           <div class="column is-full">
-
             <table class="table is-fullwidth table--orders">
               <thead>
                 <tr>
@@ -52,15 +58,19 @@
               <!--
                   PRELOADER
                 -->
-              <div v-if="!isLoaded">Loading....</div>
+              <div v-if="!isLoaded">
+                Loading....
+              </div>
               <tbody v-else>
                 <template v-for="(host, key) in filteredList">
                   <tr :key="host.host_id">
-
                     <td>
                       <div class="wrapper">
                         <div>
-                          <span class="order_number" :class="key"><a href="">{{ host.first_name + ' ' + host.last_name }}</a></span>
+                          <span
+                            class="order_number"
+                            :class="key"
+                          ><a href="">{{ host.first_name + ' ' + host.last_name }}</a></span>
                         </div>
                       </div>
                     </td>
@@ -84,8 +94,14 @@
                     <td>
                       <div class="wrapper">
                         <div>
-                          <span class="badges" :class="status(host.card_id_status).className">ID {{ status(host.card_id_status).name }}</span><br>
-                          <span class="badges" :class="status(host.bussiness_id_status).className">Business ID {{ status(host.bussiness_id_status).name }}</span>
+                          <span
+                            class="badges"
+                            :class="status(host.card_id_status).className"
+                          >ID {{ status(host.card_id_status).name }}</span><br />
+                          <span
+                            class="badges"
+                            :class="status(host.bussiness_id_status).className"
+                          >Business ID {{ status(host.bussiness_id_status).name }}</span>
                         </div>
                       </div>
                     </td>
@@ -94,10 +110,13 @@
                       <div class="wrapper">
                         <span class="info icon">
                           <!-- <router-link :to="'verification-detail/' + host.host_id"> -->
-                            <a title="View Request" @click="showModal(host.host_id)"><img
-                              src="assets/img/ic-edit-line.svg"
-                              title="Edit User"
-                            ></a>
+                          <a
+                            title="View Request"
+                            @click="showModal(host.host_id)"
+                          ><img
+                            src="assets/img/ic-edit-line.svg"
+                            title="Edit User"
+                          /></a>
                           <!-- </router-link> -->
                         </span>
                       </div>
@@ -112,10 +131,9 @@
              -->
             <VerificationDetail
               v-if="isModalVisible"
-              :hostId="detailId"
+              :host-id="detailId"
               @close="closeModal"
             />
-
           </div>
         </div>
       </section>
@@ -149,7 +167,7 @@ export default {
   components: {
     VerificationDetail
   },
-  data() {
+  data () {
     return {
       isModalVisible: false,
       detailId: '',
@@ -163,11 +181,11 @@ export default {
      * retrieve all users data that still unverified
      * and store it into state: unvUsers
      */
-    if(_.isEmpty(this.unvUsers)){
+    if (_.isEmpty(this.unvUsers)) {
       this.getUnvUsers()
     }
   },
-  mounted() {
+  mounted () {
     /**
      * LOGIN CHECK
      *
@@ -195,7 +213,7 @@ export default {
      *
      * Search the list/table based on user's name
      */
-    filteredList() {
+    filteredList () {
       return _.filter(this.getUnvReqs, (host) => {
         const fullname = `${host.first_name} ${host.last_name}`
         return fullname.toLowerCase().includes(this.search.toLowerCase())
@@ -208,28 +226,28 @@ export default {
      *
      * Set badges of ID & business license photo uploads
      */
-    status(id_status) {
+    status (idStatus) {
       const status = {}
-      switch(id_status) {
+      switch (idStatus) {
         case 0:
-          status.name = "pending"
-          status.className = "badges--unprocess"
-          break;
+          status.name = 'pending'
+          status.className = 'badges--unprocess'
+          break
         case 1:
-          status.name = "unreviewed"
-          status.className = "badges--unverified"
-          break;
+          status.name = 'unreviewed'
+          status.className = 'badges--unverified'
+          break
         case 2:
-          status.name = "approved"
-          status.className = "badges--verified"
-          break;
+          status.name = 'approved'
+          status.className = 'badges--verified'
+          break
         case 3:
-          status.name = "rejected"
-          status.className = "badges--processed"
-          break;
+          status.name = 'rejected'
+          status.className = 'badges--processed'
+          break
         default:
-          status.name = "unreviewed"
-          status.className = "badges--unverified"
+          status.name = 'unreviewed'
+          status.className = 'badges--unverified'
       }
       return status
     },
@@ -238,7 +256,7 @@ export default {
      *
      * Open modal window to view each user data.
      */
-    showModal(id) {
+    showModal (id) {
       // show modal
       this.isModalVisible = true
 
@@ -251,7 +269,7 @@ export default {
     /**
      * CLOSE MODAL
      */
-    closeModal() {
+    closeModal () {
       this.isModalVisible = false
     },
     /**
@@ -268,7 +286,7 @@ export default {
      *
      * Format date into a more readable format
      */
-    formatDate: function(value) {
+    formatDate: function (value) {
       if (value) {
         return moment(String(value)).format('DD MMM YYYY, h:mm:ss')
       }

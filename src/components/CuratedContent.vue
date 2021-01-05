@@ -6,7 +6,7 @@
                 more comming tour
             -->
 
-      <hr class="space-lg">
+      <hr class="space-lg" />
 
       <div class="columns">
         <div class="column generic-heading is-two-third">
@@ -20,7 +20,6 @@
           </button>
         </div>
       </div>
-
 
       <div class="columns filter-table-list">
         <div class="column is-full filter-wrapper">
@@ -48,13 +47,13 @@
             <img
               src="../assets/img/ic-search.svg"
               alt=""
-            >
+            />
             <input
               id="form1"
               type="text"
               class="form-control"
               placeholder="Find Tour"
-            >
+            />
           </div>
         </div>
       </div>
@@ -71,8 +70,8 @@
                         <input
                           type="checkbox"
                           checked="checked"
-                        >
-                        <span class="checkmark" />
+                        />
+                        <span class="checkmark"></span>
                       </label>
                     </div>
                     <!--
@@ -99,8 +98,8 @@
                         <input
                           type="checkbox"
                           checked="checked"
-                        >
-                        <span class="checkmark" />
+                        />
+                        <span class="checkmark"></span>
                       </label>
                     </div>
                   </div>
@@ -108,18 +107,18 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">5 Tips Untuk Traveling Pemula</span> <br>
+                    <span class="info">5 Tips Untuk Traveling Pemula</span> <br />
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info badges badges--verified">Liburan yang nyaman dimulai dari packing yang sempurna. Jika sudah menentukan tanggal keberangkatan, segera tentukan waktu untuk packing. Jangan terlalu mepet dengan jadwal keberangkatan.</span> <br>
+                    <span class="info badges badges--verified">Liburan yang nyaman dimulai dari packing yang sempurna. Jika sudah menentukan tanggal keberangkatan, segera tentukan waktu untuk packing. Jangan terlalu mepet dengan jadwal keberangkatan.</span> <br />
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="info">01/12/2019</span> <br>
+                    <span class="info">01/12/2019</span> <br />
                   </div>
                 </td>
 
@@ -138,11 +137,11 @@
                       <a title="Edit User"><img
                         src="../assets/img/ic-edit-line.svg"
                         title="Edit User"
-                      ></a>
+                      /></a>
                       <a title="Delete User"><img
                         src="../assets/img/ic-delete-line.svg"
                         title="Delete User"
-                      ></a>
+                      /></a>
                     </span>
                   </div>
                 </td>
@@ -156,8 +155,8 @@
                         <input
                           type="checkbox"
                           checked="checked"
-                        >
-                        <span class="checkmark" />
+                        />
+                        <span class="checkmark"></span>
                       </label>
                     </div>
                   </div>
@@ -165,18 +164,18 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">5 Tips Untuk Traveling Pemula</span> <br>
+                    <span class="info">5 Tips Untuk Traveling Pemula</span> <br />
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info badges badges--verified">Liburan yang nyaman dimulai dari packing yang sempurna. Jika sudah menentukan tanggal keberangkatan, segera tentukan waktu untuk packing. Jangan terlalu mepet dengan jadwal keberangkatan.</span> <br>
+                    <span class="info badges badges--verified">Liburan yang nyaman dimulai dari packing yang sempurna. Jika sudah menentukan tanggal keberangkatan, segera tentukan waktu untuk packing. Jangan terlalu mepet dengan jadwal keberangkatan.</span> <br />
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="info">01/12/2019</span> <br>
+                    <span class="info">01/12/2019</span> <br />
                   </div>
                 </td>
 
@@ -195,11 +194,11 @@
                       <a title="Edit User"><img
                         src="../assets/img/ic-edit-line.svg"
                         title="Edit User"
-                      ></a>
+                      /></a>
                       <a title="Delete User"><img
                         src="../assets/img/ic-delete-line.svg"
                         title="Delete User"
-                      ></a>
+                      /></a>
                     </span>
                   </div>
                 </td>
@@ -213,8 +212,8 @@
                         <input
                           type="checkbox"
                           checked="checked"
-                        >
-                        <span class="checkmark" />
+                        />
+                        <span class="checkmark"></span>
                       </label>
                     </div>
                   </div>
@@ -222,18 +221,18 @@
 
                 <td>
                   <div class="wrapper">
-                    <span class="info">Traveling Low Budget</span> <br>
+                    <span class="info">Traveling Low Budget</span> <br />
                   </div>
                 </td>
 
                 <td>
                   <div class="wrapper">
-                    <span class="info badges badges--verified">Tidak harus selalu mahal, Anda juga bisa menikmati travelling dengan dana yang minim, bahkan pas-pasan. Anda bisa menerapkan tips-tips berikut ini untuk mewujudkan travelling walau dengan budget yang pas-pasan.</span> <br>
+                    <span class="info badges badges--verified">Tidak harus selalu mahal, Anda juga bisa menikmati travelling dengan dana yang minim, bahkan pas-pasan. Anda bisa menerapkan tips-tips berikut ini untuk mewujudkan travelling walau dengan budget yang pas-pasan.</span> <br />
                   </div>
                 </td>
                 <td>
                   <div class="wrapper">
-                    <span class="info">01/12/2019</span> <br>
+                    <span class="info">01/12/2019</span> <br />
                   </div>
                 </td>
 
@@ -252,11 +251,11 @@
                       <a title="Edit User"><img
                         src="../assets/img/ic-edit-line.svg"
                         title="Edit User"
-                      ></a>
+                      /></a>
                       <a title="Delete User"><img
                         src="../assets/img/ic-delete-line.svg"
                         title="Delete User"
-                      ></a>
+                      /></a>
                     </span>
                   </div>
                 </td>

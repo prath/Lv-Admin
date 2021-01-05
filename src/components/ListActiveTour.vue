@@ -7,8 +7,8 @@
             <input
               type="checkbox"
               checked="checked"
-            >
-            <span class="checkmark" />
+            />
+            <span class="checkmark"></span>
           </label>
         </div>
       </div>
@@ -17,8 +17,8 @@
     <td>
       <div class="wrapper">
         <div class="flex item-durations">
-          <span class="info" >
-            {{jadwalTour | formatDate}}
+          <span class="info">
+            {{ jadwalTour | formatDate }}
           </span>
         </div>
       </div>
@@ -30,16 +30,16 @@
           <router-link :to="typeTrip === 'open' ? 'tour-packages-detail/' + id : 'tour-packages-detail-private/' + id">
             <a href=""><span class="title">{{ name }}</span></a>
           </router-link>
-          <span class="info"><a href="">Hosted by: {{getDataHost(hostId)}}</a></span>
+          <span class="info"><a href="">Hosted by: {{ getDataHost(hostId) }}</a></span>
         </div>
       </div>
     </td>
 
-     <td>
+    <td>
       <div class="wrapper">
         <div class="flex item-durations">
-          <span class="info" >
-            {{participant}}
+          <span class="info">
+            {{ participant }}
           </span>
         </div>
       </div>
@@ -59,8 +59,8 @@
     <td>
       <div class="wrapper">
         <div class="flex item-durations">
-          <span class="info" >
-            {{totalBooking}}
+          <span class="info">
+            {{ totalBooking }}
           </span>
         </div>
       </div>
@@ -68,14 +68,12 @@
     <td>
       <div class="wrapper">
         <div class="flex item-durations">
-          <span class="info" >
-            {{statusTour}}
+          <span class="info">
+            {{ statusTour }}
           </span>
         </div>
       </div>
     </td>
-
-
 
     <td>
       <div class="wrapper">
@@ -84,9 +82,8 @@
             <a title="Edit User"><img
               src="assets/img/ic-edit-line.svg"
               title="Edit User"
-            ></a>
+            /></a>
           </router-link>
-
 
         </span>
       </div>
@@ -109,49 +106,49 @@
 import moment from 'moment'
 import axios from 'axios'
 export default {
-  name:'ListActiveTour',
-  data(){
+  name: 'ListActiveTour',
+  filters: {
+    formatDate: function (value) {
+      if (value) {
+        return moment(String(value)).format('DD MMM YY')
+      }
+    }
+  },
+  props: [
+    'id',
+    'schedules',
+    'jadwalTour',
+    'name',
+    'duration',
+    'typeTrip',
+    'prices',
+    'dateFrom',
+    'dateTo',
+    'location',
+    'statusTour',
+    'hostId',
+    'participant',
+    'totalBooking'
+  ],
+  data () {
     return {
       apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
       hostName: ''
     }
   },
-	props : [
-            'id',
-            'schedules',
-            'jadwalTour',
-						'name',
-            'duration',
-            'typeTrip',
-						'prices',
-						'dateFrom',
-						'dateTo',
-            'location',
-            'statusTour',
-            'hostId',
-            'participant',
-            'totalBooking'
-          ],
-  filters: {
-    formatDate: function (value) {
-       if (value) {
-        return moment(String(value)).format('DD MMM YY')
-      }
-    }
-  },
   methods: {
-   getDataHost(hostId){
-       axios.get(this.apiUrl + 'host/get/' + hostId)
-            .then((res) => {
-              console.log("RESPONSE RECEIVED: ", res.data.data.business_name)
-               this.hostName =  res.data.data.business_name
-            })
-            .catch((err) => {
-              console.log("AXIOS ERROR: ", err.response.data.title)
-              this.isLoading = false
-            })
+    getDataHost (hostId) {
+      axios.get(this.apiUrl + 'host/get/' + hostId)
+        .then((res) => {
+          console.log('RESPONSE RECEIVED: ', res.data.data.business_name)
+          this.hostName = res.data.data.business_name
+        })
+        .catch((err) => {
+          console.log('AXIOS ERROR: ', err.response.data.title)
+          this.isLoading = false
+        })
 
-            return this.hostName
+      return this.hostName
     }
   }
 }
