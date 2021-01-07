@@ -8,8 +8,8 @@
        -->
       <div class="columns">
         <div class="column generic-heading is-two-third">
-          <h3>Host & Guest List</h3>
-          <p>List of Guest & Host</p>
+          <h3>Host &amp; Guest List</h3>
+          <p>List of Guest &amp; Host</p>
         </div>
         <!-- /end page title -->
 
@@ -109,6 +109,7 @@
           <PaginationDefault
             v-if="isLoaded"
             :pageData="pagination"
+            @handler="handlePaging"
           />
           <!-- /end pagination -->
 
@@ -132,8 +133,11 @@
 import { mapState, mapActions } from 'vuex'
 import _ from 'lodash'
 import config from '@/config'
+
+// import views & components
 import UserList from '@/views/users/UserList'
 import PaginationDefault from '@/components/paginations/PaginationDefault'
+
 export default {
   components: {
     UserList,
@@ -164,7 +168,16 @@ export default {
   methods: {
     ...mapActions([
       'getUsers'
-    ])
+    ]),
+    handlePaging () {
+      const params = {
+        limit: 2,
+        page: 13,
+        param: 'all'
+      }
+      this.getUsers(params)
+      // console.log('emitted from child')
+    }
   },
   beforeMount () {
     /**
@@ -172,7 +185,7 @@ export default {
      */
     const params = {
       limit: 2,
-      page: 12,
+      page: 1,
       param: 'all'
     }
     this.getUsers(params)
@@ -182,7 +195,7 @@ export default {
      * CHECK IF LOGGED IN
      */
     config.authCheck()
-    console.log(this.$route.params)
+    // console.log(this.$route.params)
   }
 }
 </script>

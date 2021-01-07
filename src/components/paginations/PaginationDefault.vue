@@ -40,13 +40,13 @@
 
       </li>
 
-      <li v-if="pageData.current_page < pageData.total_page">
+      <li v-on:click="handlePaging" v-if="pageData.current_page < pageData.total_page">
 
         <router-link
           :to="`/users/page/${pageData.current_page + 1}`"
           class="pagination-link"
           :aria-label="`Goto page ${pageData.current_page + 1}`">
-          {{ pageData.current_page + 1 }}
+          {{ pageData.current_page + 1 }} asdasd
         </router-link>
 
       </li>
@@ -76,6 +76,12 @@ export default {
   name: 'PaginationDefault',
   props: {
     pageData: Object
+  },
+  methods: {
+    handlePaging () {
+      console.log('asdad', this.$route.params)
+      this.$emit('handler', 'yeah')
+    }
   }
 }
 </script>
