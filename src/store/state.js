@@ -4,10 +4,14 @@ export default {
   loadingStatus: false,
   processCompleted: false,
   errorMsg: {},
+  // all users
+  users: [],
   // Unverified users
   unvUsers: [],
   // Single user data
   userData: [],
   // Single host data
-  hostData: []
+  hostData: [],
+  // pagination data
+  pagination: {}
 }

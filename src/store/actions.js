@@ -5,6 +5,9 @@ export default {
   /**
      * GET ALL UNVERIFIED USERS
      *
+     * @todo
+     * - change isloaded and put it in local state, not global state
+     *
      * @param {Function} commit send data to mutate
      */
   getUnvUsers: ({ commit }) => {
@@ -101,5 +104,48 @@ export default {
      */
   processStarted: ({ commit }) => {
     commit('PROCESS_COMPLETED', false)
+  },
+  /**
+   * GET ALL USERS
+   *
+   * @param {Function} commit
+   * @param {Number} limit
+   * @param {Number} page
+   */
+  getUsers: async ({ commit }, params) => {
+    commit('SET_LOADED', false)
+
+    // check and set params
+    const limit = params.limit || 20
+    const page = params.page || 1
+    const param = params.param || 'all'
+
+    // set headers
+    const header = config.setHeader()
+
+    try {
+      // get data from server
+      const response = await axios.get(`${config.apiUrl}host/list?per_page=${limit}&page=${page}&param=${param}`, header)
+
+      // assign data and pagination
+      const data = await response.data.data
+      const pagination = await response.data.paginate
+
+      if (response.data.code === 200) {
+        commit('SET_USERS', data)
+        commit('SET_PAGINATION', pagination)
+        commit('SET_LOADED', true)
+        return data
+      } else {
+        throw response.data
+      }
+    } catch (error) {
+      const err = {
+        status: true,
+        msg: `${error.code} - ${error.title}`
+      }
+      commit('SET_ERR_MSG', err)
+      commit('SET_LOADED', false)
+    }
   }
 }

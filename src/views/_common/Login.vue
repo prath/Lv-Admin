@@ -129,7 +129,6 @@ export default {
         })
         .catch((err) => {
           console.log('AXIOS ERROR: ', err.response.data.title)
-          // console.log(err)
           this.errors = []
           this.errors.push(err.response.data.title)
           this.isLoading = false

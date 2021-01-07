@@ -46,6 +46,7 @@ const router = new VueRouter({
     { path: '/', component: Login },
     { path: '/dashboard', component: Dashboard },
     { path: '/users', component: Users },
+    { path: '/users/page/:page', component: Users },
     { path: '/user-profile', component: UserProfile },
     { path: '/add-user', component: UserAdd },
     { path: '/active-tour', component: ActiveTour },

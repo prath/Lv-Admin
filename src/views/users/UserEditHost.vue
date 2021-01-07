@@ -7,7 +7,7 @@
             v-model="business_name"
             type="text"
             class="product-title"
-            placeholder="Nama User"
+            placeholder="Nama Business"
           />
         </div>
       </div>
@@ -16,7 +16,7 @@
         <div class="column is-two-third">
           <div class="card card--statistic">
             <div class="heading border">
-              <h4>User Info</h4>
+              <h4>User Infos</h4>
             </div>
 
             <div class="sub-heading">
@@ -29,10 +29,10 @@
                   <label for="first_name">First Name</label>
                   <input
                     id="harga"
-                    v-model="first_name"
                     type="text"
                     class="form-control"
-                    placeholder=""
+                    :value="first_name"
+                    disabled
                   />
                 </div>
               </div>
@@ -44,10 +44,10 @@
                   <label for="last_name">Last Name</label>
                   <input
                     id="harga"
-                    v-model="last_name"
+                    :value="last_name"
                     type="text"
                     class="form-control"
-                    placeholder=""
+                    disabled
                   />
                 </div>
               </div>
@@ -59,10 +59,10 @@
                   <label for="last_name">Email</label>
                   <input
                     id="harga"
-                    v-model="email"
+                    :value="email"
                     type="text"
                     class="form-control"
-                    placeholder=""
+                    disabled
                   />
                 </div>
               </div>
@@ -488,6 +488,7 @@ export default {
   },
   created () {
     this.$router.onReady(() => {
+      console.log('is it here?')
       if (this.$route.name === 'edithost') {
         if (!localStorage.accessToken) {
           this.$router.push({ path: '/' })
@@ -495,7 +496,7 @@ export default {
         this.isLoading = true
         axios.get(this.apiUrl + 'user/' + this.userUid + '/details')
           .then((res) => {
-            console.log('RESPONSE RECEIVED: ', res)
+            console.log(`respon: ${this.apiUrl}user/${this.userUid}/details`, res.data.data)
             this.items = res.data.data
 
             if (this.items.host_id) {

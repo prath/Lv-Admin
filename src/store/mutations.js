@@ -85,5 +85,23 @@ export default {
      */
   SET_HOST_DATA: (state, hostData) => {
     state.hostData = hostData
+  },
+  /**
+   * SET ALL USERS
+   *
+   * @param {Object} state host users data
+   * @param {Array} hostUsers host users data
+   */
+  SET_USERS: (state, users) => {
+    state.users = users
+  },
+  /**
+   * SET PAGINATION DATA
+   *
+   * @param {Object} state host users data
+   * @param {Array} pagination host users data
+   */
+  SET_PAGINATION: (state, pagination) => {
+    state.pagination = pagination
   }
 }

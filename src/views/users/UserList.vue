@@ -2,19 +2,6 @@
   <tr>
     <td>
       <div class="wrapper">
-        <div class="form-check">
-          <label class="container">
-            <input
-              type="checkbox"
-            />
-            <span class="checkmark"></span>
-          </label>
-        </div>
-      </div>
-    </td>
-
-    <td>
-      <div class="wrapper">
         <div>
           <span class="info">{{ first_name + ' ' + last_name | ucwords }}</span> <br />
 
@@ -53,7 +40,7 @@
 
     <td>
       <div class="wrapper">
-        <span class="info">{{ getTotalTour(host_id) }}</span>
+        <span class="info">{{ getTotalTour(user_id) }}</span>
       </div>
     </td>
 
@@ -96,8 +83,8 @@ export default {
   },
   props: {
     last_name: String,
-    phone_number: Number,
-    host_id: String,
+    phone_number: String,
+    user_id: String,
     first_name: String,
     user_uid: String,
     is_verified: Boolean,
