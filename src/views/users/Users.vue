@@ -94,7 +94,7 @@
                 :first_name="user.first_name"
                 :last_name="user.last_name"
                 :phone_number="user.phone_number"
-                :host_id="user.host_id || user.user_uid"
+                :host_id="user.host_id"
                 :email="user.email"
                 :user_uid="user.user_uid"
                 :is_verified="user.is_verified"
@@ -103,19 +103,25 @@
             </tbody>
           </table>
 
+        </div>
+      </div>
+      <!-- /end table -->
+
+      <div class="columns">
+        <div class="column is-full">
+
           <!--
             PAGINATION
            -->
           <PaginationDefault
             v-if="isLoaded"
             :pageData="pagination"
-            @handler="handlePaging"
+            @changePage="handlePaging"
           />
           <!-- /end pagination -->
 
         </div>
       </div>
-      <!-- /end table -->
 
     </div>
   </div>
@@ -171,21 +177,21 @@ export default {
     ]),
     handlePaging () {
       const params = {
-        limit: 2,
-        page: 13,
+        limit: 5,
+        page: this.$route.params.page,
         param: 'all'
       }
       this.getUsers(params)
-      // console.log('emitted from child')
     }
   },
-  beforeMount () {
+  created () {
     /**
      * SET PARAMS FOR GET USERS FROM SERVER
      */
+    const pg = (this.$route.params.page) || 1
     const params = {
-      limit: 2,
-      page: 1,
+      limit: 5,
+      page: pg,
       param: 'all'
     }
     this.getUsers(params)
@@ -195,7 +201,6 @@ export default {
      * CHECK IF LOGGED IN
      */
     config.authCheck()
-    // console.log(this.$route.params)
   }
 }
 </script>

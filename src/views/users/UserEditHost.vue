@@ -1,346 +1,160 @@
 <template>
   <div class="column site-content">
     <div class="container-fluid">
-      <div class="columns">
+      <hr class="space-lg" />
+      <div class="columns is-gapless pb">
         <div class="column generic-heading is-two-third">
-          <input
-            v-model="business_name"
-            type="text"
-            class="product-title"
-            placeholder="Nama Business"
-          />
+
+          <!--
+            HEADER
+           -->
+          <div class="heading with-avatar">
+            <!--
+              AVATAR
+            -->
+            <div class="avatar avatar--large avatar--profile">
+              <img
+                src="https://images.unsplash.com/photo-1516914943479-89db7d9ae7f2?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTl8fHBvcnRyYWl0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+                alt="Profile picture"
+              />
+            </div>
+            <!-- /end avatar -->
+
+            <!--
+              NAMES
+            -->
+            <header>
+              <h2 class="head">
+                Pratama Hasriyan
+              </h2>
+              <span class="sub-head">Joined 02 January, 2020</span>
+            </header>
+            <span
+              class="badges badges--unverified"
+            >unverified</span>
+            <!-- /end names -->
+
+          </div>
+          <!-- /end header -->
+
         </div>
       </div>
 
       <div class="columns">
         <div class="column is-two-third">
-          <div class="card card--statistic">
+
+          <!--
+            USER & BUSINESS INFO CARD
+           -->
+          <div class="card card--statistic padding-b-m">
             <div class="heading border">
               <h4>User Infos</h4>
             </div>
 
-            <div class="sub-heading">
-              <p>Basic Info</p>
-            </div>
+            <!--
+              META INFOS
+            -->
+            <section class="padding-b-m">
+              <div class="meta-info meta-info--big flex around-md top-md">
 
-            <div class="columns is-gapless">
-              <div class="column">
-                <div class="form-group">
-                  <label for="first_name">First Name</label>
-                  <input
-                    id="harga"
-                    type="text"
-                    class="form-control"
-                    :value="first_name"
-                    disabled
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="columns is-gapless">
-              <div class="column">
-                <div class="form-group">
-                  <label for="last_name">Last Name</label>
-                  <input
-                    id="harga"
-                    :value="last_name"
-                    type="text"
-                    class="form-control"
-                    disabled
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="columns ">
-              <div class="column is-6">
-                <div class="form-group">
-                  <label for="last_name">Email</label>
-                  <input
-                    id="harga"
-                    :value="email"
-                    type="text"
-                    class="form-control"
-                    disabled
-                  />
-                </div>
-              </div>
-
-              <div class="column is-6">
-                <div class="form-group">
-                  <label for="last_name">Password</label>
-                  <input
-                    id="password"
-                    type="password"
-                    class="form-control"
-                    placeholder=""
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="columns ">
-              <div class="column is-6">
-                <div class="form-group">
-                  <label for="last_name">Date of Birth</label>
-                  <input
-                    id="date_of_birth"
-                    v-model="date_of_birth"
-                    type="text"
-                    class="form-control"
-                    placeholder=""
-                  />
-                </div>
-              </div>
-
-              <div class="column is-6">
-                <div class="form-group">
-                  <label for="last_name">Gender</label>
-                  <div class="select">
-                    <select
-                      v-model="gender"
-                      class="form-control"
-                    >
-                      <option
-                        value="male"
-                        selected
-                      >
-                        Male
-                      </option>
-                      <option
-                        value="female"
-                      >
-                        Female
-                      </option>
-                    </select>
+                <!--
+                  EMAIL
+                 -->
+                <div class="item-container">
+                  <div class="item">
+                    <div class="title">
+                      Email
+                    </div>
+                    <div class="value">
+                      pratama@hasriyan.com
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+                <!-- /end email -->
 
-            <div class="columns">
-              <div class="column is-6">
-                <div class="form-group">
-                  <label for="last_name">Phone Number</label>
-                  <input
-                    id="phone"
-                    v-model="phone_number"
-                    type="text"
-                    class="form-control"
-                    placeholder=""
-                  />
-                </div>
-              </div>
-
-              <div class="column is-6">
-                <div class="form-group">
-                  <label for="last_name">Nationality</label>
-                  <div class="select">
-                    <select class="form-control">
-                      <option
-                        value="currency"
-                        selected
-                      >
-                        Indonesia
-                      </option>
-                      <option value="percentage">
-                        English
-                      </option>
-                      <option value="percentage">
-                        Australia
-                      </option>
-                      <option value="percentage">
-                        Canada
-                      </option>
-                      <option value="percentage">
-                        Japan
-                      </option>
-                    </select>
+                <!--
+                  DOB
+                 -->
+                <div class="item-container">
+                  <div class="item">
+                    <div class="title">
+                      Date of Birth
+                    </div>
+                    <div class="value">
+                      01 January 2000
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+                <!-- /end dob -->
 
-            <div class="columns">
-              <div class="column is-6">
-                <div class="form-group">
-                  <label for="last_name">Status</label>
-                  <div class="select">
-                    <select class="form-control">
-                      <option
-                        value="currency"
-                        selected
-                      >
-                        Verified
-                      </option>
-                      <option value="percentage">
-                        Unverified
-                      </option>
-                    </select>
+                <!--
+                  PHONE
+                 -->
+                <div class="item-container">
+                  <div class="item">
+                    <div class="title">
+                      Phone Number
+                    </div>
+                    <div class="value">
+                      0813918239832
+                    </div>
                   </div>
                 </div>
+                <!-- /end phone -->
+
               </div>
+            </section>
+            <!-- end meta infos -->
 
-              <div class="column is-6">
-                <label for="last_name">Suspended</label>
+            <!--
+              BUSINESS INFO HEADING
+             -->
+            <div class="generic-heading border">
+              <h4>Business Info</h4>
+              <p>You can convert this user into a Host by filling the below forms</p>
+            </div>
+            <!-- /end business info -->
 
-                <div class="column is-6">
-                  <div class="form-check">
-                    <label class="container">
-                      <input
-                        type="checkbox"
-
-                        name="radio"
-                      />
-                      <span class="radiomark"></span>
-                      Yes
-                    </label>
-                  </div>
+            <!--
+              SIGN UP AS HOST CHECKBOX
+             -->
+            <div class="columns m-t-md">
+              <div class="column is-12">
+                <div class="form-group margin-none">
+                  <label class="checkbox">
+                    <input type="checkbox" />
+                    Sign this user as a host
+                  </label>
                 </div>
               </div>
             </div>
+            <!-- /end sign up as host -->
 
-            <div class="columns">
-              <div class="column is-6">
-                <div class="form-group">
-                  <label for="last_name">Prefered Location</label>
-                  <input
-                    id="harga"
-                    type="text"
-                    class="form-control"
-                    placeholder=""
-                    value="Indonesia"
-                  />
-                </div>
-              </div>
-            </div>
+            <!--
+              BUSINESS INFO FORM
+             -->
+            <FormEditBusiness />
+            <!-- /end business info form -->
 
-            <div class="sub-heading">
-              <p>Profile Picture</p>
-            </div>
-
-            <div class="custom-file grey">
-              <input
-                id="customFile"
-                type="file"
-                class="custom-file-input"
-              />
-              <img
-                src="@/assets/img/ic-image-white.svg"
-                alt=""
-              />
-            </div>
-
-            <div class="sub-heading">
-              <p>Business</p>
-            </div>
-
-            <div class="columns  ">
-              <div class="column is-6">
-                <div class="form-group">
-                  <label for="last_name">Business Name</label>
-                  <input
-                    id="harga"
-                    v-model="business_name"
-                    type="text"
-                    class="form-control"
-                    placeholder=""
-                  />
-                </div>
-              </div>
-
-              <div class="column is-6">
-                <div class="form-group">
-                  <label for="last_name">Category</label>
-                  <div class="select">
-                    <select class="form-control">
-                      <option
-                        value="currency"
-                        selected
-                      >
-                        Tour &amp; Travel
-                      </option>
-                      <option value="percentage">
-                        Consultant
-                      </option>
-                      <option value="percentage">
-                        Advertising/Branding/PR.
-                      </option>
-                      <option value="percentage">
-                        Government Agency.
-                      </option>
-                      <option value="percentage">
-                        Financial Institution/Investment Bank.
-                      </option>
-                      <option value="percentage">
-                        Not for Profit.
-                      </option>
-                      <option value="percentage">
-                        Association.
-                      </option>
-                      <option value="percentage">
-                        Packaging/Design.
-                      </option>
-                      <option value="percentage">
-                        Publisher.
-                      </option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="columns ">
-              <div class="column is-6">
-                <div class="form-group">
-                  <label for="last_name">Address</label>
-                  <textarea
-                    v-model="address"
-                    class="form-control"
-                    rows="5"
-                    cols="10"
-                  ></textarea>
-                </div>
-              </div>
-
-              <div class="column is-6">
-                <div class="form-group">
-                  <label for="last_name">About</label>
-                  <textarea
-                    class="form-control"
-                    rows="5"
-                    cols="10"
-                  >Kami memiliki jaringan bisnis yang luas, sehingga memampukan kami untuk memberikan layanan terbaik yang melingkupi tiket penerbangan, kereta api, hotel, pengurusan dokumen perjalanan, tour wisata inbound dan outbound, incentive tour, cruises, asuransi perjalanan, rental kendaraan, dan corporate travel management service.</textarea>
-                </div>
-              </div>
-            </div>
-
-            <div class="sub-heading">
-              <p>ID Verification</p>
-            </div>
-
-            <div class="columns">
-              <div class="column is-6">
-                <p><b>Personal ID</b></p>
-                <img
-                  :src="card_id"
-                  alt=""
-                />
-              </div>
-              <div class="column is-6">
-                <p><b>Business ID</b></p>
-                <img
-                  :src="bussiness_id"
-                  alt=""
-                />
-              </div>
-            </div>
-
-            <div class="clear"></div>
           </div>
+          <!-- /end user & business info -->
+
+          <!--
+            DEACTIVATE USER
+            -->
+          <FormDeactivateUser />
+          <!-- /end deactivate user -->
+
+          <!--
+            DELETE USER
+            -->
+          <FormDeleteUser />
+          <!-- /end delete user -->
+
         </div>
-        <div class="column sidebar is-one-third">
+
+        <!-- SIDEBAR -->
+        <div class="column sidebar is-one-third is-relative">
           <button class="btn btn--primary btn--default btn--full padding-b-m">
             Save
           </button>
@@ -350,63 +164,16 @@
               Cancel
             </button>
           </router-link>
-          <hr />
-          <button
-            class="btn btn--text btn--text-warning btn--default btn--full padding-b-m"
-            @click="toggleActiveDel"
-          >
-            Delete User
-          </button>
-
-          <!-- This button used only for simulation, show us when the user still have active booking or experience, the account is unable to be deleted, remove it when integrated with the API-->
-          <button
-            class="btn btn--text btn--muted btn--default btn--full padding-b-m"
-            @click="toggleActiveUnableDel"
-          >
-            Klik u/ Simulasi Unable to Delete User
-          </button>
         </div>
+        <!-- /end sidebar -->
 
         <!--
           DELETE USER MODAL
           ========================================================================
           if user can be deleted, show this modal to confirm deletion
          -->
-        <div
-          class="modal"
-          :class="{'is-active': isActiveDel}"
-        >
-          <div
-            class="modal-background"
-            @click="toggleActiveDel"
-          ></div>
-          <div class="modal-content modal--small">
-            <div class="heading border">
-              <h4>Hapus akun?</h4>
-            </div>
-            <p>Anda yakin akan manghapus user ini? user akan terhapus secara permanen setelahnya.</p>
-            <hr />
-            <div class="flex end-md">
-              <button
-                class="btn btn--default btn--text btn--muted btn--medium"
-                @click="toggleActiveDel"
-              >
-                Cancel
-              </button>
-              <button
-                class="btn btn--default btn--warning btn--medium"
-                @click="toggleActiveDel"
-              >
-                Ya, hapus
-              </button>
-            </div>
-          </div>
-          <button
-            class="modal-close is-large"
-            aria-label="close"
-            @click="toggleActiveDel"
-          ></button>
-        </div>
+         <ModalDeleteUser />
+        <!-- /end delete user modal -->
 
         <!--
           UNABLE TO DELETE USER MODAL
@@ -414,43 +181,88 @@
           if user cannot be deleted, show this modal to inform the admin that
           this particular user is unable to be deleted
          -->
-        <div
-          class="modal"
-          :class="{'is-active': isActiveUnableDel}"
-        >
-          <div
-            class="modal-background"
-            @click="toggleActiveUnableDel"
-          ></div>
-          <div class="modal-content modal--small">
-            <div class="heading border">
-              <h4>Tidak dapat dihapus</h4>
-            </div>
-            <p>User ini tidak dapat dihapus karena masih memiliki booking active (unpaid/paid) dan/atau experience yang active (awaiting/ongoing)</p>
-            <hr />
-            <div class="flex end-md">
-              <button
-                class="btn btn--default btn--text btn--muted btn--medium"
-                @click="toggleActiveUnableDel"
-              >
-                OK
-              </button>
-            </div>
-          </div>
-          <button
-            class="modal-close is-large"
-            aria-label="close"
-            @click="toggleActiveUnableDel"
-          ></button>
-        </div>
+        <ModalUndeleteUser />
+        <!-- /end unable to delete user modal -->
+
       </div>
     </div>
   </div>
 </template>
 <script>
 import moment from 'moment'
-import axios from 'axios'
+import config from '@/config'
+// import axios from 'axios'
+
+import ModalDeleteUser from '@/components/modals/ModalDeleteUser'
+import ModalUndeleteUser from '@/components/modals/ModalUndeleteUser'
+import FormEditBusiness from '@/components/forms/FormEditBusiness'
+import FormDeactivateUser from '@/components/forms/FormDeactivateUser'
+import FormDeleteUser from '@/components/forms/FormDeleteUser'
+
 export default {
+  components: {
+    ModalDeleteUser,
+    ModalUndeleteUser,
+    FormEditBusiness,
+    FormDeactivateUser,
+    FormDeleteUser
+  },
+  data () {
+    return {
+      items: '',
+      isLoading: false,
+      isActiveUnableDel: false,
+      isActiveDel: false
+    }
+  },
+  created () {
+    console.log(localStorage.editUserID)
+
+    // this.$router.onReady(() => {
+    //   console.log('is it here?')
+    //   if (this.$route.name === 'edithost') {
+    //     if (!localStorage.accessToken) {
+    //       this.$router.push({ path: '/' })
+    //     }
+    //     this.isLoading = true
+    //     axios.get(this.apiUrl + 'user/' + this.userUid + '/details')
+    //       .then((res) => {
+    //         console.log(`respon: ${this.apiUrl}user/${this.userUid}/details`, res.data.data)
+    //         this.items = res.data.data
+
+    //         if (this.items.host_id) {
+    //           this.hostId = this.items.host_id
+    //         }
+    //         // add to model
+
+    //         this.business_name = this.items.business_name
+    //         this.first_name = this.items.first_name
+    //         this.last_name = this.items.last_name
+    //         this.email = this.items.email
+    //         this.address = this.items.address
+    //         this.gender = this.items.gender
+    //         this.phone_number = this.items.phone_number
+    //         this.date_of_birth = this.items.date_of_birth
+    //         this.card_id = this.items.card_id
+    //         this.bussiness_id = this.items.bussiness_id
+
+    //         this.isLoading = false
+    //       })
+    //       .catch((err) => {
+    //         console.log('AXIOS ERROR: ', err.response.data.title)
+    //         this.isLoading = false
+    //       })
+    //   }
+    // })
+  },
+  methods: {
+    toggleActiveUnableDel: function () {
+      this.isActiveUnableDel = !(this.isActiveUnableDel)
+    },
+    toggleActiveDel: function () {
+      this.isActiveDel = !(this.isActiveDel)
+    }
+  },
   filters: {
     formatDate: function (value) {
       if (value) {
@@ -464,73 +276,11 @@ export default {
     }
 
   },
-  data () {
-    return {
-      items: '',
-      userUid: this.$route.params.user_uid,
-      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
-      isLoading: false,
-      accessToken: '',
-      delete_status: '',
-      hostId: '',
-      item_host: '',
-      total_packages: '',
-      email: '',
-      business_name: '',
-      first_name: '',
-      last_name: '',
-      gender: '',
-      phone_number: '',
-      date_of_birth: '',
-      isActiveUnableDel: false,
-      isActiveDel: false
-    }
-  },
-  created () {
-    this.$router.onReady(() => {
-      console.log('is it here?')
-      if (this.$route.name === 'edithost') {
-        if (!localStorage.accessToken) {
-          this.$router.push({ path: '/' })
-        }
-        this.isLoading = true
-        axios.get(this.apiUrl + 'user/' + this.userUid + '/details')
-          .then((res) => {
-            console.log(`respon: ${this.apiUrl}user/${this.userUid}/details`, res.data.data)
-            this.items = res.data.data
-
-            if (this.items.host_id) {
-              this.hostId = this.items.host_id
-            }
-            // add to model
-
-            this.business_name = this.items.business_name
-            this.first_name = this.items.first_name
-            this.last_name = this.items.last_name
-            this.email = this.items.email
-            this.address = this.items.address
-            this.gender = this.items.gender
-            this.phone_number = this.items.phone_number
-            this.date_of_birth = this.items.date_of_birth
-            this.card_id = this.items.card_id
-            this.bussiness_id = this.items.bussiness_id
-
-            this.isLoading = false
-          })
-          .catch((err) => {
-            console.log('AXIOS ERROR: ', err.response.data.title)
-            this.isLoading = false
-          })
-      }
-    })
-  },
-  methods: {
-    toggleActiveUnableDel: function () {
-      this.isActiveUnableDel = !(this.isActiveUnableDel)
-    },
-    toggleActiveDel: function () {
-      this.isActiveDel = !(this.isActiveDel)
-    }
+  mounted () {
+    /**
+     * CHECK IF LOGGED IN
+     */
+    config.authCheck()
   }
 }
 </script>

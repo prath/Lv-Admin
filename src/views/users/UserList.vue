@@ -1,10 +1,10 @@
 <template>
   <tr>
+
     <td>
       <div class="wrapper">
         <div>
           <span class="info">{{ first_name + ' ' + last_name | ucwords }}</span> <br />
-
           <p>
             <span
               :class="(business_name ?
@@ -40,14 +40,22 @@
 
     <td>
       <div class="wrapper">
-        <span class="info">{{ getTotalTour(user_id) }}</span>
+        <span class="info">{{ getTotalTour(host_id) }}</span>
       </div>
     </td>
 
     <td>
       <div class="wrapper">
         <span class="info icon">
-          <router-link :to="'/edit-user-host/' + user_uid">
+          <router-link
+            @click.native="setLocalUID()"
+            :to="{
+            name: 'edithost',
+            params: {
+              user_name: getSlug,
+              id: user_uid
+            }
+          }">
             <a title="Edit User"><img
               src="@/assets/img/ic-edit-line.svg"
               title="Edit User"
@@ -66,6 +74,8 @@
 <script>
 import moment from 'moment'
 import axios from 'axios'
+import _ from 'lodash'
+
 export default {
   name: 'UserList',
   filters: {
@@ -84,12 +94,19 @@ export default {
   props: {
     last_name: String,
     phone_number: String,
-    user_id: String,
+    host_id: String,
     first_name: String,
     user_uid: String,
     is_verified: Boolean,
     business_name: String,
     email: String
+  },
+  computed: {
+    getSlug () {
+      const firstname = _.kebabCase(this.first_name)
+      const lastname = (this.last_name) ? '-' + _.kebabCase(this.last_name) : ''
+      return `${firstname}${lastname}`
+    }
   },
   data () {
     return {
@@ -110,6 +127,13 @@ export default {
           })
 
         return this.totalPackages
+      }
+    },
+    setLocalUID () {
+      if (!localStorage.editUserID) {
+        localStorage.setItem('editUserID', this.user_uid)
+      } else {
+        localStorage.editUserID = this.user_uid
       }
     }
   }

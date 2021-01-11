@@ -50,7 +50,12 @@ const router = new VueRouter({
     { path: '/user-profile', component: UserProfile },
     { path: '/add-user', component: UserAdd },
     { path: '/active-tour', component: ActiveTour },
-    { path: '/edit-user-host/:user_uid', name: 'edithost', component: UserEditHost },
+    {
+      path: '/edit-user/:user_name',
+      name: 'edithost',
+      component: UserEditHost,
+      params: true
+    },
     { path: '/edit-user-guest', component: UserEditGuest },
     { path: '/tour-packages', component: TourPackages },
     { path: '/featured-contents', component: ContentList },
