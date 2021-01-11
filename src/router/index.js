@@ -51,7 +51,7 @@ const router = new VueRouter({
     { path: '/add-user', component: UserAdd },
     { path: '/active-tour', component: ActiveTour },
     {
-      path: '/edit-user/:user_name',
+      path: '/edit-user/:id',
       name: 'edithost',
       component: UserEditHost,
       params: true

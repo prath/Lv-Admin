@@ -29,9 +29,6 @@
               </h2>
               <span class="sub-head">Joined 02 January, 2020</span>
             </header>
-            <span
-              class="badges badges--unverified"
-            >unverified</span>
             <!-- /end names -->
 
           </div>
@@ -109,7 +106,7 @@
             <!--
               BUSINESS INFO HEADING
              -->
-            <div class="generic-heading border">
+            <div class="generic-heading border is-clearfix">
               <h4>Business Info</h4>
               <p>You can convert this user into a Host by filling the below forms</p>
             </div>
@@ -118,11 +115,14 @@
             <!--
               SIGN UP AS HOST CHECKBOX
              -->
-            <div class="columns m-t-md">
+            <div class="columns mt-3 mb-0 pb-0" v-if="checkHost">
               <div class="column is-12">
-                <div class="form-group margin-none">
-                  <label class="checkbox">
-                    <input type="checkbox" />
+                <div class="form-group mb-0">
+                  <label class="checkbox mb-0">
+                    <input
+                      type="checkbox"
+                      v-model="isSignupAsHost"
+                    />
                     Sign this user as a host
                   </label>
                 </div>
@@ -133,37 +133,33 @@
             <!--
               BUSINESS INFO FORM
              -->
-            <FormEditBusiness />
+            <FormEditBusiness
+              :activateForm="isSignupAsHost"
+              :isVerifiedHost="isVerifiedHost"
+              :isVerificationRequested="isVerificationRequested"
+            />
             <!-- /end business info form -->
 
           </div>
           <!-- /end user & business info -->
 
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="column sidebar is-one-third is-relative">
+
           <!--
             DEACTIVATE USER
             -->
-          <FormDeactivateUser />
+          <!-- <FormDeactivateUser /> -->
           <!-- /end deactivate user -->
 
           <!--
             DELETE USER
             -->
-          <FormDeleteUser />
+          <!-- <FormDeleteUser /> -->
           <!-- /end delete user -->
 
-        </div>
-
-        <!-- SIDEBAR -->
-        <div class="column sidebar is-one-third is-relative">
-          <button class="btn btn--primary btn--default btn--full padding-b-m">
-            Save
-          </button>
-
-          <router-link to="/users">
-            <button class="btn btn--transparent btn--default btn--full">
-              Cancel
-            </button>
-          </router-link>
         </div>
         <!-- /end sidebar -->
 
@@ -172,7 +168,7 @@
           ========================================================================
           if user can be deleted, show this modal to confirm deletion
          -->
-         <ModalDeleteUser />
+         <!-- <ModalDeleteUser /> -->
         <!-- /end delete user modal -->
 
         <!--
@@ -181,7 +177,7 @@
           if user cannot be deleted, show this modal to inform the admin that
           this particular user is unable to be deleted
          -->
-        <ModalUndeleteUser />
+        <!-- <ModalUndeleteUser /> -->
         <!-- /end unable to delete user modal -->
 
       </div>
@@ -191,32 +187,84 @@
 <script>
 import moment from 'moment'
 import config from '@/config'
-// import axios from 'axios'
+import axios from 'axios'
 
-import ModalDeleteUser from '@/components/modals/ModalDeleteUser'
-import ModalUndeleteUser from '@/components/modals/ModalUndeleteUser'
+// import ModalDeleteUser from '@/components/modals/ModalDeleteUser'
+// import ModalUndeleteUser from '@/components/modals/ModalUndeleteUser'
 import FormEditBusiness from '@/components/forms/FormEditBusiness'
-import FormDeactivateUser from '@/components/forms/FormDeactivateUser'
-import FormDeleteUser from '@/components/forms/FormDeleteUser'
+// import FormDeactivateUser from '@/components/forms/FormDeactivateUser'
+// import FormDeleteUser from '@/components/forms/FormDeleteUser'
 
 export default {
   components: {
-    ModalDeleteUser,
-    ModalUndeleteUser,
-    FormEditBusiness,
-    FormDeactivateUser,
-    FormDeleteUser
+    // ModalDeleteUser,
+    // ModalUndeleteUser,
+    FormEditBusiness
+    // FormDeactivateUser,
+    // FormDeleteUser
   },
   data () {
     return {
-      items: '',
+      // preloader
       isLoading: false,
+      // modal deletion & deactivation
       isActiveUnableDel: false,
-      isActiveDel: false
+      isActiveDel: false,
+      // business/host form helper
+      isHost: true,
+      isSignupAsHost: false,
+      isVerifiedHost: false,
+      isVerificationRequested: false,
+      // user data
+      user: {},
+      user_id: ''
     }
   },
+  computed: {
+    checkHost: function () {
+      return this.isHost
+    }
+  },
+  watch: {
+    isSignupAsHost: function (oldState, newState) {
+      console.log(oldState, newState)
+    }
+  },
+  methods: {
+    toggleActiveUnableDel: function () {
+      this.isActiveUnableDel = !(this.isActiveUnableDel)
+    },
+    toggleActiveDel: function () {
+      this.isActiveDel = !(this.isActiveDel)
+    },
+    toggleBusinessForm: function () {
+      if (this.isSignupAsHost) {
+        return true
+      }
+    },
+    getUserData: async function () {
+      const getData = await axios.get(config.apiUrl + 'user/' + this.user_id + '/details')
+      this.user = await getData.data.data
+      console.log(this.user)
+    }
+  },
+  filters: {
+    formatDate: function (value) {
+      if (value) {
+        return moment(String(value)).format('DD MMMM YYYY')
+      }
+    },
+    formatDay: function (value) {
+      if (value) {
+        return moment(String(value)).format('dddd')
+      }
+    }
+
+  },
   created () {
-    console.log(localStorage.editUserID)
+    this.user_id = this.$route.params.id
+    console.log('user id: ', this.user_id)
+    this.getUserData()
 
     // this.$router.onReady(() => {
     //   console.log('is it here?')
@@ -254,27 +302,6 @@ export default {
     //       })
     //   }
     // })
-  },
-  methods: {
-    toggleActiveUnableDel: function () {
-      this.isActiveUnableDel = !(this.isActiveUnableDel)
-    },
-    toggleActiveDel: function () {
-      this.isActiveDel = !(this.isActiveDel)
-    }
-  },
-  filters: {
-    formatDate: function (value) {
-      if (value) {
-        return moment(String(value)).format('DD MMMM YYYY')
-      }
-    },
-    formatDay: function (value) {
-      if (value) {
-        return moment(String(value)).format('dddd')
-      }
-    }
-
   },
   mounted () {
     /**

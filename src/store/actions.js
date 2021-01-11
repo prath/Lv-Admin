@@ -28,7 +28,7 @@ export default {
       })
   },
   /**
-     * GET USER DATA BY ID
+     * GET HOST USER DATA BY ID
      *
      * @param {Function} commit send data to mutate
      * @param {String} uid user id

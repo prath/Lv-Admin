@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <form class="mt-6">
     <div class="columns padding-bottom-none">
       <!--
         BUSINESS NAME
@@ -11,6 +11,7 @@
             type="text"
             class="form-control"
             placeholder=""
+            :disabled="!activateForm"
           />
         </div>
       </div>
@@ -21,38 +22,24 @@
         -->
       <div class="column is-6">
         <div class="form-group">
-          <label for="last_name">Category</label>
+          <label for="category">Category</label>
           <div class="select">
-            <select class="form-control">
+            <select class="form-control" :disabled="!activateForm">
               <option
-                value="currency"
+                value=""
+                disabled
                 selected
               >
-                Tour &amp; Travel
+                Select your category
               </option>
-              <option value="percentage">
-                Consultant
+              <option>
+                Personal
               </option>
-              <option value="percentage">
-                Advertising/Branding/PR.
+              <option>
+                Corporate
               </option>
-              <option value="percentage">
-                Government Agency.
-              </option>
-              <option value="percentage">
-                Financial Institution/Investment Bank.
-              </option>
-              <option value="percentage">
-                Not for Profit.
-              </option>
-              <option value="percentage">
-                Association.
-              </option>
-              <option value="percentage">
-                Packaging/Design.
-              </option>
-              <option value="percentage">
-                Publisher.
+              <option>
+                Personal & Corporate
               </option>
             </select>
           </div>
@@ -73,6 +60,7 @@
             class="form-control"
             rows="2"
             cols="10"
+            :disabled="!activateForm"
           ></textarea>
         </div>
       </div>
@@ -90,6 +78,7 @@
             class="form-control"
             rows="5"
             cols="10"
+            :disabled="!activateForm"
           >Kami memiliki jaringan bisnis yang luas, sehingga memampukan kami untuk memberikan layanan terbaik yang melingkupi tiket penerbangan, kereta api, hotel, pengurusan dokumen perjalanan, tour wisata inbound dan outbound, incentive tour, cruises, asuransi perjalanan, rental kendaraan, dan corporate travel management service.</textarea>
         </div>
       </div>
@@ -104,38 +93,83 @@
     </div>
     <!-- /end verification data heading -->
 
-    <div class="columns">
+    <div class="columns pb-0">
+      <div class="column is-12">
 
-      <!--
-        PHOTO ID PHOTO
-      -->
-      <div class="column is-6">
-        <p><b>Personal ID</b></p>
-        <img
-          src="https://images.unsplash.com/photo-1610276434254-4b6e1ad564f4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-          alt=""
-        />
-      </div>
-      <!-- /end photo id verification -->
-
-      <!--
-        BUSINESS ID PHOTO
+        <!--
+          VERIFICATION STATUS EXISTING REQUESTED
         -->
-      <div class="column is-6">
-        <p><b>Business ID</b></p>
-        <img
-          src="https://images.unsplash.com/photo-1610354965243-296d0eddf639?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
-          alt=""
-        />
-      </div>
-      <!-- /end business id photo -->
+        <div class="message is-info mb-5 verification-data-requested" v-if="isVerificationRequested">
+          <div class="message-body">
+            <h5>This user is already requested a verification, please review</h5>
+            <div class="control">
+              <button class="btn btn--primary btn--small">click here to review</button>
+            </div>
+          </div>
+        </div>
+        <!-- /end verification status -->
 
+        <!--
+          VERIFICATION STATUS EXISTING VERIFIED
+        -->
+        <div class="message is-info mb-5 verification-data-verified" v-else-if="isVerifiedHost">
+          <div class="message-body">
+            <h5>This user is a verified user</h5>
+            <div class="control">
+              this user already a verified member, you no longer able to edit this user
+            </div>
+          </div>
+        </div>
+        <!-- /end verification status -->
+
+        <!--
+          VERIFICATION STATUS NEW HOST
+        -->
+        <div class="message is-info mb-5 verification-data-new" v-else>
+          <div class="message-body">
+            <h5>Verify this user?</h5>
+            <div class="control">
+              <label class="radio">
+                <input type="radio" name="answer" :disabled="!activateForm" />
+                Yes, verify
+              </label>
+              <label class="radio">
+                <input type="radio" name="answer" :disabled="!activateForm" />
+                No, unverified
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- /end verification status -->
+
+      </div>
     </div>
-  </div>
+    <div v-if="activateForm" class="columns pb-0">
+      <div class="column is-12">
+        <hr />
+        <!--
+          SUBMIT BUTTON
+          -->
+        <div class="form-group flex is-flex-direction-row-reverse">
+          <button type="submit" class="btn btn--primary btn--medium" disabled>
+            Submit
+          </button>
+        </div>
+        <!-- /end submit button -->
+
+      </div>
+    </div>
+
+  </form>
 </template>
 
 <script>
 export default {
-  name: 'FormEditBusiness'
+  name: 'FormEditBusiness',
+  props: {
+    activateForm: Boolean,
+    isVerifiedHost: Boolean,
+    isVerificationRequested: Boolean
+  }
 }
 </script>

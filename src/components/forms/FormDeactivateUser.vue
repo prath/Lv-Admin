@@ -1,5 +1,5 @@
 <template>
-  <section class="message is-light mt-2">
+  <section class="message is-light">
       <div class="message-header">
         <p class="is-gapless">Deactivate User</p>
       </div>

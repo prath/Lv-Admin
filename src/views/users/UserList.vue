@@ -48,23 +48,18 @@
       <div class="wrapper">
         <span class="info icon">
           <router-link
-            @click.native="setLocalUID()"
             :to="{
-            name: 'edithost',
-            params: {
-              user_name: getSlug,
-              id: user_uid
-            }
+              name: 'edithost',
+              params: {
+                id: user_uid
+              }
           }">
             <a title="Edit User"><img
               src="@/assets/img/ic-edit-line.svg"
               title="Edit User"
             /></a>
           </router-link>
-          <a title="Delete User"><img
-            src="@/assets/img/ic-delete-line.svg"
-            title="Delete User"
-          /></a>
+
         </span>
       </div>
     </td>
@@ -127,13 +122,6 @@ export default {
           })
 
         return this.totalPackages
-      }
-    },
-    setLocalUID () {
-      if (!localStorage.editUserID) {
-        localStorage.setItem('editUserID', this.user_uid)
-      } else {
-        localStorage.editUserID = this.user_uid
       }
     }
   }
