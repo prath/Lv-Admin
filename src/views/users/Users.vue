@@ -124,7 +124,11 @@ export default {
   },
   data () {
     return {
-      search: ''
+      search: '',
+      params: {
+        limit: 5,
+        param: 'all'
+      }
     }
   },
   computed: {
@@ -150,9 +154,9 @@ export default {
     ]),
     handlePaging () {
       const params = {
-        limit: 10,
+        limit: this.params.limit,
         page: this.$route.params.page,
-        param: 'all'
+        param: this.params.param
       }
       this.getUsers(params)
     }
@@ -163,9 +167,9 @@ export default {
      */
     const pg = (this.$route.params.page) || 1
     const params = {
-      limit: 10,
+      limit: this.params.limit,
       page: pg,
-      param: 'all'
+      param: this.params.param
     }
     this.getUsers(params)
   },

@@ -11,6 +11,7 @@ export default {
    * @param {Function} commit send data to mutate
    */
   getUnvUsers: ({ commit }) => {
+    commit('SET_LOADED', false)
     const header = config.setHeader()
     axios.get(config.apiUrl + 'host/list?per_page=100&page=1&param=unverified', header)
       .then(response => {
@@ -34,6 +35,7 @@ export default {
    * @param {String} uid user id
    */
   getUserByID: ({ commit }, uid) => {
+    commit('SET_LOADED', false)
     axios.get(config.apiUrl + 'host/get/gets/' + uid)
       .then(response => {
         commit('SET_USER_DATA', response.data.data)
