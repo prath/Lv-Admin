@@ -3,15 +3,15 @@ export default {
   isUpdated: false,
   loadingStatus: false,
   processCompleted: false,
-  errorMsg: {},
+  errorMsg: {}
   // all users
-  users: [],
-  // Unverified users
-  unvUsers: [],
-  // Single user data
-  userData: [],
-  // Single host data
-  hostData: [],
-  // pagination data
-  pagination: {}
+  // users: [],
+  // // Unverified users
+  // unvUsers: [],
+  // // Single user data
+  // userData: [],
+  // // Single host data
+  // hostData: [],
+  // // pagination data
+  // pagination: {}
 }

@@ -420,10 +420,10 @@ export default {
     /**
      * STATE OBJECTS
      */
-    ...mapState([
-      'userData',
-      'errorMsg'
-    ]),
+    ...mapState({
+      userData: state => state.users.userData,
+      errorMsg: state => state.errorMsg
+    }),
     /**
      * STATE GETTERS
      */

@@ -197,11 +197,11 @@ export default {
     /**
      * STATES
      */
-    ...mapState([
-      'unvUsers',
-      'isLoaded',
-      'errorMsg'
-    ]),
+    ...mapState({
+      unvUsers: state => state.users.unvUsers,
+      isLoaded: state => state.isLoaded,
+      errorMsg: state => state.errorMsg
+    }),
     /**
      * GETTERS
      */

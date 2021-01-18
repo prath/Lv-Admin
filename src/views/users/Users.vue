@@ -13,13 +13,13 @@
       <!-- /end page title -->
 
       <!--
-        SEARCH FILTER
+        SEARCH
        -->
       <SearchInPage
         v-model="search"
         placeholder="Find Host &amp; Guest"
       />
-      <!-- /end search filter -->
+      <!-- /end search -->
 
       <!--
         ERROR
@@ -32,6 +32,9 @@
       </section>
       <!-- /error message -->
 
+      <!--
+        TABLE USERS
+       -->
       <div class="columns">
         <div class="column is-full">
           <table class="table is-fullwidth table--orders">
@@ -66,7 +69,7 @@
 
         </div>
       </div>
-      <!-- /end table -->
+      <!-- /end table users -->
 
       <div class="columns">
         <div class="column is-full">
@@ -125,12 +128,12 @@ export default {
     }
   },
   computed: {
-    ...mapState([
-      'users',
-      'pagination',
-      'isLoaded',
-      'errorMsg'
-    ]),
+    ...mapState({
+      users: state => state.users.users,
+      pagination: state => state.users.pagination,
+      isLoaded: state => state.isLoaded,
+      errorMsg: state => state.errorMsg
+    }),
     /**
      * SEARCH USER BY NAME
      */
@@ -171,6 +174,7 @@ export default {
      * CHECK IF LOGGED IN
      */
     config.authCheck()
+    console.log(this.newUser)
   }
 }
 </script>
