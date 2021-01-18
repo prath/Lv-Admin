@@ -6,58 +6,19 @@
       <!--
         PAGE TITLE
        -->
-      <div class="columns">
-        <div class="column generic-heading is-two-third">
-          <h3>Host &amp; Guest List</h3>
-          <p>List of Guest &amp; Host</p>
-        </div>
-        <!-- /end page title -->
-
-        <!--
-          ADD HOST BUTTON
-         -->
-        <div class="column generic-heading is-one-third flex end-xs ">
-          <router-link to="/add-user">
-            <button class="btn btn--medium btn--primary ">
-              Add Host
-            </button>
-          </router-link>
-        </div>
-      </div>
-      <!-- /end add host button -->
-
-      <!--
-        TAB BUTTONS
-       -->
-      <div class="tabs-lokaven">
-        <a
-          href="#"
-          class="focus"
-        >Host</a>
-        <a href="#">Guest</a>
-      </div>
-      <!-- /end tab buttons -->
+      <PageTitleDefault :actionButton="{ title: 'Add Host', url: '/add-user' }">
+        <template><h3>Host &amp; Guest List</h3></template>
+        <template #subtitle><p>List of Guest &amp; Host</p></template>
+      </PageTitleDefault>
+      <!-- /end page title -->
 
       <!--
         SEARCH FILTER
        -->
-      <div class="columns filter-table-list">
-        <div class="column is-full filter-wrapper">
-          <div class="form-group icon-search">
-            <img
-              src="@/assets/img/ic-search.svg"
-              alt=""
-            />
-            <input
-              id="form1"
-              v-model="search"
-              type="text"
-              class="form-control"
-              placeholder="Find Host & Guest"
-            />
-          </div>
-        </div>
-      </div>
+      <SearchInPage
+        v-model="search"
+        placeholder="Find Host &amp; Guest"
+      />
       <!-- /end search filter -->
 
       <!--
@@ -141,13 +102,16 @@ import _ from 'lodash'
 import config from '@/config'
 
 // import views & components
+import { PageTitleDefault, SearchInPage } from '@/components'
 import UserList from '@/views/users/UserList'
 import PaginationDefault from '@/components/paginations/PaginationDefault'
 
 export default {
   components: {
     UserList,
-    PaginationDefault
+    PaginationDefault,
+    PageTitleDefault,
+    SearchInPage
   },
   data () {
     return {
