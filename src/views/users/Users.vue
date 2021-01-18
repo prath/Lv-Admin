@@ -108,7 +108,9 @@ import {
   PaginationDefault
 } from '@/components'
 
-import UserList from '@/views/users/UserList'
+import {
+  UserList
+} from '@/views'
 
 export default {
   components: {
@@ -145,7 +147,7 @@ export default {
     ]),
     handlePaging () {
       const params = {
-        limit: 5,
+        limit: 10,
         page: this.$route.params.page,
         param: 'all'
       }
@@ -158,7 +160,7 @@ export default {
      */
     const pg = (this.$route.params.page) || 1
     const params = {
-      limit: 5,
+      limit: 10,
       page: pg,
       param: 'all'
     }

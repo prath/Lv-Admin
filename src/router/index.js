@@ -1,45 +1,47 @@
 import VueRouter from 'vue-router'
 
-import Login from '@/views/_common/Login'
-import Dashboard from '@/views/Dashboard'
-// Users
-import Users from '@/views/users/Users'
-import UserAdd from '@/views/users/UserAdd'
-import UserEditHost from '@/views/users/UserEditHost'
-import UserProfile from '@/views/users/UserProfile'
-import UserEditGuest from '@/views/users/UserEditGuest'
-// Experiences
-import TourPackages from '@/views/experiences/TourPackages'
-import TourPackagesDetail from '@/views/experiences/TourPackagesDetail'
-import TourPackagesDetailPrivate from '@/views/experiences/TourPackagesDetailPrivate'
-// Featured Experiences
-import ContentList from '@/views/featured-experiences/ContentList'
-import ContentAdd from '@/views/featured-experiences/ContentAdd'
-import ContentEdit from '@/views/featured-experiences/ContentEdit'
-// Categories
-import CategoriesTags from '@/views/categories/CategoriesTags'
-import CategoriesAdd from '@/views/categories/CategoriesAdd'
-import CategoriesEdit from '@/views/categories/CategoriesEdit'
-// Tour Prefernces
-import TourPreferences from '@/views/preferences/TourPreferences'
-import TourPreferencesAdd from '@/views/preferences/TourPreferencesAdd'
-import TourPreferencesEdit from '@/views/preferences/TourPreferencesEdit'
-// Refund
-import RefundList from '@/views/refund/RefundList'
-import RefundAdd from '@/views/refund/RefundAdd'
-import RefundEdit from '@/views/refund/RefundEdit'
-// Booking by Contact
-import BookingContact from '@/views/booking-contact/BookingContact'
-// Bookings
-import BookingList from '@/views/bookings/BookingList'
-import BookingEdit from '@/views/bookings/BookingEdit'
-// Tours
-import ActiveTour from '@/views/tours/ActiveTour'
-// Financial Report
-import FinancialReport from '@/views/financial-reports/FinancialReport'
-// Verification Reqs
-import VerificationRequests from '@/views/verification-reqs/VerificationRequests'
-import VerificationDetail from '@/views/verification-reqs/VerificationDetail'
+import {
+  Login,
+  Dashboard,
+  // Users
+  Users,
+  UserAdd,
+  UserEditHost,
+  UserProfile,
+  UserEditGuest,
+  // Experiences
+  TourPackages,
+  TourPackagesDetail,
+  TourPackagesDetailPrivate,
+  // Featured Experiences
+  ContentList,
+  ContentAdd,
+  ContentEdit,
+  // Categories
+  CategoriesTags,
+  CategoriesAdd,
+  CategoriesEdit,
+  // Tour Prefernces
+  TourPreferences,
+  TourPreferencesAdd,
+  TourPreferencesEdit,
+  // Refund
+  RefundList,
+  RefundAdd,
+  RefundEdit,
+  // Booking by Contact
+  BookingContact,
+  // Bookings
+  BookingList,
+  BookingEdit,
+  // Tours
+  ActiveTour,
+  // Financial Report
+  FinancialReport,
+  // Verification Reqs
+  VerificationRequests,
+  VerificationDetail
+} from '@/views'
 
 const router = new VueRouter({
   routes: [
