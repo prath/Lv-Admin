@@ -102,9 +102,13 @@ import _ from 'lodash'
 import config from '@/config'
 
 // import views & components
-import { PageTitleDefault, SearchInPage } from '@/components'
+import {
+  PageTitleDefault,
+  SearchInPage,
+  PaginationDefault
+} from '@/components'
+
 import UserList from '@/views/users/UserList'
-import PaginationDefault from '@/components/paginations/PaginationDefault'
 
 export default {
   components: {

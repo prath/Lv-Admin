@@ -65,8 +65,8 @@
 import moment from 'moment'
 import config from '@/config'
 
-import TotalRevenue from '@/components/tables/TotalRevenue'
-import TotalBooking from '@/components/tables/TotalBooking'
+import TotalRevenue from '@/components/cards/TotalRevenue'
+import TotalBooking from '@/components/cards/TotalBooking'
 import TableBookingByContact from '@/components/tables/TableBookingByContact.vue'
 
 export default {
