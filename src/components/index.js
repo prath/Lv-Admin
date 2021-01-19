@@ -30,6 +30,7 @@ import PaginationDefault from '@/components/paginations/PaginationDefault'
 import SearchInPage from '@/components/search/SearchInPage'
 
 // Tables
+import LvTable from '@/components/tables/LvTable'
 import TableBookingByContact from '@/components/tables/TableBookingByContact'
 import TableNearendExp from '@/components/tables/TableNearendExp'
 import TableNewVerifications from '@/components/tables/TableNewVerifications'
@@ -59,6 +60,7 @@ export {
 
   SearchInPage,
 
+  LvTable,
   TableBookingByContact,
   TableNearendExp,
   TableNewVerifications

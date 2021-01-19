@@ -21,7 +21,6 @@
               class="badges"
             >{{ is_verified ? 'Verified' : 'Unverified' }}</span>
           </p>
-          <div></div>
         </div>
       </div>
     </td>

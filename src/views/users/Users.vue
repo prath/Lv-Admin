@@ -37,6 +37,14 @@
        -->
       <div class="columns">
         <div class="column is-full">
+
+          <lv-table
+            :fields="tableData.fields"
+            :items="tableDataFiltered"
+          />
+
+          {{ tableDataFiltered }}
+
           <table class="table is-fullwidth table--orders">
             <thead>
               <tr>
@@ -105,29 +113,29 @@ import _ from 'lodash'
 import config from '@/config'
 
 // import views & components
-import {
-  PageTitleDefault,
-  SearchInPage,
-  PaginationDefault
-} from '@/components'
-
-import {
-  UserList
-} from '@/views'
+import { PageTitleDefault, SearchInPage, PaginationDefault, LvTable } from '@/components'
+import { UserList } from '@/views'
 
 export default {
   components: {
     UserList,
     PaginationDefault,
     PageTitleDefault,
-    SearchInPage
+    SearchInPage,
+    LvTable
   },
   data () {
     return {
       search: '',
+      // param to get users data from API.
       params: {
         limit: 5,
         param: 'all'
+      },
+      // user table data
+      tableData: {
+        // will be rendered as table headings
+        fields: ['Name', 'Email', 'Phone', 'Total Tour Packages', 'Action']
       }
     }
   },
@@ -142,10 +150,41 @@ export default {
      * SEARCH USER BY NAME
      */
     searchableUsers () {
-      return _.filter(this.users, (user) => {
+      const filtered = _.filter(this.users, (user) => {
         const fullname = `${user.first_name} ${user.last_name}`
         return fullname.toLowerCase().includes(this.search.toLowerCase())
       })
+      return filtered
+    },
+    tableDataFiltered () {
+      const tableData = []
+
+      // pick all the fields required to be displayed in table
+      const sorted = _.map(this.users, (val, k) => {
+        return _.pick(val, ['first_name', 'last_name', 'email', 'phone_number', 'is_verified', 'host_id', 'count_package'])
+      })
+
+      // loop through the sorted object to manipulate the raw data:
+      // 1. concat first_name and last_name
+      // 2. check if host or not
+      // 3. check if verified or not
+      // 4. check if has count of packages or not
+      ._.forIn(sorted, (value, key) => {
+        const fullname = {
+          fullname: `${value.first_name} ${value.last_name}`
+        }
+        const omitted = _.omit(value, ['first_name', 'last_name'])
+        tableData.push(omitted)
+        _.assign(tableData[key], fullname)
+      })
+
+      // console.log(tableData)
+
+      // filter to be used in search
+      const filtered = _.filter(tableData, (data) => {
+        return data.fullname.toLowerCase().includes(this.search.toLowerCase())
+      })
+      return filtered
     }
   },
   methods: {
@@ -178,7 +217,6 @@ export default {
      * CHECK IF LOGGED IN
      */
     config.authCheck()
-    console.log(this.newUser)
   }
 }
 </script>
