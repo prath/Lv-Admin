@@ -7,16 +7,12 @@ export default {
     items: Array
   },
   render: function (h) {
-    /**
-     * SET TABLE HEADINGS
-     */
-    const headings = this.fields ? this.fields.map((field) => h('th', `${field}`)) : null
+    // Render <thead>
+    const headings = this.fields ? _.map(this.fields, (field) => h('th', `${field}`)) : null
     const thead = this.fields ? h('thead', [h('tr', headings)]) : null
 
-    /**
-     * SET TABLE BODY
-     */
-    const tr = this.items ? this.items.map((item) => {
+    // Render <tbody>
+    const tr = this.items ? _.map(this.items, (item) => {
       return h('tr',
         _.map(item, (el) => {
           return h('td',
@@ -27,6 +23,7 @@ export default {
     }) : null
     const tbody = this.items ? h('tbody', tr) : null
 
+    // Render <table>
     return h(
       'table',
       {
