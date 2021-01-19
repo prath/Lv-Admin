@@ -169,16 +169,19 @@ export default {
       // 2. check if host or not
       // 3. check if verified or not
       // 4. check if has count of packages or not
-      ._.forIn(sorted, (value, key) => {
+      _.forIn(sorted, (value, key) => {
         const fullname = {
           fullname: `${value.first_name} ${value.last_name}`
         }
-        const omitted = _.omit(value, ['first_name', 'last_name'])
+        const host = (value.host_id) ? { is_host: 'Host' } : { is_host: 'Guest' }
+        const verified = (value.is_verified) ? { is_verified: 'verified' } : { is_verified: 'unverified' }
+        const countPackage = (!value.count_package) ? { count_package: 0 } : { count_package: value.count_package }
+        const omitted = _.omit(value, ['first_name', 'last_name', 'host_id'])
         tableData.push(omitted)
-        _.assign(tableData[key], fullname)
+        _.assign(tableData[key], fullname, host, verified, countPackage)
       })
 
-      // console.log(tableData)
+      console.log(tableData)
 
       // filter to be used in search
       const filtered = _.filter(tableData, (data) => {
