@@ -1,3 +1,34 @@
+<!--
+<template>
+  <table class="table is-fullwidth table--orders">
+    <thead v-if="fields">
+      <tr>
+
+        <th v-for="(field, i) in fields" :key="i">
+          {{ field }}
+        </th>
+      </tr>
+    </thead>
+
+    <tbody v-if="items">
+
+      <tr v-for="(item, i) in items" :key="i">
+
+        <td v-for="(el, k) in item" :key="k">
+          <div class="wrapper">
+            <span class="info">
+              {{ el.value }}
+            </span>
+            <span v-if="el.child">
+              {{ el.child. }}
+            </span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</template>
+-->
 <script>
 import _ from 'lodash'
 export default {
@@ -7,25 +38,52 @@ export default {
     items: Array
   },
   render: function (h) {
-    // Render <thead>
+    /**
+     * HELPERS
+     */
+
+    // render child element(s) of a field
+    function renderChild (children) {
+      const c = _.map(children, (child, key) => {
+        const k = Object.keys(child)
+        const tag = (child[k[0]].tag) ? `${child[k[0]].tag}` : 'span'
+        return h(tag, { class: `${child[k[0]].class}` }, `${child[k[0]].value}`)
+      })
+      return c
+    }
+
+    /**
+     * RENDER TABLE ELEMENTS
+     */
+
+    // Render <th>
     const headings = this.fields ? _.map(this.fields, (field) => h('th', `${field}`)) : null
+    // Render <thead>
     const thead = this.fields ? h('thead', [h('tr', headings)]) : null
 
-    // Render <tbody>
+    // Render <tr>
     const tr = this.items ? _.map(this.items, (item) => {
       return h('tr',
+        // Render <td>
         _.map(item, (el, k) => {
-          if (el.render !== false) {
-            return h('td', [
-              h('div', { class: 'wrapper' }, [
-                h('span', { class: 'info' }, `${el.value}`),
-                this.$slots[k]
+          return h('td', [
+            // Render <div>
+            h('div', {
+              class: 'wrapper'
+            },
+            [
+              h('div', [
+                // Render <span>
+                h('span', { class: 'info', slot: 'default' }, `${el.value}`),
+                (el.child) ? h('div', renderChild(el.child)) : ''
+                // h('div', this.$scopedSlots.default({ el: `${el.value}` }))
               ])
             ])
-          }
+          ])
         })
       )
     }) : null
+    // Render <tbody>
     const tbody = this.items ? h('tbody', tr) : null
 
     // Render <table>

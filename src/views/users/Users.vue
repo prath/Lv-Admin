@@ -41,13 +41,22 @@
           <lv-table
             :fields="tableData.fields"
             :items="tableDataFiltered"
-          >
-            <template #count_package>
-              heyho
-            </template>
-          </lv-table>
+          />
+            <!-- <template v-slot:default="slotProps"> -->
+              <!-- {{ slotProps.items }} -->
+            <!-- </template> -->
 
-          {{ tableData }}
+            <!-- <template v-slot:default="isHost" v-bind:uid="1">
+              {{ isHost.el }}
+            </template> -->
+
+            <!-- <template #email>
+              ya email lah
+            </template> -->
+
+          <!-- </lv-table> -->
+
+          <!-- <pre>{{ tableData.items }}</pre> -->
 
           <table class="table is-fullwidth table--orders">
             <thead>
@@ -141,7 +150,8 @@ export default {
         // will be rendered as table headings
         fields: ['Name', 'Email', 'Phone', 'Total Tour Packages', 'Action'],
         items: []
-      }
+      },
+      hello: 'hell you'
     }
   },
   computed: {
@@ -168,7 +178,8 @@ export default {
       })
 
       /**
-       * loop through the sorted users object to assign the data from API to be used in table, and compose it to follow the following format:
+       * loop through the sorted users object to assign the data from API to be used in table,
+       * and compose it to follow the following format:
        *
        * tableItems : {
        *     field_name: {
@@ -178,8 +189,14 @@ export default {
        * }
        */
       _.forIn(sorted, (v, k) => {
+        // Set if the user is host or guest, render false since it won't automatically render into the table
+        const host = (v.host_id) ? { is_host: { value: 'Host', tag: 'span', class: 'info badges badges--verified mr-5' } } : { is_host: { value: 'Guest', tag: 'span', class: 'info badges badges--paid-off mr-5' } }
+
+        // Set if the user is verified host or not
+        const verified = (v.is_verified) ? { is_verified: { value: 'verified', class: 'badges text-info' } } : { is_verified: { value: 'unverified', class: 'badges text-warning' } }
+
         // Set full name
-        const fullName = { full_name: { value: `${v.first_name} ${v.last_name}` } }
+        const fullName = { full_name: { value: `${v.first_name} ${v.last_name}`, child: [host, verified] } }
 
         // Set email
         const email = { email: { value: v.email } }
@@ -190,17 +207,11 @@ export default {
         // Set number of package owned by user
         const countPackage = (!v.count_package) ? { count_package: { value: 0 } } : { count_package: { value: v.count_package } }
 
-        // Set if the user is host or guest, render false since it won't automatically render into the table
-        const host = (v.host_id) ? { is_host: { value: 'Host', render: false } } : { is_host: { value: 'Guest', render: false } }
-
-        // Set if the user is verified host or not
-        const verified = (v.is_verified) ? { is_verified: { value: 'verified', render: false } } : { is_verified: { value: 'unverified', render: false } }
-
         // need to be in order, matching this.tableData.fields: fullName, email, phone, count package
-        this.tableData.items[k] = { ...fullName, ...email, ...phoneNumber, ...countPackage, ...host, ...verified }
+        this.tableData.items[k] = { ...fullName, ...email, ...phoneNumber, ...countPackage }
       })
 
-      console.log(this.tableData.items)
+      // console.log(this.tableData.items)
 
       // filter to be used in search
       const filtered = _.filter(this.tableData.items, (data) => {
