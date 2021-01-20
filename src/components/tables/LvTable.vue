@@ -67,14 +67,16 @@ export default {
         // Render <td>
         _.map(item, (el, k) => {
           return h('td', [
-            // Render <div>
+            // Render <div class=wrapper>
             h('div', {
               class: 'wrapper'
             },
             [
+              // Render another div
               h('div', [
                 // Render <span>
-                h('span', { class: 'info', slot: 'default' }, `${el.value}`),
+                h('span', { class: 'info' }, `${el.value}`),
+                // Render child element is exist
                 (el.child) ? h('div', renderChild(el.child)) : ''
                 // h('div', this.$scopedSlots.default({ el: `${el.value}` }))
               ])
