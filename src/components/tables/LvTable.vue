@@ -1,34 +1,3 @@
-<!--
-<template>
-  <table class="table is-fullwidth table--orders">
-    <thead v-if="fields">
-      <tr>
-
-        <th v-for="(field, i) in fields" :key="i">
-          {{ field }}
-        </th>
-      </tr>
-    </thead>
-
-    <tbody v-if="items">
-
-      <tr v-for="(item, i) in items" :key="i">
-
-        <td v-for="(el, k) in item" :key="k">
-          <div class="wrapper">
-            <span class="info">
-              {{ el.value }}
-            </span>
-            <span v-if="el.child">
-              {{ el.child. }}
-            </span>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</template>
--->
 <script>
 import _ from 'lodash'
 export default {
