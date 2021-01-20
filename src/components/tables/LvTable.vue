@@ -14,10 +14,15 @@ export default {
     // Render <tbody>
     const tr = this.items ? _.map(this.items, (item) => {
       return h('tr',
-        _.map(item, (el) => {
-          return h('td',
-            `${el}`
-          )
+        _.map(item, (el, k) => {
+          if (el.render !== false) {
+            return h('td', [
+              h('div', { class: 'wrapper' }, [
+                h('span', { class: 'info' }, `${el.value}`),
+                this.$slots[k]
+              ])
+            ])
+          }
         })
       )
     }) : null

@@ -41,9 +41,13 @@
           <lv-table
             :fields="tableData.fields"
             :items="tableDataFiltered"
-          />
+          >
+            <template #count_package>
+              heyho
+            </template>
+          </lv-table>
 
-          {{ tableDataFiltered }}
+          {{ tableData }}
 
           <table class="table is-fullwidth table--orders">
             <thead>
@@ -135,7 +139,8 @@ export default {
       // user table data
       tableData: {
         // will be rendered as table headings
-        fields: ['Name', 'Email', 'Phone', 'Total Tour Packages', 'Action']
+        fields: ['Name', 'Email', 'Phone', 'Total Tour Packages', 'Action'],
+        items: []
       }
     }
   },
@@ -157,41 +162,49 @@ export default {
       return filtered
     },
     tableDataFiltered () {
-      const tableData = []
-
       // pick all the fields required to be displayed in table
       const sorted = _.map(this.users, (val, k) => {
         return _.pick(val, ['first_name', 'last_name', 'email', 'phone_number', 'is_verified', 'host_id', 'count_package', 'user_uid'])
       })
 
       /**
-       * loop through the sorted object to manipulate the raw data:
+       * loop through the sorted users object to assign the data from API to be used in table, and compose it to follow the following format:
        *
-       * 1. concat first_name and last_name
-       * 2. check if host or not
-       * 3. check if verified or not
-       * 4. check if has count of packages or not
+       * tableItems : {
+       *     field_name: {
+       *         value: 'value from API',
+       *         render: false (if set false the field will not going to be rendered into the table, can be unset)
+       *     }
+       * }
        */
-      _.forIn(sorted, (value, key) => {
-        const fullname = {
-          fullname: `${value.first_name} ${value.last_name}`
-        }
+      _.forIn(sorted, (v, k) => {
+        // Set full name
+        const fullName = { full_name: { value: `${v.first_name} ${v.last_name}` } }
 
-        // const host = (value.host_id) ? { is_host: 'Host' } : { is_host: 'Guest' }
-        // const verified = (value.is_verified) ? { is_verified: 'verified' } : { is_verified: 'unverified' }
-        const phoneNumber = (value.phone_number) ? { phone_number: value.phone_number } : { phone_number: '-' }
-        const countPackage = (!value.count_package) ? { count_package: 0 } : { count_package: value.count_package }
-        const omitted = _.omit(value, ['first_name', 'last_name', 'is_verified', 'phone_number', 'host_id', 'user_uid', 'count_package'])
+        // Set email
+        const email = { email: { value: v.email } }
 
-        // need to be in order, matching this.tableData.fields: fullname, email, phone, count package
-        tableData[key] = { ...fullname, ...omitted, ...phoneNumber, ...countPackage }
+        // Set phone number, render '-' if it has no number
+        const phoneNumber = (v.phone_number) ? { phone_number: { value: v.phone_number } } : { phone_number: { value: '-' } }
+
+        // Set number of package owned by user
+        const countPackage = (!v.count_package) ? { count_package: { value: 0 } } : { count_package: { value: v.count_package } }
+
+        // Set if the user is host or guest, render false since it won't automatically render into the table
+        const host = (v.host_id) ? { is_host: { value: 'Host', render: false } } : { is_host: { value: 'Guest', render: false } }
+
+        // Set if the user is verified host or not
+        const verified = (v.is_verified) ? { is_verified: { value: 'verified', render: false } } : { is_verified: { value: 'unverified', render: false } }
+
+        // need to be in order, matching this.tableData.fields: fullName, email, phone, count package
+        this.tableData.items[k] = { ...fullName, ...email, ...phoneNumber, ...countPackage, ...host, ...verified }
       })
 
-      console.log(tableData)
+      console.log(this.tableData.items)
 
       // filter to be used in search
-      const filtered = _.filter(tableData, (data) => {
-        return data.fullname.toLowerCase().includes(this.search.toLowerCase()) || data.email.toLowerCase().includes(this.search.toLowerCase())
+      const filtered = _.filter(this.tableData.items, (data) => {
+        return data.full_name.value.toLowerCase().includes(this.search.toLowerCase()) || data.email.value.toLowerCase().includes(this.search.toLowerCase())
       })
       return filtered
     }
