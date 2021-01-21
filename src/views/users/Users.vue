@@ -39,8 +39,7 @@
         <div class="column is-full">
 
           <lv-table
-            :fields="tableData.fields"
-            :items="tableDataFiltered"
+            :items="setupTableData"
           />
             <!-- <template v-slot:default="slotProps"> -->
               <!-- {{ slotProps.items }} -->
@@ -171,7 +170,7 @@ export default {
       })
       return filtered
     },
-    tableDataFiltered () {
+    setupTableData () {
       // pick all the fields required to be displayed in table
       const sorted = _.map(this.users, (val, k) => {
         return _.pick(val, ['first_name', 'last_name', 'email', 'phone_number', 'is_verified', 'host_id', 'count_package', 'user_uid'])
