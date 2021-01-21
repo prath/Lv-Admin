@@ -39,7 +39,7 @@
 
     <td>
       <div class="wrapper">
-        <span class="info">{{ getTotalTour(host_id) }}</span>
+        <span class="info"></span>
       </div>
     </td>
 

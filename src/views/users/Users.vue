@@ -39,53 +39,10 @@
         <div class="column is-full">
 
           <lv-table
+            :fields="tableData.fields"
             :items="setupTableData"
           />
-            <!-- <template v-slot:default="slotProps"> -->
-              <!-- {{ slotProps.items }} -->
-            <!-- </template> -->
-
-            <!-- <template v-slot:default="isHost" v-bind:uid="1">
-              {{ isHost.el }}
-            </template> -->
-
-            <!-- <template #email>
-              ya email lah
-            </template> -->
-
-          <!-- </lv-table> -->
-
           <!-- <pre>{{ tableData.items }}</pre> -->
-
-          <table class="table is-fullwidth table--orders">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Total Tour Packages</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-
-            <div v-if="!isLoaded">
-              Loading....
-            </div>
-            <tbody v-else>
-              <UserList
-                v-for="(user, i) in searchableUsers"
-                :key="i"
-                :first_name="user.first_name"
-                :last_name="user.last_name"
-                :phone_number="user.phone_number"
-                :host_id="user.host_id"
-                :email="user.email"
-                :user_uid="user.user_uid"
-                :is_verified="user.is_verified"
-                :business_name="user.business_name"
-              />
-            </tbody>
-          </table>
 
         </div>
       </div>
@@ -126,11 +83,12 @@ import config from '@/config'
 
 // import views & components
 import { PageTitleDefault, SearchInPage, PaginationDefault, LvTable } from '@/components'
-import { UserList } from '@/views'
+// import { UserList } from '@/views'
 
 export default {
+  name: 'Users',
   components: {
-    UserList,
+    // UserList,
     PaginationDefault,
     PageTitleDefault,
     SearchInPage,
@@ -148,7 +106,20 @@ export default {
       tableData: {
         // will be rendered as table headings
         fields: ['Name', 'Email', 'Phone', 'Total Tour Packages', 'Action'],
-        items: []
+        // will be rendered as items in the table. Data taken from store.states
+        items: [],
+        // will be rendered as action button on each table item
+        actionButtons: [
+          {
+            type: 'button-icon',
+            tag: 'a',
+            options: {
+              title: 'view',
+              iconsrc: '@/assets/img/ic-edit-line.svg',
+              identifier: 'user_uid'
+            }
+          }
+        ]
       },
       hello: 'hell you'
     }
@@ -160,32 +131,15 @@ export default {
       isLoaded: state => state.isLoaded,
       errorMsg: state => state.errorMsg
     }),
-    /**
-     * SEARCH USER BY NAME
-     */
-    searchableUsers () {
-      const filtered = _.filter(this.users, (user) => {
-        const fullname = `${user.first_name} ${user.last_name}`
-        return fullname.toLowerCase().includes(this.search.toLowerCase())
-      })
-      return filtered
-    },
     setupTableData () {
-      // pick all the fields required to be displayed in table
-      const sorted = _.map(this.users, (val, k) => {
+      // console.log(this.users)
+      // pick all the data required to be displayed in table
+      const sorted = _.map(this.users, val => {
         return _.pick(val, ['first_name', 'last_name', 'email', 'phone_number', 'is_verified', 'host_id', 'count_package', 'user_uid'])
       })
 
       /**
-       * loop through the sorted users object to assign the data from API to be used in table,
-       * and compose it to follow the following format:
-       *
-       * tableItems : {
-       *     field_name: {
-       *         value: 'value from API',
-       *         render: false (if set false the field will not going to be rendered into the table, can be unset)
-       *     }
-       * }
+       * loop through the sorted users object to assign the data from API to be used in table
        */
       _.forIn(sorted, (v, k) => {
         // Set if the user is host or guest, render false since it won't automatically render into the table
@@ -224,30 +178,37 @@ export default {
       'getUsers'
     ]),
     handlePaging () {
+      // if (this.users.length < 1) {
       const params = {
         limit: this.params.limit,
         page: this.$route.params.page,
         param: this.params.param
       }
       this.getUsers(params)
+      console.log(this.users)
+      // }
     }
   },
   created () {
     /**
      * SET PARAMS FOR GET USERS FROM SERVER
      */
+    console.log(this.users)
     const pg = (this.$route.params.page) || 1
     const params = {
       limit: this.params.limit,
       page: pg,
       param: this.params.param
     }
-    this.getUsers(params)
+    if (this.users.length < 1) {
+      this.getUsers(params)
+    }
   },
   mounted () {
     /**
      * CHECK IF LOGGED IN
      */
+
     config.authCheck()
   }
 }

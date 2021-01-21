@@ -24,17 +24,19 @@
       - Loops the items to set the <tr> and <td>
      -->
     <tbody v-if="items">
+
       <tr v-for="(item, i) in items" :key="i">
         <td v-for="(el, i) in item" :key="i">
           <div class="wrapper">
             <div>
+              <slot v-if="actionButtons" name="actionButton"></slot>
               <!-- Render the field value -->
               <span class="info">
                 {{ el.value }}
               </span>
 
               <!--
-                CHECKS ITEM CHILDREN
+                ITEM/FIELD VALUE CHILDREN
                 ~~~~~
                 - Checks if the value on each fields has children
                 - If field has children, loop the items to render the children
@@ -66,7 +68,8 @@ export default {
   name: 'LvTable',
   props: {
     fields: Array,
-    items: Array
+    items: Array,
+    actionButtons: Array
   }
 }
 </script>
