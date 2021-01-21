@@ -2,7 +2,7 @@
   <table class="table is-fullwidth table--orders">
 
     <!--
-      CHECKS TABLE TITLES
+      TABLE TITLES
       ~~~~~
       - Checks if the thead items is defined or not.
       - Loops the fields to set <th>
@@ -18,7 +18,7 @@
     </thead>
 
     <!--
-      CHECKS TABLE CONTENT
+      TABLE CONTENT
       ~~~~~
       - Checks if the tbody items is defined or not.
       - Loops the items to set the <tr> and <td>
