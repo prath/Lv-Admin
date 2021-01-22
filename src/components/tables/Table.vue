@@ -32,7 +32,7 @@
             <div>
               <!-- Render the field value -->
               <slot :name="`${i}`" :data="el">
-                <span class="info">
+                <span class="info" :class="{class: el.class}">
                   {{ el.value }}
                 </span>
               </slot>

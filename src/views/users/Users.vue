@@ -42,15 +42,15 @@
             :fields="tableData.fields"
             :items="setupTableData"
           >
-            <template #is_host="data">
-              hello {{ data.data.value }}
+
+            <template #actionButtons="data">
+              <template v-for="(dt, idx) in data.data">
+                <router-link :to="{ name: 'edithost', params: { id: dt.identifier }}" :key="idx">
+                  <span class="info icon"><img :src="`${dt.iconsrc}`" /></span>
+                </router-link>
+              </template>
             </template>
 
-            <template #action_button="data">
-              <router-link :to="{ name: 'edithost', params: { id: data.data.identifier }}">
-                <span class="info icon"><img :src="`${data.data.iconsrc}`" /></span>
-              </router-link>
-            </template>
           </lv-table>
 
         </div>
@@ -116,19 +116,7 @@ export default {
         // will be rendered as table headings
         fields: ['Name', 'Email', 'Phone', 'Total Tour Packages', 'Action'],
         // will be rendered as items in the table. Data taken from store.states
-        items: [],
-        // will be rendered as action button on each table item
-        actionButtons: [
-          {
-            type: 'button-icon',
-            tag: 'a',
-            options: {
-              title: 'view',
-              iconsrc: '/assets/img/ic-edit-line.svg',
-              identifier: 'user_uid'
-            }
-          }
-        ]
+        items: []
       },
       hello: 'hell you'
     }
@@ -151,33 +139,82 @@ export default {
        * loop through the sorted users object to assign the data from API to be used in table
        */
       _.forIn(sorted, (v, k) => {
-        // Set if the user is host or guest, render false since it won't automatically render into the table
-        const host = (v.host_id) ? { is_host: { value: 'Host', tag: 'span', class: 'info badges badges--verified mr-5' } } : { is_host: { value: 'Guest', tag: 'span', class: 'info badges badges--paid-off mr-5' } }
-
-        // Set if the user is verified host or not
-        const verified = (v.is_verified) ? { is_verified: { value: 'verified', class: 'badges text-info' } } : { is_verified: { value: 'unverified', class: 'badges text-warning' } }
-
-        // Set full name
-        const fullName = { full_name: { value: `${v.first_name} ${v.last_name}`, child: [host, verified] } }
-
-        // Set email
-        const email = { email: { value: v.email } }
-
-        // Set phone number, render '-' if it has no number
-        const phoneNumber = (v.phone_number) ? { phone_number: { value: v.phone_number } } : { phone_number: { value: '-' } }
-
-        // Set number of package owned by user
-        const countPackage = (!v.count_package) ? { count_package: { value: 0 } } : { count_package: { value: v.count_package } }
-
-        // Set action button
-        const actionButtons = {
-          action_button: {
-            iconsrc: 'assets/img/ic-edit-line.svg',
-            identifier: v.user_uid
+        // Set if the user is host or guest, will be rendered as child of fullName
+        const host = (v.host_id) ? {
+          isHost: {
+            value: 'Host',
+            tag: 'span',
+            class: 'info badges badges--verified mr-5'
+          }
+        } : {
+          isHost: {
+            value: 'Guest',
+            tag: 'span',
+            class: 'info badges badges--paid-off mr-5'
           }
         }
 
-        // need to be in order, matching this.tableData.fields: fullName, email, phone, count package
+        // Set if the user is verified host or not, will be rendered as child of fullName
+        const verified = (v.is_verified) ? {
+          isVerified: {
+            value: 'verified',
+            class: 'badges text-info'
+          }
+        } : {
+          isVerified: {
+            value: 'unverified',
+            class: 'badges text-warning'
+          }
+        }
+
+        // Set full name
+        const fullName = {
+          fullName: {
+            value: `${v.first_name} ${v.last_name}`,
+            child: [host, verified]
+          }
+        }
+
+        // Set email
+        const email = {
+          email: {
+            value: v.email
+          }
+        }
+
+        // Set phone number, render '-' if it has no number
+        const phoneNumber = (v.phone_number) ? {
+          phoneNumber: {
+            value: v.phone_number
+          }
+        } : {
+          phoneNumber: {
+            value: '-'
+          }
+        }
+
+        // Set number of package owned by user
+        const countPackage = (!v.count_package) ? {
+          countPackage: {
+            value: 0
+          }
+        } : {
+          countPackage: {
+            value: v.count_package
+          }
+        }
+
+        // Set action button
+        const actionButtons = {
+          actionButtons: {
+            viewButton: {
+              iconsrc: 'assets/img/ic-edit-line.svg',
+              identifier: v.user_uid
+            }
+          }
+        }
+
+        // need to be in order, matching this.tableData.fields: fullName, email, phone, count package, and action buttons
         this.tableData.items[k] = { ...fullName, ...email, ...phoneNumber, ...countPackage, ...actionButtons }
       })
 
@@ -185,7 +222,7 @@ export default {
 
       // filter to be used in search
       const filtered = _.filter(this.tableData.items, (data) => {
-        return data.full_name.value.toLowerCase().includes(this.search.toLowerCase()) || data.email.value.toLowerCase().includes(this.search.toLowerCase())
+        return data.fullName.value.toLowerCase().includes(this.search.toLowerCase()) || data.email.value.toLowerCase().includes(this.search.toLowerCase())
       })
       return filtered
     }
@@ -195,7 +232,6 @@ export default {
       'getUsers'
     ]),
     handlePaging () {
-      // if (this.users.length < 1) {
       const params = {
         limit: this.params.limit,
         page: this.$route.params.page,
@@ -203,7 +239,6 @@ export default {
       }
       this.getUsers(params)
       console.log(this.users)
-      // }
     }
   },
   created () {
@@ -225,7 +260,6 @@ export default {
     /**
      * CHECK IF LOGGED IN
      */
-
     config.authCheck()
   }
 }
