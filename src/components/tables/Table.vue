@@ -26,15 +26,16 @@
     <tbody v-if="items">
 
       <tr v-for="(item, i) in items" :key="i">
+        <!-- {{ item }} -->
         <td v-for="(el, i) in item" :key="i">
           <div class="wrapper">
             <div>
-              <slot v-if="actionButtons" name="actionButton"></slot>
               <!-- Render the field value -->
-              <span class="info">
-                {{ el.value }}
-              </span>
-
+              <slot :name="`${i}`" :data="el">
+                <span class="info">
+                  {{ el.value }}
+                </span>
+              </slot>
               <!--
                 ITEM/FIELD VALUE CHILDREN
                 ~~~~~
@@ -45,12 +46,14 @@
               <div v-if="el.child">
                 <template v-for="(children) in el.child">
                   <template v-for="(child, idx) in children">
-                    <component v-if="child.tag" :is="child.tag" :key="idx" :class="child.class">
-                      {{ child.value }}
-                    </component>
-                    <span v-else :key="idx" :class="child.class">
-                      {{ child.value }}
-                    </span>
+                    <slot :name="`${idx}`" :data="child">
+                      <component v-if="child.tag" :is="child.tag" :key="idx" :class="child.class">
+                        {{ child.value }}
+                      </component>
+                      <span v-else :key="idx" :class="child.class">
+                        {{ child.value }}
+                      </span>
+                    </slot>
                   </template>
                 </template>
               </div>
@@ -69,7 +72,11 @@ export default {
   props: {
     fields: Array,
     items: Array,
-    actionButtons: Array
+    actionButtons: Array,
+    hello: String
+  },
+  methods: {
+    // getKey
   }
 }
 </script>

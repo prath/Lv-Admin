@@ -41,8 +41,17 @@
           <lv-table
             :fields="tableData.fields"
             :items="setupTableData"
-          />
-          <!-- <pre>{{ tableData.items }}</pre> -->
+          >
+            <template #is_host="data">
+              hello {{ data.data.value }}
+            </template>
+
+            <template #action_button="data">
+              <router-link :to="{ name: 'edithost', params: { id: data.data.identifier }}">
+                <span class="info icon"><img :src="`${data.data.iconsrc}`" /></span>
+              </router-link>
+            </template>
+          </lv-table>
 
         </div>
       </div>
@@ -115,7 +124,7 @@ export default {
             tag: 'a',
             options: {
               title: 'view',
-              iconsrc: '@/assets/img/ic-edit-line.svg',
+              iconsrc: '/assets/img/ic-edit-line.svg',
               identifier: 'user_uid'
             }
           }
@@ -160,8 +169,16 @@ export default {
         // Set number of package owned by user
         const countPackage = (!v.count_package) ? { count_package: { value: 0 } } : { count_package: { value: v.count_package } }
 
+        // Set action button
+        const actionButtons = {
+          action_button: {
+            iconsrc: 'assets/img/ic-edit-line.svg',
+            identifier: v.user_uid
+          }
+        }
+
         // need to be in order, matching this.tableData.fields: fullName, email, phone, count package
-        this.tableData.items[k] = { ...fullName, ...email, ...phoneNumber, ...countPackage }
+        this.tableData.items[k] = { ...fullName, ...email, ...phoneNumber, ...countPackage, ...actionButtons }
       })
 
       // console.log(this.tableData.items)
