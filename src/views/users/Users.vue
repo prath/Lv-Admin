@@ -88,7 +88,6 @@ import config from '@/config'
 
 // import views & components
 import { PageTitleDefault, SearchInPage, PaginationDefault, LvTable } from '@/components'
-// import { UserList } from '@/views'
 
 export default {
   name: 'Users',
