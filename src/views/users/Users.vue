@@ -32,12 +32,12 @@
       </section>
       <!-- /error message -->
 
-      <!--
-        TABLE USERS
-       -->
       <div class="columns">
         <div class="column is-full">
 
+          <!--
+            TABLE USERS
+           -->
           <lv-table
             :fields="tableData.fields"
             :items="setupTableData"
@@ -52,10 +52,10 @@
             </template>
 
           </lv-table>
+           <!-- /end table users -->
 
         </div>
       </div>
-      <!-- /end table users -->
 
       <div class="columns">
         <div class="column is-full">
@@ -80,10 +80,6 @@
 <script>
 /**
  * LIST ALL USERS IN LOKAVEN
- *
- * @todo
- * - get tour package count owned by every host
- * - pagination
  */
 
 import { mapState, mapActions } from 'vuex'
