@@ -93,7 +93,6 @@ import { PageTitleDefault, SearchInPage, PaginationDefault, LvTable } from '@/co
 export default {
   name: 'Users',
   components: {
-    // UserList,
     PaginationDefault,
     PageTitleDefault,
     SearchInPage,
@@ -101,8 +100,9 @@ export default {
   },
   data () {
     return {
+      // search query model
       search: '',
-      // param to get users data from API.
+      // param to fetch users data from API.
       params: {
         limit: 5,
         param: 'all'
@@ -113,27 +113,38 @@ export default {
         fields: ['Name', 'Email', 'Phone', 'Total Tour Packages', 'Action'],
         // will be rendered as items in the table. Data taken from store.states
         items: []
-      },
-      hello: 'hell you'
+      }
     }
   },
   computed: {
+    /**
+     * INIT STATES
+     * ~~~~~~
+     * Initiate States from vuex store
+     */
     ...mapState({
       users: state => state.users.users,
       pagination: state => state.users.pagination,
       isLoaded: state => state.isLoaded,
       errorMsg: state => state.errorMsg
     }),
+    /**
+     * SETUP TABLE DATA
+     * ~~~~~
+     * Setup the data to be displayed in table component.
+     * - pick required data from users state
+     * - arrange the data to match with Table component formatting
+     * - add some additional data into each table data
+     * - register the data into items[]
+     * - filter the items so it's searchable based on name and email
+     */
     setupTableData () {
-      // console.log(this.users)
       // pick all the data required to be displayed in table
       const sorted = _.map(this.users, val => {
         return _.pick(val, ['first_name', 'last_name', 'email', 'phone_number', 'is_verified', 'host_id', 'count_package', 'user_uid'])
       })
 
-      /**
-       * loop through the sorted users object to assign the data from API to be used in table
-       */
+      // Loop through the sorted users object to assign the data from API to be used in table
       _.forIn(sorted, (v, k) => {
         // Set if the user is host or guest, will be rendered as child of fullName
         const host = (v.host_id) ? {
@@ -214,8 +225,6 @@ export default {
         this.tableData.items[k] = { ...fullName, ...email, ...phoneNumber, ...countPackage, ...actionButtons }
       })
 
-      // console.log(this.tableData.items)
-
       // filter to be used in search
       const filtered = _.filter(this.tableData.items, (data) => {
         return data.fullName.value.toLowerCase().includes(this.search.toLowerCase()) || data.email.value.toLowerCase().includes(this.search.toLowerCase())
@@ -224,9 +233,19 @@ export default {
     }
   },
   methods: {
+    /**
+     * INIT ACTIONS
+     * ~~~~~
+     * initiates actions that will be used in this SFC
+     */
     ...mapActions([
       'getUsers'
     ]),
+    /**
+     * HANDLE PAGING
+     * ~~~~~
+     * Pagination requests
+     */
     handlePaging () {
       const params = {
         limit: this.params.limit,
@@ -239,7 +258,13 @@ export default {
   },
   created () {
     /**
-     * SET PARAMS FOR GET USERS FROM SERVER
+     * GET USERS DATA
+     * ~~~~~
+     * Fetch required users data from server and store it into users sessions
+     * - setup the query
+     * - check if the state already exist
+     * - if empty, fetch users data from server
+     * - store the data into users state
      */
     console.log(this.users)
     const pg = (this.$route.params.page) || 1
@@ -255,6 +280,9 @@ export default {
   mounted () {
     /**
      * CHECK IF LOGGED IN
+     * ~~~~~
+     * @todo
+     * - revisit the function, i think it doesn't really efficient.
      */
     config.authCheck()
   }

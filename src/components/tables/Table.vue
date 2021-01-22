@@ -74,13 +74,6 @@ export default {
     items: Array,
     actionButtons: Array,
     hello: String
-  },
-  methods: {
-    // getKey
   }
 }
 </script>
-
-<style>
-
-</style>
