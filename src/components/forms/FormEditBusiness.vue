@@ -8,9 +8,9 @@
         <div class="form-group">
           <label for="last_name">Business Name</label>
           <input
+            v-model="userData.business_name"
             type="text"
             class="form-control"
-            placeholder=""
             :disabled="!activateForm"
           />
         </div>
@@ -57,6 +57,7 @@
         <div class="form-group">
           <label for="last_name">Address</label>
           <textarea
+            v-model="userData.address"
             class="form-control"
             rows="2"
             cols="10"
@@ -75,11 +76,12 @@
         <div class="form-group">
           <label for="last_name">About</label>
           <textarea
+            v-model="userData.about"
             class="form-control"
             rows="5"
             cols="10"
             :disabled="!activateForm"
-          >Kami memiliki jaringan bisnis yang luas, sehingga memampukan kami untuk memberikan layanan terbaik yang melingkupi tiket penerbangan, kereta api, hotel, pengurusan dokumen perjalanan, tour wisata inbound dan outbound, incentive tour, cruises, asuransi perjalanan, rental kendaraan, dan corporate travel management service.</textarea>
+          ></textarea>
         </div>
       </div>
     </div>
@@ -169,7 +171,8 @@ export default {
   props: {
     activateForm: Boolean,
     isVerifiedHost: Boolean,
-    isVerificationRequested: Boolean
+    isVerificationRequested: Boolean,
+    userData: Object
   }
 }
 </script>

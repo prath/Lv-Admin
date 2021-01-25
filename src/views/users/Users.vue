@@ -38,7 +38,9 @@
           <!--
             TABLE USERS
            -->
+          <div v-if="!isLoaded">Loading....</div>
           <lv-table
+            v-else
             :fields="tableData.fields"
             :items="setupTableData"
           >

@@ -8,7 +8,7 @@ const state = {
   // Unverified users
   unvUsers: [],
   // Single user data
-  userData: [],
+  userData: {},
   // Single host data
   hostData: [],
   // pagination data

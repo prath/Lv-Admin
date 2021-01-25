@@ -249,7 +249,7 @@
  * ----
  * 1. Admin click one of the user data, and modal window will be opened
  * 2. hostData will be checked, if it's already available in store
- * 3. if available, user data will be retrieve and store into state with getUserByID
+ * 3. if available, user data will be retrieve and store into state with getHostByID
  * 4. load hostData and userData into views
  * 5. Admin review the photos of ID and business license
  * 6. PATCH verification data to server by
@@ -280,7 +280,7 @@ export default {
      * if host data available, then get user data based on user id retrieved from host data
      */
     if (!_.isEmpty(this.hostData)) {
-      this.getUserByID(this.hostData.user_uid)
+      this.getHostByID(this.hostData.user_uid)
     }
   },
   updated () {
@@ -299,7 +299,7 @@ export default {
      * Update/patch verification data to server and state
      */
     ...mapActions([
-      'getUserByID',
+      'getHostByID',
       'patchVerificationData'
     ]),
     /**

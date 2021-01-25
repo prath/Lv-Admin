@@ -72,8 +72,7 @@ export default {
   props: {
     fields: Array,
     items: Array,
-    actionButtons: Array,
-    hello: String
+    actionButtons: Array
   }
 }
 </script>
