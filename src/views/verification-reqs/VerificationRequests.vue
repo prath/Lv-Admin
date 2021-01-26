@@ -24,107 +24,48 @@
       </section>
 
       <section v-else>
-        <div class="columns filter-table-list">
-          <div class="column is-full filter-wrapper">
-            <div class="form-group icon-search">
-              <img
-                src="@/assets/img/ic-search.svg"
-                alt=""
-              />
-              <input
-                id="form1"
-                v-model="search"
-                type="text"
-                class="form-control"
-                placeholder="Find User by name"
-              />
-            </div>
-          </div>
-        </div>
+
+        <!--
+          SEARCH IN PAGE
+         -->
+        <search-in-page
+          v-model="search"
+          placeholder="Find host by name or business name"
+        />
 
         <div class="columns">
           <div class="column is-full">
-            <table class="table is-fullwidth table--orders">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Business Name</th>
-                  <th>Signup as Host Date</th>
-                  <th>Verification Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
 
-              <!--
-                  PRELOADER
-                -->
-              <div v-if="!isLoaded">
-                Loading....
-              </div>
-              <tbody v-else>
-                <template v-for="(host, key) in filteredList">
-                  <tr :key="host.host_id">
-                    <td>
-                      <div class="wrapper">
-                        <div>
-                          <span
-                            class="order_number"
-                            :class="key"
-                          ><a href="">{{ host.first_name + ' ' + host.last_name }}</a></span>
-                        </div>
-                      </div>
-                    </td>
+            <!--
+              TABLE VERIFICATION REQUESTS
+             -->
+            <lv-table
+              :fields="tableData.fields"
+              :items="setupTableData"
+            >
 
-                    <td>
-                      <div class="wrapper">
-                        <div>
-                          <span class="info">{{ host.business_name }}</span>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td>
-                      <div class="wrapper">
-                        <div>
-                          <span class="info">{{ host.created_at | formatDate }}</span>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td>
-                      <div class="wrapper">
-                        <div>
-                          <span
-                            class="badges"
-                            :class="status(host.card_id_status).className"
-                          >ID {{ status(host.card_id_status).name }}</span><br />
-                          <span
-                            class="badges"
-                            :class="status(host.bussiness_id_status).className"
-                          >Business ID {{ status(host.bussiness_id_status).name }}</span>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td>
-                      <div class="wrapper">
-                        <span class="info icon">
-                          <!-- <router-link :to="'verification-detail/' + host.host_id"> -->
-                          <a
-                            title="View Request"
-                            @click="showModal(host.host_id)"
-                          ><img
-                            src="assets/img/ic-edit-line.svg"
-                            title="Edit User"
-                          /></a>
-                          <!-- </router-link> -->
-                        </span>
-                      </div>
-                    </td>
-                  </tr>
+              <template #status="data">
+                <template v-for="(dt, idx) in data.data">
+                  <div :key="idx">
+                    <span :class="dt.class">
+                      {{ dt.value }}
+                    </span>
+                    <br />
+                  </div>
                 </template>
-              </tbody>
-            </table>
+              </template>
+
+              <template #actionButtons="data">
+                <template v-for="(dt, idx) in data.data">
+                  <span class="info icon" :key="idx">
+                    <a title="View Request" @click="showModal(dt.identifier)">
+                      <img :src="`${dt.iconsrc}`" title="Edit User" />
+                    </a>
+                  </span>
+                </template>
+              </template>
+
+            </lv-table>
 
             <!--
                 MODAL VIEW DETAIL
@@ -152,26 +93,34 @@
  * ----
  * 1. Admin open verification request page view
  * 2. Get all unverified users and store it into unvUsers state by calling this.getUnvUsers() before component mounted
- * 3. Filter those unverified users to get users that already uploaded the photos of id & business license, by calling getUnvReqs getters
  * 4. Put those list into filteredList, so the item is searchable by name.
  * 5. if one of the item is clicked, the modal windows will be opened to show us the detail of that particular user.
  */
 
 import VerificationDetail from './VerificationDetail'
 import moment from 'moment'
-import { mapState, mapActions, mapGetters } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import config from '@/config'
 import _ from 'lodash'
+import {
+  SearchInPage,
+  LvTable
+} from '@/components'
 
 export default {
   components: {
-    VerificationDetail
+    VerificationDetail,
+    SearchInPage,
+    LvTable
   },
   data () {
     return {
       isModalVisible: false,
       detailId: '',
-      search: ''
+      search: '',
+      tableData: {
+        fields: ['Name', 'Business Name', 'Signup as Host Data', 'Verification Status', 'Action']
+      }
     }
   },
   beforeMount () {
@@ -203,21 +152,78 @@ export default {
       errorMsg: state => state.errorMsg
     }),
     /**
-     * GETTERS
+     * SETUP TABLE DATA
+     * ~~~~~
+     * Setup the data to be displayed in table component.
+     * - pick required data from unverified users state
+     * - arrange the data to match with Table component formatting
+     * - add some additional data into each table data
+     * - register the data into items[]
+     * - filter the items so it's searchable based on name and business name
      */
-    ...mapGetters([
-      'getUnvReqs'
-    ]),
-    /**
-     * SEARCH
-     *
-     * Search the list/table based on user's name
-     */
-    filteredList () {
-      return _.filter(this.getUnvReqs, (host) => {
-        const fullname = `${host.first_name} ${host.last_name}`
-        return fullname.toLowerCase().includes(this.search.toLowerCase())
+    setupTableData: function () {
+      const tableData = []
+      // pick all the data required to be displayed in table
+      const sorted = _.map(this.unvUsers, val => {
+        return _.pick(val, ['first_name', 'last_name', 'business_name', 'created_at', 'bussiness_id_status', 'card_id_status', 'host_id'])
       })
+
+      // Loop through the sorted users object to assign the data from API to be used in table
+      _.forIn(sorted, (v, k) => {
+        // Set full name
+        const fullName = {
+          fullName: {
+            value: `${v.first_name} ${v.last_name}`
+          }
+        }
+
+        // Set Business Name
+        const businessName = {
+          businessName: {
+            value: v.business_name
+          }
+        }
+
+        // Set Signup Date
+        const signupDate = {
+          signupDate: {
+            value: moment(String(v.created_at)).format('DD MMM YYYY, h:mm:ss')
+          }
+        }
+
+        // Set Verification Status
+        const status = {
+          status: {
+            businessIdStatus: {
+              value: `Business ID ${this.status(v.bussiness_id_status).name}`,
+              class: `badges ${this.status(v.bussiness_id_status).className}`
+            },
+            cardIdStatus: {
+              value: `ID ${this.status(v.card_id_status).name}`,
+              class: `badges ${this.status(v.card_id_status).className}`
+            }
+          }
+        }
+
+        // Set action button
+        const actionButtons = {
+          actionButtons: {
+            viewButton: {
+              iconsrc: 'assets/img/ic-edit-line.svg',
+              identifier: v.host_id
+            }
+          }
+        }
+
+        tableData[k] = { ...fullName, ...businessName, ...signupDate, ...status, ...actionButtons }
+      })
+
+      // filter to be used in search
+      const filtered = _.filter(tableData, (data) => {
+        return data.fullName.value.toLowerCase().includes(this.search.toLowerCase()) || data.businessName.value.toLowerCase().includes(this.search.toLowerCase())
+      })
+
+      return filtered
     }
   },
   methods: {

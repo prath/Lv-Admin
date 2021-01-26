@@ -48,8 +48,6 @@
               <h4>User Infos</h4>
             </div>
 
-            jello {{ userData }}
-
             <!--
               META INFOS
             -->

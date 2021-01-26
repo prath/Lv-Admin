@@ -10,6 +10,7 @@ export default {
    * @param {Number} page
    */
   getUsers: async ({ commit }, params) => {
+    commit('SET_ERR_MSG', {})
     commit('SET_LOADED', false)
 
     // check and set params
@@ -33,13 +34,11 @@ export default {
         commit('SET_PAGINATION', pagination)
         commit('SET_LOADED', true)
         return data
-      } else {
-        throw response.data
       }
     } catch (error) {
       const err = {
         status: true,
-        msg: `${error.code} - ${error.title}`
+        msg: error
       }
       commit('SET_ERR_MSG', err)
       commit('SET_LOADED', false)
@@ -56,7 +55,7 @@ export default {
   getUnvUsers: ({ commit }) => {
     commit('SET_LOADED', false)
     const header = config.setHeader()
-    axios.get(config.apiUrl + 'host/list?per_page=100&page=1&param=unverified', header)
+    axios.get(config.apiUrl + 'host/list?per_page=100&page=1&param=request', header)
       .then(response => {
         commit('SET_UNVERIFIED_USERS', response.data.data)
       })

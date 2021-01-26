@@ -79,7 +79,7 @@ const router = new VueRouter({
     { path: '/tour-preferences-edit', component: TourPreferencesEdit },
     { path: '/financial-report', component: FinancialReport },
     { path: '/verification-requests', component: VerificationRequests },
-    { path: '/verification-detail/:id_req', name: 'requestdetail', component: VerificationDetail }
+    { path: '/verification-detail/:id_req', name: 'requestdetail', component: VerificationDetail, params: true }
 
   ],
   mode: 'history'

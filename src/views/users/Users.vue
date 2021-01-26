@@ -24,7 +24,7 @@
       <!--
         ERROR
        -->
-      <section v-if="errorMsg.status">
+      <section v-if="errorMsg">
         <pre>
             We're sorry, we're not able to retrieve this information at the moment, please try back later
             {{ errorMsg.msg }}
@@ -111,9 +111,7 @@ export default {
       // user table data
       tableData: {
         // will be rendered as table headings
-        fields: ['Name', 'Email', 'Phone', 'Total Tour Packages', 'Action'],
-        // will be rendered as items in the table. Data taken from store.states
-        items: []
+        fields: ['Name', 'Email', 'Phone', 'Total Tour Packages', 'Action']
       }
     }
   },
@@ -140,6 +138,7 @@ export default {
      * - filter the items so it's searchable based on name and email
      */
     setupTableData () {
+      const tableData = []
       // pick all the data required to be displayed in table
       const sorted = _.map(this.users, val => {
         return _.pick(val, ['first_name', 'last_name', 'email', 'phone_number', 'is_verified', 'host_id', 'count_package', 'user_uid'])
@@ -223,13 +222,14 @@ export default {
         }
 
         // need to be in order, matching this.tableData.fields: fullName, email, phone, count package, and action buttons
-        this.tableData.items[k] = { ...fullName, ...email, ...phoneNumber, ...countPackage, ...actionButtons }
+        tableData[k] = { ...fullName, ...email, ...phoneNumber, ...countPackage, ...actionButtons }
       })
 
       // filter to be used in search
-      const filtered = _.filter(this.tableData.items, (data) => {
+      const filtered = _.filter(tableData, (data) => {
         return data.fullName.value.toLowerCase().includes(this.search.toLowerCase()) || data.email.value.toLowerCase().includes(this.search.toLowerCase())
       })
+
       return filtered
     }
   },
@@ -254,7 +254,6 @@ export default {
         param: this.params.param
       }
       this.getUsers(params)
-      console.log(this.users)
     }
   },
   created () {
@@ -267,7 +266,6 @@ export default {
      * - if empty, fetch users data from server
      * - store the data into users state
      */
-    console.log(this.users)
     const pg = (this.$route.params.page) || 1
     const params = {
       limit: this.params.limit,

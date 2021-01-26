@@ -30,16 +30,16 @@
                 disabled
                 selected
               >
-                Select your category
+                {{ userData.business_category }}
               </option>
               <option>
-                Personal
+                Personal Tour
               </option>
               <option>
-                Corporate
+                Corporate Tour
               </option>
               <option>
-                Personal & Corporate
+                Personal &amp; Corporate Tour
               </option>
             </select>
           </div>
@@ -76,7 +76,7 @@
         <div class="form-group">
           <label for="last_name">About</label>
           <textarea
-            v-model="userData.about"
+            v-model="userData.business_about"
             class="form-control"
             rows="5"
             cols="10"
@@ -91,7 +91,7 @@
       VERIFICATION DATA HEADING
       -->
     <div class="sub-heading is-clearfix">
-      <p>ID & Business Verification</p>
+      <p>ID &amp; Business Verification</p>
     </div>
     <!-- /end verification data heading -->
 
@@ -118,7 +118,7 @@
           <div class="message-body">
             <h5>This user is a verified user</h5>
             <div class="control">
-              this user already a verified member, you no longer able to edit this user
+              this user already a verified member
             </div>
           </div>
         </div>
