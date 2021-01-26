@@ -5,6 +5,7 @@ import getters from '@/store/getters.js'
 
 // import modules
 import users from '@/store/users'
+import packages from '@/store/packages'
 
 export default {
   state,
@@ -13,6 +14,7 @@ export default {
   actions,
 
   modules: {
-    users
+    users,
+    packages
   }
 }

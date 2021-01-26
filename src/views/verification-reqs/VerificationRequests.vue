@@ -4,17 +4,16 @@
       <hr class="space-lg" />
 
       <!--
-          HEADING
+        PAGE TITLE
        -->
-      <div class="columns">
-        <div class="column generic-heading is-two-third">
-          <h3>Host Verification Requests</h3>
-          <p>List of verification requests made by guest who recently becoming host</p>
-        </div>
-      </div>
+      <page-title-default>
+        <template><h3>Host Verification Requests</h3></template>
+        <template #subtitle><p>List of verification requests made by guest who recently becoming host</p></template>
+      </page-title-default>
+      <!-- /end page title -->
 
       <!--
-          SEARCH USER
+          ERROR MESSAGE
        -->
       <section v-if="errorMsg.status">
         <pre>
@@ -70,7 +69,7 @@
             <!--
                 MODAL VIEW DETAIL
              -->
-            <VerificationDetail
+            <verification-detail
               v-if="isModalVisible"
               :host-id="detailId"
               @close="closeModal"
@@ -96,22 +95,23 @@
  * 4. Put those list into filteredList, so the item is searchable by name.
  * 5. if one of the item is clicked, the modal windows will be opened to show us the detail of that particular user.
  */
-
-import VerificationDetail from './VerificationDetail'
 import moment from 'moment'
 import { mapState, mapActions } from 'vuex'
 import config from '@/config'
 import _ from 'lodash'
+import VerificationDetail from './VerificationDetail'
 import {
   SearchInPage,
-  LvTable
+  LvTable,
+  PageTitleDefault
 } from '@/components'
 
 export default {
   components: {
     VerificationDetail,
     SearchInPage,
-    LvTable
+    LvTable,
+    PageTitleDefault
   },
   data () {
     return {

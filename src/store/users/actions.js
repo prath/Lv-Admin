@@ -70,6 +70,11 @@ export default {
         commit('SET_LOADED', true)
       })
   },
+  /**
+   *
+   * @param {Function} commit send data to mutate
+   * @param {String} uid user id of a user
+   */
   getUserByID: async ({ commit }, uid) => {
     commit('SET_LOADED', false)
 
@@ -92,29 +97,6 @@ export default {
       commit('SET_ERR_MSG', err)
       commit('SET_LOADED', true)
     }
-  },
-  /**
-   * GET HOST USER DATA BY ID
-   *
-   * @param {Function} commit send data to mutate
-   * @param {String} uid user id
-   */
-  getHostByID: ({ commit }, uid) => {
-    commit('SET_LOADED', false)
-    axios.get(config.apiUrl + 'host/get/gets/' + uid)
-      .then(response => {
-        commit('SET_USER_DATA', response.data.data)
-      })
-      .catch(error => {
-        const err = {
-          status: true,
-          msg: error
-        }
-        commit('SET_ERR_MSG', err)
-      })
-      .finally(() => {
-        commit('SET_LOADED', true)
-      })
   },
   /**
    * UPDATE VERIFICATION REQUEST DATA

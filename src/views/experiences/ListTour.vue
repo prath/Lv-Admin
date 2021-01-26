@@ -20,7 +20,7 @@
           <router-link :to="typeTrip === 'open' ? 'tour-packages-detail/' + id : 'tour-packages-detail-private/' + id">
             <a href=""><span class="title">{{ name }}</span></a>
           </router-link>
-          <span class="info"><a href="">Hosted by: {{ getDataHost(hostId) }}</a></span>
+          <!-- <span class="info"><a href="">Hosted by: {{ getDataHost(hostId) }}</a></span> -->
         </div>
       </div>
     </td>
