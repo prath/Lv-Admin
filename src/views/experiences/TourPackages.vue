@@ -36,7 +36,7 @@
             <!-- display the title to be clickable -->
             <template #title="data">
               <router-link :to="`/tour-packages-detail/${data.data.identifier}`">
-                <span class="info">
+                <span>
                   {{ data.data.value }}
                 </span>
               </router-link>
