@@ -15,12 +15,14 @@ export default {
     const header = config.setHeader()
 
     try {
-      // get data from server
+      // get package data from server
       const response = await axios.get(`${config.apiUrl}package?page=${page}&per_page=${limit}&param=${param}`, header)
 
       // assign data and pagination
       const data = await response.data.data
       const pagination = await response.data.paginate
+
+      // get
 
       if (response.status === 200) {
         commit('SET_PACKAGES', data)

@@ -74,7 +74,7 @@ const router = new VueRouter({
     { path: '/booking-list', component: BookingList },
     { path: '/booking-edit/:id_order', name: 'bookingdetail', component: BookingEdit },
     { path: '/tour-packages-detail/:id_tour', name: 'tourdetail', component: TourPackagesDetail },
-    { path: '/tour-packages-detail-private/:id_tour', name: 'tourdetailprivate', component: TourPackagesDetailPrivate },
+    { path: '/tour-packages-detail-private/:id_tour', name: 'tourdetailprivate', component: TourPackagesDetailPrivate, params: true },
     { path: '/tour-preferences-add', component: TourPreferencesAdd },
     { path: '/tour-preferences-edit', component: TourPreferencesEdit },
     { path: '/financial-report', component: FinancialReport },

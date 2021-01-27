@@ -46,7 +46,7 @@
               <template #status="data">
                 <template v-for="(dt, idx) in data.data">
                   <div :key="idx">
-                    <span :class="dt.class">
+                    <span :class="dt.className">
                       {{ dt.value }}
                     </span>
                     <br />
@@ -196,11 +196,11 @@ export default {
           status: {
             businessIdStatus: {
               value: `Business ID ${this.status(v.bussiness_id_status).name}`,
-              class: `badges ${this.status(v.bussiness_id_status).className}`
+              className: `badges ${this.status(v.bussiness_id_status).className}`
             },
             cardIdStatus: {
               value: `ID ${this.status(v.card_id_status).name}`,
-              class: `badges ${this.status(v.card_id_status).className}`
+              className: `badges ${this.status(v.card_id_status).className}`
             }
           }
         }

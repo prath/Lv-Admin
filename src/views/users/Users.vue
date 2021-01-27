@@ -151,13 +151,13 @@ export default {
           isHost: {
             value: 'Host',
             tag: 'span',
-            class: 'info badges badges--verified mr-5'
+            className: 'info badges badges--verified mr-5'
           }
         } : {
           isHost: {
             value: 'Guest',
             tag: 'span',
-            class: 'info badges badges--paid-off mr-5'
+            className: 'info badges badges--paid-off mr-5'
           }
         }
 
@@ -165,12 +165,12 @@ export default {
         const verified = (v.is_verified) ? {
           isVerified: {
             value: 'verified',
-            class: 'badges text-info'
+            className: 'badges text-info'
           }
         } : {
           isVerified: {
             value: 'unverified',
-            class: 'badges text-warning'
+            className: 'badges text-warning'
           }
         }
 

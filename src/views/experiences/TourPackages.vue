@@ -22,50 +22,20 @@
       <div class="columns">
         <div class="column is-full">
 
-          <table class="table is-fullwidth table--orders">
-            <thead>
-              <tr>
-                <th>
-                  <div class="action-wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        />
-                        <span class="checkmark"></span>
-                      </label>
-                    </div>
-                    <!--
-                                            SHow when Checkbox Clicked
-                                            <a href="#"><img src="@/assets/img/ic-delete.svg" alt="" /></a>
-                                        -->
-                  </div>
-                </th>
+          <lv-table
+            :fields="tableData.fields"
+            :items="setupTableData"
+          >
 
-                <th>Package</th>
-                <!-- <th>Duration</th> -->
-                <th>Price</th>
-                <th>Schedules</th>
-                <th>Location</th>
-                <th></th>
-              </tr>
-            </thead>
+            <template #title="data">
+              <router-link :to="`/tour-packages-detail/${data.data.identifier}`">
+                <span class="info">
+                  {{ data.data.value }}
+                </span>
+              </router-link>
+            </template>
 
-            <tbody>
-              <ListTour
-                v-for="(item, i) in items"
-                :id="item.tour_id"
-                :key="i"
-                :name="item.title"
-                :schedules="item.schedules"
-                :prices="item.prices"
-                :location="item.location"
-                :type-trip="item.type_tour"
-                :host-id="item.host_id"
-              />
-            </tbody>
-          </table>
+          </lv-table>
 
         </div>
       </div>
@@ -74,46 +44,105 @@
 </template>
 
 <script>
-import ListTour from './ListTour'
-// import axios from 'axios'
 import { mapState, mapActions } from 'vuex'
 import config from '@/config'
+import _ from 'lodash'
+import moment from 'moment'
 
 import {
   SearchInPage,
-  PageTitleDefault
+  PageTitleDefault,
+  LvTable
 } from '@/components'
 
 export default {
   components: {
-    ListTour,
     SearchInPage,
-    PageTitleDefault
+    PageTitleDefault,
+    LvTable
   },
   data () {
     return {
-      items: '',
-      accessToken: '',
-      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
-      isLoading: false,
-      host: '',
       search: '',
       params: {
         limit: 5,
         param: 'new'
+      },
+      tableData: {
+        fields: ['Package', 'Price', 'Schedules', 'Location']
       }
     }
   },
   computed: {
     ...mapState({
       packages: state => state.packages.packages,
-      pagination: state => state.packages.packagePagination
-    })
+      pagination: state => state.packages.packagePagination,
+      isLoaded: state => state.isLoaded,
+      errorMsg: state => state.errorMsg
+    }),
+    setupTableData: function () {
+      const tableData = []
+
+      const sorted = _.map(this.packages, val => {
+        return _.pick(val, ['title', 'prices', 'schedules', 'location', 'tour_id'])
+      })
+
+      _.forIn(sorted, (v, k) => {
+        // Set title
+        const title = {
+          title: {
+            value: v.title,
+            identifier: v.tour_id
+          }
+        }
+
+        // Set price
+        const price = {
+          price: {
+            value: `From IDR ${v.prices[0].price}`
+          }
+        }
+
+        const schedulesArr = _.map(v.schedules, (v, k) => {
+          const obj = {}
+          const value = `${this.formatSchedule(v.start_date)} - ${this.formatSchedule(v.end_date)}`
+          const className = 'is-block'
+          obj[`schedule${k}`] = { value, className }
+          // obj[`schedule${k}`] = 'block-it'
+          // console.log(obj)
+          return obj
+        })
+
+        // Set schedules
+        const schedules = {
+          schedules: {
+            child: schedulesArr
+          }
+        }
+        console.log(schedules)
+
+        // Set schedules
+        const location = {
+          location: {
+            value: v.location
+          }
+        }
+
+        tableData[k] = { ...title, ...price, ...schedules, ...location }
+      })
+
+      console.log('table data: ', tableData)
+
+      return tableData
+    }
   },
   methods: {
     ...mapActions([
       'getPackages'
-    ])
+    ]),
+    formatSchedule: function (date) {
+      return moment(String(date)).format('DD MMM YYYY')
+    }
   },
   created () {
     const pg = (this.$route.params.page) || 1
@@ -134,21 +163,6 @@ export default {
      * - revisit the function, i think it doesn't really efficient.
      */
     config.authCheck()
-
-    console.log('list package: ', this.packages)
-    console.log('pagination for this page', this.pagination)
-
-    // this.isLoading = true
-    // axios.get(this.apiUrl + 'package')
-    //   .then((res) => {
-    //     console.log('RESPONSE RECEIVED: ', res)
-    //     this.items = res.data.data
-    //     this.isLoading = false
-    //   })
-    //   .catch((err) => {
-    //     console.log('AXIOS ERROR: ', err.response.data.title)
-    //     this.isLoading = false
-    //   })
   }
 
 }

@@ -32,7 +32,7 @@
             <div>
               <!-- Render the field value -->
               <slot :name="`${i}`" :data="el">
-                <span class="info" :class="{class: el.class}">
+                <span class="info" :class="{className: el.className}">
                   {{ el.value }}
                 </span>
               </slot>
@@ -47,10 +47,10 @@
                 <template v-for="(children) in el.child">
                   <template v-for="(child, idx) in children">
                     <slot :name="`${idx}`" :data="child">
-                      <component v-if="child.tag" :is="child.tag" :key="idx" :class="child.class">
+                      <component v-if="child.tag" :is="child.tag" :key="idx" :class="child.className">
                         {{ child.value }}
                       </component>
-                      <span v-else :key="idx" :class="child.class">
+                      <span v-else :key="idx" :class="child.className">
                         {{ child.value }}
                       </span>
                     </slot>
