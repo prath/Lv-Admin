@@ -68,6 +68,7 @@
           <PaginationDefault
             v-if="isLoaded"
             :pageData="pagination"
+            page="users"
             @changePage="handlePaging"
           />
           <!-- /end pagination -->

@@ -7,7 +7,7 @@
     <router-link
       v-if="pageData.current_page > 1"
       v-on:click.native="handlePaging"
-      :to="`/users/page/${pageData.current_page - 1}`"
+      :to="`/${page}/page/${pageData.current_page - 1}`"
       class="pagination-previous">
       Previous
     </router-link>
@@ -19,7 +19,7 @@
     <router-link
       v-if="pageData.current_page < pageData.total_page - 1"
       v-on:click.native="handlePaging"
-      :to="`/users/page/${pageData.current_page + 1}`"
+      :to="`/${page}/page/${pageData.current_page + 1}`"
       class="pagination-next">
       Next page
     </router-link>
@@ -34,7 +34,7 @@
         v-on:click="handlePaging">
 
         <router-link
-          to="/users"
+          :to="`/${page}`"
           class="pagination-link"
           aria-label="Goto page 1">
           1
@@ -58,7 +58,7 @@
         v-on:click="handlePaging">
 
         <router-link
-          :to="`/users/page/${pageData.current_page - 1}`"
+          :to="`/${page}/page/${pageData.current_page - 1}`"
           class="pagination-link"
           :aria-label="`Goto page ${pageData.current_page - 1}`">
           {{ pageData.current_page - 1 }}
@@ -87,7 +87,7 @@
         v-if="pageData.current_page < pageData.total_page">
 
         <router-link
-          :to="`/users/page/${pageData.current_page + 1}`"
+          :to="`/${page}/page/${pageData.current_page + 1}`"
           class="pagination-link"
           :aria-label="`Goto page ${pageData.current_page + 1}`">
           {{ pageData.current_page + 1 }}
@@ -110,7 +110,7 @@
         v-on:click="handlePaging">
 
         <router-link
-          :to="`/users/page/${pageData.total_page}`"
+          :to="`/${page}/page/${pageData.total_page}`"
           v-if="pageData.current_page < pageData.total_page - 1"
           class="pagination-link"
           :aria-label="`Goto page ${pageData.total_page}`">
@@ -127,7 +127,8 @@
 export default {
   name: 'PaginationDefault',
   props: {
-    pageData: Object
+    pageData: Object,
+    page: String
   },
   methods: {
     /**

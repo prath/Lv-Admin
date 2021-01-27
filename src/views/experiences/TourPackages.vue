@@ -22,7 +22,10 @@
       <div class="columns">
         <div class="column is-full">
 
+          <div v-if="!isLoaded">Loading....</div>
+
           <lv-table
+            v-else
             :fields="tableData.fields"
             :items="setupTableData"
           >
@@ -39,6 +42,24 @@
 
         </div>
       </div>
+
+      <div class="columns">
+        <div class="column is-full">
+
+          <!--
+            PAGINATION
+           -->
+          <pagination-default
+            v-if="isLoaded"
+            :pageData="pagination"
+            page="tour-packages"
+            @changePage="handlePaging"
+          />
+          <!-- /end pagination -->
+
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -52,14 +73,16 @@ import moment from 'moment'
 import {
   SearchInPage,
   PageTitleDefault,
-  LvTable
+  LvTable,
+  PaginationDefault
 } from '@/components'
 
 export default {
   components: {
     SearchInPage,
     PageTitleDefault,
-    LvTable
+    LvTable,
+    PaginationDefault
   },
   data () {
     return {
@@ -131,9 +154,12 @@ export default {
         tableData[k] = { ...title, ...price, ...schedules, ...location }
       })
 
-      console.log('table data: ', tableData)
+      // filter to be used in search
+      const filtered = _.filter(tableData, (data) => {
+        return data.title.value.toLowerCase().includes(this.search.toLowerCase())
+      })
 
-      return tableData
+      return filtered
     }
   },
   methods: {
@@ -142,6 +168,19 @@ export default {
     ]),
     formatSchedule: function (date) {
       return moment(String(date)).format('DD MMM YYYY')
+    },
+    /**
+     * HANDLE PAGING
+     * ~~~~~
+     * Pagination requests
+     */
+    handlePaging () {
+      const params = {
+        limit: this.params.limit,
+        page: this.$route.params.page,
+        param: this.params.param
+      }
+      this.getPackages(params)
     }
   },
   created () {

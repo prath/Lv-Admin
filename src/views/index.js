@@ -17,7 +17,6 @@ import CategoriesEdit from '@/views/categories/CategoriesEdit'
 import CategoriesTags from '@/views/categories/CategoriesTags'
 
 // Experiences
-import ListTour from '@/views/experiences/ListTour'
 import TourPackages from '@/views/experiences/TourPackages'
 import TourPackagesDetail from '@/views/experiences/TourPackagesDetail'
 import TourPackagesDetailPrivate from '@/views/experiences/TourPackagesDetailPrivate'
@@ -70,7 +69,6 @@ export {
   CategoriesEdit,
   CategoriesTags,
 
-  ListTour,
   TourPackages,
   TourPackagesDetail,
   TourPackagesDetailPrivate,

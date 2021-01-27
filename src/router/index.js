@@ -60,6 +60,7 @@ const router = new VueRouter({
     },
     { path: '/edit-user-guest', component: UserEditGuest },
     { path: '/tour-packages', component: TourPackages },
+    { path: '/tour-packages/page/:page', component: TourPackages },
     { path: '/featured-contents', component: ContentList },
     { path: '/featured-add', component: ContentAdd },
     { path: '/featured-edit', component: ContentEdit },
