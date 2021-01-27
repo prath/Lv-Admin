@@ -24,12 +24,16 @@
 
           <div v-if="!isLoaded">Loading....</div>
 
+          <!--
+            PACKAGES TABLE
+           -->
           <lv-table
             v-else
             :fields="tableData.fields"
             :items="setupTableData"
           >
 
+            <!-- display the title to be clickable -->
             <template #title="data">
               <router-link :to="`/tour-packages-detail/${data.data.identifier}`">
                 <span class="info">
@@ -71,9 +75,13 @@ import _ from 'lodash'
 import moment from 'moment'
 
 import {
+  // search
   SearchInPage,
+  // page title
   PageTitleDefault,
+  // table
   LvTable,
+  // pagination
   PaginationDefault
 } from '@/components'
 
@@ -87,6 +95,7 @@ export default {
   data () {
     return {
       search: '',
+      // params to fetch packages data
       params: {
         limit: 5,
         param: 'new'
@@ -97,19 +106,35 @@ export default {
     }
   },
   computed: {
+    /**
+     * INIT STATES
+     * ~~~~~~
+     * Initiate States from vuex store
+     */
     ...mapState({
       packages: state => state.packages.packages,
       pagination: state => state.packages.packagePagination,
       isLoaded: state => state.isLoaded,
       errorMsg: state => state.errorMsg
     }),
+    /**
+     * SETUP TABLE DATA
+     * ~~~~~
+     * Setup the data to be displayed in table component.
+     * - pick required data from packages state
+     * - arrange the data to match with Table component formatting
+     * - add some additional data into each table data
+     * - register the data into items[]
+     * - filter the items so it's searchable based on name and email
+     */
     setupTableData: function () {
       const tableData = []
-
+      // pick all the data required to be displayed in table
       const sorted = _.map(this.packages, val => {
         return _.pick(val, ['title', 'prices', 'schedules', 'location', 'tour_id'])
       })
 
+      // Loop through the sorted users object to assign the data from API to be used in table
       _.forIn(sorted, (v, k) => {
         // Set title
         const title = {
@@ -151,6 +176,7 @@ export default {
           }
         }
 
+        // need to be in order, matching this.tableData.fields: fullName, email, phone, count package, and action buttons
         tableData[k] = { ...title, ...price, ...schedules, ...location }
       })
 
@@ -163,9 +189,19 @@ export default {
     }
   },
   methods: {
+    /**
+     * INIT ACTIONS
+     * ~~~~~
+     * initiates actions that will be used in this SFC
+     */
     ...mapActions([
       'getPackages'
     ]),
+    /**
+     * FORMAT DATE
+     * ~~~~~
+     * Used to format schedule dates
+     */
     formatSchedule: function (date) {
       return moment(String(date)).format('DD MMM YYYY')
     },
@@ -184,6 +220,15 @@ export default {
     }
   },
   created () {
+    /**
+     * GET PACKAGES DATA
+     * ~~~~~
+     * Fetch required Packages data from server and store it into Packages sessions
+     * - setup the query
+     * - check if the state already exist
+     * - if empty, fetch Packages data from server
+     * - store the data into Packages state
+     */
     const pg = (this.$route.params.page) || 1
     const params = {
       limit: this.params.limit,
