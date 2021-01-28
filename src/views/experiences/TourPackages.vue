@@ -107,8 +107,6 @@ export default {
   },
   computed: {
     /**
-     * INIT STATES
-     * ~~~~~~
      * Initiate States from vuex store
      */
     ...mapState({
@@ -118,8 +116,6 @@ export default {
       errorMsg: state => state.errorMsg
     }),
     /**
-     * SETUP TABLE DATA
-     * ~~~~~
      * Setup the data to be displayed in table component.
      * - pick required data from packages state
      * - arrange the data to match with Table component formatting
@@ -147,7 +143,7 @@ export default {
         // Set price
         const price = {
           price: {
-            value: `From IDR ${v.prices[0].price}`
+            value: `From IDR ${Number(v.prices[0].price).toLocaleString('id')}`
           }
         }
 
@@ -167,7 +163,6 @@ export default {
             child: schedulesArr
           }
         }
-        console.log(schedules)
 
         // Set schedules
         const location = {
@@ -190,24 +185,18 @@ export default {
   },
   methods: {
     /**
-     * INIT ACTIONS
-     * ~~~~~
-     * initiates actions that will be used in this SFC
+     * Initiates actions that will be used in this SFC
      */
     ...mapActions([
       'getPackages'
     ]),
     /**
-     * FORMAT DATE
-     * ~~~~~
-     * Used to format schedule dates
+     * Format schedule dates
      */
     formatSchedule: function (date) {
       return moment(String(date)).format('DD MMM YYYY')
     },
     /**
-     * HANDLE PAGING
-     * ~~~~~
      * Pagination requests
      */
     handlePaging () {
@@ -221,8 +210,6 @@ export default {
   },
   created () {
     /**
-     * GET PACKAGES DATA
-     * ~~~~~
      * Fetch required Packages data from server and store it into Packages sessions
      * - setup the query
      * - check if the state already exist
@@ -241,7 +228,7 @@ export default {
   },
   mounted () {
     /**
-     * CHECK IF LOGGED IN
+     * Check if logged in
      * ~~~~~
      * @todo
      * - revisit the function, i think it doesn't really efficient.
