@@ -107,7 +107,7 @@
 
                   <td>
                     <div class="wrapper flex-column items-start">
-                      <router-link :to="'/tour-packages-detail/'+booking.tour_id">
+                      <router-link :to="'/packages-detail/'+booking.tour_id">
                         <span class="info text-primary">{{ booking.title }}</span>
                       </router-link>
                       <span class="info mt-10">{{ booking.type_tour === 'close' ? 'A Private Tour' : 'A Open Tour' }} by: {{ booking.host_name }}</span><br />

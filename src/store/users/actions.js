@@ -38,7 +38,8 @@ export default {
     } catch (error) {
       const err = {
         status: true,
-        msg: error
+        msg: error,
+        code: error.response.status
       }
       commit('SET_ERR_MSG', err)
       commit('SET_LOADED', false)
@@ -52,23 +53,30 @@ export default {
    *
    * @param {Function} commit send data to mutate
    */
-  getUnvUsers: ({ commit }) => {
+  getUnvUsers: async ({ commit }) => {
+    commit('SET_ERR_MSG', {})
     commit('SET_LOADED', false)
+
     const header = config.setHeader()
-    axios.get(config.apiUrl + 'host/list?per_page=100&page=1&param=request', header)
-      .then(response => {
+
+    try {
+      const response = await axios.get(config.apiUrl + 'host/list?per_page=100&page=1&param=request', header)
+      const data = await response.data.data
+
+      if (response.data.code === 200) {
         commit('SET_UNVERIFIED_USERS', response.data.data)
-      })
-      .catch(error => {
-        const err = {
-          status: true,
-          msg: error
-        }
-        commit('SET_ERR_MSG', err)
-      })
-      .finally(() => {
         commit('SET_LOADED', true)
-      })
+        return data
+      }
+    } catch (error) {
+      const err = {
+        status: true,
+        msg: error,
+        code: error.response.status
+      }
+      commit('SET_ERR_MSG', err)
+      commit('SET_LOADED', true)
+    }
   },
   /**
    *
@@ -76,6 +84,7 @@ export default {
    * @param {String} uid user id of a user
    */
   getUserByID: async ({ commit }, uid) => {
+    commit('SET_ERR_MSG', {})
     commit('SET_LOADED', false)
 
     // set headers
@@ -92,7 +101,8 @@ export default {
     } catch (error) {
       const err = {
         status: true,
-        msg: `${error.code} - ${error.title}`
+        msg: error,
+        code: error.response.status
       }
       commit('SET_ERR_MSG', err)
       commit('SET_LOADED', true)

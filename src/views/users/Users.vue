@@ -13,68 +13,71 @@
       <!-- /end page title -->
 
       <!--
-        SEARCH
-       -->
-      <SearchInPage
-        v-model="search"
-        placeholder="Find Host &amp; Guest"
-      />
-      <!-- /end search -->
-
-      <!--
         ERROR
        -->
-      <section v-if="errorMsg">
+      <section v-if="!isError">
         <pre>
             We're sorry, we're not able to retrieve this information at the moment, please try back later
-            {{ errorMsg.msg }}
+            {{ errorMsg.msg.message }}
         </pre>
+
       </section>
       <!-- /error message -->
 
-      <div class="columns">
-        <div class="column is-full">
+      <section v-else>
+        <!--
+          SEARCH
+        -->
+        <SearchInPage
+          v-model="search"
+          placeholder="Find Host &amp; Guest"
+        />
+        <!-- /end search -->
 
-          <!--
-            TABLE USERS
-           -->
-          <div v-if="!isLoaded">Loading....</div>
-          <lv-table
-            v-else
-            :fields="tableData.fields"
-            :items="setupTableData"
-          >
+        <div class="columns">
+          <div class="column is-full">
 
-            <template #actionButtons="data">
-              <template v-for="(dt, idx) in data.data">
-                <router-link :to="{ name: 'edithost', params: { id: dt.identifier }}" :key="idx">
-                  <span class="info icon"><img :src="`${dt.iconsrc}`" /></span>
-                </router-link>
+            <!--
+              TABLE USERS
+            -->
+            <spinner v-if="!isLoaded" message="Loading User List...." />
+            <lv-table
+              v-else
+              :fields="tableData.fields"
+              :items="setupTableData"
+            >
+
+              <template #actionButtons="data">
+                <template v-for="(dt, idx) in data.data">
+                  <router-link :to="{ name: 'edithost', params: { id: dt.identifier }}" :key="idx">
+                    <span class="info icon"><img :src="`${dt.iconsrc}`" /></span>
+                  </router-link>
+                </template>
               </template>
-            </template>
 
-          </lv-table>
-           <!-- /end table users -->
+            </lv-table>
+            <!-- /end table users -->
 
+          </div>
         </div>
-      </div>
 
-      <div class="columns">
-        <div class="column is-full">
+        <div class="columns">
+          <div class="column is-full">
 
-          <!--
-            PAGINATION
-           -->
-          <PaginationDefault
-            v-if="isLoaded"
-            :pageData="pagination"
-            page="users"
-            @changePage="handlePaging"
-          />
-          <!-- /end pagination -->
+            <!--
+              PAGINATION
+            -->
+            <PaginationDefault
+              v-if="isLoaded"
+              :pageData="pagination"
+              page="users"
+              @changePage="handlePaging"
+            />
+            <!-- /end pagination -->
 
+          </div>
         </div>
-      </div>
+      </section>
 
     </div>
   </div>
@@ -87,7 +90,8 @@
 
 import { mapState, mapActions } from 'vuex'
 import _ from 'lodash'
-import config from '@/config'
+import Spinner from 'vue-simple-spinner'
+import auth from '@/mixins/auth'
 
 // import views & components
 import { PageTitleDefault, SearchInPage, PaginationDefault, LvTable } from '@/components'
@@ -98,8 +102,10 @@ export default {
     PaginationDefault,
     PageTitleDefault,
     SearchInPage,
-    LvTable
+    LvTable,
+    Spinner
   },
+  mixins: [auth],
   data () {
     return {
       // search query model
@@ -232,6 +238,12 @@ export default {
       })
 
       return filtered
+    },
+    /**
+     * Check if any errors
+     */
+    isError: function () {
+      return _.isEmpty(this.errorMsg)
     }
   },
   methods: {
@@ -255,6 +267,9 @@ export default {
         param: this.params.param
       }
       this.getUsers(params)
+        .then(() => {
+          this.isUnauthorized()
+        })
     }
   },
   created () {
@@ -273,18 +288,13 @@ export default {
       page: pg,
       param: this.params.param
     }
+
     if (this.users.length < 1) {
       this.getUsers(params)
+        .then(() => {
+          this.isUnauthorized()
+        })
     }
-  },
-  mounted () {
-    /**
-     * CHECK IF LOGGED IN
-     * ~~~~~
-     * @todo
-     * - revisit the function, i think it doesn't really efficient.
-     */
-    config.authCheck()
   }
 }
 </script>

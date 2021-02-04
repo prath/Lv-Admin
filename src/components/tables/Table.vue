@@ -46,7 +46,8 @@
             <template v-for="(children) in el.child">
               <template v-for="(child, idx) in children">
                 <slot :name="`${idx}`" :data="child">
-                  <component v-if="child.tag" :is="child.tag" :key="idx" :class="child.className">
+                  <img v-if="child.tag === 'img'" :src="child.value" :title="child.title" :class="child.className" :key="idx" />
+                  <component v-else-if="child.tag" :is="child.tag" :key="idx" :class="child.className">
                     {{ child.value }}
                   </component>
                   <span v-else :key="idx" :class="child.className">

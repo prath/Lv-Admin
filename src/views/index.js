@@ -17,9 +17,9 @@ import CategoriesEdit from '@/views/categories/CategoriesEdit'
 import CategoriesTags from '@/views/categories/CategoriesTags'
 
 // Experiences
-import TourPackages from '@/views/experiences/TourPackages'
-import TourPackagesDetail from '@/views/experiences/TourPackagesDetail'
-import TourPackagesDetailPrivate from '@/views/experiences/TourPackagesDetailPrivate'
+import Packages from '@/views/packages/Packages'
+import PackageDetail from '@/views/packages/PackageDetail'
+import PackagePrivateDetail from '@/views/packages/PackagePrivateDetail'
 
 // Featured Experiences
 import ContentAdd from '@/views/featured-experiences/ContentAdd'
@@ -69,9 +69,9 @@ export {
   CategoriesEdit,
   CategoriesTags,
 
-  TourPackages,
-  TourPackagesDetail,
-  TourPackagesDetailPrivate,
+  Packages,
+  PackageDetail,
+  PackagePrivateDetail,
 
   ContentAdd,
   ContentEdit,

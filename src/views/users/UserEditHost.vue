@@ -186,10 +186,14 @@
   </div>
 </template>
 <script>
-import moment from 'moment'
-import config from '@/config'
+// internal modules
 import { mapActions, mapState } from 'vuex'
+import auth from '@/mixins/auth'
+import formatting from '@/mixins/formatting'
 
+// external modules
+
+// components or views
 import {
   // ModalDeleteUser,
   // ModalUndeleteUser,
@@ -206,6 +210,7 @@ export default {
     // FormDeactivateUser,
     // FormDeleteUser
   },
+  mixins: [auth, formatting],
   data () {
     return {
       // modal deletion & deactivation
@@ -283,16 +288,6 @@ export default {
       this.isActiveDel = !(this.isActiveDel)
     }
   },
-  filters: {
-    /**
-     * FORMAT DATE
-     */
-    formatDate: function (value) {
-      if (value) {
-        return moment(String(value)).format('DD MMMM YYYY')
-      }
-    }
-  },
   created () {
     // Get user id from route params
     this.routeUserID = this.$route.params.id
@@ -302,11 +297,10 @@ export default {
     // if not, fetch the data from server
     if (this.routeUserID !== this.userData.user_uid) {
       this.getUserByID(this.routeUserID)
+        .then(() => {
+          this.isUnauthorized()
+        })
     }
-  },
-  mounted () {
-    // check if logged in
-    config.authCheck()
   }
 }
 </script>

@@ -26,7 +26,7 @@
               <div class="column">
                 <div class="form-group">
                   <label for="first_name">Tour Packages</label>
-                  <router-link :to="'/tour-packages-detail/'+items.tour_id">
+                  <router-link :to="'/packages-detail/'+items.tour_id">
                     <p class="text-primary">
                       <b>{{ items.title }}</b>
                     </p>

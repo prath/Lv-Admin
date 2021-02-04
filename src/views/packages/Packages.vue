@@ -12,68 +12,96 @@
       </page-title-default>
 
       <!--
-        SEARCH
+          ERROR MESSAGE
        -->
-      <search-in-page
-        v-model="search"
-        placeholder="Find Packages"
-      />
+      <section v-if="!isError">
+        <pre>
+            We're sorry, we're not able to retrieve this information at the moment, please try back later
+            {{ errorMsg.msg.message }}
+        </pre>
+      </section>
 
-      <div class="columns">
-        <div class="column is-full">
+      <section v-else>
+        <!--
+          SEARCH
+        -->
+        <search-in-page
+          v-model="search"
+          placeholder="Find Packages"
+        />
 
-          <div v-if="!isLoaded">Loading....</div>
+        <div class="columns">
+          <div class="column is-full">
 
-          <!--
-            PACKAGES TABLE
-           -->
-          <lv-table
-            v-else
-            :fields="tableData.fields"
-            :items="setupTableData"
-          >
+            <spinner v-if="!isLoaded" message="Loading Packages List...." />
 
-            <!-- display the title to be clickable -->
-            <template #title="data">
-              <router-link :to="`/tour-packages-detail/${data.data.identifier}`">
-                <span>
-                  {{ data.data.value }}
-                </span>
-              </router-link>
-            </template>
+            <!--
+              PACKAGES TABLE
+            -->
+            <lv-table
+              v-else
+              :fields="tableData.fields"
+              :items="setupTableData"
+            >
 
-          </lv-table>
+              <!-- display the title to be clickable -->
+              <template #title="data">
+                <router-link :to="`/packages-detail/${data.data.identifier}`">
+                  <span>
+                    {{ data.data.value }}
+                  </span>
+                </router-link>
+              </template>
 
+              <!-- <template #profPic="data">
+                <img class="avatar avatar--extra-small" :src="`${data.data.value}`" />
+              </template>
+              <template #businessName="data">
+                <router-link class="host" :to="`/packages-detail/${data.data.identifier}`">
+                  <span>{{ data.data.value }}</span>
+                </router-link>
+              </template> -->
+              <!-- <pre>{{ data.data.child[0].profPic }}</pre> -->
+
+            </lv-table>
+
+          </div>
         </div>
-      </div>
 
-      <div class="columns">
-        <div class="column is-full">
+        <div class="columns">
+          <div class="column is-full">
 
-          <!--
-            PAGINATION
-           -->
-          <pagination-default
-            v-if="isLoaded"
-            :pageData="pagination"
-            page="tour-packages"
-            @changePage="handlePaging"
-          />
-          <!-- /end pagination -->
+            <!--
+              PAGINATION
+            -->
+            <pagination-default
+              v-if="isLoaded"
+              :pageData="pagination"
+              page="packages"
+              @changePage="handlePaging"
+            />
+            <!-- /end pagination -->
 
+          </div>
         </div>
-      </div>
+
+      </section>
 
     </div>
   </div>
 </template>
 
 <script>
+// Internal modules (related to vue or app)
 import { mapState, mapActions } from 'vuex'
-import config from '@/config'
+import auth from '@/mixins/auth'
+
+// External modules
 import _ from 'lodash'
 import moment from 'moment'
+import Spinner from 'vue-simple-spinner'
 
+// Components or Views
 import {
   // search
   SearchInPage,
@@ -90,8 +118,10 @@ export default {
     SearchInPage,
     PageTitleDefault,
     LvTable,
-    PaginationDefault
+    PaginationDefault,
+    Spinner
   },
+  mixins: [auth],
   data () {
     return {
       search: '',
@@ -127,18 +157,38 @@ export default {
       const tableData = []
       // pick all the data required to be displayed in table
       const sorted = _.map(this.packages, val => {
-        return _.pick(val, ['title', 'prices', 'schedules', 'location', 'tour_id'])
+        return _.pick(val, ['title', 'prices', 'schedules', 'location', 'tour_id', 'host_id', 'host_info'])
       })
 
       // Loop through the sorted users object to assign the data from API to be used in table
       _.forIn(sorted, (v, k) => {
+        // Set host info
+        const sortHostInfo = _.pick(v.host_info, ['business_name', 'profile_picture_url'])
+
+        const profPic = {
+          profPic: {
+            value: sortHostInfo.profile_picture_url,
+            tag: 'img',
+            className: 'avatar avatar--extra-small'
+          }
+        }
+
+        const businessName = {
+          businessName: {
+            value: sortHostInfo.business_name
+          }
+        }
+
         // Set title
         const title = {
           title: {
             value: v.title,
-            identifier: v.tour_id
+            identifier: v.tour_id,
+            child: [profPic, businessName]
           }
         }
+
+        console.log(title)
 
         // Set price
         const price = {
@@ -152,8 +202,6 @@ export default {
           const value = `${this.formatSchedule(v.start_date)} - ${this.formatSchedule(v.end_date)}`
           const className = 'is-block'
           obj[`schedule${k}`] = { value, className }
-          // obj[`schedule${k}`] = 'block-it'
-          // console.log(obj)
           return obj
         })
 
@@ -181,6 +229,12 @@ export default {
       })
 
       return filtered
+    },
+    /**
+     * Check if any errors
+     */
+    isError: function () {
+      return _.isEmpty(this.errorMsg)
     }
   },
   methods: {
@@ -206,6 +260,9 @@ export default {
         param: this.params.param
       }
       this.getPackages(params)
+        .then(() => {
+          this.isUnauthorized()
+        })
     }
   },
   created () {
@@ -224,17 +281,16 @@ export default {
     }
     if (this.packages.length < 1) {
       this.getPackages(params)
+        .then(() => {
+          this.isUnauthorized()
+        })
     }
-  },
-  mounted () {
-    /**
-     * Check if logged in
-     * ~~~~~
-     * @todo
-     * - revisit the function, i think it doesn't really efficient.
-     */
-    config.authCheck()
   }
-
 }
 </script>
+
+<style lang="scss" scoped>
+.host {
+  display: inline-block;
+}
+</style>

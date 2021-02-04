@@ -15,10 +15,10 @@
       <!--
           ERROR MESSAGE
        -->
-      <section v-if="errorMsg.status">
+      <section v-if="!isError">
         <pre>
             We're sorry, we're not able to retrieve this information at the moment, please try back later
-            {{ errorMsg.msg }}
+            {{ errorMsg.msg.message }}
         </pre>
       </section>
 
@@ -35,10 +35,13 @@
         <div class="columns">
           <div class="column is-full">
 
+            <spinner v-if="!isLoaded" message="Loading User List...." />
+
             <!--
               TABLE VERIFICATION REQUESTS
              -->
             <lv-table
+              v-else
               :fields="tableData.fields"
               :items="setupTableData"
             >
@@ -95,11 +98,16 @@
  * 4. Put those list into filteredList, so the item is searchable by name.
  * 5. if one of the item is clicked, the modal windows will be opened to show us the detail of that particular user.
  */
-import moment from 'moment'
 import { mapState, mapActions } from 'vuex'
-import config from '@/config'
+import auth from '@/mixins/auth'
+import formatting from '@/mixins/formatting'
+
 import _ from 'lodash'
+import moment from 'moment'
+import Spinner from 'vue-simple-spinner'
+
 import VerificationDetail from './VerificationDetail'
+
 import {
   SearchInPage,
   LvTable,
@@ -111,8 +119,10 @@ export default {
     VerificationDetail,
     SearchInPage,
     LvTable,
-    PageTitleDefault
+    PageTitleDefault,
+    Spinner
   },
+  mixins: [auth, formatting],
   data () {
     return {
       isModalVisible: false,
@@ -122,25 +132,6 @@ export default {
         fields: ['Name', 'Business Name', 'Signup as Host Data', 'Verification Status', 'Action']
       }
     }
-  },
-  beforeMount () {
-    /**
-     * GET ALL UNVERIFIED USERS
-     *
-     * retrieve all users data that still unverified
-     * and store it into state: unvUsers
-     */
-    if (_.isEmpty(this.unvUsers)) {
-      this.getUnvUsers()
-    }
-  },
-  mounted () {
-    /**
-     * LOGIN CHECK
-     *
-     * check if admin already login, if not, will be directed to login page.
-     */
-    config.authCheck()
   },
   computed: {
     /**
@@ -224,6 +215,12 @@ export default {
       })
 
       return filtered
+    },
+    /**
+     * Check if any errors
+     */
+    isError: function () {
+      return _.isEmpty(this.errorMsg)
     }
   },
   methods: {
@@ -286,16 +283,18 @@ export default {
       'processStarted'
     ])
   },
-  filters: {
+  created () {
     /**
-     * FORMAT DATE
+     * GET ALL UNVERIFIED USERS
      *
-     * Format date into a more readable format
+     * retrieve all users data that still unverified
+     * and store it into state: unvUsers
      */
-    formatDate: function (value) {
-      if (value) {
-        return moment(String(value)).format('DD MMM YYYY, h:mm:ss')
-      }
+    if (_.isEmpty(this.unvUsers)) {
+      this.getUnvUsers()
+        .then(() => {
+          this.isUnauthorized()
+        })
     }
   }
 }
