@@ -84,16 +84,15 @@
 </template>
 
 <script>
-/**
- * LIST ALL USERS IN LOKAVEN
- */
-
+// internal modules
 import { mapState, mapActions } from 'vuex'
-import _ from 'lodash'
-import Spinner from 'vue-simple-spinner'
 import auth from '@/mixins/auth'
 
-// import views & components
+// external modules
+import _ from 'lodash'
+import Spinner from 'vue-simple-spinner'
+
+// components & views
 import { PageTitleDefault, SearchInPage, PaginationDefault, LvTable } from '@/components'
 
 export default {

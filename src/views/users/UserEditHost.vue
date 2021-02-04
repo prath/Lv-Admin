@@ -14,7 +14,13 @@
             -->
             <div class="avatar avatar--large avatar--profile">
               <img
+                v-if="userData.profile_picture_url"
                 :src="userData.profile_picture_url"
+                alt="Profile picture"
+              />
+              <img
+                v-else
+                src="@/assets/img/user.svg"
                 alt="Profile picture"
               />
             </div>
@@ -78,7 +84,7 @@
                       Date of Birth
                     </div>
                     <div class="value">
-                      {{ userData.date_of_birth | formatDate}}
+                      {{ userData.date_of_birth | formatOnlyDate}}
                     </div>
                   </div>
                 </div>
@@ -152,13 +158,13 @@
           <!--
             DEACTIVATE USER
             -->
-          <!-- <FormDeactivateUser /> -->
+          <FormDeactivateUser />
           <!-- /end deactivate user -->
 
           <!--
             DELETE USER
             -->
-          <!-- <FormDeleteUser /> -->
+          <FormDeleteUser />
           <!-- /end delete user -->
 
         </div>
@@ -169,7 +175,7 @@
           ~~~~~
           if user can be deleted, show this modal to confirm deletion
          -->
-         <!-- <ModalDeleteUser /> -->
+         <ModalDeleteUser />
         <!-- /end delete user modal -->
 
         <!--
@@ -178,7 +184,7 @@
           if user cannot be deleted, show this modal to inform the admin that
           this particular user is unable to be deleted
          -->
-        <!-- <ModalUndeleteUser /> -->
+        <ModalUndeleteUser />
         <!-- /end unable to delete user modal -->
 
       </div>
@@ -195,20 +201,20 @@ import formatting from '@/mixins/formatting'
 
 // components or views
 import {
-  // ModalDeleteUser,
-  // ModalUndeleteUser,
-  FormEditBusiness
-  // FormDeactivateUser,
-  // FormDeleteUser
+  ModalDeleteUser,
+  ModalUndeleteUser,
+  FormEditBusiness,
+  FormDeactivateUser,
+  FormDeleteUser
 } from '@/components'
 
 export default {
   components: {
-    // ModalDeleteUser,
-    // ModalUndeleteUser,
-    FormEditBusiness
-    // FormDeactivateUser,
-    // FormDeleteUser
+    ModalDeleteUser,
+    ModalUndeleteUser,
+    FormEditBusiness,
+    FormDeactivateUser,
+    FormDeleteUser
   },
   mixins: [auth, formatting],
   data () {
@@ -261,7 +267,8 @@ export default {
      * if so, will be shown a link to review verification page
      */
     isVerificationRequested: function () {
-      return ((this.userData.card_id || this.userData.bussiness_id) && this.userData.is_verified !== true)
+      console.log(this.userData)
+      return ((this.userData.card_id === 1 || this.userData.card_id === 3 || this.userData.bussiness_id === 1 || this.userData.bussiness_id === 3) && this.userData.is_verified !== true)
     }
   },
   methods: {
