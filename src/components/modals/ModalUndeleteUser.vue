@@ -1,38 +1,78 @@
 <template>
-  <div
-    class="modal"
-    :class="{'is-active': isActiveUnableDel}"
-  >
-    <div
-      class="modal-background"
-      @click="toggleActiveUnableDel"
-    ></div>
-    <div class="modal-content modal--small">
-      <div class="heading border">
-        <h4>Tidak dapat dihapus</h4>
-      </div>
-      <p>User ini tidak dapat dihapus karena masih memiliki booking active (unpaid/paid) dan/atau experience yang active (awaiting/ongoing)</p>
-      <hr />
-      <div class="flex end-md">
-        <button
-          class="btn btn--default btn--text btn--muted btn--medium"
-          @click="toggleActiveUnableDel"
-        >
-          OK
-        </button>
-      </div>
-    </div>
-    <button
-      class="modal-close is-large"
-      aria-label="close"
-      @click="toggleActiveUnableDel"
-    ></button>
-  </div>
+  <modal-base
+    :title="title"
+    @toggleModal="toggleModal">
+
+    <!--
+      MODAL CONTENT
+      ~~~~~
+      will be placed inside default <slot>
+     -->
+    <p>
+      {{ fullName }} cannot be deleted, since this user still has an active packages and/or active bookings
+    </p>
+    <hr />
+    <!-- /end modal content -->
+
+    <!--
+      OVERRIDE DEFAULT PRIMARY BUTTON
+     -->
+    <template #primaryButton>
+      <button
+        @click="toggleModal">
+        OK
+      </button>
+    </template>
+
+  </modal-base>
 </template>
 
 <script>
+// Components or Views
+import ModalBase from './ModalBase'
+
 export default {
-  name: 'ModalUndeleteUser'
+  name: 'ModalDeleteUser',
+  components: {
+    ModalBase
+  },
+  props: {
+    fullName: String,
+    title: String
+  },
+  data () {
+    return {
+      userFullname: ''
+    }
+  },
+  methods: {
+    /**
+     * Close or open modal
+     */
+    toggleModal: function () {
+      this.$emit('toggleModal')
+    },
+    /**
+     * Compare Full Name
+     * ~~~~~
+     * Compare the fullname typed by admin with the user full name that about to be deleted
+     * if match, activate the delete button.
+     *
+     * Used as extra validation before admin permanently delete a user
+     */
+    compareFullName: function () {
+      if (this.fullName.toLowerCase() === this.userFullname) {
+        return true
+      }
+      return false
+    },
+    /**
+     * Delete the user
+     */
+    deleteUser: function () {
+      console.log('hello you')
+    }
+  }
 }
 </script>
 

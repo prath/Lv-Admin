@@ -1,44 +1,99 @@
 <template>
-  <div
-    class="modal"
-    :class="{'is-active': isActiveDel}"
-  >
-    <div
-      class="modal-background"
-      @click="toggleActiveDel"
-    ></div>
-    <div class="modal-content modal--small">
-      <div class="heading border">
-        <h4>Hapus akun?</h4>
-      </div>
-      <p>Anda yakin akan manghapus user ini? user akan terhapus secara permanen setelahnya.</p>
-      <hr />
-      <div class="flex end-md">
-        <button
-          class="btn btn--default btn--text btn--muted btn--medium"
-          @click="toggleActiveDel"
-        >
-          Cancel
-        </button>
-        <button
-          class="btn btn--default btn--warning btn--medium"
-          @click="toggleActiveDel"
-        >
-          Ya, hapus
-        </button>
-      </div>
+  <modal-base
+    :title="title"
+    :primaryButton="true"
+    :secondaryButton="true"
+    @toggleModal="toggleModal"
+    @secondaryButtonAction="toggleModal">
+
+    <!--
+      MODAL CONTENT
+      ~~~~~
+      will be placed inside default <slot>
+     -->
+    <p>
+      {{ fullName }} can be deleted permanently, but <strong>you need to be careful</strong>, since it's irreversible
+    </p>
+    <hr />
+
+    <!--
+      FORM TO CONFIRM DELETION
+      ~~~~~
+      will be placed inside default <slot>
+     -->
+    <div class="form-group">
+      <label for="userFullname">Please write user's full name to confirm deletion</label>
+      <input
+        type="text"
+        v-model="userFullname"
+        class="form-control"
+        placeholder="user's full name"
+        @keyup="compareFullName" />
     </div>
-    <button
-      class="modal-close is-large"
-      aria-label="close"
-      @click="toggleActiveDel"
-    ></button>
-  </div>
+    <!-- /end modal content -->
+
+    <!--
+      OVERRIDE DEFAULT PRIMARY BUTTON
+     -->
+    <template #primaryButton>
+      <button
+        class="btn btn--default btn--medium"
+        :class="[ compareFullName() ? 'btn--warning' : 'btn--disabled' ]"
+        :disabled="!compareFullName()"
+        @click="deleteUser">
+        Ya, hapus
+      </button>
+    </template>
+
+  </modal-base>
 </template>
 
 <script>
+// Components or Views
+import ModalBase from './ModalBase'
+
 export default {
-  name: 'ModalDeleteUser'
+  name: 'ModalDeleteUser',
+  components: {
+    ModalBase
+  },
+  props: {
+    fullName: String,
+    title: String
+  },
+  data () {
+    return {
+      userFullname: ''
+    }
+  },
+  methods: {
+    /**
+     * Close or open modal
+     */
+    toggleModal: function () {
+      this.$emit('toggleModal')
+    },
+    /**
+     * Compare Full Name
+     * ~~~~~
+     * Compare the fullname typed by admin with the user full name that about to be deleted
+     * if match, activate the delete button.
+     *
+     * Used as extra validation before admin permanently delete a user
+     */
+    compareFullName: function () {
+      if (this.fullName.toLowerCase() === this.userFullname) {
+        return true
+      }
+      return false
+    },
+    /**
+     * Delete the user
+     */
+    deleteUser: function () {
+      console.log('hello you')
+    }
+  }
 }
 </script>
 

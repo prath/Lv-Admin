@@ -3,6 +3,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 // Cards
+import ActionCard from '@/components/cards/ActionCard'
 import TotalBooking from '@/components/cards/TotalBooking'
 import TotalRevenue from '@/components/cards/TotalRevenue'
 
@@ -12,11 +13,10 @@ import TotalRevenue from '@/components/cards/TotalRevenue'
 
 // Forms
 import FormDeactivateUser from '@/components/forms/FormDeactivateUser'
-import FormDeleteUser from '@/components/forms/FormDeleteUser'
 import FormEditBusiness from '@/components/forms/FormEditBusiness'
 
 // Modals
-import ModalDeactivateUser from '@/components/modals/ModalDeactivateUser'
+import ModalBase from '@/components/modals/ModalBase'
 import ModalDeleteUser from '@/components/modals/ModalDeleteUser'
 import ModalUndeleteUser from '@/components/modals/ModalUndeleteUser'
 
@@ -40,6 +40,7 @@ export {
   Header,
   Footer,
 
+  ActionCard,
   TotalBooking,
   TotalRevenue,
 
@@ -47,10 +48,9 @@ export {
   // HostCharts,
 
   FormDeactivateUser,
-  FormDeleteUser,
   FormEditBusiness,
 
-  ModalDeactivateUser,
+  ModalBase,
   ModalDeleteUser,
   ModalUndeleteUser,
 

@@ -139,7 +139,7 @@
             <!--
               BUSINESS INFO FORM
              -->
-            <FormEditBusiness
+            <form-edit-business
               :activateForm="isSignupAsHost"
               :isVerifiedHost="isVerifiedHost"
               :isVerificationRequested="isVerificationRequested"
@@ -158,13 +158,29 @@
           <!--
             DEACTIVATE USER
             -->
-          <FormDeactivateUser />
+          <action-card
+            title="Deactivate User"
+            buttonClass="btn--muted"
+            :buttonLabel="`Deactivate ${userData.first_name} ${userData.last_name}`"
+            @buttonAction="toggleModal">
+            <template>
+              Please be careful when deactivating a user, as it would affects all their activity throughout the platform
+            </template>
+          </action-card>
           <!-- /end deactivate user -->
 
           <!--
             DELETE USER
             -->
-          <FormDeleteUser />
+          <action-card
+            title="Permanently Delete User"
+            buttonClass="btn--muted"
+            :buttonLabel="`Delete ${userData.first_name} ${userData.last_name}`"
+            @buttonAction="toggleModal">
+            <template>
+              This process is irreversible, the user will be gone forever after your delete it. Proceed with extra caution.
+            </template>
+          </action-card>
           <!-- /end delete user -->
 
         </div>
@@ -175,7 +191,12 @@
           ~~~~~
           if user can be deleted, show this modal to confirm deletion
          -->
-         <ModalDeleteUser />
+         <modal-delete-user
+          v-if="isActiveModal"
+          :title="`Delete ${userData.first_name} ${userData.last_name}`"
+          :fullName="`${userData.first_name} ${userData.last_name}`"
+          @toggleModal="toggleModal"
+         />
         <!-- /end delete user modal -->
 
         <!--
@@ -184,7 +205,7 @@
           if user cannot be deleted, show this modal to inform the admin that
           this particular user is unable to be deleted
          -->
-        <ModalUndeleteUser />
+        <!-- <modal-undelete-user /> -->
         <!-- /end unable to delete user modal -->
 
       </div>
@@ -202,26 +223,25 @@ import formatting from '@/mixins/formatting'
 // components or views
 import {
   ModalDeleteUser,
-  ModalUndeleteUser,
+  // ModalUndeleteUser,
   FormEditBusiness,
-  FormDeactivateUser,
-  FormDeleteUser
+  ActionCard
 } from '@/components'
 
 export default {
+  name: 'UserEditHost',
   components: {
     ModalDeleteUser,
-    ModalUndeleteUser,
+    // ModalUndeleteUser,
     FormEditBusiness,
-    FormDeactivateUser,
-    FormDeleteUser
+    ActionCard
   },
   mixins: [auth, formatting],
   data () {
     return {
       // modal deletion & deactivation
-      isActiveUnableDel: false,
-      isActiveDel: false,
+      // isActiveUnableDel: false,
+      isActiveModal: false,
       // de/activate the checkbox to sing up guest as host
       isSignupAsHost: false,
       // user id gotten from $route params
@@ -291,8 +311,8 @@ export default {
      *
      * Toggel the modal to delete user
      */
-    toggleActiveDel: function () {
-      this.isActiveDel = !(this.isActiveDel)
+    toggleModal: function () {
+      this.isActiveModal = !(this.isActiveModal)
     }
   },
   created () {
