@@ -158,13 +158,13 @@
           <!--
             DEACTIVATE USER
             ~~~~~
-            will open <modal-deactivate-user /> when the button is clicked
+            will open <user-deactivate /> modal when the button is clicked
             -->
           <action-card
             title="Deactivate User"
             buttonClass="btn--muted"
             :buttonLabel="`Deactivate ${userData.first_name} ${userData.last_name}`"
-            @buttonAction="toggleModal">
+            @buttonAction="toggleModalDeactivate">
             <template>
               Please be careful when deactivating a user, as it would affects all their activity throughout the platform
             </template>
@@ -174,7 +174,7 @@
           <!--
             DELETE USER
             ~~~~~
-            will open <modal-delete-user /> when the button is clicked
+            will open <user-delete /> modal when the button is clicked
             -->
           <action-card
             title="Permanently Delete User"
@@ -195,7 +195,7 @@
           ~~~~~
           if user can be deleted, show this modal to confirm deletion
          -->
-         <modal-delete-user
+         <user-delete
           v-if="isActiveModal"
           :title="`Delete ${userData.first_name} ${userData.last_name}`"
           :fullName="`${userData.first_name} ${userData.last_name}`"
@@ -212,6 +212,20 @@
         <!-- <modal-undelete-user /> -->
         <!-- /end unable to delete user modal -->
 
+        <!--
+          DEACTIVATE USER MODAL
+          ~~~~~
+          if user can be deleted, show this modal to confirm deletion
+         -->
+         <user-deactivate
+          v-if="isActiveModalDeactivate"
+          :title="`Deactivate ${userData.first_name} ${userData.last_name}`"
+          :uid="userData.user_uid"
+          :fullName="`${userData.first_name} ${userData.last_name}`"
+          @toggleModal="toggleModalDeactivate"
+         />
+        <!-- /end deactivate user modal -->
+
       </div>
     </div>
   </div>
@@ -224,18 +238,22 @@ import formatting from '@/mixins/formatting'
 
 // external modules
 
-// components or views
+// components
 import {
-  ModalDeleteUser,
   // ModalUndeleteUser,
   FormEditBusiness,
   ActionCard
 } from '@/components'
 
+// views
+import UserDelete from './UserDelete'
+import UserDeactivate from './UserDeactivate'
+
 export default {
   name: 'UserEditHost',
   components: {
-    ModalDeleteUser,
+    UserDelete,
+    UserDeactivate,
     // ModalUndeleteUser,
     FormEditBusiness,
     ActionCard
@@ -244,8 +262,8 @@ export default {
   data () {
     return {
       // modal deletion & deactivation
-      // isActiveUnableDel: false,
       isActiveModal: false,
+      isActiveModalDeactivate: false,
       // de/activate the checkbox to sing up guest as host
       isSignupAsHost: false,
       // user id gotten from $route params
@@ -262,6 +280,7 @@ export default {
      */
     ...mapState({
       userData: state => state.users.userData,
+      users: state => state.users.users,
       isLoaded: state => state.isLoaded,
       errorMsg: state => state.errorMsg
     }),
@@ -291,7 +310,6 @@ export default {
      * if so, will be shown a link to review verification page
      */
     isVerificationRequested: function () {
-      console.log(this.userData)
       return ((this.userData.card_id === 1 || this.userData.card_id === 3 || this.userData.bussiness_id === 1 || this.userData.bussiness_id === 3) && this.userData.is_verified !== true)
     }
   },
@@ -317,6 +335,14 @@ export default {
      */
     toggleModal: function () {
       this.isActiveModal = !(this.isActiveModal)
+    },
+    /**
+     * TOGGLE DELETE USER
+     *
+     * Toggel the modal to delete user
+     */
+    toggleModalDeactivate: function () {
+      this.isActiveModalDeactivate = !(this.isActiveModalDeactivate)
     }
   },
   created () {

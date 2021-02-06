@@ -17,7 +17,6 @@ import FormEditBusiness from '@/components/forms/FormEditBusiness'
 
 // Modals
 import ModalBase from '@/components/modals/ModalBase'
-import ModalDeleteUser from '@/components/modals/ModalDeleteUser'
 import ModalUndeleteUser from '@/components/modals/ModalUndeleteUser'
 
 // Page titles
@@ -51,7 +50,6 @@ export {
   FormEditBusiness,
 
   ModalBase,
-  ModalDeleteUser,
   ModalUndeleteUser,
 
   PageTitleDefault,

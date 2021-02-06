@@ -45,12 +45,11 @@ import ActiveTour from '@/views/tours/ActiveTour'
 import ListActiveTour from '@/views/tours/ListActiveTour'
 
 // Users
-import UserAdd from '@/views/users/UserAdd'
-import UserEditGuest from '@/views/users/UserEditGuest'
-import UserEditHost from '@/views/users/UserEditHost'
-import UserList from '@/views/users/UserList'
-import UserProfile from '@/views/users/UserProfile'
 import Users from '@/views/users/Users'
+import UserAdd from '@/views/users/UserAdd'
+import UserEditHost from '@/views/users/UserEditHost'
+import UserDelete from '@/views/users/UserDelete'
+import UserDeactivate from '@/views/users/UserDeactivate'
 
 // Verification-reqs
 import VerificationDetail from '@/views/verification-reqs/VerificationDetail'
@@ -91,12 +90,11 @@ export {
   ActiveTour,
   ListActiveTour,
 
-  UserAdd,
-  UserEditGuest,
-  UserEditHost,
-  UserList,
-  UserProfile,
   Users,
+  UserAdd,
+  UserEditHost,
+  UserDelete,
+  UserDeactivate,
 
   VerificationDetail,
   VerificationRequests

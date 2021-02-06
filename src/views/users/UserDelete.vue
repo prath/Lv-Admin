@@ -12,7 +12,7 @@
       will be placed inside default <slot>
      -->
     <p>
-      {{ fullName }} can be deleted permanently, but <strong>you need to be careful</strong>, since it's irreversible
+      {{ fullName }} account <strong>will be gone forever</strong> once you delete it, so please proceed with caution, since it's irreversible
     </p>
     <hr />
 
@@ -49,11 +49,11 @@
 </template>
 
 <script>
-// Components or Views
-import ModalBase from './ModalBase'
+// Components
+import ModalBase from '@/components/modals/ModalBase'
 
 export default {
-  name: 'ModalDeleteUser',
+  name: 'UserDelete',
   components: {
     ModalBase
   },

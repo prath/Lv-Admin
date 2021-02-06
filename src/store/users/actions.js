@@ -133,5 +133,32 @@ export default {
         commit('LOADING_STATUS', false)
         commit('PROCESS_COMPLETED', true)
       })
+  },
+  deactivateUser: async ({ commit }, uid) => {
+    commit('SET_ERR_MSG', {})
+    commit('SET_LOADED', false)
+
+    // set headers
+    const header = config.setHeader()
+
+    try {
+      const response = await axios.get(`${config.apiUrl}auth/users/deactivate/${uid}`, header)
+      const data = await response.data
+
+      if (response.status === 200) {
+        commit('SET_LOADED', true)
+        commit('UPDATE_DEACTIVATED_USER', uid)
+      }
+
+      console.log(data)
+    } catch (error) {
+      const err = {
+        status: true,
+        msg: error,
+        code: error.response.status
+      }
+      commit('SET_ERR_MSG', err)
+      commit('SET_LOADED', true)
+    }
   }
 }

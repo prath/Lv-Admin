@@ -69,7 +69,7 @@ export default {
       type: Boolean,
       default: true
     },
-    // to set/define/use the primary button, set it to false
+    // to set/define/use the secondary button, set it to true
     secondaryButton: {
       type: Boolean,
       default: true

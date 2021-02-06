@@ -34,6 +34,30 @@ export default {
     }
   },
   /**
+   * UPDATE DEACTIVATED USER
+   *
+   * Update deactivated user, after admin deactivated and server respons with 200
+   * @param {Object} state
+   * @param {Boolean} deactivationStatus payload from updated function
+   */
+  UPDATE_DEACTIVATED_USER: (state, uid) => {
+    // find updated index from unverified users array/object
+    const i = _.findIndex(state.users, ['user_uid', uid])
+    console.log(uid)
+    console.log(state.users)
+    console.log(i)
+
+    // // update the status of photo id and business license
+    // state.unvUsers[i].bussiness_id_status = data.payload.bussiness_id_status
+    // state.unvUsers[i].card_id_status = data.payload.card_id_status
+
+    // // if business license and photo id approved, means that the host is verified,
+    // // then, remove that host from unverified list of users
+    // if (data.payload.bussiness_id_status === 2 && data.payload.card_id_status === 2) {
+    //   state.unvUsers.splice(i, 1)
+    // }
+  },
+  /**
    * SET SINGLE USER DATA OBJECT
    *
    * @param {Object} state
