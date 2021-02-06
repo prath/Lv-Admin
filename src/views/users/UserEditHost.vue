@@ -157,6 +157,8 @@
 
           <!--
             DEACTIVATE USER
+            ~~~~~
+            will open <modal-deactivate-user /> when the button is clicked
             -->
           <action-card
             title="Deactivate User"
@@ -171,6 +173,8 @@
 
           <!--
             DELETE USER
+            ~~~~~
+            will open <modal-delete-user /> when the button is clicked
             -->
           <action-card
             title="Permanently Delete User"
