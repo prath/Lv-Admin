@@ -156,11 +156,12 @@
         <div class="column sidebar is-one-third is-relative">
 
           <!--
-            DEACTIVATE USER
+            DEACTIVATE/REACTIVATE USER
             ~~~~~
             will open <user-deactivate /> modal when the button is clicked
             -->
           <action-card
+            v-if="!userData.is_deactivate"
             title="Deactivate User"
             buttonClass="btn--muted"
             :buttonLabel="`Deactivate ${userData.first_name} ${userData.last_name}`"
@@ -169,7 +170,17 @@
               Please be careful when deactivating a user, as it would affects all their activity throughout the platform
             </template>
           </action-card>
-          <!-- /end deactivate user -->
+          <action-card
+            v-else
+            title="Reactivate User"
+            buttonClass="btn--primary"
+            :buttonLabel="`Reactivate ${userData.first_name} ${userData.last_name}`"
+            @buttonAction="toggleModalDeactivate">
+            <template>
+              This user's account is currently deactivated, click the button bellow to reactivate the account.
+            </template>
+          </action-card>
+          <!-- /end deactivate/reactivate user -->
 
           <!--
             DELETE USER
