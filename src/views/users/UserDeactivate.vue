@@ -60,7 +60,7 @@
    -->
   <modal-base
     v-else
-    :title="`Error: Unable to deactivate ${fullName}`"
+    :title="`Unable to deactivate ${fullName}`"
     :primaryButton="false"
     :secondaryButton="false"
     @toggleModal="toggleModalFromError">

@@ -77,13 +77,13 @@ export default {
   },
   methods: {
     /**
-     * Close or open modal
+     * CLOSE OR OPEN MODAL
      */
     toggleModal: function () {
       this.$emit('toggleModal')
     },
     /**
-     * Primary Button Action
+     * PRIMARY BUTTON ACTION
      * ~~~~~
      * if there is an event attached to primary button
      */
@@ -91,7 +91,7 @@ export default {
       this.$emit('primaryButtonAction')
     },
     /**
-     * Secondary Button Action
+     * SECONDARY BUTTON ACTION
      * ~~~~~
      * if there is an event attached to secondary button
      */
