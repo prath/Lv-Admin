@@ -209,6 +209,7 @@
         <user-delete
           v-if="isActiveModal"
           :title="`Delete ${userData.first_name} ${userData.last_name}`"
+          :uid="userData.user_uid"
           :fullName="`${userData.first_name} ${userData.last_name}`"
           @toggleModal="toggleModal"
         />
@@ -267,23 +268,22 @@ import UserDeactivate from './UserDeactivate'
 import UserReactivate from './UserReactivate'
 
 export default {
-  name: 'UserEditHost',
+  name: 'UserDetail',
   components: {
     UserDelete,
     UserDeactivate,
     UserReactivate,
-    // ModalUndeleteUser,
     FormEditBusiness,
     ActionCard
   },
   mixins: [auth, formatting],
   data () {
     return {
-      // modal deletion & deactivation
+      // modal deletion, deactivation & reactivation
       isActiveModal: false,
       isActiveModalDeactivate: false,
       isActiveModalReactivate: false,
-      // de/activate the checkbox to sing up guest as host
+      // de/activate the checkbox to sign up guest as host
       isSignupAsHost: false,
       // user id gotten from $route params
       routeUserID: ''

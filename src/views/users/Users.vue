@@ -49,7 +49,7 @@
 
               <template #actionButtons="data">
                 <template v-for="(dt, idx) in data.data">
-                  <router-link :to="{ name: 'edithost', params: { id: dt.identifier }}" :key="idx">
+                  <router-link :to="{ name: 'userdetail', params: { id: dt.identifier }}" :key="idx">
                     <span class="info icon"><img :src="`${dt.iconsrc}`" /></span>
                   </router-link>
                 </template>
@@ -292,6 +292,7 @@ export default {
       this.getUsers(params)
         .then(() => {
           this.isUnauthorized()
+          console.log(this.users)
         })
     }
   }

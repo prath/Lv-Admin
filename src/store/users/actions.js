@@ -205,5 +205,35 @@ export default {
       commit('SET_ERR_MSG', err)
       commit('SET_LOADED', true)
     }
+  },
+  deleteUser: async ({ commit }, uid) => {
+    commit('SET_LOADED', false)
+    commit('SET_ERR_MSG', {})
+
+    const payload = {
+      uid: uid
+    }
+
+    // set headers
+    const header = config.setHeader()
+
+    try {
+      const response = await axios.post(`${config.apiUrl}auth/delete/permanently`, payload, header)
+
+      console.log(response)
+
+      if (response.status === 200) {
+        commit('SET_LOADED', true)
+        // commit('DELETE_USER', )
+      }
+    } catch (error) {
+      const err = {
+        status: true,
+        msg: error,
+        code: error.response.status
+      }
+      commit('SET_ERR_MSG', err)
+      commit('SET_LOADED', true)
+    }
   }
 }

@@ -6,8 +6,7 @@ import {
   // Users
   Users,
   UserAdd,
-  UserEditHost,
-  UserProfile,
+  UserDetail,
   UserEditGuest,
   // Experiences
   Packages,
@@ -49,15 +48,14 @@ const router = new VueRouter({
     { path: '/dashboard', component: Dashboard },
     { path: '/users', component: Users },
     { path: '/users/page/:page', component: Users },
-    { path: '/user-profile', component: UserProfile },
-    { path: '/add-user', component: UserAdd },
-    { path: '/active-tour', component: ActiveTour },
     {
-      path: '/edit-user/:id',
-      name: 'edithost',
-      component: UserEditHost,
+      path: '/user/:id',
+      name: 'userdetail',
+      component: UserDetail,
       params: true
     },
+    { path: '/add-user', component: UserAdd },
+    { path: '/active-tour', component: ActiveTour },
     { path: '/edit-user-guest', component: UserEditGuest },
     { path: '/packages', component: Packages },
     { path: '/packages/page/:page', component: Packages },
