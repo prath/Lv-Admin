@@ -50,6 +50,7 @@ import UserAdd from '@/views/users/UserAdd'
 import UserEditHost from '@/views/users/UserEditHost'
 import UserDelete from '@/views/users/UserDelete'
 import UserDeactivate from '@/views/users/UserDeactivate'
+import UserReactivate from '@/views/users/UserReactivate'
 
 // Verification-reqs
 import VerificationDetail from '@/views/verification-reqs/VerificationDetail'
@@ -95,6 +96,7 @@ export {
   UserEditHost,
   UserDelete,
   UserDeactivate,
+  UserReactivate,
 
   VerificationDetail,
   VerificationRequests

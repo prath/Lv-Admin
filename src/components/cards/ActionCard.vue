@@ -1,5 +1,5 @@
 <template>
-  <aside class="message is-light mt-2">
+  <aside class="message is-light">
     <header class="message-header">
       <h6 class="is-gapless">{{ title }}</h6>
     </header>

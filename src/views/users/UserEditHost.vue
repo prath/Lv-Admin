@@ -175,7 +175,7 @@
             title="Reactivate User"
             buttonClass="btn--primary"
             :buttonLabel="`Reactivate ${userData.first_name} ${userData.last_name}`"
-            @buttonAction="toggleModalDeactivate">
+            @buttonAction="toggleModalReactivate">
             <template>
               This user's account is currently deactivated, click the button bellow to reactivate the account.
             </template>
@@ -206,12 +206,12 @@
           ~~~~~
           if user can be deleted, show this modal to confirm deletion
          -->
-         <user-delete
+        <user-delete
           v-if="isActiveModal"
           :title="`Delete ${userData.first_name} ${userData.last_name}`"
           :fullName="`${userData.first_name} ${userData.last_name}`"
           @toggleModal="toggleModal"
-         />
+        />
         <!-- /end delete user modal -->
 
         <!--
@@ -219,13 +219,27 @@
           ~~~~~
           if user can be deleted, show this modal to confirm deletion
          -->
-         <user-deactivate
+        <user-deactivate
           v-if="isActiveModalDeactivate"
           :title="`Deactivate ${userData.first_name} ${userData.last_name}`"
           :uid="userData.user_uid"
           :fullName="`${userData.first_name} ${userData.last_name}`"
           @toggleModal="toggleModalDeactivate"
-         />
+        />
+        <!-- /end deactivate user modal -->
+
+        <!--
+          DEACTIVATE USER MODAL
+          ~~~~~
+          if user can be deleted, show this modal to confirm deletion
+         -->
+        <user-reactivate
+          v-if="isActiveModalReactivate"
+          :title="`Reactivate ${userData.first_name} ${userData.last_name}`"
+          :uid="userData.user_uid"
+          :fullName="`${userData.first_name} ${userData.last_name}`"
+          @toggleModal="toggleModalReactivate"
+        />
         <!-- /end deactivate user modal -->
 
       </div>
@@ -250,12 +264,14 @@ import {
 // views
 import UserDelete from './UserDelete'
 import UserDeactivate from './UserDeactivate'
+import UserReactivate from './UserReactivate'
 
 export default {
   name: 'UserEditHost',
   components: {
     UserDelete,
     UserDeactivate,
+    UserReactivate,
     // ModalUndeleteUser,
     FormEditBusiness,
     ActionCard
@@ -266,6 +282,7 @@ export default {
       // modal deletion & deactivation
       isActiveModal: false,
       isActiveModalDeactivate: false,
+      isActiveModalReactivate: false,
       // de/activate the checkbox to sing up guest as host
       isSignupAsHost: false,
       // user id gotten from $route params
@@ -339,12 +356,20 @@ export default {
       this.isActiveModal = !(this.isActiveModal)
     },
     /**
-     * TOGGLE DELETE USER
+     * TOGGLE DEACTIVATE USER
      * ~~~~~
-     * Toggel the modal to delete user
+     * Toggel the modal to deactivation user
      */
     toggleModalDeactivate: function () {
       this.isActiveModalDeactivate = !(this.isActiveModalDeactivate)
+    },
+    /**
+     * TOGGLE REACTIVATE USER
+     * ~~~~~
+     * Toggel the modal to reactivation user
+     */
+    toggleModalReactivate: function () {
+      this.isActiveModalReactivate = !(this.isActiveModalReactivate)
     }
   },
   created () {

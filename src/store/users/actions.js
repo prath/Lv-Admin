@@ -154,7 +154,47 @@ export default {
 
       if (response.status === 200) {
         commit('SET_LOADED', true)
-        commit('UPDATE_DEACTIVATED_USER', uid)
+        const deactivation = {
+          uid: uid,
+          status: true
+        }
+        commit('UPDATE_DEACTIVATION_USER', deactivation)
+      }
+    } catch (error) {
+      const err = {
+        status: true,
+        msg: error,
+        code: error.response.status
+      }
+      commit('SET_ERR_MSG', err)
+      commit('SET_LOADED', true)
+    }
+  },
+  /**
+   * REACTIVATE ACCOUNT
+   *
+   * Reactivate user account by admin
+   *
+   * @param {Function} commit
+   * @param {String} uid
+   */
+  reactivateUser: async ({ commit }, uid) => {
+    commit('SET_ERR_MSG', {})
+    commit('SET_LOADED', false)
+
+    // set headers
+    const header = config.setHeader()
+
+    try {
+      const response = await axios.get(`${config.apiUrl}auth/users/reactivate/${uid}`, header)
+
+      if (response.status === 200) {
+        commit('SET_LOADED', true)
+        const deactivation = {
+          uid: uid,
+          status: false
+        }
+        commit('UPDATE_DEACTIVATION_USER', deactivation)
       }
     } catch (error) {
       const err = {

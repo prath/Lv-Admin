@@ -8,6 +8,7 @@ The following are application flow for each of views in User Pages.
 ```mermaid
 sequenceDiagram;
   participant users.vue
+  participant table.vue
   participant vuex state
   participant vuex actions
   participant vuex mutations
@@ -19,4 +20,8 @@ sequenceDiagram;
   vuex actions->>vuex mutations: Commit SET_USERS
   vuex mutations->>vuex state: SET_USERS():
   note right of vuex state: users state is set per pagination
+  vuex state->>users.vue: mapState(users)
+  users.vue->>users.vue: setupTableData(users)
+  note right of users.vue: setup users list data to be viewed in table component
+  users.vue->>table.vue: pass in users data from setupTableData(users)
 ```

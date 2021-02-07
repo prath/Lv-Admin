@@ -7,7 +7,9 @@
     :title="title"
     :primaryButton="true"
     :secondaryButton="true"
+    primaryButtonLabel="Reactivate"
     @toggleModal="toggleModal"
+    @primaryButtonAction="reactivate"
     @secondaryButtonAction="toggleModal">
 
     <!--
@@ -15,41 +17,12 @@
       ~~~~~
       will be placed inside default <slot>
      -->
-    <spinner v-if="!isLoaded" :message="`Deactivating ${fullName}....`" />
+    <spinner v-if="!isLoaded" :message="`Reactivating ${fullName}....`" />
     <template v-else>
       <p>
-        To deactivate this user means, that this user will no longer be able to do anything in Lokaven, until they ask Lokaven to reactivate their account.
+        Once you reactivate this user, they will be able to use Lokaven with its full feature. Are you sure to reactivate?
       </p>
       <hr />
-
-      <!--
-        FORM TO CONFIRM DELETION
-        ~~~~~
-        will be placed inside default <slot>
-      -->
-      <div class="form-group">
-        <label for="userFullname">Please write user's full name to confirm</label>
-        <input
-          type="text"
-          v-model="userFullname"
-          class="form-control"
-          placeholder="user's full name"
-          @keyup="compareFullName" />
-      </div>
-      <!-- /end modal content -->
-    </template>
-
-    <!--
-      OVERRIDE DEFAULT PRIMARY BUTTON
-    -->
-    <template #primaryButton>
-      <button
-        class="btn btn--default btn--medium"
-        :class="[ compareFullName() ? 'btn--warning' : 'btn--disabled' ]"
-        :disabled="!compareFullName()"
-        @click="deactivate">
-        Deactivate
-      </button>
     </template>
 
   </modal-base>
@@ -82,7 +55,7 @@ import Spinner from 'vue-simple-spinner'
 import ModalBase from '@/components/modals/ModalBase'
 
 export default {
-  name: 'UserDeactivate',
+  name: 'UserReactivate',
   components: {
     ModalBase,
     Spinner
@@ -133,24 +106,10 @@ export default {
       this.$emit('toggleModal')
     },
     /**
-     * COMPARE FULL NAME
-     * ~~~~~
-     * Compare the fullname typed by admin with the user full name that about to be deleted
-     * if match, activate the delete button.
-     *
-     * Used as extra validation before admin permanently delete a user
+     * REACTIVATE THE USER
      */
-    compareFullName: function () {
-      if (this.fullName === this.userFullname) {
-        return true
-      }
-      return false
-    },
-    /**
-     * DEACTIVATE THE USER
-     */
-    deactivate: function () {
-      this.deactivateUser(this.uid)
+    reactivate: function () {
+      this.reactivateUser(this.uid)
         .then(() => {
           if (this.isErrorEmpty) {
             this.$emit('toggleModal')
@@ -163,7 +122,7 @@ export default {
      * - deactivateUser: deactivate current user
      */
     ...mapActions([
-      'deactivateUser'
+      'reactivateUser'
     ])
   }
 }

@@ -40,12 +40,12 @@ export default {
    * @param {Object} state
    * @param {Boolean} deactivationStatus payload from updated function
    */
-  UPDATE_DEACTIVATED_USER: (state, uid) => {
+  UPDATE_DEACTIVATION_USER: (state, deactivation) => {
     if (!_.isEmpty(state.users)) {
-      const i = _.findIndex(state.users, ['user_uid', uid])
-      state.users[i].is_deactivate = true
+      const i = _.findIndex(state.users, ['user_uid', deactivation.uid])
+      state.users[i].is_deactivate = deactivation.status
     }
-    state.userData.is_deactivate = true
+    state.userData.is_deactivate = deactivation.status
   },
   /**
    * SET SINGLE USER DATA OBJECT

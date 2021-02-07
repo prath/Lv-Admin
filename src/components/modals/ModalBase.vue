@@ -31,14 +31,14 @@
           <button
             class="btn btn--default btn--text btn--muted btn--medium"
             @click="secondaryButtonAction">
-            Cancel
+            {{ secondaryButtonLabel }}
           </button>
         </slot>
         <slot v-if="primaryButton" name="primaryButton">
           <button
             class="btn btn--default btn--medium btn--primary"
             @click="primaryButtonAction">
-            Submit
+            {{ primaryButtonLabel }}
           </button>
         </slot>
       </div>
@@ -73,6 +73,14 @@ export default {
     secondaryButton: {
       type: Boolean,
       default: true
+    },
+    primaryButtonLabel: {
+      type: String,
+      default: 'Submit'
+    },
+    secondaryButtonLabel: {
+      type: String,
+      default: 'Cancel'
     }
   },
   methods: {

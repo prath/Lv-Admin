@@ -14,7 +14,7 @@
       <!--
           ERROR MESSAGE
        -->
-      <section v-if="!isError">
+      <section v-if="!isErrorEmpty">
         <pre>
             We're sorry, we're not able to retrieve this information at the moment, please try back later
             {{ errorMsg.msg.message }}
@@ -233,7 +233,7 @@ export default {
     /**
      * Check if any errors
      */
-    isError: function () {
+    isErrorEmpty: function () {
       return _.isEmpty(this.errorMsg)
     }
   },
