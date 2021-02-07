@@ -45,8 +45,12 @@
             display: inline-block;
         }
     }
-
 }
+
+.error-tip{
+    color: $text-danger;
+}
+
 .form-check{
     position: relative;
     display: inline-block;

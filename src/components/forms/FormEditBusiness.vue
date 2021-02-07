@@ -1,5 +1,5 @@
 <template>
-  <form class="mt-6">
+  <form @submit.prevent="signupAsHost" class="mt-6">
     <div class="columns padding-bottom-none">
       <!--
         BUSINESS NAME
@@ -8,11 +8,15 @@
         <div class="form-group">
           <label for="last_name">Business Name</label>
           <input
-            v-model="userData.business_name"
+            v-model="businessName"
+            :placeholder="userData.business_name"
             type="text"
             class="form-control"
             :disabled="!activateForm"
           />
+          <span class="error-tip">
+            {{ formValid.name }}
+          </span>
         </div>
       </div>
       <!-- /end business name -->
@@ -24,7 +28,10 @@
         <div class="form-group">
           <label for="category">Category</label>
           <div class="select">
-            <select class="form-control" :disabled="!activateForm">
+            <select
+              v-model="businessCat"
+              class="form-control"
+              :disabled="!activateForm">
               <option
                 value=""
                 disabled
@@ -32,17 +39,20 @@
               >
                 {{ userData.business_category }}
               </option>
-              <option>
+              <option value="Personal Tour">
                 Personal Tour
               </option>
-              <option>
+              <option value="Corporate Tour">
                 Corporate Tour
               </option>
-              <option>
+              <option value="Personal &amp; Corporate Tour">
                 Personal &amp; Corporate Tour
               </option>
             </select>
           </div>
+          <span class="error-tip">
+            {{ formValid.cat }}
+          </span>
         </div>
       </div>
       <!-- /end business categories -->
@@ -57,12 +67,16 @@
         <div class="form-group">
           <label for="last_name">Address</label>
           <textarea
-            v-model="userData.address"
+            v-model="businessAddress"
+            :placeholder="userData.address"
             class="form-control"
             rows="2"
             cols="10"
             :disabled="!activateForm"
           ></textarea>
+          <span class="error-tip">
+            {{ formValid.address }}
+          </span>
         </div>
       </div>
     </div>
@@ -76,12 +90,16 @@
         <div class="form-group">
           <label for="last_name">About</label>
           <textarea
-            v-model="userData.business_about"
+            v-model="businessAbout"
+            :placeholder="userData.business_about"
             class="form-control"
             rows="5"
             cols="10"
-            :disabled="!activateForm"
-          ></textarea>
+            :disabled="!activateForm">
+          </textarea>
+          <span class="error-tip">
+            {{ formValid.about }}
+          </span>
         </div>
       </div>
     </div>
@@ -132,20 +150,24 @@
             <h5>Verify this user?</h5>
             <div class="control">
               <label class="radio">
-                <input type="radio" name="answer" :disabled="!activateForm" />
+                <input v-model="businessVerification" type="radio" value="true" :disabled="!activateForm" />
                 Yes, verify
               </label>
               <label class="radio">
-                <input type="radio" name="answer" :disabled="!activateForm" />
-                No, unverified
+                <input v-model="businessVerification" type="radio" value="false" :disabled="!activateForm" />
+                No, let the user verify it themselves
               </label>
             </div>
+            <span class="error-tip">
+              {{ formValid.ver }}
+            </span>
           </div>
         </div>
         <!-- /end verification status -->
 
       </div>
     </div>
+
     <div v-if="activateForm" class="columns pb-0">
       <div class="column is-12">
         <hr />
@@ -153,7 +175,7 @@
           SUBMIT BUTTON
           -->
         <div class="form-group flex is-flex-direction-row-reverse">
-          <button type="submit" class="btn btn--primary btn--medium" disabled>
+          <button type="submit" class="btn btn--primary btn--medium">
             Submit
           </button>
         </div>
@@ -166,6 +188,9 @@
 </template>
 
 <script>
+// External modules
+// import _ from 'lodash'
+
 export default {
   name: 'FormEditBusiness',
   props: {
@@ -173,6 +198,35 @@ export default {
     isVerifiedHost: Boolean,
     isVerificationRequested: Boolean,
     userData: Object
+  },
+  data () {
+    return {
+      businessName: null,
+      businessCat: null,
+      businessAddress: null,
+      businessAbout: null,
+      businessVerification: null,
+      formValid: {
+        name: null,
+        cat: null,
+        address: null,
+        about: null,
+        ver: null
+      }
+    }
+  },
+  methods: {
+    validateForm: function () {
+      this.formValid.name = (this.businessName === null) ? 'Business name cannot be blank' : ''
+      this.formValid.cat = (this.businessCat === null) ? 'Business category cannot be blank' : ''
+      this.formValid.address = (this.businessAddress === null) ? 'Business address cannot be blank' : ''
+      this.formValid.ver = (this.businessVerification === null) ? 'You have to choose to verify or let the user verify themselves' : ''
+    },
+    signupAsHost: function () {
+      this.validateForm()
+      const objVals = Object.values(this.formValid).every((value) => console.log(value))
+      console.log(objVals)
+    }
   }
 }
 </script>

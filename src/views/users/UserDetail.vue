@@ -114,7 +114,8 @@
              -->
             <div class="generic-heading border is-clearfix">
               <h4>Business Info</h4>
-              <p>You can convert this user into a Host by filling the below forms</p>
+              <p v-if="!isVerifiedHost || !isVerificationRequested">Detail information about the business</p>
+              <p v-else>You can convert this user into host by filling the form below</p>
             </div>
             <!-- /end business info -->
 
