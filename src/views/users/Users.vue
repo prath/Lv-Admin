@@ -87,6 +87,7 @@
 // internal modules
 import { mapState, mapActions } from 'vuex'
 import auth from '@/mixins/auth'
+import appStates from '@/mixins/appStates'
 
 // external modules
 import _ from 'lodash'
@@ -104,7 +105,7 @@ export default {
     LvTable,
     Spinner
   },
-  mixins: [auth],
+  mixins: [auth, appStates],
   data () {
     return {
       // search query model
@@ -237,12 +238,6 @@ export default {
       })
 
       return filtered
-    },
-    /**
-     * Check if any errors
-     */
-    isErrorEmpty: function () {
-      return _.isEmpty(this.errorMsg)
     }
   },
   methods: {

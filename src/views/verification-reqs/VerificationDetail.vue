@@ -262,6 +262,7 @@
 import { mapState, mapGetters, mapActions } from 'vuex'
 import auth from '@/mixins/auth'
 import formatting from '@/mixins/formatting'
+import appStates from '@/mixins/appStates'
 
 // external modules
 import _ from 'lodash'
@@ -274,7 +275,7 @@ export default {
   components: {
     Spinner
   },
-  mixins: [auth, formatting],
+  mixins: [auth, formatting, appStates],
   props: [
     'hostId'
   ],
@@ -323,12 +324,6 @@ export default {
      */
     isUserDataEmpty: function () {
       return _.isEmpty(this.userData)
-    },
-    /**
-     * Check if any errors
-     */
-    isErrorEmpty: function () {
-      return _.isEmpty(this.errorMsg)
     }
   },
   methods: {

@@ -46,9 +46,9 @@
 <script>
 // Internal modules
 import { mapActions, mapState } from 'vuex'
+import appStates from '@/mixins/appStates'
 
 // External modules
-import _ from 'lodash'
 import Spinner from 'vue-simple-spinner'
 
 // Components
@@ -60,6 +60,7 @@ export default {
     ModalBase,
     Spinner
   },
+  mixins: [appStates],
   props: {
     // user_uid to be updated
     uid: String,
@@ -83,13 +84,7 @@ export default {
     ...mapState({
       isLoaded: state => state.isLoaded,
       errorMsg: state => state.errorMsg
-    }),
-    /**
-     * CHECK IF ANY ERRORS
-     */
-    isErrorEmpty: function () {
-      return _.isEmpty(this.errorMsg)
-    }
+    })
   },
   methods: {
     /**

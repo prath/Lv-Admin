@@ -101,6 +101,7 @@
 import { mapState, mapActions } from 'vuex'
 import auth from '@/mixins/auth'
 import formatting from '@/mixins/formatting'
+import appStates from '@/mixins/appStates'
 
 import _ from 'lodash'
 import moment from 'moment'
@@ -122,7 +123,7 @@ export default {
     PageTitleDefault,
     Spinner
   },
-  mixins: [auth, formatting],
+  mixins: [auth, formatting, appStates],
   data () {
     return {
       isModalVisible: false,
@@ -215,12 +216,6 @@ export default {
       })
 
       return filtered
-    },
-    /**
-     * Check if any errors
-     */
-    isErrorEmpty: function () {
-      return _.isEmpty(this.errorMsg)
     }
   },
   methods: {

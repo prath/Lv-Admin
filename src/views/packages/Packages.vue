@@ -95,6 +95,7 @@
 // Internal modules (related to vue or app)
 import { mapState, mapActions } from 'vuex'
 import auth from '@/mixins/auth'
+import appStates from '@/mixins/appStates'
 
 // External modules
 import _ from 'lodash'
@@ -121,7 +122,7 @@ export default {
     PaginationDefault,
     Spinner
   },
-  mixins: [auth],
+  mixins: [auth, appStates],
   data () {
     return {
       search: '',
@@ -229,12 +230,6 @@ export default {
       })
 
       return filtered
-    },
-    /**
-     * Check if any errors
-     */
-    isErrorEmpty: function () {
-      return _.isEmpty(this.errorMsg)
     }
   },
   methods: {
