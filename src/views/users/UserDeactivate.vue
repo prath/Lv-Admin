@@ -48,7 +48,7 @@
         class="btn btn--default btn--medium"
         :class="[ compareFullName() ? 'btn--warning' : 'btn--disabled' ]"
         :disabled="!compareFullName()"
-        @click="deleteUser">
+        @click="deactivate">
         Ya, hapus
       </button>
     </template>
@@ -89,8 +89,11 @@ export default {
     Spinner
   },
   props: {
+    // user_uid to be updated
     uid: String,
+    // user's full name to be used in validation
     fullName: String,
+    // modal title
     title: String
   },
   data () {
@@ -99,12 +102,18 @@ export default {
     }
   },
   computed: {
+    /**
+     * VUEX STATES
+     * ~~~~~
+     * isLoaded: preloader
+     * errorMsg: error message (this one need to be refactored tho)
+     */
     ...mapState({
       isLoaded: state => state.isLoaded,
       errorMsg: state => state.errorMsg
     }),
     /**
-     * Check if any errors
+     * CHECK IF ANY ERRORS
      */
     isError: function () {
       return _.isEmpty(this.errorMsg)
@@ -112,20 +121,20 @@ export default {
   },
   methods: {
     /**
-     * Close or open modal
+     * CLOSE OR OPEN MODAL
      */
     toggleModal: function () {
       this.$emit('toggleModal')
     },
     /**
-     * Close or open modal
+     * CLOSE MODAL FROM ERROR STATE
      */
     toggleModalFromError: function () {
       this.$store.commit('SET_ERR_MSG', {})
       this.$emit('toggleModal')
     },
     /**
-     * Compare Full Name
+     * COMPARE FULL NAME
      * ~~~~~
      * Compare the fullname typed by admin with the user full name that about to be deleted
      * if match, activate the delete button.
@@ -139,9 +148,9 @@ export default {
       return false
     },
     /**
-     * Delete the user
+     * DEACTIVATE THE USER
      */
-    deleteUser: function () {
+    deactivate: function () {
       this.deactivateUser(this.uid)
         .then(() => {
           if (this.isError) {
@@ -150,7 +159,7 @@ export default {
         })
     },
     /**
-     * State Actions
+     * VUEX ACTIONS
      * ~~~~~
      * - deactivateUser: deactivate current user
      */

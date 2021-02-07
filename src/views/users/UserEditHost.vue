@@ -215,15 +215,6 @@
         <!-- /end delete user modal -->
 
         <!--
-          UNABLE TO DELETE USER MODAL
-          ~~~~~
-          if user cannot be deleted, show this modal to inform the admin that
-          this particular user is unable to be deleted
-         -->
-        <!-- <modal-undelete-user /> -->
-        <!-- /end unable to delete user modal -->
-
-        <!--
           DEACTIVATE USER MODAL
           ~~~~~
           if user can be deleted, show this modal to confirm deletion
@@ -284,7 +275,7 @@ export default {
   computed: {
     /**
      * VUEX STATES
-     *
+     * ~~~~~
      * userData: single user data
      * isLoaded: preloader
      * errorMsg: error message (this one need to be refactored tho)
@@ -297,7 +288,7 @@ export default {
     }),
     /**
      * CHECKHOST
-     *
+     * ~~~~~
      * check if the user is host or not
      * if not host, activate the checkbox to sign up as host
      */
@@ -306,7 +297,7 @@ export default {
     },
     /**
      * IS USER VERIFIED HOST?
-     *
+     * ~~~~~
      * Check if user is already a verified host
      * if so, will show the status message in FormEditBusiness
      * if not, will be shown the checkbox to verified this user
@@ -316,7 +307,7 @@ export default {
     },
     /**
      * IS USER REQUESTED VERIFICATION?
-     *
+     * ~~~~~
      * Check if user already requestion a verification from admin
      * if so, will be shown a link to review verification page
      */
@@ -333,7 +324,7 @@ export default {
     ]),
     /**
      * TOGGLE UNABLE DELETE MODAL
-     *
+     * ~~~~~
      * Toggle the modal if the user is unable to be deleted
      */
     toggleActiveUnableDel: function () {
@@ -341,7 +332,7 @@ export default {
     },
     /**
      * TOGGLE DELETE USER
-     *
+     * ~~~~~
      * Toggel the modal to delete user
      */
     toggleModal: function () {
@@ -349,7 +340,7 @@ export default {
     },
     /**
      * TOGGLE DELETE USER
-     *
+     * ~~~~~
      * Toggel the modal to delete user
      */
     toggleModalDeactivate: function () {

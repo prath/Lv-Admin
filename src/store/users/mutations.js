@@ -41,7 +41,7 @@ export default {
    * @param {Boolean} deactivationStatus payload from updated function
    */
   UPDATE_DEACTIVATED_USER: (state, uid) => {
-    if (state.users) {
+    if (!_.isEmpty(state.users)) {
       const i = _.findIndex(state.users, ['user_uid', uid])
       state.users[i].is_deactivate = true
     }

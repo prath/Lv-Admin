@@ -151,7 +151,6 @@ export default {
 
     try {
       const response = await axios.get(`${config.apiUrl}auth/users/deactivate/${uid}`, header)
-      console.log(response)
 
       if (response.status === 200) {
         commit('SET_LOADED', true)
