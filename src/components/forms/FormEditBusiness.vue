@@ -8,15 +8,17 @@
         <div class="form-group">
           <label for="last_name">Business Name</label>
           <input
-            v-model="businessName"
+            v-model="business.name"
             :placeholder="userData.business_name"
             type="text"
             class="form-control"
             :disabled="!activateForm"
           />
-          <span class="error-tip">
-            {{ formValid.name }}
-          </span>
+          <form-validator
+            fieldName="Business Name"
+            :isValidated="validate"
+            :field="business.name"
+          />
         </div>
       </div>
       <!-- /end business name -->
@@ -29,7 +31,7 @@
           <label for="category">Category</label>
           <div class="select">
             <select
-              v-model="businessCat"
+              v-model="business.cat"
               class="form-control"
               :disabled="!activateForm">
               <option
@@ -50,9 +52,11 @@
               </option>
             </select>
           </div>
-          <span class="error-tip">
-            {{ formValid.cat }}
-          </span>
+          <form-validator
+            fieldName="Business Category"
+            :isValidated="validate"
+            :field="business.cat"
+          />
         </div>
       </div>
       <!-- /end business categories -->
@@ -67,16 +71,18 @@
         <div class="form-group">
           <label for="last_name">Address</label>
           <textarea
-            v-model="businessAddress"
+            v-model="business.address"
             :placeholder="userData.address"
             class="form-control"
             rows="2"
             cols="10"
             :disabled="!activateForm"
           ></textarea>
-          <span class="error-tip">
-            {{ formValid.address }}
-          </span>
+          <form-validator
+            fieldName="Business Address"
+            :isValidated="validate"
+            :field="business.address"
+          />
         </div>
       </div>
     </div>
@@ -90,16 +96,13 @@
         <div class="form-group">
           <label for="last_name">About</label>
           <textarea
-            v-model="businessAbout"
+            v-model="business.about"
             :placeholder="userData.business_about"
             class="form-control"
             rows="5"
             cols="10"
             :disabled="!activateForm">
           </textarea>
-          <span class="error-tip">
-            {{ formValid.about }}
-          </span>
         </div>
       </div>
     </div>
@@ -150,17 +153,19 @@
             <h5>Verify this user?</h5>
             <div class="control">
               <label class="radio">
-                <input v-model="businessVerification" type="radio" value="true" :disabled="!activateForm" />
+                <input v-model="business.verification" type="radio" value="true" :disabled="!activateForm" />
                 Yes, verify
               </label>
               <label class="radio">
-                <input v-model="businessVerification" type="radio" value="false" :disabled="!activateForm" />
+                <input v-model="business.verification" type="radio" value="false" :disabled="!activateForm" />
                 No, let the user verify it themselves
               </label>
             </div>
-            <span class="error-tip">
-              {{ formValid.ver }}
-            </span>
+            <form-validator
+              fieldName="Business Verification"
+              :isValidated="validate"
+              :field="business.verification"
+            />
           </div>
         </div>
         <!-- /end verification status -->
@@ -188,11 +193,18 @@
 </template>
 
 <script>
+// Internal modules
+import { mapActions } from 'vuex'
+import FormValidator from './FormValidator.vue'
+
 // External modules
 // import _ from 'lodash'
 
 export default {
   name: 'FormEditBusiness',
+  components: {
+    FormValidator
+  },
   props: {
     activateForm: Boolean,
     isVerifiedHost: Boolean,
@@ -201,31 +213,35 @@ export default {
   },
   data () {
     return {
-      businessName: null,
-      businessCat: null,
-      businessAddress: null,
-      businessAbout: null,
-      businessVerification: null,
-      formValid: {
+      business: {
+        // Set all required fields into null for starter
         name: null,
         cat: null,
         address: null,
-        about: null,
-        ver: null
-      }
+        verification: null,
+        // and set optional fields into '' for starter
+        about: ''
+      },
+      validate: false
     }
   },
   methods: {
-    validateForm: function () {
-      this.formValid.name = (this.businessName === null) ? 'Business name cannot be blank' : ''
-      this.formValid.cat = (this.businessCat === null) ? 'Business category cannot be blank' : ''
-      this.formValid.address = (this.businessAddress === null) ? 'Business address cannot be blank' : ''
-      this.formValid.ver = (this.businessVerification === null) ? 'You have to choose to verify or let the user verify themselves' : ''
-    },
+    /**
+     * VUEX ACTIONS
+     */
+    ...mapActions([
+      'SignGuestAsHost'
+    ]),
+    /**
+     * SIGN GUEST AS HOST
+     */
     signupAsHost: function () {
-      this.validateForm()
-      const objVals = Object.values(this.formValid).every((value) => console.log(value))
-      console.log(objVals)
+      this.validate = true
+      const filled = Object.values(this.business).every((v) => v !== null)
+
+      if (filled) {
+        this.signupAsHost(this.business)
+      }
     }
   }
 }

@@ -79,6 +79,7 @@ export default {
     }
   },
   /**
+   * GET USER BY ID
    *
    * @param {Function} commit send data to mutate
    * @param {String} uid user id of a user
@@ -206,6 +207,13 @@ export default {
       commit('SET_LOADED', true)
     }
   },
+  /**
+   * Permanently Delete User
+   *
+   * delete user permanently
+   * @param {Function} commit
+   * @param {String} uid
+   */
   deleteUser: async ({ commit }, uid) => {
     commit('SET_LOADED', false)
     commit('SET_ERR_MSG', {})
@@ -213,6 +221,8 @@ export default {
     const payload = {
       uid: uid
     }
+
+    console.log(uid)
 
     // set headers
     const header = config.setHeader()
@@ -235,5 +245,8 @@ export default {
       commit('SET_ERR_MSG', err)
       commit('SET_LOADED', true)
     }
+  },
+  SignGuestAsHost: ({ commit }, payload) => {
+    console.log(payload)
   }
 }
