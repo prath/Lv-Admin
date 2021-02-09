@@ -201,7 +201,7 @@ export default {
     } catch (error) {
       const err = {
         status: true,
-        msg: error,
+        msg: error.response.data.title,
         code: error.response.status
       }
       commit('SET_ERR_MSG', err)
@@ -238,7 +238,7 @@ export default {
     } catch (error) {
       const err = {
         status: true,
-        msg: error,
+        msg: error.response.data.title,
         code: error.response.status
       }
       commit('SET_ERR_MSG', err)
@@ -274,7 +274,7 @@ export default {
     } catch (error) {
       const err = {
         status: true,
-        msg: error,
+        msg: error.response.data.title,
         code: error.response.status
       }
       commit('SET_ERR_MSG', err)
