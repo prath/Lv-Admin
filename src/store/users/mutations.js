@@ -37,6 +37,7 @@ export default {
    * UPDATE DEACTIVATED USER
    *
    * Update deactivated user, after admin deactivated and server respons with 200
+   *
    * @param {Object} state
    * @param {Boolean} deactivationStatus payload from updated function
    */
@@ -46,6 +47,22 @@ export default {
       state.users[i].is_deactivate = deactivation.status
     }
     state.userData.is_deactivate = deactivation.status
+  },
+  /**
+   * UPDATE CONVERTED HOST
+   *
+   * Update user data with recently added/updated host data
+   * guest is converted into host
+   *
+   * @param {Object} state
+   * @param {Object} userData updated user data with host data
+   */
+  UPDATE_CONVERTED_HOST: (state, userData) => {
+    if (!_.isEmpty(state.users)) {
+      const updatedIdx = _.findIndex(state.users, ['user_uid', userData.user_uid])
+      console.log(state.users[updatedIdx])
+      state.users[updatedIdx] = userData
+    }
   },
   /**
    * SET SINGLE USER DATA OBJECT
@@ -82,5 +99,17 @@ export default {
    */
   SET_PAGINATION: (state, pagination) => {
     state.pagination = pagination
+  },
+  /**
+   *
+   * @param {Object} state
+   * @param {Object} data
+   */
+  DELETE_USER: (state, data) => {
+    if (!_.isEmpty(state.users)) {
+      const deletedIdx = _.findIndex(state.users, ['user_uid', data.user_uid])
+      state.users[deletedIdx] = data
+    }
+    state.userData = data
   }
 }

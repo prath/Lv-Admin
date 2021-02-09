@@ -140,7 +140,10 @@ export default {
     delUser: function () {
       this.deleteUser(this.uid)
         .then(() => {
-          console.log('done')
+          if (this.isErrorEmpty) {
+            this.$router.go(-1)
+            this.$emit('toggleModal')
+          }
         })
     }
   }

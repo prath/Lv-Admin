@@ -223,19 +223,16 @@ export default {
       uid: uid
     }
 
-    console.log(uid)
-
     // set headers
     const header = config.setHeader()
 
     try {
       const response = await axios.post(`${config.apiUrl}auth/delete/permanently`, payload, header)
-
-      console.log(response)
+      const data = await response.data
 
       if (response.status === 200) {
         commit('SET_LOADED', true)
-        // commit('DELETE_USER', )
+        commit('DELETE_USER', data)
       }
     } catch (error) {
       const err = {
@@ -255,7 +252,7 @@ export default {
    * @param {Funtion} commit
    * @param {Object} payload
    */
-  SignGuestAsHost: async ({ commit }, payload) => {
+  signGuestAsHost: async ({ commit }, payload) => {
     const { businessData, user } = payload
 
     commit('SET_LOADED', false)
@@ -271,6 +268,7 @@ export default {
 
       if (response.status === 200) {
         commit('SET_USER_DATA', data)
+        commit('UPDATE_CONVERTED_HOST', data)
         commit('SET_LOADED', true)
       }
     } catch (error) {

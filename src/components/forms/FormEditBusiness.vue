@@ -12,7 +12,7 @@
             :placeholder="userData.business_name"
             type="text"
             class="form-control"
-            :disabled="!activateForm"
+            :disabled="!enableField"
           />
           <form-validator
             fieldName="Business Name"
@@ -33,7 +33,7 @@
             <select
               v-model="business.cat"
               class="form-control"
-              :disabled="!activateForm">
+              :disabled="!enableField">
               <option
                 value=""
                 disabled
@@ -76,7 +76,7 @@
             class="form-control"
             rows="2"
             cols="10"
-            :disabled="!activateForm"
+            :disabled="!enableField"
           ></textarea>
           <form-validator
             fieldName="Business Address"
@@ -101,7 +101,7 @@
             class="form-control"
             rows="5"
             cols="10"
-            :disabled="!activateForm">
+            :disabled="!enableField">
           </textarea>
         </div>
       </div>
@@ -153,11 +153,11 @@
             <h5>Verify this user?</h5>
             <div class="control">
               <label class="radio">
-                <input v-model="business.verification" type="radio" value="true" :disabled="!activateForm" />
+                <input v-model="business.verification" type="radio" value="true" :disabled="!enableField" />
                 Yes, verify
               </label>
               <label class="radio">
-                <input v-model="business.verification" type="radio" value="false" :disabled="!activateForm" />
+                <input v-model="business.verification" type="radio" value="false" :disabled="!enableField" />
                 No, let the user verify it themselves
               </label>
             </div>
@@ -173,7 +173,20 @@
       </div>
     </div>
 
-    <div v-if="activateForm" class="columns pb-0">
+    <!--
+      ERROR
+    -->
+    <section v-if="!isErrorEmpty">
+      {{ errorMsg }}
+      <pre>
+          We're sorry, we're not able to update this user for now, please try back later
+          {{ errorMsg.msg.message }}
+      </pre>
+
+    </section>
+    <!-- /error message -->
+
+    <div v-if="enableField" class="columns pb-0">
       <div class="column is-12">
         <hr />
         <!--
@@ -194,13 +207,23 @@
 </template>
 
 <script>
+/**
+ * CONVERT GUEST INTO HOST
+ *
+ * @todo
+ * - error handling
+ */
+
 // Internal modules
 import { mapActions, mapState } from 'vuex'
-import FormValidator from './FormValidator.vue'
+import appStates from '@/mixins/appStates'
 
 // External modules
 // import _ from 'lodash'
 import Spinner from 'vue-simple-spinner'
+
+// Components
+import FormValidator from './FormValidator.vue'
 
 export default {
   name: 'FormEditBusiness',
@@ -208,6 +231,7 @@ export default {
     FormValidator,
     Spinner
   },
+  mixins: [appStates],
   props: {
     activateForm: Boolean,
     isHost: Boolean,
@@ -225,20 +249,34 @@ export default {
         // and set optional fields into '' for starter
         about: ''
       },
-      validate: false
+      validate: false,
+      activeField: null
     }
   },
   computed: {
     ...mapState({
       isLoaded: state => state.isLoaded
-    })
+    }),
+    enableField: {
+      get () {
+        return this.activeField
+      },
+      set (val) {
+        this.activeField = val
+      }
+    }
+  },
+  watch: {
+    activateForm (newVal) {
+      this.activeField = newVal
+    }
   },
   methods: {
     /**
      * VUEX ACTIONS
      */
     ...mapActions([
-      'SignGuestAsHost'
+      'signGuestAsHost'
     ]),
     /**
      * SIGN GUEST AS HOST
@@ -265,10 +303,10 @@ export default {
 
       // If every required fields are filled, then process the post
       if (filled) {
-        console.log(this.userData.user_uid)
-        this.SignGuestAsHost({ businessData, user })
+        this.signGuestAsHost({ businessData, user })
           .then(() => {
-            this.activateForm = false
+            // disable every field after successfully updated the host data
+            this.enableField = false
           })
       }
     }

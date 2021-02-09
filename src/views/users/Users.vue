@@ -112,7 +112,7 @@ export default {
       search: '',
       // param to fetch users data from API.
       params: {
-        limit: 5,
+        limit: 10,
         param: 'all'
       },
       // user table data
