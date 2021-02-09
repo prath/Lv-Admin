@@ -189,8 +189,6 @@ export default {
           }
         }
 
-        console.log(title)
-
         // Set price
         const price = {
           price: {

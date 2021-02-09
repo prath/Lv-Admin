@@ -140,7 +140,7 @@
             <!--
               BUSINESS INFO FORM
              -->
-            <form-edit-business
+            <user-convert
               :activateForm="isSignupAsHost"
               :isHost="isHost"
               :isVerificationRequested="isVerificationRequested"
@@ -258,8 +258,6 @@ import formatting from '@/mixins/formatting'
 
 // components
 import {
-  // ModalUndeleteUser,
-  FormEditBusiness,
   ActionCard
 } from '@/components'
 
@@ -267,6 +265,7 @@ import {
 import UserDelete from './UserDelete'
 import UserDeactivate from './UserDeactivate'
 import UserReactivate from './UserReactivate'
+import UserConvert from './UserConvert'
 
 export default {
   name: 'UserDetail',
@@ -274,7 +273,7 @@ export default {
     UserDelete,
     UserDeactivate,
     UserReactivate,
-    FormEditBusiness,
+    UserConvert,
     ActionCard
   },
   mixins: [auth, formatting],

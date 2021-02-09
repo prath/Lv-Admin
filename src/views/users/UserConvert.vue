@@ -12,7 +12,7 @@
             :placeholder="userData.business_name"
             type="text"
             class="form-control"
-            :disabled="!enableField"
+            :disabled="!activeField"
           />
           <form-validator
             fieldName="Business Name"
@@ -33,7 +33,7 @@
             <select
               v-model="business.cat"
               class="form-control"
-              :disabled="!enableField">
+              :disabled="!activeField">
               <option
                 value=""
                 disabled
@@ -76,7 +76,7 @@
             class="form-control"
             rows="2"
             cols="10"
-            :disabled="!enableField"
+            :disabled="!activeField"
           ></textarea>
           <form-validator
             fieldName="Business Address"
@@ -101,7 +101,7 @@
             class="form-control"
             rows="5"
             cols="10"
-            :disabled="!enableField">
+            :disabled="!activeField">
           </textarea>
         </div>
       </div>
@@ -153,11 +153,11 @@
             <h5>Verify this user?</h5>
             <div class="control">
               <label class="radio">
-                <input v-model="business.verification" type="radio" value="true" :disabled="!enableField" />
+                <input v-model="business.verification" type="radio" value="true" :disabled="!activeField" />
                 Yes, verify
               </label>
               <label class="radio">
-                <input v-model="business.verification" type="radio" value="false" :disabled="!enableField" />
+                <input v-model="business.verification" type="radio" value="false" :disabled="!activeField" />
                 No, let the user verify it themselves
               </label>
             </div>
@@ -186,7 +186,7 @@
     </section>
     <!-- /error message -->
 
-    <div v-if="enableField" class="columns pb-0">
+    <div v-if="activeField" class="columns pb-0">
       <div class="column is-12">
         <hr />
         <!--
@@ -223,10 +223,10 @@ import appStates from '@/mixins/appStates'
 import Spinner from 'vue-simple-spinner'
 
 // Components
-import FormValidator from './FormValidator.vue'
+import { FormValidator } from '@/components'
 
 export default {
-  name: 'FormEditBusiness',
+  name: 'UserConvert',
   components: {
     FormValidator,
     Spinner
@@ -250,21 +250,13 @@ export default {
         about: ''
       },
       validate: false,
-      activeField: null
+      activeField: false
     }
   },
   computed: {
     ...mapState({
       isLoaded: state => state.isLoaded
-    }),
-    enableField: {
-      get () {
-        return this.activeField
-      },
-      set (val) {
-        this.activeField = val
-      }
-    }
+    })
   },
   watch: {
     activateForm (newVal) {
@@ -306,7 +298,7 @@ export default {
         this.signGuestAsHost({ businessData, user })
           .then(() => {
             // disable every field after successfully updated the host data
-            this.enableField = false
+            this.activeField = false
           })
       }
     }

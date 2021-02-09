@@ -140,12 +140,7 @@ export default {
     getDataHost (hostId) {
       axios.get(this.apiUrl + 'host/get/' + hostId)
         .then((res) => {
-          console.log('RESPONSE RECEIVED: ', res.data.data.business_name)
           this.hostName = res.data.data.business_name
-        })
-        .catch((err) => {
-          console.log('AXIOS ERROR: ', err.response.data.title)
-          this.isLoading = false
         })
 
       return this.hostName

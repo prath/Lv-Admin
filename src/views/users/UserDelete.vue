@@ -63,7 +63,7 @@
     @toggleModal="toggleModalFromError">
 
     We're sorry, we're unable to delete {{ fullName }}
-    {{ errorMsg.msg.message }}
+    {{ errorMsg }}
 
   </modal-base>
 

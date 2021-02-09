@@ -516,17 +516,12 @@ export default {
         this.isLoading = true
         axios.get(this.apiUrl + 'package/' + this.tourId)
           .then((res) => {
-            console.log('RESPONSE RECEIVED: ', res)
             this.items = res.data.data
             this.isLoading = false
             this.delete_status = this.items.delete_status
 
             this.getHost(this.items.host_id)
             this.getTotalTour(this.items.host_id)
-          })
-          .catch((err) => {
-            console.log('AXIOS ERROR: ', err.response.data.title)
-            this.isLoading = false
           })
       }
     })
@@ -536,12 +531,7 @@ export default {
       if (hostId) {
         axios.get(this.apiUrl + 'host/get/' + hostId)
           .then((res) => {
-            console.log('RESPONSE RECEIVED: ', res)
             this.item_host = res.data.data
-            this.isLoading = false
-          })
-          .catch((err) => {
-            console.log('AXIOS ERROR: ', err.response.data.title)
             this.isLoading = false
           })
       }
@@ -550,12 +540,7 @@ export default {
       if (hostId) {
         axios.get(this.apiUrl + 'package/by-tourhosts/' + hostId)
           .then((res) => {
-            console.log('RESPONSE RECEIVED: ', res)
             this.total_packages = res.data.data
-            this.isLoading = false
-          })
-          .catch((err) => {
-            console.log('AXIOS ERROR: ', err.response.data.title)
             this.isLoading = false
           })
       }

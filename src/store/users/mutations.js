@@ -60,7 +60,6 @@ export default {
   UPDATE_CONVERTED_HOST: (state, userData) => {
     if (!_.isEmpty(state.users)) {
       const updatedIdx = _.findIndex(state.users, ['user_uid', userData.user_uid])
-      console.log(state.users[updatedIdx])
       state.users[updatedIdx] = userData
     }
   },

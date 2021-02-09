@@ -5,7 +5,6 @@ export default {
    * @param {Object} state
    */
   loadingStatus: (state) => {
-    console.log(state.loadingStatus)
     return state.loadingStatus
   },
 

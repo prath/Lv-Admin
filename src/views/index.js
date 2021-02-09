@@ -51,6 +51,7 @@ import UserDetail from '@/views/users/UserDetail'
 import UserDelete from '@/views/users/UserDelete'
 import UserDeactivate from '@/views/users/UserDeactivate'
 import UserReactivate from '@/views/users/UserReactivate'
+import UserConvert from '@/views/users/UserConvert'
 
 // Verification-reqs
 import VerificationDetail from '@/views/verification-reqs/VerificationDetail'
@@ -97,6 +98,7 @@ export {
   UserDelete,
   UserDeactivate,
   UserReactivate,
+  UserConvert,
 
   VerificationDetail,
   VerificationRequests

@@ -178,12 +178,10 @@ export default {
     this.isLoading = true
     axios.get(this.apiUrl + 'auth/orders/list-admin?page=1&per_page=100&param=booking', header)
       .then((res) => {
-        console.log('RESPONSE RECEIVED: ', res)
         this.bookingList = res.data.data
         this.isLoading = false
       })
       .catch((err) => {
-        console.log('AXIOS ERROR: ', err.response.data.title)
         if (err.response.status === 401) {
           localStorage.removeItem('accessToken')
           localStorage.removeItem('hostId')

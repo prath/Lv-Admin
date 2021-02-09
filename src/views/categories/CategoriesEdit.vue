@@ -113,7 +113,6 @@ export default {
         this.isLoading = true
         axios.get(this.apiUrl + 'package/detail/categories/' + this.categories_id + '/detail')
           .then((res) => {
-            console.log('RESPONSE RECEIVED: ', res)
             this.items = res.data.data
 
             this.category = this.items.category
@@ -121,7 +120,7 @@ export default {
             this.isLoading = false
           })
           .catch((err) => {
-            console.log('AXIOS ERROR: ', err.response.data.title)
+            this.error = err.response.data.title
             this.isLoading = false
           })
       }
@@ -135,14 +134,11 @@ export default {
 
       axios.post(this.apiUrl + 'upload/uploader', formData)
         .then((res) => {
-          console.log('RESPONSE RECEIVED: ', res)
           this.isLoading = false
           this.error = ''
           this.categories_image = res.data.data.url
         })
         .catch((err) => {
-          console.log('AXIOS ERROR: ', err.response.data.title)
-
           this.isLoading = false
           this.error = err.response.data.title
         })
@@ -160,13 +156,11 @@ export default {
         }
         axios.patch(this.apiUrl + 'packages/api/categories/' + this.categories_id, postData, header)
           .then((res) => {
-            console.log('RESPONSE RECEIVED: ', res)
             this.isLoading = false
             this.error = ''
             this.success = true
           })
           .catch((err) => {
-            console.log('AXIOS ERROR: ', err.response.data.title)
             this.isLoading = false
             this.error = err.response.data.title
           })

@@ -117,14 +117,11 @@ export default {
 
       axios.post(this.apiUrl + 'upload/uploader', formData)
         .then((res) => {
-          console.log('RESPONSE RECEIVED: ', res)
           this.isLoading = false
           this.error = ''
           this.categories_image = res.data.data.url
         })
         .catch((err) => {
-          console.log('AXIOS ERROR: ', err.response.data.title)
-
           this.isLoading = false
           this.error = err.response.data.title
         })
@@ -142,7 +139,6 @@ export default {
         }
         axios.post(this.apiUrl + 'packages/api/categories', postData, header)
           .then((res) => {
-            console.log('RESPONSE RECEIVED: ', res)
             this.isLoading = false
             this.error = ''
             this.success = true
@@ -150,7 +146,6 @@ export default {
             this.categories_image = '../assets/img/ic-image-white.svg'
           })
           .catch((err) => {
-            console.log('AXIOS ERROR: ', err.response.data.title)
             this.isLoading = false
             this.error = err.response.data.title
           })

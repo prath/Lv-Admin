@@ -287,7 +287,6 @@ export default {
       this.getUsers(params)
         .then(() => {
           this.isUnauthorized()
-          console.log(this.users)
         })
     }
   }

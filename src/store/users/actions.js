@@ -34,14 +34,18 @@ export default {
         commit('SET_PAGINATION', pagination)
         commit('SET_LOADED', true)
         return data
+      } else if (response.data.code === 404) {
+        throw response.data
       }
+      console.log(response)
     } catch (error) {
-      const err = {
-        status: true,
-        msg: error,
-        code: error.response.status
-      }
-      commit('SET_ERR_MSG', err)
+      console.log(error)
+      // const err = {
+      //   status: true,
+      //   msg: error,
+      //   code: error.response.status
+      // }
+      commit('SET_ERR_MSG', error)
       commit('SET_LOADED', false)
     }
   },
@@ -264,7 +268,6 @@ export default {
     try {
       const response = await axios.patch(`${config.apiUrl}hosts/api/${user.uid}/administrator`, businessData, header)
       const data = await response.data.data
-      console.log(response)
 
       if (response.status === 200) {
         commit('SET_USER_DATA', data)

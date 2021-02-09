@@ -117,7 +117,6 @@ export default {
       }
       axios.post(this.apiUrl, postData)
         .then((res) => {
-          console.log('RESPONSE RECEIVED: ', res)
           this.accessToken = res.data.credentials.access_token
           this.host_id = res.data.host_id
 
@@ -128,7 +127,6 @@ export default {
           this.isLoading = false
         })
         .catch((err) => {
-          console.log('AXIOS ERROR: ', err.response.data.title)
           this.errors = []
           this.errors.push(err.response.data.title)
           this.isLoading = false

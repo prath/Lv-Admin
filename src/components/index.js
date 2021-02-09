@@ -13,7 +13,6 @@ import TotalRevenue from '@/components/cards/TotalRevenue'
 
 // Forms
 import FormDeactivateUser from '@/components/forms/FormDeactivateUser'
-import FormEditBusiness from '@/components/forms/FormEditBusiness'
 import FormValidator from '@/components/forms/FormValidator'
 
 // Modals
@@ -47,7 +46,6 @@ export {
   // HostCharts,
 
   FormDeactivateUser,
-  FormEditBusiness,
   FormValidator,
 
   ModalBase,
