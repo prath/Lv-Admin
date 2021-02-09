@@ -24,6 +24,10 @@
             color: $color-martinique;
         }
     }
+    &.border {
+        padding-bottom: 15px;
+        border-bottom: 1px solid $color-mystic;
+    }
 
     input[type=text]{
         font-size: 36px;

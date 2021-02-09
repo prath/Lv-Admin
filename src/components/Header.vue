@@ -125,8 +125,8 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/tour-packages">
-              Tour Packages
+            <router-link to="/packages">
+              Packages of Experience
             </router-link>
           </li>
           <li>

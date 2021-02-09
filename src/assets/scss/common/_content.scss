@@ -31,6 +31,11 @@
   }
 }
 
+.is-gapless{
+  padding-bottom: 0;
+  margin-bottom: 0 !important;
+}
+
 
 .meta-info {
   font-size: 14px;
@@ -46,7 +51,7 @@
       margin-right: 0;
     }
   }
-  
+
   .item{
     margin-bottom: 20px;
     margin-right: 10px;
@@ -63,6 +68,19 @@
     }
     .value {
       line-height: 1.2;
+    }
+  }
+  &--big {
+    font-size: 16px;
+    margin-top: 20px;
+    .item-container {
+      width: 30%;
+      .item {
+        width: auto;
+        .title {
+          font-size: 13px;
+        }
+      }
     }
   }
 }

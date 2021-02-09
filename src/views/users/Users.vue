@@ -1,183 +1,295 @@
 <template>
   <div class="column site-content">
     <div class="container-fluid">
-      <!--
-                ////////////////////////////////////////////////////
-                more comming tour
-            -->
-
       <hr class="space-lg" />
-      <form action="user-add.html">
+
+      <!--
+        PAGE TITLE
+       -->
+      <PageTitleDefault :actionButton="{ title: 'Add Host', url: '/add-user' }">
+        <template><h3>Host &amp; Guest List</h3></template>
+        <template #subtitle><p>List of Guest &amp; Host</p></template>
+      </PageTitleDefault>
+      <!-- /end page title -->
+
+      <!--
+        ERROR
+       -->
+      <section v-if="!isErrorEmpty">
+        <pre>
+            We're sorry, we're not able to retrieve this information at the moment, please try back later
+            {{ errorMsg.code }} - {{ errorMsg.msg }}
+        </pre>
+
+      </section>
+      <!-- /error message -->
+
+      <section v-else>
+        <!--
+          SEARCH
+        -->
+        <SearchInPage
+          v-model="search"
+          placeholder="Find Host &amp; Guest"
+        />
+        <!-- /end search -->
+
         <div class="columns">
-          <div class="column generic-heading is-two-third">
-            <h3>Host & Guest List</h3>
-            <p>List of Guest & Host</p>
-          </div>
+          <div class="column is-full">
 
-          <div class="column generic-heading is-one-third flex end-xs ">
-            <router-link to="/add-user">
-              <button class="btn btn--medium btn--primary ">
-                Add Host
-              </button>
-            </router-link>
+            <!--
+              TABLE USERS
+            -->
+            <spinner v-if="!isLoaded" message="Loading User List...." />
+            <lv-table
+              v-else
+              :fields="tableData.fields"
+              :items="setupTableData"
+            >
+
+              <template #actionButtons="data">
+                <template v-for="(dt, idx) in data.data">
+                  <router-link :to="{ name: 'userdetail', params: { id: dt.identifier }}" :key="idx">
+                    <span class="info icon"><img :src="`${dt.iconsrc}`" /></span>
+                  </router-link>
+                </template>
+              </template>
+
+            </lv-table>
+            <!-- /end table users -->
+
           </div>
         </div>
-      </form>
 
-      <div class="columns filter-table-list">
-        <div class="column is-full filter-wrapper">
-          <div class="form-group icon-search">
-            <img
-              src="@/assets/img/ic-search.svg"
-              alt=""
+        <div class="columns">
+          <div class="column is-full">
+
+            <!--
+              PAGINATION
+            -->
+            <PaginationDefault
+              v-if="isLoaded"
+              :pageData="pagination"
+              page="users"
+              @changePage="handlePaging"
             />
-            <input
-              id="form1"
-              v-model="search"
-              type="text"
-              class="form-control"
-              placeholder="Find Host & Guest"
-              @input="searchUser()"
-            />
+            <!-- /end pagination -->
+
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="columns">
-        <div class="column is-full">
-          <table class="table is-fullwidth table--orders">
-            <thead>
-              <tr>
-                <th>
-                  <div class="action-wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        />
-                        <span class="checkmark"></span>
-                      </label>
-                    </div>
-                    <!--
-                                            SHow when Checkbox Clicked
-                                            <a href="#"><img src="@/assets/img/ic-delete.svg" alt="" /></a>
-                                        -->
-                  </div>
-                </th>
-
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Total Tour Packages</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <UserList
-                v-for="(item, i) in items"
-                :key="i"
-                :first_name="item.first_name"
-                :last_name="item.last_name"
-                :phone_number="item.phone_number"
-                :host_id="item.host_id"
-                :email="item.email"
-                :user_uid="item.user_uid"
-                :is_verified="item.is_verified"
-                :business_name="item.business_name"
-              />
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <div class="modalshow hide">
-      <div class="body">
-        <h4>Nonaktifkan Akun? <a href="#">X</a></h4>
-        <p>Anda yakin akan menonaktifkan user ini? user akan inactive setelahnya dan tidak dapat lagi melakukan berbagai aktifitas di platform lokaven</p>
-
-        <div class="action">
-          <a
-            href="#"
-            class="btn cancel"
-          >Cancel</a>
-          <a
-            href="#"
-            class="btn hapus"
-          >Ya, Hapus</a>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import UserList from './UserList'
+// internal modules
+import { mapState, mapActions } from 'vuex'
+import auth from '@/mixins/auth'
+import appStates from '@/mixins/appStates'
+
+// external modules
+import _ from 'lodash'
+import Spinner from 'vue-simple-spinner'
+
+// components & views
+import { PageTitleDefault, SearchInPage, PaginationDefault, LvTable } from '@/components'
+
 export default {
+  name: 'Users',
   components: {
-    UserList
+    PaginationDefault,
+    PageTitleDefault,
+    SearchInPage,
+    LvTable,
+    Spinner
   },
+  mixins: [auth, appStates],
   data () {
     return {
-      items: '',
-      accessToken: '',
-      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
-      isLoading: false,
+      // search query model
       search: '',
-      total_packages: ''
-    }
-  },
-  mounted () {
-    if (!localStorage.accessToken) {
-      this.$router.push({ path: '/' })
-    } else {
-      this.accessToken = localStorage.accessToken
-    }
-    this.isLoading = true
-    var header = {
-      headers: {
-        Authorization: `Bearer ${this.accessToken}`
+      // param to fetch users data from API.
+      params: {
+        limit: 5,
+        param: 'all'
+      },
+      // user table data
+      tableData: {
+        // will be rendered as table headings
+        fields: ['Name', 'Email', 'Phone', 'Total Tour Packages', 'Action']
       }
     }
-    axios.get(this.apiUrl + 'host/list?per_page=5&page=1&param=all', header)
-      .then((res) => {
-        console.log('RESPONSE RECEIVED: ', res)
-        this.items = res.data.data
-        this.isLoading = false
+  },
+  computed: {
+    /**
+     * INIT STATES
+     * ~~~~~~
+     * Initiate States from vuex store
+     */
+    ...mapState({
+      users: state => state.users.users,
+      pagination: state => state.users.pagination,
+      isLoaded: state => state.isLoaded,
+      errorMsg: state => state.errorMsg
+    }),
+    /**
+     * SETUP TABLE DATA
+     * ~~~~~
+     * Setup the data to be displayed in table component.
+     * - pick required data from users state
+     * - arrange the data to match with Table component formatting
+     * - add some additional data into each table data
+     * - register the data into items[]
+     * - filter the items so it's searchable based on name and email
+     */
+    setupTableData () {
+      const tableData = []
+      // pick all the data required to be displayed in table
+      const sorted = _.map(this.users, val => {
+        return _.pick(val, ['first_name', 'last_name', 'email', 'phone_number', 'is_verified', 'host_id', 'count_package', 'user_uid'])
       })
-      .catch((err) => {
-        console.log('AXIOS ERROR: ', err.response.data.title)
-        console.log('AXIOS ERROR: ', err.response.status)
-        if (err.response.status === 401) {
-          localStorage.removeItem('accessToken')
-          localStorage.removeItem('hostId')
-          this.$router.push({ path: '/' })
+
+      // Loop through the sorted users object to assign the data from API to be used in table
+      _.forIn(sorted, (v, k) => {
+        // Set if the user is host or guest, will be rendered as child of fullName
+        const host = (v.host_id) ? {
+          isHost: {
+            value: 'Host',
+            tag: 'span',
+            className: 'info badges badges--verified'
+          }
+        } : {
+          isHost: {
+            value: 'Guest',
+            tag: 'span',
+            className: 'info badges badges--paid-off'
+          }
         }
-        this.isLoading = false
+
+        // Set if the user is verified host or not, will be rendered as child of fullName
+        const verified = (v.is_verified) ? {
+          isVerified: {
+            value: 'verified',
+            className: 'badges text-info'
+          }
+        } : {
+          isVerified: {
+            value: 'unverified',
+            className: 'badges text-warning'
+          }
+        }
+
+        // Set full name
+        const fullName = {
+          fullName: {
+            value: `${v.first_name} ${v.last_name}`,
+            className: 'title-link',
+            child: [host, verified]
+          }
+        }
+
+        // Set email
+        const email = {
+          email: {
+            value: v.email
+          }
+        }
+
+        // Set phone number, render '-' if it has no number
+        const phoneNumber = (v.phone_number) ? {
+          phoneNumber: {
+            value: v.phone_number
+          }
+        } : {
+          phoneNumber: {
+            value: '-'
+          }
+        }
+
+        // Set number of package owned by user
+        const countPackage = (!v.count_package) ? {
+          countPackage: {
+            value: 0
+          }
+        } : {
+          countPackage: {
+            value: v.count_package
+          }
+        }
+
+        // Set action button
+        const actionButtons = {
+          actionButtons: {
+            viewButton: {
+              iconsrc: 'assets/img/ic-edit-line.svg',
+              identifier: v.user_uid
+            }
+          }
+        }
+
+        // need to be in order, matching this.tableData.fields: fullName, email, phone, count package, and action buttons
+        tableData[k] = { ...fullName, ...email, ...phoneNumber, ...countPackage, ...actionButtons }
       })
+
+      // filter to be used in search
+      const filtered = _.filter(tableData, (data) => {
+        return data.fullName.value.toLowerCase().includes(this.search.toLowerCase()) || data.email.value.toLowerCase().includes(this.search.toLowerCase())
+      })
+
+      return filtered
+    }
   },
   methods: {
-    searchUser () {
-      var header = {
-        headers: {
-          Authorization: `Bearer ${this.accessToken}`
-        }
+    /**
+     * INIT ACTIONS
+     * ~~~~~
+     * initiates actions that will be used in this SFC
+     */
+    ...mapActions([
+      'getUsers'
+    ]),
+    /**
+     * HANDLE PAGING
+     * ~~~~~
+     * Pagination requests
+     */
+    handlePaging () {
+      const params = {
+        limit: this.params.limit,
+        page: this.$route.params.page,
+        param: this.params.param
       }
-      axios.get(this.apiUrl + 'host/list?per_page=20&page=1&param=all&key=' + this.search, header)
-        .then((res) => {
-          console.log('RESPONSE RECEIVED: ', res)
-          this.items = res.data.data
-          this.isLoading = false
+      this.getUsers(params)
+        .then(() => {
+          this.isUnauthorized()
         })
-        .catch((err) => {
-          console.log('AXIOS ERROR: ', err.response.data.title)
-          this.isLoading = false
+    }
+  },
+  created () {
+    /**
+     * GET USERS DATA
+     * ~~~~~
+     * Fetch required users data from server and store it into users sessions
+     * - setup the query
+     * - check if the state already exist
+     * - if empty, fetch users data from server
+     * - store the data into users state
+     */
+    const pg = (this.$route.params.page) || 1
+    const params = {
+      limit: this.params.limit,
+      page: pg,
+      param: this.params.param
+    }
+
+    if (this.users.length < 1) {
+      this.getUsers(params)
+        .then(() => {
+          this.isUnauthorized()
         })
     }
   }
-
 }
 </script>

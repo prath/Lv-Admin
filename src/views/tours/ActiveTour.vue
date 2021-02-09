@@ -146,12 +146,7 @@ export default {
     this.isLoading = true
     axios.get(this.apiUrl + 'package')
       .then((res) => {
-        console.log('RESPONSE RECEIVED: ', res)
         this.items = res.data.data
-        this.isLoading = false
-      })
-      .catch((err) => {
-        console.log('AXIOS ERROR: ', err.response.data.title)
         this.isLoading = false
       })
   }

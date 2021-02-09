@@ -62,11 +62,15 @@
  * 2. need API to get total booking
  */
 
-import moment from 'moment'
-import config from '@/config'
+// internal modules
+import auth from '@/mixins/auth'
+import formatting from '@/mixins/formatting'
 
-import TotalRevenue from '@/components/tables/TotalRevenue'
-import TotalBooking from '@/components/tables/TotalBooking'
+// external modules
+
+// components & views
+import TotalRevenue from '@/components/cards/TotalRevenue'
+import TotalBooking from '@/components/cards/TotalBooking'
 import TableBookingByContact from '@/components/tables/TableBookingByContact.vue'
 
 export default {
@@ -76,13 +80,7 @@ export default {
     TotalBooking,
     TableBookingByContact
   },
-  filters: {
-    formatDate: function (value) {
-      if (value) {
-        return moment(String(value)).format('DD/MM/YYYY')
-      }
-    }
-  },
+  mixins: [auth, formatting],
   data () {
     return {
       accessToken: '',
@@ -116,9 +114,6 @@ export default {
 
       ]
     }
-  },
-  mounted () {
-    config.authCheck()
   }
 }
 </script>

@@ -107,7 +107,7 @@
 
                   <td>
                     <div class="wrapper flex-column items-start">
-                      <router-link :to="'/tour-packages-detail/'+booking.tour_id">
+                      <router-link :to="'/packages-detail/'+booking.tour_id">
                         <span class="info text-primary">{{ booking.title }}</span>
                       </router-link>
                       <span class="info mt-10">{{ booking.type_tour === 'close' ? 'A Private Tour' : 'A Open Tour' }} by: {{ booking.host_name }}</span><br />
@@ -202,12 +202,10 @@ export default {
     this.isLoading = true
     axios.get(this.apiUrl + 'auth/orders/list-admin?page=1&per_page=100&param=booking', header)
       .then((res) => {
-        console.log('RESPONSE RECEIVED: ', res)
         this.bookingList = res.data.data
         this.isLoading = false
       })
       .catch((err) => {
-        console.log('AXIOS ERROR: ', err.response.data.title)
         if (err.response.status === 401) {
           localStorage.removeItem('accessToken')
           localStorage.removeItem('hostId')

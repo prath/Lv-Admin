@@ -1,7 +1,7 @@
 export default {
   '/': 'Dashboard',
   '/users': 'Users',
-  '/tour-packages': 'TourPackages',
+  '/packages': 'Packages',
   '/curated-contents': 'CuratedContents',
   '/tour-preferences': 'TourPreferences',
   '/categories-tags': 'CategoriesTags',

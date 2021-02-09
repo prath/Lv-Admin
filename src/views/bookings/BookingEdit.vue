@@ -26,7 +26,7 @@
               <div class="column">
                 <div class="form-group">
                   <label for="first_name">Tour Packages</label>
-                  <router-link :to="'/tour-packages-detail/'+items.tour_id">
+                  <router-link :to="'/packages-detail/'+items.tour_id">
                     <p class="text-primary">
                       <b>{{ items.title }}</b>
                     </p>
@@ -139,7 +139,6 @@ export default {
 
         axios.get(this.apiUrl + 'auth/orders/detail/' + this.orderId, header)
           .then((res) => {
-            console.log('RESPONSE RECEIVED: ', res)
             this.items = res.data.data
             this.isLoading = false
 
@@ -150,10 +149,6 @@ export default {
                 this.getTotalTour(this.items.host_id);
                 */
           })
-          .catch((err) => {
-            console.log('AXIOS ERROR: ', err.response.data.title)
-            this.isLoading = false
-          })
       }
     })
   },
@@ -162,12 +157,7 @@ export default {
       if (hostId) {
         axios.get(this.apiUrl + 'host/get/' + hostId)
           .then((res) => {
-            console.log('RESPONSE RECEIVED: ', res)
             this.item_host = res.data.data
-            this.isLoading = false
-          })
-          .catch((err) => {
-            console.log('AXIOS ERROR: ', err.response.data.title)
             this.isLoading = false
           })
       }
@@ -176,12 +166,7 @@ export default {
       if (hostId) {
         axios.get(this.apiUrl + 'package/by-tourhosts/' + hostId)
           .then((res) => {
-            console.log('RESPONSE RECEIVED: ', res)
             this.total_packages = res.data.data
-            this.isLoading = false
-          })
-          .catch((err) => {
-            console.log('AXIOS ERROR: ', err.response.data.title)
             this.isLoading = false
           })
       }

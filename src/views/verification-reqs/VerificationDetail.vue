@@ -8,21 +8,24 @@
       v-if="loadingStatus"
       class="modal-content modal--big"
     >
-      Updating Data....
+      <spinner message="Updating Host Data...." />
     </div>
     <div
       v-else
       class="modal-content modal--big"
     >
-      <section v-if="errorMsg.status">
+      <!--
+          ERROR MESSAGE
+       -->
+      <section v-if="!isErrorEmpty">
         <pre>
             We're sorry, we're not able to retrieve this information at the moment, please try back later
-            {{ errorMsg.msg }}
+            {{ errorMsg.code }} - {{ errorMsg.msg }}
         </pre>
       </section>
 
-      <div v-if="isUserDataEmpty">
-        Loading....
+      <div v-else-if="isUserDataEmpty">
+        <spinner message="loading Host info...." />
       </div>
       <div v-else>
         <form @submit.prevent="updateData">
@@ -254,11 +257,25 @@
  * 5. Admin review the photos of ID and business license
  * 6. PATCH verification data to server by
  */
+
+// internal modules
 import { mapState, mapGetters, mapActions } from 'vuex'
-import moment from 'moment'
+import auth from '@/mixins/auth'
+import formatting from '@/mixins/formatting'
+import appStates from '@/mixins/appStates'
+
+// external modules
 import _ from 'lodash'
+import Spinner from 'vue-simple-spinner'
+
+// components or views her
 
 export default {
+  name: 'VerificationDetail',
+  components: {
+    Spinner
+  },
+  mixins: [auth, formatting, appStates],
   props: [
     'hostId'
   ],
@@ -273,22 +290,40 @@ export default {
       updatedData: {}
     }
   },
-  mounted () {
+  computed: {
     /**
-     * GET USER DATA
+     * STATE OBJECTS
+     */
+    ...mapState({
+      userData: state => state.users.userData,
+      errorMsg: state => state.errorMsg
+    }),
+    /**
+     * STATE GETTERS
+     */
+    ...mapGetters([
+      'getSingleReq',
+      'loadingStatus',
+      'processCompleted'
+    ]),
+    /**
+     * GET SINGLE HOST DATA FROM HOSTDATA STATE IN STORE
+     */
+    hostData: function () {
+      return this.getSingleReq(this.hostId)
+    },
+    /**
+     * CHECK USER DATA AVAILABILITY
      *
-     * if host data available, then get user data based on user id retrieved from host data
+     * Check if user data already available
+     * if user data available, host data is of course available, because to get user data, user id is needed.
+     * if user data available, then, load the page.
+     *
+     * Host data will most likely available, since it's already in store when the verification page loaded/mounted
+     * This prop is used to pre-load the page.
      */
-    if (!_.isEmpty(this.hostData)) {
-      this.getUserByID(this.hostData.user_uid)
-    }
-  },
-  updated () {
-    /**
-     * CLOSE MODAL AFTER PROCESS DONE
-     */
-    if (this.processCompleted) {
-      this.$emit('close')
+    isUserDataEmpty: function () {
+      return _.isEmpty(this.userData)
     }
   },
   methods: {
@@ -406,50 +441,25 @@ export default {
       this.patchVerificationData(payload)
     }
   },
-  filters: {
+  created () {
     /**
-     * FORMAT DATE INTO A MORE READABLE FORMAT
+     * GET USER DATA
+     *
+     * if host data available, then get user data based on user id retrieved from host data
      */
-    formatDate: function (value) {
-      if (value) {
-        return moment(String(value)).format('DD MMM YYYY, h:mm:ss')
-      }
+    if (!_.isEmpty(this.hostData)) {
+      this.getUserByID(this.hostData.user_uid)
+        .then(() => {
+          this.isUnauthorized()
+        })
     }
   },
-  computed: {
+  updated () {
     /**
-     * STATE OBJECTS
+     * CLOSE MODAL AFTER PROCESS DONE
      */
-    ...mapState([
-      'userData',
-      'errorMsg'
-    ]),
-    /**
-     * STATE GETTERS
-     */
-    ...mapGetters([
-      'getSingleReq',
-      'loadingStatus',
-      'processCompleted'
-    ]),
-    /**
-     * GET SINGLE HOST DATA FROM HOSTDATA STATE IN STORE
-     */
-    hostData: function () {
-      return this.getSingleReq(this.hostId)
-    },
-    /**
-     * CHECK USER DATA AVAILABILITY
-     *
-     * Check if user data already available
-     * if user data available, host data is of course available, because to get user data, user id is needed.
-     * if user data available, then, load the page.
-     *
-     * Host data will most likely available, since it's already in store when the verification page loaded/mounted
-     * This prop is used to pre-load the page.
-     */
-    isUserDataEmpty: function () {
-      return _.isEmpty(this.userData)
+    if (this.processCompleted) {
+      this.$emit('close')
     }
   }
 }

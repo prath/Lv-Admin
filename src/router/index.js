@@ -1,57 +1,64 @@
 import VueRouter from 'vue-router'
 
-import Login from '@/views/_common/Login'
-import Dashboard from '@/views/Dashboard'
-// Users
-import Users from '@/views/users/Users'
-import UserAdd from '@/views/users/UserAdd'
-import UserEditHost from '@/views/users/UserEditHost'
-import UserProfile from '@/views/users/UserProfile'
-import UserEditGuest from '@/views/users/UserEditGuest'
-// Experiences
-import TourPackages from '@/views/experiences/TourPackages'
-import TourPackagesDetail from '@/views/experiences/TourPackagesDetail'
-import TourPackagesDetailPrivate from '@/views/experiences/TourPackagesDetailPrivate'
-// Featured Experiences
-import ContentList from '@/views/featured-experiences/ContentList'
-import ContentAdd from '@/views/featured-experiences/ContentAdd'
-import ContentEdit from '@/views/featured-experiences/ContentEdit'
-// Categories
-import CategoriesTags from '@/views/categories/CategoriesTags'
-import CategoriesAdd from '@/views/categories/CategoriesAdd'
-import CategoriesEdit from '@/views/categories/CategoriesEdit'
-// Tour Prefernces
-import TourPreferences from '@/views/preferences/TourPreferences'
-import TourPreferencesAdd from '@/views/preferences/TourPreferencesAdd'
-import TourPreferencesEdit from '@/views/preferences/TourPreferencesEdit'
-// Refund
-import RefundList from '@/views/refund/RefundList'
-import RefundAdd from '@/views/refund/RefundAdd'
-import RefundEdit from '@/views/refund/RefundEdit'
-// Booking by Contact
-import BookingContact from '@/views/booking-contact/BookingContact'
-// Bookings
-import BookingList from '@/views/bookings/BookingList'
-import BookingEdit from '@/views/bookings/BookingEdit'
-// Tours
-import ActiveTour from '@/views/tours/ActiveTour'
-// Financial Report
-import FinancialReport from '@/views/financial-reports/FinancialReport'
-// Verification Reqs
-import VerificationRequests from '@/views/verification-reqs/VerificationRequests'
-import VerificationDetail from '@/views/verification-reqs/VerificationDetail'
+import {
+  Login,
+  Dashboard,
+  // Users
+  Users,
+  UserAdd,
+  UserDetail,
+  UserEditGuest,
+  // Experiences
+  Packages,
+  PackageDetail,
+  PackagePrivateDetail,
+  // Featured Experiences
+  ContentList,
+  ContentAdd,
+  ContentEdit,
+  // Categories
+  CategoriesTags,
+  CategoriesAdd,
+  CategoriesEdit,
+  // Tour Prefernces
+  TourPreferences,
+  TourPreferencesAdd,
+  TourPreferencesEdit,
+  // Refund
+  RefundList,
+  RefundAdd,
+  RefundEdit,
+  // Booking by Contact
+  BookingContact,
+  // Bookings
+  BookingList,
+  BookingEdit,
+  // Tours
+  ActiveTour,
+  // Financial Report
+  FinancialReport,
+  // Verification Reqs
+  VerificationRequests,
+  VerificationDetail
+} from '@/views'
 
 const router = new VueRouter({
   routes: [
     { path: '/', component: Login },
     { path: '/dashboard', component: Dashboard },
     { path: '/users', component: Users },
-    { path: '/user-profile', component: UserProfile },
+    { path: '/users/page/:page', component: Users },
+    {
+      path: '/user/:id',
+      name: 'userdetail',
+      component: UserDetail,
+      params: true
+    },
     { path: '/add-user', component: UserAdd },
     { path: '/active-tour', component: ActiveTour },
-    { path: '/edit-user-host/:user_uid', name: 'edithost', component: UserEditHost },
     { path: '/edit-user-guest', component: UserEditGuest },
-    { path: '/tour-packages', component: TourPackages },
+    { path: '/packages', component: Packages },
+    { path: '/packages/page/:page', component: Packages },
     { path: '/featured-contents', component: ContentList },
     { path: '/featured-add', component: ContentAdd },
     { path: '/featured-edit', component: ContentEdit },
@@ -65,13 +72,13 @@ const router = new VueRouter({
     { path: '/booking-contact', component: BookingContact },
     { path: '/booking-list', component: BookingList },
     { path: '/booking-edit/:id_order', name: 'bookingdetail', component: BookingEdit },
-    { path: '/tour-packages-detail/:id_tour', name: 'tourdetail', component: TourPackagesDetail },
-    { path: '/tour-packages-detail-private/:id_tour', name: 'tourdetailprivate', component: TourPackagesDetailPrivate },
+    { path: '/package-detail/:id_tour', name: 'tourdetail', component: PackageDetail },
+    { path: '/package-detail-private/:id_tour', name: 'tourdetailprivate', component: PackagePrivateDetail, params: true },
     { path: '/tour-preferences-add', component: TourPreferencesAdd },
     { path: '/tour-preferences-edit', component: TourPreferencesEdit },
     { path: '/financial-report', component: FinancialReport },
     { path: '/verification-requests', component: VerificationRequests },
-    { path: '/verification-detail/:id_req', name: 'requestdetail', component: VerificationDetail }
+    { path: '/verification-detail/:id_req', name: 'requestdetail', component: VerificationDetail, params: true }
 
   ],
   mode: 'history'

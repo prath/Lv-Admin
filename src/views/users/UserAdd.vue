@@ -449,14 +449,11 @@ export default {
       }
       axios.post(this.apiUrl + 'host/register', postData)
         .then((res) => {
-          console.log('RESPONSE RECEIVED: ', res)
           this.isLoading = false
           this.error = ''
           this.success = res.response.data.title
         })
         .catch((err) => {
-          console.log('AXIOS ERROR: ', err.response.data.title)
-
           this.isLoading = false
           this.error = err.response.data.title
         })
@@ -483,14 +480,11 @@ export default {
 
       axios.post(this.apiUrl + 'upload/uploader', formData)
         .then((res) => {
-          console.log('RESPONSE RECEIVED: ', res)
           this.isLoading = false
           this.error = ''
           this.profile_picture_url = res.data.data.url
         })
         .catch((err) => {
-          console.log('AXIOS ERROR: ', err.response.data.title)
-
           this.isLoading = false
           this.error = err.response.data.title
         })

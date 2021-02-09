@@ -27,7 +27,7 @@
     <td>
       <div class="wrapper">
         <div>
-          <router-link :to="typeTrip === 'open' ? 'tour-packages-detail/' + id : 'tour-packages-detail-private/' + id">
+          <router-link :to="typeTrip === 'open' ? 'packages-detail/' + id : 'packages-detail-private/' + id">
             <a href=""><span class="title">{{ name }}</span></a>
           </router-link>
           <span class="info"><a href="">Hosted by: {{ getDataHost(hostId) }}</a></span>
@@ -78,7 +78,7 @@
     <td>
       <div class="wrapper">
         <span class="info icon">
-          <router-link :to="typeTrip === 'open' ? 'tour-packages-detail/' + id : 'tour-packages-detail-private/' + id">
+          <router-link :to="typeTrip === 'open' ? 'packages-detail/' + id : 'packages-detail-private/' + id">
             <a title="Edit User"><img
               src="assets/img/ic-edit-line.svg"
               title="Edit User"
@@ -140,12 +140,7 @@ export default {
     getDataHost (hostId) {
       axios.get(this.apiUrl + 'host/get/' + hostId)
         .then((res) => {
-          console.log('RESPONSE RECEIVED: ', res.data.data.business_name)
           this.hostName = res.data.data.business_name
-        })
-        .catch((err) => {
-          console.log('AXIOS ERROR: ', err.response.data.title)
-          this.isLoading = false
         })
 
       return this.hostName

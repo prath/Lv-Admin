@@ -31,15 +31,7 @@
                 <p
                   v-if="i <= 0"
                   class=" column is-pulled-right has-text-right"
-                >
-                  Min Quota :
-                  <b>{{ item.min_quota }} Orang</b>
-
-                  <br />
-
-                  Max Quota :
-                  <b>{{ item.max_quota }} Orang</b>
-                </p>
+                ></p>
               </div>
             </div>
 
@@ -90,16 +82,12 @@
               :key="i"
               class="flex item-durations price-flex"
             >
-              <h6 v-if="item.price">
-                Adult : Rp. {{ Number(item.price).toLocaleString('id') }},- / pax
-              </h6>
-
-              <h6 v-if="item.kid_price">
-                Kid Price : Rp. {{ Number(item.kid_price).toLocaleString('id') }},- / pax
-              </h6>
-              <h6 v-if="item.kid_price">
-                Min Kids Age : {{ item.min_kid_age }} to {{ item.max_kid_age }} Years
-              </h6>
+              <ol>
+                <li> <h6>{{ item.min_participant }} - {{ item.max_participant }} Persons : Rp. {{ Number(item.price).toLocaleString('id') }},- / pax </h6></li>
+                <li><h6>Kid Price : Rp. {{ Number(item.kid_price).toLocaleString('id') }},- / pax</h6></li>
+                <li><h6>Min Kids Age : {{ item.min_kid_age }} to {{ item.max_kid_age }} Years</h6></li>
+              </ol>
+              <div class="clear"></div>
             </div>
 
             <div class="clear"></div>
@@ -402,13 +390,12 @@
           </div>
 
           <div class="detail-info">
-            <div class="flex item-durations price-flex">
-              <p>
-                <b
-                  v-for="(item, i) in items.tags"
-                  :key="i"
-                > {{ item }}, </b>
-              </p>
+            <div
+              v-for="(item, i) in items.tags"
+              :key="i"
+              class="flex item-durations price-flex"
+            >
+              <p><b>{{ item }}, </b></p>
             </div>
           </div>
 
@@ -509,24 +496,19 @@ export default {
   },
   created () {
     this.$router.onReady(() => {
-      if (this.$route.name === 'tourdetail') {
+      if (this.$route.name === 'tourdetailprivate') {
         if (!localStorage.accessToken) {
           this.$router.push({ path: '/' })
         }
         this.isLoading = true
         axios.get(this.apiUrl + 'package/' + this.tourId)
           .then((res) => {
-            console.log('RESPONSE RECEIVED: ', res)
             this.items = res.data.data
             this.isLoading = false
             this.delete_status = this.items.delete_status
 
             this.getHost(this.items.host_id)
             this.getTotalTour(this.items.host_id)
-          })
-          .catch((err) => {
-            console.log('AXIOS ERROR: ', err.response.data.title)
-            this.isLoading = false
           })
       }
     })
@@ -536,12 +518,7 @@ export default {
       if (hostId) {
         axios.get(this.apiUrl + 'host/get/' + hostId)
           .then((res) => {
-            console.log('RESPONSE RECEIVED: ', res)
             this.item_host = res.data.data
-            this.isLoading = false
-          })
-          .catch((err) => {
-            console.log('AXIOS ERROR: ', err.response.data.title)
             this.isLoading = false
           })
       }
@@ -550,12 +527,7 @@ export default {
       if (hostId) {
         axios.get(this.apiUrl + 'package/by-tourhosts/' + hostId)
           .then((res) => {
-            console.log('RESPONSE RECEIVED: ', res)
             this.total_packages = res.data.data
-            this.isLoading = false
-          })
-          .catch((err) => {
-            console.log('AXIOS ERROR: ', err.response.data.title)
             this.isLoading = false
           })
       }

@@ -101,5 +101,11 @@ body.home{
         top: 40px;
         right: 40px;
         line-height: 1.35;
+        &--relative {
+            display: block;
+            position: absolute;
+            top: 80px;
+            right: 60px;
+        }
     }
 }

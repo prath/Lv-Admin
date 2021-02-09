@@ -13,14 +13,5 @@ export default {
         Authorization: `Bearer ${accessToken}`
       }
     }
-  },
-  /**
-     * CHECK IF USER LOGGED IN
-     */
-  authCheck: function () {
-    if (!localStorage.accessToken || localStorage.accessToken === undefined) {
-      this.$router.push({ path: '/' })
-    }
-    return false
   }
 }
