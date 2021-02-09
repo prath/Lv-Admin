@@ -135,11 +135,11 @@
         <!--
           VERIFICATION STATUS EXISTING VERIFIED
         -->
-        <div class="message is-info mb-5 verification-data-verified" v-else-if="isVerifiedHost">
+        <div class="message is-info mb-5 verification-data-verified" v-else-if="isHost">
           <div class="message-body">
-            <h5>This user is a verified user</h5>
+            <h5>This user is a host</h5>
             <div class="control">
-              this user already a verified member
+              this user already a host
             </div>
           </div>
         </div>
@@ -181,7 +181,8 @@
           -->
         <div class="form-group flex is-flex-direction-row-reverse">
           <button type="submit" class="btn btn--primary btn--medium">
-            Submit
+            <spinner v-if="!isLoaded" size="small" />
+            <template v-else>Submit</template>
           </button>
         </div>
         <!-- /end submit button -->
@@ -194,20 +195,22 @@
 
 <script>
 // Internal modules
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import FormValidator from './FormValidator.vue'
 
 // External modules
 // import _ from 'lodash'
+import Spinner from 'vue-simple-spinner'
 
 export default {
   name: 'FormEditBusiness',
   components: {
-    FormValidator
+    FormValidator,
+    Spinner
   },
   props: {
     activateForm: Boolean,
-    isVerifiedHost: Boolean,
+    isHost: Boolean,
     isVerificationRequested: Boolean,
     userData: Object
   },
@@ -225,6 +228,11 @@ export default {
       validate: false
     }
   },
+  computed: {
+    ...mapState({
+      isLoaded: state => state.isLoaded
+    })
+  },
   methods: {
     /**
      * VUEX ACTIONS
@@ -236,11 +244,29 @@ export default {
      * SIGN GUEST AS HOST
      */
     signupAsHost: function () {
+      // mark that the submit button is clicked, and send this marker into FormValidator comp to validate each form field
       this.validate = true
+
+      // check if al required fields is filled
       const filled = Object.values(this.business).every((v) => v !== null)
 
+      // Payload that going to be sent to server
+      const businessData = {
+        business_name: this.business.name,
+        business_category: this.business.cat,
+        business_about: this.business.about,
+        address: this.business.address,
+        is_verified: (this.business.verification === 'true')
+      }
+
+      const user = {
+        uid: this.userData.user_uid
+      }
+
+      // If every required fields are filled, then process the post
       if (filled) {
-        this.signupAsHost(this.business)
+        console.log(this.userData.user_uid)
+        this.SignGuestAsHost({ businessData, user })
       }
     }
   }

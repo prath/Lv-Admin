@@ -208,9 +208,10 @@ export default {
     }
   },
   /**
-   * Permanently Delete User
+   * PERMANENTLY DELETE USER
    *
    * delete user permanently
+   *
    * @param {Function} commit
    * @param {String} uid
    */
@@ -246,7 +247,40 @@ export default {
       commit('SET_LOADED', true)
     }
   },
-  SignGuestAsHost: ({ commit }, payload) => {
-    console.log(payload)
+  /**
+   * CONVERT GUEST INTO HOST
+   *
+   * by adding some additional business data
+   *
+   * @param {Funtion} commit
+   * @param {Object} payload
+   */
+  SignGuestAsHost: async ({ commit }, payload) => {
+    const { businessData, user } = payload
+
+    commit('SET_LOADED', false)
+    commit('SET_ERR_MSG', {})
+
+    // set header
+    const header = config.setHeader()
+
+    try {
+      const response = await axios.patch(`${config.apiUrl}hosts/api/${user.uid}/administrator`, businessData, header)
+      const data = await response.data.data
+      console.log(response)
+
+      if (response.status === 200) {
+        commit('SET_USER_DATA', data)
+        commit('SET_LOADED', true)
+      }
+    } catch (error) {
+      const err = {
+        status: true,
+        msg: error,
+        code: error.response.status
+      }
+      commit('SET_ERR_MSG', err)
+      commit('SET_LOADED', true)
+    }
   }
 }

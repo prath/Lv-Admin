@@ -114,7 +114,7 @@
              -->
             <div class="generic-heading border is-clearfix">
               <h4>Business Info</h4>
-              <p v-if="!isVerifiedHost || !isVerificationRequested">Detail information about the business</p>
+              <p v-if="isHost || isVerificationRequested">Detail information about the business</p>
               <p v-else>You can convert this user into host by filling the form below</p>
             </div>
             <!-- /end business info -->
@@ -122,7 +122,7 @@
             <!--
               SIGN UP AS HOST CHECKBOX
              -->
-            <div class="columns mt-3 mb-0 pb-0" v-if="!checkHost">
+            <div class="columns mt-3 mb-0 pb-0" v-if="!isHost">
               <div class="column is-12">
                 <div class="form-group mb-0">
                   <label class="checkbox mb-0">
@@ -142,7 +142,7 @@
              -->
             <form-edit-business
               :activateForm="isSignupAsHost"
-              :isVerifiedHost="isVerifiedHost"
+              :isHost="isHost"
               :isVerificationRequested="isVerificationRequested"
               :userData="userData"
             />
@@ -305,23 +305,15 @@ export default {
       errorMsg: state => state.errorMsg
     }),
     /**
-     * CHECKHOST
+     * IS USER a HOST?
      * ~~~~~
-     * check if the user is host or not
-     * if not host, activate the checkbox to sign up as host
-     */
-    checkHost: function () {
-      return this.userData.is_host
-    },
-    /**
-     * IS USER VERIFIED HOST?
-     * ~~~~~
-     * Check if user is already a verified host
+     * Check if user is already a host
      * if so, will show the status message in FormEditBusiness
      * if not, will be shown the checkbox to verified this user
      */
-    isVerifiedHost: function () {
-      return ('is_verified' in this.userData) ? this.userData.is_verified : false
+    isHost: function () {
+      return !!this.userData.host_id
+      // return ('is_verified' in this.userData) ? this.userData.is_verified : false
     },
     /**
      * IS USER REQUESTED VERIFICATION?
