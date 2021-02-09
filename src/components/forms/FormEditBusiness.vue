@@ -267,6 +267,9 @@ export default {
       if (filled) {
         console.log(this.userData.user_uid)
         this.SignGuestAsHost({ businessData, user })
+          .then(() => {
+            this.activateForm = false
+          })
       }
     }
   }
