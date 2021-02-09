@@ -34,18 +34,14 @@ export default {
         commit('SET_PAGINATION', pagination)
         commit('SET_LOADED', true)
         return data
-      } else if (response.data.code === 404) {
-        throw response.data
       }
-      console.log(response)
     } catch (error) {
-      console.log(error)
-      // const err = {
-      //   status: true,
-      //   msg: error,
-      //   code: error.response.status
-      // }
-      commit('SET_ERR_MSG', error)
+      const err = {
+        status: true,
+        msg: error.response.data.title,
+        code: error.response.status
+      }
+      commit('SET_ERR_MSG', err)
       commit('SET_LOADED', false)
     }
   },
@@ -75,7 +71,7 @@ export default {
     } catch (error) {
       const err = {
         status: true,
-        msg: error,
+        msg: error.response.data.title,
         code: error.response.status
       }
       commit('SET_ERR_MSG', err)
@@ -106,7 +102,7 @@ export default {
     } catch (error) {
       const err = {
         status: true,
-        msg: error,
+        msg: error.response.data.title,
         code: error.response.status
       }
       commit('SET_ERR_MSG', err)
@@ -130,7 +126,8 @@ export default {
       .catch(error => {
         const err = {
           status: true,
-          msg: error
+          msg: error.response.data.title,
+          code: error.response.status
         }
         commit('SET_ERR_MSG', err)
       })
@@ -168,7 +165,7 @@ export default {
     } catch (error) {
       const err = {
         status: true,
-        msg: error,
+        msg: error.response.data.title,
         code: error.response.status
       }
       commit('SET_ERR_MSG', err)

@@ -180,7 +180,7 @@
       {{ errorMsg }}
       <pre>
           We're sorry, we're not able to update this user for now, please try back later
-          {{ errorMsg.msg.message }}
+          {{ errorMsg.code }} - {{ errorMsg.msg }}
       </pre>
 
     </section>
