@@ -35,6 +35,7 @@
     font-size: 12px;
     font-weight: 600;
     height: 20px;
+    display: inline-block;
     @include border-radius(15px);
 
     &--done{

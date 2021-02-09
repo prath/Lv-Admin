@@ -158,13 +158,13 @@ export default {
           isHost: {
             value: 'Host',
             tag: 'span',
-            className: 'info badges badges--verified mr-5'
+            className: 'info badges badges--verified'
           }
         } : {
           isHost: {
             value: 'Guest',
             tag: 'span',
-            className: 'info badges badges--paid-off mr-5'
+            className: 'info badges badges--paid-off'
           }
         }
 
@@ -185,6 +185,7 @@ export default {
         const fullName = {
           fullName: {
             value: `${v.first_name} ${v.last_name}`,
+            className: 'title-link',
             child: [host, verified]
           }
         }

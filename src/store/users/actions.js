@@ -233,7 +233,7 @@ export default {
 
       if (response.status === 200) {
         commit('SET_LOADED', true)
-        commit('DELETE_USER', data)
+        commit('UPDATE_DELETED_USER', data)
       }
     } catch (error) {
       const err = {

@@ -31,7 +31,7 @@
 
           <!-- Render the field value -->
           <slot :name="`${i}`" :data="el">
-            <span :class="{className: el.className}">
+            <span :class="el.className">
               {{ el.value }}
             </span>
           </slot>
@@ -118,6 +118,10 @@ export default {
       display: table-cell;
       padding: 15px 30px;
       border-bottom: 5px solid #edeff4;
+
+      .child {
+        position: relative;
+      }
     }
 
     &:last-child {

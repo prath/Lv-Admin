@@ -47,21 +47,11 @@
               <!-- display the title to be clickable -->
               <template #title="data">
                 <router-link :to="`/packages-detail/${data.data.identifier}`">
-                  <span>
+                  <span class="title-link">
                     {{ data.data.value }}
                   </span>
                 </router-link>
               </template>
-
-              <!-- <template #profPic="data">
-                <img class="avatar avatar--extra-small" :src="`${data.data.value}`" />
-              </template>
-              <template #businessName="data">
-                <router-link class="host" :to="`/packages-detail/${data.data.identifier}`">
-                  <span>{{ data.data.value }}</span>
-                </router-link>
-              </template> -->
-              <!-- <pre>{{ data.data.child[0].profPic }}</pre> -->
 
             </lv-table>
 
@@ -170,13 +160,14 @@ export default {
           profPic: {
             value: sortHostInfo.profile_picture_url,
             tag: 'img',
-            className: 'avatar avatar--extra-small'
+            className: 'avatar avatar--micro'
           }
         }
 
         const businessName = {
           businessName: {
-            value: sortHostInfo.business_name
+            value: sortHostInfo.business_name,
+            className: 'business-name'
           }
         }
 

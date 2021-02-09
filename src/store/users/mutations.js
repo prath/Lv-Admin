@@ -100,11 +100,12 @@ export default {
     state.pagination = pagination
   },
   /**
+   * UPDATE DELETED USER
    *
    * @param {Object} state
    * @param {Object} data
    */
-  DELETE_USER: (state, data) => {
+  UPDATE_DELETED_USER: (state, data) => {
     if (!_.isEmpty(state.users)) {
       const deletedIdx = _.findIndex(state.users, ['user_uid', data.user_uid])
       state.users[deletedIdx] = data

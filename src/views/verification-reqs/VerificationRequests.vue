@@ -48,11 +48,10 @@
 
               <template #status="data">
                 <template v-for="(dt, idx) in data.data">
-                  <div :key="idx">
+                  <div :key="idx" class="status-holder">
                     <span :class="dt.className">
                       {{ dt.value }}
                     </span>
-                    <br />
                   </div>
                 </template>
               </template>
@@ -130,7 +129,7 @@ export default {
       detailId: '',
       search: '',
       tableData: {
-        fields: ['Name', 'Business Name', 'Signup as Host Data', 'Verification Status', 'Action']
+        fields: ['Name', 'Business Name', 'Signup Date', 'Verification Status', 'Action']
       }
     }
   },
@@ -294,3 +293,9 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.status-holder {
+  display: inline-block;
+  box-sizing: content-box;
+}
+</style>
