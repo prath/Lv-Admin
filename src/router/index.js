@@ -1,4 +1,6 @@
 import VueRouter from 'vue-router'
+import store from '@/store'
+import _ from 'lodash'
 
 import {
   Login,
@@ -82,6 +84,20 @@ const router = new VueRouter({
 
   ],
   mode: 'history'
+})
+
+/**
+ * empty error message everytime changing route.
+ *
+ * sometimes when error occured, the state persists,
+ * so when navigate away to another page, the error is injected into the new page
+ */
+router.beforeEach((to, from, next) => {
+  const errEmpty = _.isEmpty(store.state.errorMsg)
+  if (!errEmpty) {
+    store.commit('SET_ERR_MSG', {})
+  }
+  next()
 })
 
 export default router
