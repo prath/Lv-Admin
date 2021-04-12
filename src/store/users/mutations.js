@@ -108,6 +108,7 @@ export default {
   UPDATE_DELETED_USER: (state, data) => {
     if (!_.isEmpty(state.users)) {
       const deletedIdx = _.findIndex(state.users, ['user_uid', data.user_uid])
+      console.log('deletedIdx ', deletedIdx)
       state.users[deletedIdx] = data
     }
     state.userData = data
