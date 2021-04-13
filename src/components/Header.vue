@@ -262,6 +262,10 @@ export default {
       })
       this.menu[param] = true
     }
+  },
+  created () {
+    const activeRoute = this.$route.meta.group
+    this.menu[activeRoute] = true
   }
 }
 </script>
