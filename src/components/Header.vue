@@ -32,27 +32,27 @@
       <nav>
         <ul>
           <li>
-            <a @click="openMenu('dashboard')" href="#">
+            <a @click="openMenu('dashboard'); $router.push('/dashboard')">
               <img src="@/assets/img/icons/dashboard.svg" alt="Dashboard" />
             </a>
           </li>
           <li>
-            <a @click="openMenu('users')" href="#">
+            <a @click="openMenu('users'); $router.push('/hosts')">
               <img src="@/assets/img/icons/users.svg" alt="Users" />
             </a>
           </li>
           <li>
-            <a @click="openMenu('activities')" href="#">
+            <a @click="openMenu('activities'); $router.push('/ongoing-activities')">
               <img src="@/assets/img/icons/activities.svg" alt="Activities" />
             </a>
           </li>
           <li>
-            <a @click="openMenu('content')" href="#">
+            <a @click="openMenu('content'); $router.push('/featured-activities')">
               <img src="@/assets/img/icons/content.svg" alt="Content Management" />
             </a>
           </li>
           <li>
-            <a @click="openMenu('transactions')" href="#">
+            <a @click="openMenu('transactions'); $router.push('/tax')">
               <img src="@/assets/img/icons/transactions.svg" alt="Transactions" />
             </a>
           </li>
@@ -84,13 +84,18 @@
             </li>
             <li class="divider"></li>
             <li>
-              <router-link to="/pricing-structure">
-                Pricing Structure Configuration
+              <router-link to="/verification-requests">
+                Verification Requests
               </router-link>
             </li>
             <li class="divider"></li>
             <li>
               <router-link to="/pricing-structure">
+                Profit, Fees &amp; Taxes
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/promo-codes">
                 Promo Codes
               </router-link>
             </li>
@@ -101,40 +106,34 @@
            -->
           <template v-if="menu.users">
             <li>
-              <router-link to="/verification-requests">
-                Verification Requests
-              </router-link>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <router-link to="/users">
+              <router-link to="/hosts">
                 Hosts
               </router-link>
             </li>
             <li>
-              <router-link to="/users">
+              <router-link to="/guests">
                 Guests
               </router-link>
             </li>
             <li class="divider"></li>
             <li>
-              <router-link to="/users">
+              <router-link to="/pilot-hosts">
                 Pilot Hosts
               </router-link>
             </li>
             <li>
-              <router-link to="/users">
+              <router-link to="/pilot-guests">
                 Pilot Guests
               </router-link>
             </li>
             <li class="divider"></li>
             <li>
-              <router-link to="/verification-requests">
+              <router-link to="/deactivated-users">
                 Deactivated Users
               </router-link>
             </li>
             <li>
-              <router-link to="/verification-requests">
+              <router-link to="/deleted-users">
                 Deleted Users
               </router-link>
             </li>
@@ -145,29 +144,29 @@
            -->
           <template v-if="menu.activities">
             <li>
-              <router-link to="/active-tour">
+              <router-link to="/ongoing-activities">
                 Ongoing Activities
               </router-link>
             </li>
             <li>
-              <router-link to="/packages">
+              <router-link to="/activity-packages">
                 Activity Packages
               </router-link>
             </li>
             <li class="divider"></li>
             <li>
-              <router-link to="/booking-list">
+              <router-link to="/bookings">
                 Bookings
               </router-link>
             </li>
             <li>
-              <router-link to="/booking-contact">
+              <router-link to="/bookings-by-contact">
                 Bookings by Contact
               </router-link>
             </li>
             <li class="divider"></li>
             <li>
-              <router-link to="/tour-preferences">
+              <router-link to="/activity-preferences">
                 Activity Preferences Settings
               </router-link>
             </li>
@@ -184,27 +183,27 @@
            -->
           <template v-if="menu.content">
             <li>
-              <router-link to="/featured-contents">
+              <router-link to="/featured-activities">
                 Featured Activities
               </router-link>
             </li>
             <li>
-              <router-link to="/featured-contents">
-                Legal Content
+              <router-link to="/legal-contents">
+                Legal Contents
               </router-link>
             </li>
             <li>
-              <router-link to="/featured-contents">
+              <router-link to="/faq">
                 FAQs
               </router-link>
             </li>
             <li>
-              <router-link to="/featured-contents">
+              <router-link to="/promo-contents">
                 Promo Content
               </router-link>
             </li>
             <li>
-              <router-link to="/featured-contents">
+              <router-link to="/cover-images">
                 Cover Images
               </router-link>
             </li>
@@ -215,8 +214,8 @@
            -->
           <template v-if="menu.transactions">
             <li>
-              <router-link to="/refund-list">
-                Tax
+              <router-link to="/tax-transactions">
+                Tax Transactions
               </router-link>
             </li>
             <li>
@@ -241,16 +240,13 @@ export default {
   data () {
     return {
       menu: {
-        dashboard: true,
+        dashboard: false,
         users: false,
         activities: false,
         content: false,
         transactions: false
       }
     }
-  },
-  computed: {
-
   },
   methods: {
     logout: function () {
@@ -278,5 +274,9 @@ export default {
 
 li {
   line-height: 1.2;
+}
+
+.side-menu li a:hover {
+  color: #5594F4;
 }
 </style>

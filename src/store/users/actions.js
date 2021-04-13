@@ -23,6 +23,7 @@ export default {
 
     try {
       // get data from server
+      // param: all | unverified | guest | host | request | deactivate | pilot guest | pilot host
       const response = await axios.get(`${config.apiUrl}host/list?per_page=${limit}&page=${page}&param=${param}`, header)
 
       // assign data and pagination
@@ -30,8 +31,10 @@ export default {
       const pagination = await response.data.paginate
 
       if (response.data.code === 200) {
-        commit('SET_USERS', data)
-        commit('SET_PAGINATION', pagination)
+        const userData = { param, data }
+        const paginationData = { param, pagination }
+        commit('SET_USERS', userData)
+        commit('SET_PAGINATION', paginationData)
         commit('SET_LOADED', true)
         return data
       }

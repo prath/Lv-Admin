@@ -46,6 +46,10 @@ import ListActiveTour from '@/views/tours/ListActiveTour'
 
 // Users
 import Users from '@/views/users/Users'
+import Hosts from '@/views/users/Hosts'
+import Guests from '@/views/users/Guests'
+import PilotHosts from '@/views/users/PilotHosts'
+import PilotGuests from '@/views/users/PilotGuests'
 import UserAdd from '@/views/users/UserAdd'
 import UserDetail from '@/views/users/UserDetail'
 import UserDelete from '@/views/users/UserDelete'
@@ -93,6 +97,10 @@ export {
   ListActiveTour,
 
   Users,
+  Hosts,
+  Guests,
+  PilotHosts,
+  PilotGuests,
   UserAdd,
   UserDetail,
   UserDelete,

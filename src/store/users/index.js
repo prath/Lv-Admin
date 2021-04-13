@@ -4,15 +4,27 @@ import getters from '@/store/users/getters'
 
 const state = {
   // all users
-  users: [],
+  users: {
+    all: [],
+    hosts: [],
+    guests: [],
+    pilothosts: [],
+    pilotguests: []
+  },
+  // pagination data
+  pagination: {
+    users: {},
+    hosts: {},
+    guests: {},
+    pilothosts: {},
+    pilotguests: {}
+  },
   // Unverified users
   unvUsers: [],
   // Single user data
   userData: {},
   // Single host data
-  hostData: [],
-  // pagination data
-  pagination: {}
+  hostData: []
 }
 
 export default {
