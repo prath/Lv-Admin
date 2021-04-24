@@ -91,6 +91,7 @@ export default {
     switch (data.param) {
       case 'host':
         state.users.hosts = data.data
+        console.log('mutation: ', state.users)
         break
       case 'guest':
         state.users.guests = data.data

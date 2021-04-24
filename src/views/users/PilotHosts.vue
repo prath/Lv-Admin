@@ -6,7 +6,7 @@
       <!--
         PAGE TITLE
        -->
-      <PageTitleDefault :actionButton="{ title: 'Add Host', url: '/add-user' }">
+      <PageTitleDefault :actionButton="{ title: 'Blast Email' }">
         <template><h3>Pilot Hosts</h3></template>
         <template #subtitle><p>List of Hosts Registered Through Landing Page</p></template>
       </PageTitleDefault>
@@ -49,7 +49,7 @@
 
               <template #actionButtons="data">
                 <template v-for="(dt, idx) in data.data">
-                  <router-link :to="{ name: 'userdetail', params: { id: dt.identifier }}" :key="idx">
+                  <router-link :to="{ name: 'pilotHostAction', params: { id: dt.identifier }}" :key="idx">
                     <span class="info icon"><img :src="`${dt.iconsrc}`" /></span>
                   </router-link>
                 </template>
@@ -118,7 +118,7 @@ export default {
       // user table data
       tableData: {
         // will be rendered as table headings
-        fields: ['Name', 'Email', 'Phone', 'Total Tour Packages', 'Action']
+        fields: ['Name', 'Email', 'Phone', 'Action']
       }
     }
   },
@@ -148,7 +148,7 @@ export default {
       const tableData = []
       // pick all the data required to be displayed in table
       const sorted = _.map(this.pilothosts, val => {
-        return _.pick(val, ['first_name', 'last_name', 'email', 'phone_number', 'is_verified', 'host_id', 'count_package', 'user_uid'])
+        return _.pick(val, ['first_name', 'last_name', 'email', 'phone_number', 'is_verified', 'host_id', 'user_uid'])
       })
 
       // Loop through the sorted users object to assign the data from API to be used in table
@@ -208,17 +208,6 @@ export default {
           }
         }
 
-        // Set number of package owned by user
-        const countPackage = (!v.count_package) ? {
-          countPackage: {
-            value: 0
-          }
-        } : {
-          countPackage: {
-            value: v.count_package
-          }
-        }
-
         // Set action button
         const actionButtons = {
           actionButtons: {
@@ -230,7 +219,7 @@ export default {
         }
 
         // need to be in order, matching this.tableData.fields: fullName, email, phone, count package, and action buttons
-        tableData[k] = { ...fullName, ...email, ...phoneNumber, ...countPackage, ...actionButtons }
+        tableData[k] = { ...fullName, ...email, ...phoneNumber, ...actionButtons }
       })
 
       // filter to be used in search

@@ -6,9 +6,9 @@
       <!--
         PAGE TITLE
        -->
-      <PageTitleDefault :actionButton="{ title: 'Add Host', url: '/host-add' }">
-        <template><h3>Active Hosts</h3></template>
-        <template #subtitle><p>List of Lokaven Host</p></template>
+      <PageTitleDefault :actionButton="{ title: 'Add Promo', url: '/promo-codes/add' }">
+        <template><h3>Promotion Codes</h3></template>
+        <template #subtitle><p>List of Promotion Codes</p></template>
       </PageTitleDefault>
       <!-- /end page title -->
 
@@ -30,7 +30,7 @@
         -->
         <SearchInPage
           v-model="search"
-          placeholder="Find Host"
+          placeholder="Find Promo Code"
         />
         <!-- /end search -->
 
@@ -40,7 +40,7 @@
             <!--
               TABLE USERS
             -->
-            <spinner v-if="!isLoaded" message="Loading User List...." />
+            <spinner v-if="!isLoaded" message="Loading Promo List...." />
             <lv-table
               v-else
               :fields="tableData.fields"
@@ -49,7 +49,7 @@
 
               <template #actionButtons="data">
                 <template v-for="(dt, idx) in data.data">
-                  <router-link :to="{ name: 'userdetail', params: { id: dt.identifier }}" :key="idx">
+                  <router-link :to="{ name: 'promodetail', params: { id: dt.identifier }}" :key="idx">
                     <span class="info icon"><img :src="`${dt.iconsrc}`" /></span>
                   </router-link>
                 </template>
@@ -70,9 +70,11 @@
             <PaginationDefault
               v-if="isLoaded"
               :pageData="pagination"
-              page="hosts"
+              page="promo-codes"
               @changePage="handlePaging"
             />
+
+            {{ pagination }}
             <!-- /end pagination -->
 
           </div>
@@ -97,7 +99,7 @@ import Spinner from 'vue-simple-spinner'
 import { PageTitleDefault, SearchInPage, PaginationDefault, LvTable } from '@/components'
 
 export default {
-  name: 'Hosts',
+  name: 'PromoCodes',
   components: {
     PaginationDefault,
     PageTitleDefault,
@@ -113,12 +115,12 @@ export default {
       // param to fetch users data from API.
       params: {
         limit: 10,
-        param: 'host'
+        param: 'all'
       },
       // user table data
       tableData: {
         // will be rendered as table headings
-        fields: ['Name', 'Email', 'Phone', 'Total Tour Packages', 'Action']
+        fields: ['', 'Name', 'Discount', 'Expired', 'Promo Used']
       }
     }
   },
@@ -129,93 +131,54 @@ export default {
      * Initiate States from vuex store
      */
     ...mapState({
-      hosts: state => state.users.users.hosts,
-      pagination: state => state.users.pagination.hosts,
+      promo: state => state.promo.promo,
+      pagination: state => state.promo.pagination,
       isLoaded: state => state.isLoaded,
       errorMsg: state => state.errorMsg
     }),
     /**
      * SETUP TABLE DATA
      * ~~~~~
-     * Setup the data to be displayed in table component.
-     * - pick required data from users state
-     * - arrange the data to match with Table component formatting
-     * - add some additional data into each table data
-     * - register the data into items[]
-     * - filter the items so it's searchable based on name and email
      */
     setupTableData () {
       const tableData = []
       // pick all the data required to be displayed in table
-      const sorted = _.map(this.hosts, val => {
-        return _.pick(val, ['first_name', 'last_name', 'email', 'phone_number', 'is_verified', 'host_id', 'count_package', 'user_uid'])
+      // console.log(this.promo.promo)
+      const sorted = _.map(this.promo, val => {
+        return _.pick(val, ['promo_id', 'image', 'title_promo', 'discount', 'expired', 'tours', 'promotion_used'])
       })
 
       // Loop through the sorted users object to assign the data from API to be used in table
       _.forIn(sorted, (v, k) => {
-        // Set if the user is host or guest, will be rendered as child of fullName
-        const host = (v.host_id) ? {
-          isHost: {
-            value: 'Host',
-            tag: 'span',
-            className: 'info badges badges--verified'
-          }
-        } : {
-          isHost: {
-            value: 'Guest',
-            tag: 'span',
-            className: 'info badges badges--paid-off'
+        const image = {
+          image: {
+            value: v.image,
+            tag: 'img'
           }
         }
 
-        // Set if the user is verified host or not, will be rendered as child of fullName
-        const verified = (v.is_verified) ? {
-          isVerified: {
-            value: 'verified',
-            className: 'badges text-info'
-          }
-        } : {
-          isVerified: {
-            value: 'unverified',
-            className: 'badges text-warning'
+        const name = {
+          name: {
+            value: v.title_promo,
+            className: 'title-link'
           }
         }
 
-        // Set full name
-        const fullName = {
-          fullName: {
-            value: `${v.first_name} ${v.last_name}`,
-            className: 'title-link',
-            child: [host, verified]
+        const discount = {
+          discount: {
+            value: v.discount
           }
         }
 
-        // Set email
-        const email = {
-          email: {
-            value: v.email
+        const expired = {
+          expired: {
+            value: v.expired
           }
         }
 
-        // Set phone number, render '-' if it has no number
-        const phoneNumber = (v.phone_number) ? {
-          phoneNumber: {
-            value: v.phone_number
-          }
-        } : {
-          phoneNumber: {
-            value: '-'
-          }
-        }
-
-        // Set number of package owned by user
-        const countPackage = (!v.count_package) ? {
-          countPackage: {
-            value: 0
-          }
-        } : {
-          countPackage: {
-            value: v.count_package
+        const promoUsed = {
+          promoUsed: {
+            value: v.promotion_used
           }
         }
 
@@ -224,18 +187,18 @@ export default {
           actionButtons: {
             viewButton: {
               iconsrc: 'assets/img/ic-edit-line.svg',
-              identifier: v.user_uid
+              identifier: v.promo_id
             }
           }
         }
 
-        // need to be in order, matching this.tableData.fields: fullName, email, phone, count package, and action buttons
-        tableData[k] = { ...fullName, ...email, ...phoneNumber, ...countPackage, ...actionButtons }
+        // need to be in order, matching this.tableData.fields
+        tableData[k] = { ...image, ...name, ...discount, ...expired, ...promoUsed, ...actionButtons }
       })
 
       // filter to be used in search
       const filtered = _.filter(tableData, (data) => {
-        return data.fullName.value.toLowerCase().includes(this.search.toLowerCase()) || data.email.value.toLowerCase().includes(this.search.toLowerCase())
+        return data.name.value.toLowerCase().includes(this.search.toLowerCase())
       })
 
       return filtered
@@ -248,7 +211,7 @@ export default {
      * initiates actions that will be used in this SFC
      */
     ...mapActions([
-      'getUsers'
+      'getPromos'
     ]),
     /**
      * HANDLE PAGING
@@ -261,21 +224,16 @@ export default {
         page: this.$route.params.page,
         param: this.params.param
       }
-      this.getUsers(params)
+      this.getPromos(params)
         .then(() => {
           this.isUnauthorized()
         })
     }
   },
-  created () {
+  mounted () {
     /**
-     * GET USERS DATA
+     * GET PROMOS DATA
      * ~~~~~
-     * Fetch required users data from server and store it into users sessions
-     * - setup the query
-     * - check if the state already exist
-     * - if empty, fetch users data from server
-     * - store the data into users state
      */
     const pg = (this.$route.params.page) || 1
     const params = {
@@ -284,8 +242,8 @@ export default {
       param: this.params.param
     }
 
-    if (this.hosts.length < 1) {
-      this.getUsers(params)
+    if (this.promo.length < 1) {
+      this.getPromos(params)
         .then(() => {
           this.isUnauthorized()
         })

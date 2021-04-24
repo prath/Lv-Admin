@@ -4,86 +4,106 @@ import VueRouter from 'vue-router'
 
 import {
   Login,
+
   Dashboard,
+
+  // Verification Reqs
+  VerificationRequests,
+  VerificationDetail,
+
+  // Pricing & Promo
+  PricingStructure,
+  PromoCodes,
+
   // Users
   Users,
   Hosts,
+  HostAdd,
   Guests,
   PilotHosts,
+  PilotHostAction,
   PilotGuests,
+  DeletedUsers,
+  DeactivatedUsers,
   UserAdd,
   UserDetail,
-  UserEditGuest,
-  // Experiences
-  Packages,
-  PackageDetail,
-  PackagePrivateDetail,
-  // Featured Experiences
-  ContentList,
-  ContentAdd,
-  ContentEdit,
+
+  // Activities
+  OngoingActivities,
+  BookingContact,
+  Bookings,
+
+  // Packages
+  ActivityPackages,
+  ActivityPackageDetail,
+
   // Categories
-  CategoriesTags,
   CategoriesAdd,
   CategoriesEdit,
-  // Tour Prefernces
-  TourPreferences,
-  TourPreferencesAdd,
-  TourPreferencesEdit,
+  CategoriesTags,
+
+  // Featured experiences
+  ContentAdd,
+  ContentEdit,
+  ContentList,
+
+  // Financial Reports
+  FinancialReport,
+
   // Refund
-  RefundList,
   RefundAdd,
   RefundEdit,
-  // Booking by Contact
-  BookingContact,
-  // Bookings
-  BookingList,
-  BookingEdit,
-  // Tours
-  ActiveTour,
-  // Financial Report
-  FinancialReport,
-  // Verification Reqs
-  VerificationRequests,
-  VerificationDetail
+  RefundList
+
 } from '@/views'
 
 const router = new VueRouter({
   routes: [
     { path: '/', component: Login },
+
+    // Dashboard
     { path: '/dashboard', component: Dashboard, meta: { group: 'dashboard' } },
     { path: '/verification-requests', component: VerificationRequests, meta: { group: 'dashboard' } },
     { path: '/verification-detail/:id_req', name: 'requestdetail', component: VerificationDetail, params: true, meta: { group: 'dashboard' } },
+    { path: '/pricing-structure', component: PricingStructure, meta: { group: 'dashboard' } },
+    { path: '/promo-codes', component: PromoCodes, meta: { group: 'dashboard' } },
+    { path: '/promo-codes/pages/:page', component: PromoCodes, meta: { group: 'dashboard' } },
+    // { path: '/promo-codes/add', component: PromoCodeAdd, meta: { group: 'dashboard' } },
 
+    // Global Users (?)
     { path: '/users', component: Users, meta: { group: 'users' } },
     { path: '/users/page/:page', component: Users, meta: { group: 'users' } },
+    { path: '/user/:id', name: 'userdetail', component: UserDetail, params: true, meta: { group: 'users' } },
+    { path: '/add-user', component: UserAdd, meta: { group: 'users' } },
+
+    // Users
     { path: '/hosts', component: Hosts, meta: { group: 'users' } },
     { path: '/hosts/page/:page', component: Hosts, meta: { group: 'users' } },
+    { path: '/host-add', component: HostAdd, meta: { group: 'users' } },
     { path: '/guests', component: Guests, meta: { group: 'users' } },
     { path: '/guests/page/:page', component: Guests, meta: { group: 'users' } },
     { path: '/pilot-hosts', component: PilotHosts, meta: { group: 'users' } },
     { path: '/pilot-hosts/page/:page', component: PilotHosts, meta: { group: 'users' } },
+    { path: '/pilot-host/:id', name: 'pilotHostAction', component: PilotHostAction, params: true, meta: { group: 'users' } },
     { path: '/pilot-guests', component: PilotGuests, meta: { group: 'users' } },
     { path: '/pilot-guests/page/:page', component: PilotGuests, meta: { group: 'users' } },
-    { path: '/user/:id', name: 'userdetail', component: UserDetail, params: true, meta: { group: 'users' } },
-    { path: '/add-user', component: UserAdd, meta: { group: 'users' } },
-    { path: '/edit-user-guest', component: UserEditGuest, meta: { group: 'users' } },
+    { path: '/deactivated-users', component: DeactivatedUsers, meta: { group: 'users' } },
+    { path: '/deactivated-users/page/:page', component: DeactivatedUsers, meta: { group: 'users' } },
+    { path: '/deleted-users', component: DeletedUsers, meta: { group: 'users' } },
+    { path: '/deleted-users/page/:page', component: DeletedUsers, meta: { group: 'users' } },
 
-    { path: '/active-tour', component: ActiveTour, meta: { group: 'activities' } },
-    { path: '/packages', component: Packages, meta: { group: 'activities' } },
-    { path: '/packages/page/:page', component: Packages, meta: { group: 'activities' } },
-    { path: '/tour-preferences', component: TourPreferences, meta: { group: 'activities' } },
+    // Activities
+    { path: '/ongoing-activities', component: OngoingActivities, meta: { group: 'activities' } },
+    { path: '/activity-packages', component: ActivityPackages, meta: { group: 'activities' } },
+    { path: '/activity-packages/page/:page', component: ActivityPackages, meta: { group: 'activities' } },
+    { path: '/activity-packages/:id', component: ActivityPackageDetail, params: true, meta: { group: 'activities' } },
+    { path: '/bookings', component: Bookings, meta: { group: 'activities' } },
+    { path: '/bookings-by-contact', component: BookingContact, meta: { group: 'activities' } },
     { path: '/categories-tags', component: CategoriesTags, meta: { group: 'activities' } },
-    { path: '/categories-edit/:id_categories', name: 'categoriesedit', component: CategoriesEdit, meta: { group: 'activities' } },
-    { path: '/categories-add', component: CategoriesAdd, meta: { group: 'activities' } },
-    { path: '/booking-contact', component: BookingContact, meta: { group: 'activities' } },
-    { path: '/booking-list', component: BookingList, meta: { group: 'activities' } },
-    { path: '/booking-edit/:id_order', name: 'bookingdetail', component: BookingEdit, meta: { group: 'activities' } },
-    { path: '/package-detail/:id_tour', name: 'tourdetail', component: PackageDetail, meta: { group: 'activities' } },
-    { path: '/package-detail-private/:id_tour', name: 'tourdetailprivate', component: PackagePrivateDetail, params: true, meta: { group: 'activities' } },
-    { path: '/tour-preferences-add', component: TourPreferencesAdd, meta: { group: 'activities' } },
-    { path: '/tour-preferences-edit', component: TourPreferencesEdit, meta: { group: 'activities' } },
+    { path: '/category-add', component: CategoriesAdd, meta: { group: 'activities' } },
+    { path: '/categories-edit/:id', component: CategoriesEdit, params: true, meta: { group: 'activities' } },
 
+    // Content
     { path: '/featured-contents', component: ContentList, meta: { group: 'content' } },
     { path: '/featured-add', component: ContentAdd, meta: { group: 'content' } },
     { path: '/featured-edit', component: ContentEdit, meta: { group: 'content' } },

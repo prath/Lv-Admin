@@ -10,11 +10,14 @@
       ADD HOST BUTTON
       -->
     <div v-if="actionButton" class="column generic-heading is-one-third flex end-xs ">
-      <router-link :to="actionButton.url">
+      <router-link v-if="actionButton.url" :to="actionButton.url">
         <button class="btn btn--medium btn--primary ">
           {{ actionButton.title }}
         </button>
       </router-link>
+      <button v-else class="btn btn--medium btn--primary ">
+        {{ actionButton.title }}
+      </button>
     </div>
   </div>
 </template>

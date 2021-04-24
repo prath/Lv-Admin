@@ -99,21 +99,6 @@
             </thead>
 
             <tbody>
-              <ListActiveTour
-                v-for="(item, i) in items"
-                :id="item.tour_id"
-                :key="i"
-                :jadwal-tour="item.created_at"
-                :participant="1"
-                :name="item.title"
-                :schedules="item.schedules"
-                :prices="item.prices"
-                :location="item.location"
-                :type-trip="item.type_tour"
-                :host-id="item.host_id"
-                :total-booking="4"
-                :status-tour="'active'"
-              />
             </tbody>
           </table>
         </div>
@@ -123,11 +108,9 @@
 </template>
 
 <script>
-import ListActiveTour from './ListActiveTour'
 import axios from 'axios'
 export default {
   components: {
-    ListActiveTour
   },
   data () {
     return {

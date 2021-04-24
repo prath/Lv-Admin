@@ -28,6 +28,9 @@
     </header>
     <!-- End Header User Dashboard -->
 
+    <!--
+      MENU ICON LEFT
+     -->
     <aside class="column side-icon">
       <nav>
         <ul>
@@ -69,6 +72,9 @@
       </nav>
     </aside>
 
+    <!--
+      SUBMENU LEFT
+      -->
     <aside class="column side-menu">
 
       <nav>
@@ -162,12 +168,6 @@
             <li>
               <router-link to="/bookings-by-contact">
                 Bookings by Contact
-              </router-link>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <router-link to="/activity-preferences">
-                Activity Preferences Settings
               </router-link>
             </li>
             <li class="divider"></li>

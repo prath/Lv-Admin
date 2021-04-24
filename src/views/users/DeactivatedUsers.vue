@@ -6,9 +6,9 @@
       <!--
         PAGE TITLE
        -->
-      <PageTitleDefault :actionButton="{ title: 'Add Host', url: '/host-add' }">
-        <template><h3>Active Hosts</h3></template>
-        <template #subtitle><p>List of Lokaven Host</p></template>
+      <PageTitleDefault :actionButton="{ title: 'Add Host', url: '/add-user' }">
+        <template><h3>Host &amp; Guest List</h3></template>
+        <template #subtitle><p>List of Guest &amp; Host</p></template>
       </PageTitleDefault>
       <!-- /end page title -->
 
@@ -30,7 +30,7 @@
         -->
         <SearchInPage
           v-model="search"
-          placeholder="Find Host"
+          placeholder="Find Host &amp; Guest"
         />
         <!-- /end search -->
 
@@ -70,7 +70,7 @@
             <PaginationDefault
               v-if="isLoaded"
               :pageData="pagination"
-              page="hosts"
+              page="users"
               @changePage="handlePaging"
             />
             <!-- /end pagination -->
@@ -97,7 +97,7 @@ import Spinner from 'vue-simple-spinner'
 import { PageTitleDefault, SearchInPage, PaginationDefault, LvTable } from '@/components'
 
 export default {
-  name: 'Hosts',
+  name: 'Users',
   components: {
     PaginationDefault,
     PageTitleDefault,
@@ -112,8 +112,8 @@ export default {
       search: '',
       // param to fetch users data from API.
       params: {
-        limit: 10,
-        param: 'host'
+        limit: 5,
+        param: 'all'
       },
       // user table data
       tableData: {
@@ -129,8 +129,8 @@ export default {
      * Initiate States from vuex store
      */
     ...mapState({
-      hosts: state => state.users.users.hosts,
-      pagination: state => state.users.pagination.hosts,
+      users: state => state.users.users,
+      pagination: state => state.users.pagination,
       isLoaded: state => state.isLoaded,
       errorMsg: state => state.errorMsg
     }),
@@ -147,7 +147,7 @@ export default {
     setupTableData () {
       const tableData = []
       // pick all the data required to be displayed in table
-      const sorted = _.map(this.hosts, val => {
+      const sorted = _.map(this.users, val => {
         return _.pick(val, ['first_name', 'last_name', 'email', 'phone_number', 'is_verified', 'host_id', 'count_package', 'user_uid'])
       })
 
@@ -284,7 +284,7 @@ export default {
       param: this.params.param
     }
 
-    if (this.hosts.length < 1) {
+    if (this.users.length < 1) {
       this.getUsers(params)
         .then(() => {
           this.isUnauthorized()

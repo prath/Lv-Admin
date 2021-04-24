@@ -20,6 +20,7 @@ export default {
 
     // set headers
     const header = config.setHeader()
+    // const url = (param === 'pilot host' || param === 'pilot guest') ? config.apiProdUrl : config.apiUrl
 
     try {
       // get data from server
@@ -31,6 +32,7 @@ export default {
       const pagination = await response.data.paginate
 
       if (response.data.code === 200) {
+        // console.log(data)
         const userData = { param, data }
         const paginationData = { param, pagination }
         commit('SET_USERS', userData)
@@ -275,6 +277,41 @@ export default {
         commit('SET_LOADED', true)
       }
     } catch (error) {
+      const err = {
+        status: true,
+        msg: error.response.data.title,
+        code: error.response.status
+      }
+      commit('SET_ERR_MSG', err)
+      commit('SET_LOADED', true)
+    }
+  },
+  /**
+   * SIGN UP NEW HOST
+   *
+   * sign up new host by admin
+   *
+   * @param {Funtion} commit
+   * @param {Object} payload
+   */
+  signupTheHost: async ({ commit }, payload) => {
+    commit('SET_LOADED', false)
+    commit('SET_ERR_MSG', {})
+
+    // set header
+    const header = config.setHeader()
+
+    console.log(payload)
+
+    try {
+      const response = await axios.post(`${config.apiUrl}hosts/api`, payload, header)
+
+      if (response.status === 200) {
+        commit('SET_LOADED', true)
+        return response
+      }
+    } catch (error) {
+      console.log(error.response.data.title)
       const err = {
         status: true,
         msg: error.response.data.title,
