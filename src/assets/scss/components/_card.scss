@@ -299,3 +299,17 @@
         }
     }
 }
+
+.message {
+    &.is-danger {
+        .message-header {
+            background-color: $color-briliant-rose;
+        }
+    }
+    &.is-warning {
+        .message-header {
+            color: white;
+            background-color: $btn-warning;
+        }
+    }
+}

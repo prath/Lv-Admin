@@ -18,7 +18,7 @@ jobs:
         run: |
           yarn install
           yarn build 
-          yarn test --passWithNoTests
+          # yarn test --passWithNoTests
 
       - name: Docker Login
         env:
