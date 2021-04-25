@@ -4,9 +4,26 @@
       <hr class="space-lg" />
 
       <!--
+        IF BLAST EMAIL SUCCEDED
+       -->
+      <section v-if="isBlastSucceeded" class="has-background-success p-5 has-text-dark msg">
+        Email successfully blasted to all the hosts
+      </section>
+
+      <!--
+        IF BLAST EMAIL ERROR
+       -->
+      <section v-if="isBlastError" class="has-background-warning p-5 has-text-dark msg">
+        Something wrong while blasting the email, please try again
+      </section>
+
+      <!--
         PAGE TITLE
        -->
-      <PageTitleDefault :actionButton="{ title: 'Add Host', url: '/add-user' }">
+      <PageTitleDefault
+        :actionButton="{ title: 'Blast Email' }"
+        :isLoading="isBlastLoading"
+        @action="blastEmail">
         <template><h3>Pilot Guests</h3></template>
         <template #subtitle><p>List of Guests Registered Through Landing Page</p></template>
       </PageTitleDefault>
@@ -45,7 +62,15 @@
               v-else
               :fields="tableData.fields"
               :items="setupTableData"
-            />
+            >
+              <template #actionButtons="data">
+                <template v-for="(dt, idx) in data.data">
+                  <router-link :to="{ name: 'pilotGuestAction', params: { id: dt.identifier }}" :key="idx">
+                    <span class="info icon"><img :src="`${dt.iconsrc}`" /></span>
+                  </router-link>
+                </template>
+              </template>
+            </lv-table>
             <!-- /end table users -->
 
           </div>
@@ -80,6 +105,8 @@ import auth from '@/mixins/auth'
 import appStates from '@/mixins/appStates'
 
 // external modules
+import axios from 'axios'
+import config from '@/config'
 import _ from 'lodash'
 import Spinner from 'vue-simple-spinner'
 
@@ -108,8 +135,12 @@ export default {
       // user table data
       tableData: {
         // will be rendered as table headings
-        fields: ['Name', 'Email']
-      }
+        fields: ['Name', 'Email', '']
+      },
+
+      isBlastLoading: false,
+      isBlastSucceeded: false,
+      isBlastError: false
     }
   },
   computed: {
@@ -174,8 +205,18 @@ export default {
           }
         }
 
+        // Set action button
+        const actionButtons = {
+          actionButtons: {
+            viewButton: {
+              iconsrc: 'assets/img/ic-edit-line.svg',
+              identifier: v.user_uid
+            }
+          }
+        }
+
         // need to be in order, matching this.tableData.fields: fullName, email, phone, count package, and action buttons
-        tableData[k] = { ...fullName, ...email }
+        tableData[k] = { ...fullName, ...email, ...actionButtons }
       })
 
       // filter to be used in search
@@ -210,6 +251,27 @@ export default {
         .then(() => {
           this.isUnauthorized()
         })
+    },
+    async blastEmail () {
+      this.isBlastLoading = true
+
+      const header = config.setHeader()
+      const payload = {
+        SendTo: 'Guest'
+      }
+
+      try {
+        const response = await axios.post(`${config.apiUrl}auth/users/pilots/send-email`, payload, header)
+
+        if (response.status === 200) {
+          this.isBlastLoading = false
+          this.isBlastSucceeded = true
+        }
+      } catch (error) {
+        console.log(error)
+        this.isBlastLoading = false
+        this.isBlastError = true
+      }
     }
   },
   created () {
