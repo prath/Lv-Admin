@@ -20,9 +20,11 @@ export default {
 
     // set headers
     const header = config.setHeader()
+    // const url = (param === 'pilot host' || param === 'pilot guest') ? config.apiProdUrl : config.apiUrl
 
     try {
       // get data from server
+      // param: all | unverified | guest | host | request | deactivate | pilot guest | pilot host
       const response = await axios.get(`${config.apiUrl}host/list?per_page=${limit}&page=${page}&param=${param}`, header)
 
       // assign data and pagination
@@ -30,8 +32,11 @@ export default {
       const pagination = await response.data.paginate
 
       if (response.data.code === 200) {
-        commit('SET_USERS', data)
-        commit('SET_PAGINATION', pagination)
+        // console.log(data)
+        const userData = { param, data }
+        const paginationData = { param, pagination }
+        commit('SET_USERS', userData)
+        commit('SET_PAGINATION', paginationData)
         commit('SET_LOADED', true)
         return data
       }
@@ -265,11 +270,13 @@ export default {
     try {
       const response = await axios.patch(`${config.apiUrl}hosts/api/${user.uid}/administrator`, businessData, header)
       const data = await response.data.data
+      console.log(data)
 
       if (response.status === 200) {
         commit('SET_USER_DATA', data)
         commit('UPDATE_CONVERTED_HOST', data)
         commit('SET_LOADED', true)
+        return response
       }
     } catch (error) {
       const err = {
@@ -279,6 +286,43 @@ export default {
       }
       commit('SET_ERR_MSG', err)
       commit('SET_LOADED', true)
+      return error
+    }
+  },
+  /**
+   * SIGN UP NEW HOST
+   *
+   * sign up new host by admin
+   *
+   * @param {Funtion} commit
+   * @param {Object} payload
+   */
+  signupTheHost: async ({ commit }, payload) => {
+    commit('SET_LOADED', false)
+    commit('SET_ERR_MSG', {})
+
+    // set header
+    const header = config.setHeader()
+
+    console.log(payload)
+
+    try {
+      const response = await axios.post(`${config.apiUrl}hosts/api`, payload, header)
+
+      if (response.status === 200) {
+        commit('SET_LOADED', true)
+        return response
+      }
+    } catch (error) {
+      console.log(error.response.data.title)
+      const err = {
+        status: true,
+        msg: error.response.data.title,
+        code: error.response.status
+      }
+      commit('SET_ERR_MSG', err)
+      commit('SET_LOADED', true)
+      return error
     }
   }
 }

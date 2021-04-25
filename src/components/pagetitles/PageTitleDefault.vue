@@ -10,20 +10,35 @@
       ADD HOST BUTTON
       -->
     <div v-if="actionButton" class="column generic-heading is-one-third flex end-xs ">
-      <router-link :to="actionButton.url">
-        <button class="btn btn--medium btn--primary ">
+      <router-link v-if="actionButton.url" :to="actionButton.url">
+        <button class="btn btn--medium btn--primary">
           {{ actionButton.title }}
         </button>
       </router-link>
+      <button v-else class="btn btn--medium btn--primary" @click="handleAction">
+        <spinner v-if="isLoading" size="small" />
+        <template v-else>{{ actionButton.title }}</template>
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import Spinner from 'vue-simple-spinner'
+
 export default {
   name: 'PageTitleDefault',
+  components: {
+    Spinner
+  },
   props: {
-    actionButton: Object
+    actionButton: Object,
+    isLoading: Boolean
+  },
+  methods: {
+    handleAction (e) {
+      this.$emit('action')
+    }
   }
 }
 </script>

@@ -85,10 +85,27 @@ export default {
    * SET ALL USERS
    *
    * @param {Object} state host users data
-   * @param {Array} hostUsers host users data
+   * @param {Array} users users data
    */
-  SET_USERS: (state, users) => {
-    state.users = users
+  SET_USERS: (state, data) => {
+    switch (data.param) {
+      case 'host':
+        state.users.hosts = data.data
+        console.log('mutation: ', state.users)
+        break
+      case 'guest':
+        state.users.guests = data.data
+        break
+      case 'pilot host':
+        state.users.pilothosts = data.data
+        break
+      case 'pilot guest':
+        state.users.pilotguests = data.data
+        break
+      default:
+        state.users.all = data.data
+        break
+    }
   },
   /**
    * SET PAGINATION DATA
@@ -96,8 +113,24 @@ export default {
    * @param {Object} state host users data
    * @param {Array} pagination host users data
    */
-  SET_PAGINATION: (state, pagination) => {
-    state.pagination = pagination
+  SET_PAGINATION: (state, data) => {
+    switch (data.param) {
+      case 'host':
+        state.pagination.hosts = data.pagination
+        break
+      case 'guest':
+        state.pagination.guests = data.pagination
+        break
+      case 'pilot host':
+        state.pagination.pilothosts = data.pagination
+        break
+      case 'pilot guest':
+        state.pagination.pilotguests = data.pagination
+        break
+      default:
+        state.pagination.users = data.pagination
+        break
+    }
   },
   /**
    * UPDATE DELETED USER
@@ -108,6 +141,7 @@ export default {
   UPDATE_DELETED_USER: (state, data) => {
     if (!_.isEmpty(state.users)) {
       const deletedIdx = _.findIndex(state.users, ['user_uid', data.user_uid])
+      console.log('deletedIdx ', deletedIdx)
       state.users[deletedIdx] = data
     }
     state.userData = data

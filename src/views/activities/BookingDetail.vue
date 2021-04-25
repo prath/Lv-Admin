@@ -1,10 +1,12 @@
 <template>
-
+  <div>
+    asjkdajklsd
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'TableExample'
+  name: 'BookingDetail'
 }
 </script>
 
