@@ -226,9 +226,19 @@
             </div>
             <!-- /verify or unverify -->
 
+            {{ userData.is_verified }}
+
             <div class="message is-info p-5 mb-6">
-              <h5>{{ userData.first_name }} is <template v-if="userData.is_verified">a verified</template><template v-else>an unverified</template> host</h5>
-              <shapla-switch v-model="userData.is_verified">{{ switchTextChanges }}</shapla-switch>
+              <h5>{{ userData.first_name }} is
+                <template v-if="userData.is_verified">a verified</template>
+                <template v-else>an unverified</template>
+                host
+              </h5>
+              <spinner v-if="isVerifyLoading" size="small" />
+              <shapla-switch v-else v-model="userData.is_verified" @change="verifyUser">
+                <template v-if="userData.is_verified">Unverify this user</template>
+                <template v-else>Verify this user</template>
+              </shapla-switch>
             </div>
 
           </div>
@@ -259,6 +269,7 @@ import formatting from '@/mixins/formatting'
 
 // external modules
 import { mapState, mapActions } from 'vuex'
+// import _ from 'lodash'
 import Spinner from 'vue-simple-spinner'
 import axios from 'axios'
 import config from '@/config'
@@ -285,23 +296,22 @@ export default {
       link: '',
 
       isLoading: false,
+      isVerifyLoading: false,
       isError: false,
+      isVerifyError: false,
       processCompleted: false,
-
-      switchText: 'Verify this User'
+      processVerifyCompleted: false
     }
   },
   computed: {
     ...mapState({
       userData: state => state.users.userData
-    }),
-    switchTextChanges: function () {
-      return (this.userData.is_verified) ? 'Unverify this User' : 'Verify this user'
-    }
+    })
   },
   methods: {
     ...mapActions([
-      'getUserByID'
+      'getUserByID',
+      'signGuestAsHost'
     ]),
     sendEmail: function () {
       this.isLoading = true
@@ -327,17 +337,50 @@ export default {
         this.isError = true
         this.isLoading = false
       }
+    },
+    verifyUser: function () {
+      this.isVerifyLoading = true
+
+      const businessData = {
+        address: this.userData.address,
+        business_name: this.userData.business_name,
+        card_id_type: '',
+        card_id: '',
+        bussiness_id_type: '',
+        business_category: 'personal tour',
+        bussiness_id: '',
+        person_with_id: '',
+        business_about: '',
+        is_verified: this.userData.is_verified
+      }
+
+      const user = {
+        uid: this.userData.user_uid
+      }
+
+      this.signGuestAsHost({ businessData, user })
+        .then(response => {
+          if (response.status === 200) {
+            this.isVerifyLoading = false
+            this.processVerifyCompleted = true
+          }
+        })
+        .catch(error => {
+          console.log(error.response)
+          this.isVerifyLoading = false
+          this.processVerifyCompleted = true
+        })
     }
   },
   created () {
     this.routeUID = this.$route.params.id
 
-    // if (this.routeUserID !== this.userData.user_uid) {
-    this.getUserByID(this.routeUID)
-      .then(() => {
-        console.log(this.userData)
-        this.isUnauthorized()
-      })
+    if (this.routeUID !== this.userData.user_uid) {
+      this.getUserByID(this.routeUID)
+        .then(() => {
+          this.isUnauthorized()
+        })
+    }
     // }
   }
 }

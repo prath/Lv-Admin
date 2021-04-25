@@ -270,11 +270,13 @@ export default {
     try {
       const response = await axios.patch(`${config.apiUrl}hosts/api/${user.uid}/administrator`, businessData, header)
       const data = await response.data.data
+      console.log(data)
 
       if (response.status === 200) {
         commit('SET_USER_DATA', data)
         commit('UPDATE_CONVERTED_HOST', data)
         commit('SET_LOADED', true)
+        return response
       }
     } catch (error) {
       const err = {
@@ -284,6 +286,7 @@ export default {
       }
       commit('SET_ERR_MSG', err)
       commit('SET_LOADED', true)
+      return error
     }
   },
   /**
@@ -319,6 +322,7 @@ export default {
       }
       commit('SET_ERR_MSG', err)
       commit('SET_LOADED', true)
+      return error
     }
   }
 }
