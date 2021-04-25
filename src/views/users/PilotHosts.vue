@@ -4,9 +4,26 @@
       <hr class="space-lg" />
 
       <!--
+        IF BLAST EMAIL SUCCEDED
+       -->
+      <section v-if="isBlastSucceeded" class="has-background-success p-5 has-text-dark msg">
+        Email successfully blasted to all the hosts
+      </section>
+
+      <!--
+        IF BLAST EMAIL ERROR
+       -->
+      <section v-if="isBlastError" class="has-background-warning p-5 has-text-dark msg">
+        Something wrong while blasting the email, please try again
+      </section>
+
+      <!--
         PAGE TITLE
        -->
-      <PageTitleDefault :actionButton="{ title: 'Blast Email' }">
+      <PageTitleDefault
+        :actionButton="{ title: 'Blast Email' }"
+        :isLoading="isBlastLoading"
+        @action="blastEmail">
         <template><h3>Pilot Hosts</h3></template>
         <template #subtitle><p>List of Hosts Registered Through Landing Page</p></template>
       </PageTitleDefault>
@@ -90,6 +107,8 @@ import auth from '@/mixins/auth'
 import appStates from '@/mixins/appStates'
 
 // external modules
+import axios from 'axios'
+import config from '@/config'
 import _ from 'lodash'
 import Spinner from 'vue-simple-spinner'
 
@@ -119,7 +138,11 @@ export default {
       tableData: {
         // will be rendered as table headings
         fields: ['Name', 'Email', 'Phone', 'Action']
-      }
+      },
+
+      isBlastLoading: false,
+      isBlastSucceeded: false,
+      isBlastError: false
     }
   },
   computed: {
@@ -254,6 +277,27 @@ export default {
         .then(() => {
           this.isUnauthorized()
         })
+    },
+    async blastEmail () {
+      this.isBlastLoading = true
+
+      const header = config.setHeader()
+      const payload = {
+        SendTo: 'Host'
+      }
+
+      try {
+        const response = await axios.post(`${config.apiUrl}auth/users/pilots/send-email`, payload, header)
+
+        if (response.status === 200) {
+          this.isBlastLoading = false
+          this.isBlastSucceeded = true
+        }
+      } catch (error) {
+        console.log(error)
+        this.isBlastLoading = false
+        this.isBlastError = true
+      }
     }
   },
   created () {
@@ -282,3 +326,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.msg {
+  border-radius: 10px;
+}
+</style>
