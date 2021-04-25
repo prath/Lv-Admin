@@ -1,224 +1,243 @@
 <template>
   <div class="column site-content">
     <div class="container-fluid">
-      <!--
-                ////////////////////////////////////////////////////
-                more comming tour
-            -->
-
       <hr class="space-lg" />
 
-      <div class="columns">
-        <div class="column generic-heading is-two-third">
-          <h3>Booking List</h3>
-          <p>List of Booking List</p>
-        </div>
-      </div>
+      <!--
+        PAGE TITLE
+       -->
+      <PageTitleDefault>
+        <template><h3>Bookings</h3></template>
+        <template #subtitle><p>List of all bookings happen in Lokaven</p></template>
+      </PageTitleDefault>
+      <!-- /end page title -->
 
-      <div class="columns filter-table-list">
-        <div class="column is-full filter-wrapper">
-          <div class="field filter-select">
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option value="-">
-                    Filter
-                  </option>
-                  <option value="by_date">
-                    By Order
-                  </option>
-                  <option value="by_price">
-                    By Status
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="form-group icon-search">
-            <img
-              src="@/assets/img/ic-search.svg"
-              alt=""
-            />
-            <input
-              id="form1"
-              type="text"
-              class="form-control"
-              placeholder="Find Booking"
-            />
-          </div>
-        </div>
-      </div>
+      <!--
+        ERROR
+       -->
+      <section v-if="!isErrorEmpty">
+        <pre>
+            We're sorry, we're not able to retrieve this information at the moment, please try back later
+            {{ errorMsg.code }} - {{ errorMsg.msg }}
+        </pre>
 
-      <div class="columns">
-        <div class="column is-full">
-          <table class="table is-fullwidth table--orders">
-            <thead>
-              <tr>
-                <th>
-                  <div class="action-wrapper">
-                    <div class="form-check">
-                      <label class="container">
-                        <input
-                          type="checkbox"
-                          checked="checked"
-                        />
-                        <span class="checkmark"></span>
-                      </label>
-                    </div>
-                  <!--
-                                            SHow when Checkbox Clicked
-                                            <a href="#"><img src="@/assets/img/ic-delete.svg" alt="" /></a>
-                                        -->
-                  </div>
-                </th>
+      </section>
+      <!-- /error message -->
 
-                <th>Order Number</th>
-                <th>Tour Name</th>
-                <th>Participants</th>
-                <th>Host</th>
-                <th>Schedule</th>
+      <section v-else>
+        <!--
+          SEARCH
+        -->
+        <SearchInPage
+          v-model="search"
+          placeholder="Find Booking"
+        />
+        <!-- /end search -->
 
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
+        <div class="columns">
+          <div class="column is-full">
 
-            <tbody>
-              <template v-for="(booking, i) in bookingList">
-                <tr :key="i">
-                  <td>
-                    <div class="wrapper">
-                      <div class="form-check">
-                        <label class="container">
-                          <input
-                            type="checkbox"
-                          />
-                          <span class="checkmark"></span>
-                        </label>
-                      </div>
-                    </div>
-                  </td>
+            <!--
+              TABLE USERS
+            -->
+            <spinner v-if="!isLoaded" message="Loading User List...." />
+            <lv-table
+              v-else
+              :fields="tableData.fields"
+              :items="setupTableData"
+            >
 
-                  <td>
-                    <div class="wrapper">
-                      <span class="order_number">{{ booking.order_number }}</span> <br />
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper flex-column items-start">
-                      <router-link :to="'/packages-detail/'+booking.tour_id">
-                        <span class="info text-primary">{{ booking.title }}</span>
-                      </router-link>
-                      <span class="info mt-10">{{ booking.type_tour === 'close' ? 'A Private Tour' : 'A Open Tour' }} by: {{ booking.host_name }}</span><br />
-                    </div>
-                  </td>
-                  <td>
-                    <div class="wrapper">
-                      <span class="info">{{ booking.participants.length }}</span> <br />
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper">
-                      <span class="info">{{ booking.host_name }}</span>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper flex-column">
-                      <span class="info">{{ booking.start_date | formatDate }}</span> s/d
-                      <span class="info">{{ booking.end_date | formatDate }}</span>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper">
-                      <span
-                        v-if="booking.status==='unpaid'"
-                        class="info badges badges--wait-payment"
-                      >{{ booking.status }}</span>
-
-                      <span
-                        v-if="booking.status==='paid'"
-                        class="info badges badges--paid-off"
-                      >{{ booking.status }}</span>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div class="wrapper">
-                      <span class="info icon">
-                        <router-link :to="'booking-edit/'+booking.order_id">
-                          <a title="Edit Refund"><img
-                            src="@/assets/img/ic-edit-line.svg"
-                            title="Edit User"
-                          /></a>
-                        </router-link>
-                      </span>
-                    </div>
-                  </td>
-                </tr>
+              <template #actionButtons="data">
+                <template v-for="(dt, idx) in data.data">
+                  <router-link :to="{ name: 'BookingDetail', params: { id: dt.viewButton.identifier }}" :key="idx">
+                    <span class="info icon"><img :src="`${dt.viewButton.iconsrc}`" /></span>
+                  </router-link>
+                </template>
               </template>
-            </tbody>
-          </table>
+
+            </lv-table>
+            <!-- /end table users -->
+
+          </div>
         </div>
-      </div>
+
+        <div class="columns">
+          <div class="column is-full">
+
+            <!--
+              PAGINATION
+            -->
+            <PaginationDefault
+              v-if="isLoaded"
+              :pageData="pagination"
+              page="pagination"
+              @changePage="handlePaging"
+            />
+            <!-- /end pagination -->
+
+          </div>
+        </div>
+      </section>
+
     </div>
   </div>
 </template>
 <script>
-import axios from 'axios'
-import moment from 'moment'
+// internal modules
+import { mapState, mapActions } from 'vuex'
+import auth from '@/mixins/auth'
+import appStates from '@/mixins/appStates'
+
+// external modules
+import Spinner from 'vue-simple-spinner'
+import _ from 'lodash'
+
+// components & views
+import {
+  PageTitleDefault,
+  SearchInPage,
+  PaginationDefault,
+  LvTable
+} from '@/components'
+
 export default {
-  filters: {
-    formatDate: function (value) {
-      if (value) {
-        return moment(String(value)).format('DD/MM/YYYY')
-      }
-    }
+  name: 'Bookings',
+  components: {
+    PageTitleDefault,
+    SearchInPage,
+    PaginationDefault,
+    LvTable,
+    Spinner
   },
+  mixins: [auth, appStates],
   data () {
     return {
-      accessToken: '',
-      isLoading: false,
-      apiUrl: `${process.env.VUE_APP_API_BASE_URL}`,
-      bookingList: ''
-    }
-  },
-  mounted () {
-    if (!localStorage.accessToken) {
-      this.$router.push({ path: '/' })
-    } else {
-      this.accessToken = localStorage.accessToken
-    }
+      search: '',
 
-    var header = {
-      headers: {
-        Authorization: `Bearer ${this.accessToken}`
+      params: {
+        limit: 10,
+        param: 'booking'
+      },
+
+      tableData: {
+        fields: ['Order Number', 'Order by', 'Activity', 'Schedule', 'Status', 'Activity Status', '']
       }
     }
+  },
+  computed: {
+    ...mapState({
+      bookings: state => state.bookings.bookings,
+      pagination: state => state.bookings.pagination,
+      isLoaded: state => state.isLoaded,
+      errorMsg: state => state.errorMsg
+    }),
+    setupTableData () {
+      const tableData = []
 
-    this.isLoading = true
-    axios.get(this.apiUrl + 'auth/orders/list-admin?page=1&per_page=100&param=booking', header)
-      .then((res) => {
-        this.bookingList = res.data.data
-        this.isLoading = false
+      const sorted = _.map(this.bookings, val => {
+        return _.pick(val, ['order_id', 'order_number', 'user_info.name', 'user_info.email', 'created_at', 'start_date', 'end_date', 'status', 'tour_status', 'title', 'host_name'])
       })
-      .catch((err) => {
-        if (err.response.status === 401) {
-          localStorage.removeItem('accessToken')
-          localStorage.removeItem('hostId')
-          this.$router.push({ path: '/' })
+
+      _.forIn(sorted, (v, k) => {
+        const orderNumber = {
+          orderNumber: {
+            value: v.order_number
+          }
         }
-        this.isLoading = false
+
+        const orderBy = {
+          orderBy: {
+            value: v.user_info.name,
+            child: [
+              {
+                email: {
+                  value: v.user_info.email
+                }
+              },
+              {
+                date: {
+                  value: `at ${v.created_at}`
+                }
+              }
+            ]
+          }
+        }
+
+        const schedule = {
+          schedule: {
+            value: `${v.start_date} - ${v.end_date}`
+          }
+        }
+
+        const status = {
+          status: {
+            value: v.status
+          }
+        }
+
+        const activityStatus = {
+          activityStatus: {
+            value: v.tour_status
+          }
+        }
+
+        const activity = {
+          activity: {
+            value: v.title,
+            child: [
+              {
+                host: {
+                  value: `by ${v.host_name}`
+                }
+              }
+            ]
+          }
+        }
+
+        const actionButtons = {
+          actionButtons: {
+            viewButton: {
+              iconsrc: 'assets/img/ic-edit-line.svg',
+              identifier: v.order_id
+            }
+          }
+        }
+
+        tableData[k] = { ...orderNumber, ...orderBy, ...activity, ...schedule, ...status, ...activityStatus, actionButtons }
       })
+
+      const filtered = _.filter(tableData, (data) => {
+        return data.orderNumber.value.toLowerCase().includes(this.search.toLowerCase())
+      })
+
+      return filtered
+    }
+  },
+  methods: {
+    ...mapActions([
+      'getBookings'
+    ]),
+    handlePaging () {
+      console.log('paging')
+    }
+  },
+  created () {
+    const pg = (this.$route.params.page) || 1
+    const param = {
+      limit: this.params.limit,
+      page: pg,
+      param: this.params.param
+    }
+
+    if (this.bookings.length < 1) {
+      this.getBookings(param)
+        .then(() => {
+          this.isUnauthorized()
+        })
+    }
   }
 }
 </script>
 
 <style  scoped>
-.text-primary{
-  color: #7A5ACA !important;
-}
 </style>

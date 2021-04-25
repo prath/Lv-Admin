@@ -49,7 +49,7 @@
               <img src="@/assets/img/icons/activities.svg" alt="Activities" />
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a @click="openMenu('content'); $router.push('/featured-activities')">
               <img src="@/assets/img/icons/content.svg" alt="Content Management" />
             </a>
@@ -58,7 +58,7 @@
             <a @click="openMenu('transactions'); $router.push('/tax')">
               <img src="@/assets/img/icons/transactions.svg" alt="Transactions" />
             </a>
-          </li>
+          </li>-->
         </ul>
 
         <ul class="bottom">
@@ -132,7 +132,7 @@
                 Pilot Guests
               </router-link>
             </li>
-            <li class="divider"></li>
+            <!-- <li class="divider"></li>
             <li>
               <router-link to="/deactivated-users">
                 Deactivated Users
@@ -142,14 +142,14 @@
               <router-link to="/deleted-users">
                 Deleted Users
               </router-link>
-            </li>
+            </li> -->
           </template>
 
           <!--
             MENU ACTIVITIES
            -->
           <template v-if="menu.activities">
-            <li>
+            <!-- <li>
               <router-link to="/ongoing-activities">
                 Ongoing Activities
               </router-link>
@@ -159,7 +159,7 @@
                 Activity Packages
               </router-link>
             </li>
-            <li class="divider"></li>
+            <li class="divider"></li> -->
             <li>
               <router-link to="/bookings">
                 Bookings

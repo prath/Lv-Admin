@@ -33,6 +33,7 @@ import {
   OngoingActivities,
   BookingContact,
   Bookings,
+  BookingDetail,
 
   // Packages
   ActivityPackages,
@@ -100,6 +101,8 @@ const router = new VueRouter({
     { path: '/activity-packages/page/:page', component: ActivityPackages, meta: { group: 'activities' } },
     { path: '/activity-packages/:id', component: ActivityPackageDetail, params: true, meta: { group: 'activities' } },
     { path: '/bookings', component: Bookings, meta: { group: 'activities' } },
+    { path: '/bookings/page/:page', component: Bookings, meta: { group: 'activities' } },
+    { path: '/booking/:id', name: 'BookingDetail', component: BookingDetail, params: true, meta: { group: 'activities' } },
     { path: '/bookings-by-contact', component: BookingContact, meta: { group: 'activities' } },
     { path: '/categories-tags', component: CategoriesTags, meta: { group: 'activities' } },
     { path: '/category-add', component: CategoriesAdd, meta: { group: 'activities' } },

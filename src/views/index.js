@@ -34,6 +34,7 @@ import UserConvert from '@/views/users/UserConvert'
 import OngoingActivities from '@/views/activities/OngoingActivities'
 import BookingContact from '@/views/activities/BookingContact'
 import Bookings from '@/views/activities/Bookings'
+import BookingDetail from '@/views/activities/BookingDetail'
 
 // Activity Packages
 import ActivityPackages from '@/views/activity-packages/ActivityPackages'
@@ -89,6 +90,7 @@ export {
   OngoingActivities,
   BookingContact,
   Bookings,
+  BookingDetail,
 
   ActivityPackages,
   ActivityPackageDetail,
