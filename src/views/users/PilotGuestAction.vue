@@ -14,7 +14,7 @@
             -->
             <header>
               <h2 class="head">
-                {{ userData.business_name }}
+                {{ userData.first_name }} {{ userData.last_name }}
               </h2>
               <span class="sub-head">Signed up at {{ userData.created_at | formatDate }}</span>
             </header>
@@ -93,68 +93,6 @@
             <!-- end meta infos -->
 
             <!--
-              BUSINESS INFO HEADING
-             -->
-            <div class="heading border">
-              <h4>Business Info</h4>
-            </div>
-            <!-- /end business info -->
-
-            <!--
-              META INFOS
-            -->
-            <section class="padding-b-m">
-              <div class="meta-info meta-info--big flex around-md top-md">
-
-                <!--
-                  EMAIL
-                 -->
-                <div class="item-container">
-                  <div class="item">
-                    <div class="title">
-                      Business Name
-                    </div>
-                    <div class="value">
-                      {{ userData.business_name }}
-                    </div>
-                  </div>
-                </div>
-                <!-- /end email -->
-
-                <!--
-                  DOB
-                 -->
-                <div class="item-container">
-                  <div class="item">
-                    <div class="title">
-                      Address
-                    </div>
-                    <div class="value">
-                      {{ userData.address }}
-                    </div>
-                  </div>
-                </div>
-                <!-- /end dob -->
-
-                <!--
-                  PHONE
-                 -->
-                <div class="item-container">
-                  <div class="item">
-                    <div class="title">
-                      About The Business
-                    </div>
-                    <div class="value">
-                      {{ userData.business_about }}
-                    </div>
-                  </div>
-                </div>
-                <!-- /end phone -->
-              </div>
-            </section>
-            <!-- end meta infos -->
-
-            <!--
               SEND EMAIL CREDENTIAL
              -->
             <div class="heading border">
@@ -218,31 +156,8 @@
               </div>
             </form>
 
-            <!--
-              VERIFY/UNVERIFY
-             -->
-            <div class="heading border">
-              <h4>Host Verification</h4>
-            </div>
-            <!-- /verify or unverify -->
-
-            {{ userData.is_verified }}
-
-            <div class="message is-info p-5 mb-6">
-              <h5>{{ userData.first_name }} is
-                <template v-if="userData.is_verified">a verified</template>
-                <template v-else>an unverified</template>
-                host
-              </h5>
-              <spinner v-if="isVerifyLoading" size="small" />
-              <shapla-switch v-else v-model="userData.is_verified" @change="verifyUser">
-                <template v-if="userData.is_verified">Unverify this user</template>
-                <template v-else>Verify this user</template>
-              </shapla-switch>
-            </div>
-
           </div>
-          <!-- /end user & business info -->
+          <!-- /end user info -->
 
         </div>
 
@@ -273,7 +188,6 @@ import { mapState, mapActions } from 'vuex'
 import Spinner from 'vue-simple-spinner'
 import axios from 'axios'
 import config from '@/config'
-import shaplaSwitch from 'shapla-switch'
 
 // components
 
@@ -282,8 +196,7 @@ import shaplaSwitch from 'shapla-switch'
 export default {
   name: 'PilotGuestAction',
   components: {
-    Spinner,
-    shaplaSwitch
+    Spinner
   },
   mixins: [auth, formatting],
   data () {
@@ -296,11 +209,8 @@ export default {
       link: '',
 
       isLoading: false,
-      isVerifyLoading: false,
       isError: false,
-      isVerifyError: false,
-      processCompleted: false,
-      processVerifyCompleted: false
+      processCompleted: false
     }
   },
   computed: {
@@ -310,8 +220,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getUserByID',
-      'signGuestAsHost'
+      'getUserByID'
     ]),
     sendEmail: function () {
       this.isLoading = true
@@ -337,39 +246,6 @@ export default {
         this.isError = true
         this.isLoading = false
       }
-    },
-    verifyUser: function () {
-      this.isVerifyLoading = true
-
-      const businessData = {
-        address: this.userData.address,
-        business_name: this.userData.business_name,
-        card_id_type: '',
-        card_id: '',
-        bussiness_id_type: '',
-        business_category: 'personal tour',
-        bussiness_id: '',
-        person_with_id: '',
-        business_about: '',
-        is_verified: this.userData.is_verified
-      }
-
-      const user = {
-        uid: this.userData.user_uid
-      }
-
-      this.signGuestAsHost({ businessData, user })
-        .then(response => {
-          if (response.status === 200) {
-            this.isVerifyLoading = false
-            this.processVerifyCompleted = true
-          }
-        })
-        .catch(error => {
-          console.log(error.response)
-          this.isVerifyLoading = false
-          this.processVerifyCompleted = true
-        })
     }
   },
   created () {

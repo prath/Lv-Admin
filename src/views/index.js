@@ -20,6 +20,7 @@ import Guests from '@/views/users/Guests'
 import PilotHosts from '@/views/users/PilotHosts'
 import PilotHostAction from '@/views/users/PilotHostAction'
 import PilotGuests from '@/views/users/PilotGuests'
+import PilotGuestAction from '@/views/users/PilotGuestAction'
 import DeletedUsers from '@/views/users/DeletedUsers'
 import DeactivatedUsers from '@/views/users/DeactivatedUsers'
 import UserAdd from '@/views/users/UserAdd'
@@ -75,6 +76,7 @@ export {
   PilotHosts,
   PilotHostAction,
   PilotGuests,
+  PilotGuestAction,
   DeletedUsers,
   DeactivatedUsers,
   UserAdd,
